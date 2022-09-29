@@ -6,6 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: c939aadb13321f949acbce3ec8110fff
+  - enabled: 1
+    path: Assets/Scenes/SelectStageScene.unity
+    guid: 74a5ece7581728a42b403ebf2322cdad
+  - enabled: 1
+    path: Assets/Scenes/SelectTankScene.unity
+    guid: cbca7f7ee7a90ec4eb54cce9a75025f3
+  - enabled: 1
+    path: Assets/Scenes/DecideNameScene.unity
+    guid: fc10261aa3a434c4b9aaf52a776e047d
+  - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: a9e16f6fa71086045b67bfd83f474309
+  - enabled: 1
+    path: Assets/Scenes/MatchingScene.unity
+    guid: e78eba4274462554eb4e1c76b111f047
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: 685111bacb65b094fb776ebafaf2a391
   m_configObjects: {}
