@@ -8,12 +8,19 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     FireBullet m_fireBulletScript = null;
+
     [SerializeField] GameObject m_deathMarkPrefab = null;
     [SerializeField] GameObject m_resultPrefab = null;
+
+    Rigidbody m_rigidbody = null;
+
+    int m_RefrectionNum = 0;
 
     void Start()
     {
         m_fireBulletScript = GameObject.Find("1pFireBulletPos").GetComponent<FireBullet>();
+
+        m_rigidbody = GetComponent<Rigidbody>();
     }
 
     //衝突処理
@@ -22,11 +29,20 @@ public class BulletCollision : MonoBehaviour
         //壁に衝突した場合
         if(collision.gameObject.tag == "Wall")
         {
-            //フィールド上に生成されている弾の数データを減らす
-            m_fireBulletScript.ReduceBulletNum();
+            m_RefrectionNum++;
 
-            //弾を消滅させる
-            Destroy(this.gameObject,0.1f);
+            if (m_RefrectionNum > 1)
+            {
+                ////フィールド上に生成されている弾の数データを減らす
+                m_fireBulletScript.ReduceBulletNum();
+
+                ////弾を消滅させる
+                Destroy(this.gameObject, 0.1f);
+            }
+
+            GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
+
+            transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
         }
 
         //プレイヤーに衝突した場合
