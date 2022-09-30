@@ -7,26 +7,44 @@ using TMPro;
 public class DecidePlayerName : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI m_playerNameText = null;
+    [SerializeField] int m_maxCharacterNum = 0;
 
-    void Start()
+    public void SetCharacter(string character)
     {
-        //仮にえへへという名前にしておく
-        m_playerNameText.text = "ehehe";
-    }
-
-    void Update()
-    {
-        //プレイヤー名入力
-
-        //左クリックされたとき、
-        if (Input.GetMouseButtonDown(0))
+        switch (character)
         {
-            //名前にできない名前の場合シーン遷移できないようにする
+            case "BACK":
+                //何も入力されていなかったら末尾を削除しない
+                if(m_playerNameText.text.Length == 0)
+                {
+                    return;
+                }
+                //名前の末尾を削除する。
+                m_playerNameText.text = m_playerNameText.text[..^1];
+                break;
 
-            //選択されていたモードによってシーン遷移先を分岐
+            case "OK":
+                //何も入力されていなかったらokさせない
+                if (m_playerNameText.text.Length == 0)
+                {
+                    return;
+                }
+                //登録された名前をセーブ
+                PlayerPrefs.SetString("PlayerName", m_playerNameText.text);
+                PlayerPrefs.Save();
+                //タンク選択シーンに遷移
+                SceneManager.LoadScene("SelectTankScene");
+                break;
 
-            //タンク選択シーンに遷移
-            SceneManager.LoadScene("SelectTankScene");
+            default:
+                //上限文字以上だったら反映させない
+                if(m_playerNameText.text.Length > m_maxCharacterNum-1)
+                {
+                    return;
+                }
+
+                m_playerNameText.text += character;
+                break;
         }
     }
 }
