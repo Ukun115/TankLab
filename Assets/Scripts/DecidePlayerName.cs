@@ -9,7 +9,7 @@ public class DecidePlayerName : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_playerNameText = null;
     [SerializeField] int m_maxCharacterNum = 0;
 
-    public void SetNameText(string character)
+    public void SetCharacter(string character)
     {
         switch (character)
         {
@@ -45,6 +45,6 @@ public class DecidePlayerName : MonoBehaviour
 
                 m_playerNameText.text += character;
                 break;
-    }
+        }
     }
 }

@@ -5536,6 +5536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1465950374}
   - component: {fileID: 1465950375}
+  - component: {fileID: 1465950376}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -5572,6 +5573,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerNameText: {fileID: 1950883957}
   m_maxCharacterNum: 8
+--- !u!114 &1465950376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465950373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c081bc5bf1a88414b8e032ff2c5ef4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1480572334
 GameObject:
   m_ObjectHideFlags: 0

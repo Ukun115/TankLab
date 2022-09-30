@@ -90,12 +90,15 @@ public class RayCast : MonoBehaviour
                     //現在のシーンによって処理を変更
                     switch(SceneManager.GetActiveScene().name)
                     {
+                        //タイトルシーン
                         case "TitleScene":
+                            //押されたボタンの文字を渡す
+                            GameObject.Find("SceneManager").GetComponent<DecideGameMode>().SetCharacter(hit.collider.name);
                             break;
                             //名前決めシーン
                         case "DecideNameScene":
                             //押されたボタンの文字を渡す
-                            GameObject.Find("SceneManager").GetComponent< DecidePlayerName>().SetNameText(hit.collider.name);
+                            GameObject.Find("SceneManager").GetComponent< DecidePlayerName>().SetCharacter(hit.collider.name);
                             break;
                     }
                 }
