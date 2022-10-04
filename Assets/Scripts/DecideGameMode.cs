@@ -14,13 +14,15 @@ public class DecideGameMode : MonoBehaviour
                 if (!PlayerPrefs.HasKey("PlayerName"))
                 {
                     //プレイヤー名登録シーンを挟む
-                    SceneManager.LoadScene("DecideNameScene");
+                    //SceneManager.LoadScene("DecideNameScene");
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(1);
                 }
                 //通常遷移
                 else
                 {
                     //タンクシーンに遷移
-                    SceneManager.LoadScene("SelectTankScene");
+                    //SceneManager.LoadScene("SelectTankScene");
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(2);
                 }
 
                 break;

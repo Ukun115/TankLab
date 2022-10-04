@@ -264,8 +264,8 @@ GameObject:
   - component: {fileID: 53747511}
   - component: {fileID: 53747510}
   m_Layer: 0
-  m_Name: Wall (48)
-  m_TagString: Wall
+  m_Name: Block9
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &53747510
 MeshRenderer:
@@ -540,16 +540,16 @@ Transform:
   m_Children:
   - {fileID: 1730829624}
   - {fileID: 544929454}
+  - {fileID: 1480572335}
+  - {fileID: 170760553}
+  - {fileID: 1597416099}
+  - {fileID: 220252845}
+  - {fileID: 602234556}
+  - {fileID: 147505453}
+  - {fileID: 53747508}
   - {fileID: 2091735998}
   - {fileID: 461339468}
-  - {fileID: 1480572335}
   - {fileID: 246411920}
-  - {fileID: 170760553}
-  - {fileID: 53747508}
-  - {fileID: 147505453}
-  - {fileID: 1597416099}
-  - {fileID: 602234556}
-  - {fileID: 220252845}
   m_Father: {fileID: 1847929881}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -565,8 +565,8 @@ GameObject:
   - component: {fileID: 137807526}
   - component: {fileID: 137807525}
   m_Layer: 0
-  m_Name: Wall (9)
-  m_TagString: Wall
+  m_Name: Block8
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,7 +584,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &137807525
 MeshRenderer:
@@ -648,8 +648,8 @@ GameObject:
   - component: {fileID: 147505456}
   - component: {fileID: 147505455}
   m_Layer: 0
-  m_Name: Wall (49)
-  m_TagString: Wall
+  m_Name: Block8
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -667,7 +667,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &147505455
 MeshRenderer:
@@ -814,8 +814,8 @@ GameObject:
   - component: {fileID: 170760556}
   - component: {fileID: 170760555}
   m_Layer: 0
-  m_Name: Wall (47)
-  m_TagString: Wall
+  m_Name: Block4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -833,7 +833,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &170760555
 MeshRenderer:
@@ -884,89 +884,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170760552}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &181760915
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 181760916}
-  - component: {fileID: 181760919}
-  - component: {fileID: 181760918}
-  m_Layer: 0
-  m_Name: Wall (64)
-  m_TagString: Wall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &181760916
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181760915}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.25, y: 0, z: 6}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1750304706}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &181760918
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181760915}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 47754c2e0cff47d4d83298386655b0a6, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &181760919
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181760915}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &192573465
 GameObject:
@@ -1063,8 +980,8 @@ GameObject:
   - component: {fileID: 195462766}
   - component: {fileID: 195462765}
   m_Layer: 0
-  m_Name: Wall (56)
-  m_TagString: Wall
+  m_Name: Block5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,8 +1146,8 @@ GameObject:
   - component: {fileID: 220252848}
   - component: {fileID: 220252847}
   m_Layer: 0
-  m_Name: Wall (52)
-  m_TagString: Wall
+  m_Name: Block6
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1248,7 +1165,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &220252847
 MeshRenderer:
@@ -1312,8 +1229,8 @@ GameObject:
   - component: {fileID: 246411923}
   - component: {fileID: 246411922}
   m_Layer: 0
-  m_Name: Wall (39)
-  m_TagString: Wall
+  m_Name: Block12
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1331,7 +1248,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &246411922
 MeshRenderer:
@@ -1441,8 +1358,8 @@ GameObject:
   - component: {fileID: 284818755}
   - component: {fileID: 284818754}
   m_Layer: 0
-  m_Name: Wall (46)
-  m_TagString: Wall
+  m_Name: Block1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1460,7 +1377,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &284818754
 MeshRenderer:
@@ -1524,8 +1441,8 @@ GameObject:
   - component: {fileID: 371989361}
   - component: {fileID: 371989360}
   m_Layer: 0
-  m_Name: Wall (83)
-  m_TagString: Wall
+  m_Name: Block3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1543,7 +1460,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &371989360
 MeshRenderer:
@@ -1677,7 +1594,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &382828651
 BoxCollider:
@@ -1790,7 +1707,7 @@ RectTransform:
   - {fileID: 1950883956}
   - {fileID: 868526697}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1938,8 +1855,8 @@ GameObject:
   - component: {fileID: 431550525}
   - component: {fileID: 431550524}
   m_Layer: 0
-  m_Name: Wall (84)
-  m_TagString: Wall
+  m_Name: Block4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1957,7 +1874,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &431550524
 MeshRenderer:
@@ -2113,8 +2030,8 @@ GameObject:
   - component: {fileID: 461339471}
   - component: {fileID: 461339470}
   m_Layer: 0
-  m_Name: Wall (37)
-  m_TagString: Wall
+  m_Name: Block11
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2132,7 +2049,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &461339470
 MeshRenderer:
@@ -2196,8 +2113,8 @@ GameObject:
   - component: {fileID: 528101863}
   - component: {fileID: 528101862}
   m_Layer: 0
-  m_Name: Wall (58)
-  m_TagString: Wall
+  m_Name: Block2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2215,7 +2132,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &528101862
 MeshRenderer:
@@ -2469,7 +2386,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544929453
 GameObject:
@@ -2483,8 +2400,8 @@ GameObject:
   - component: {fileID: 544929457}
   - component: {fileID: 544929456}
   m_Layer: 0
-  m_Name: Wall (35)
-  m_TagString: Wall
+  m_Name: Block2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2764,8 +2681,8 @@ GameObject:
   - component: {fileID: 602234559}
   - component: {fileID: 602234558}
   m_Layer: 0
-  m_Name: Wall (51)
-  m_TagString: Wall
+  m_Name: Block7
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2783,7 +2700,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &602234558
 MeshRenderer:
@@ -3164,12 +3081,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1338853504}
-  - {fileID: 1986243305}
-  - {fileID: 1509886370}
-  - {fileID: 1924320183}
   - {fileID: 1246657313}
   - {fileID: 1814590318}
+  - {fileID: 1924320183}
+  - {fileID: 1506834296}
+  - {fileID: 1509886370}
+  - {fileID: 1143053878}
+  - {fileID: 1986243305}
+  - {fileID: 1636478156}
+  - {fileID: 1338853504}
   m_Father: {fileID: 1847929881}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3366,8 +3286,8 @@ GameObject:
   - component: {fileID: 867420145}
   - component: {fileID: 867420144}
   m_Layer: 0
-  m_Name: Wall (95)
-  m_TagString: Wall
+  m_Name: Block6
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3385,7 +3305,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &867420144
 MeshRenderer:
@@ -3796,8 +3716,8 @@ GameObject:
   - component: {fileID: 924615708}
   - component: {fileID: 924615707}
   m_Layer: 0
-  m_Name: Wall (33)
-  m_TagString: Wall
+  m_Name: Block7
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3815,7 +3735,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &924615707
 MeshRenderer:
@@ -3879,8 +3799,8 @@ GameObject:
   - component: {fileID: 972314131}
   - component: {fileID: 972314130}
   m_Layer: 0
-  m_Name: Wall (60)
-  m_TagString: Wall
+  m_Name: Block3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3898,7 +3818,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &972314130
 MeshRenderer:
@@ -4395,8 +4315,8 @@ GameObject:
   - component: {fileID: 1143053881}
   - component: {fileID: 1143053880}
   m_Layer: 0
-  m_Name: Wall (62)
-  m_TagString: Wall
+  m_Name: Block6
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4409,12 +4329,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143053877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.25, y: 0, z: 6}
+  m_LocalPosition: {x: -0.8299999, y: 0, z: 6}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1750304706}
-  m_RootOrder: 9
+  m_Father: {fileID: 734451020}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1143053880
 MeshRenderer:
@@ -4478,8 +4398,8 @@ GameObject:
   - component: {fileID: 1143792073}
   - component: {fileID: 1143792072}
   m_Layer: 0
-  m_Name: Wall (90)
-  m_TagString: Wall
+  m_Name: Block2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4497,7 +4417,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1143792072
 MeshRenderer:
@@ -4690,8 +4610,8 @@ GameObject:
   - component: {fileID: 1211049498}
   - component: {fileID: 1211049497}
   m_Layer: 0
-  m_Name: Wall (94)
-  m_TagString: Wall
+  m_Name: Block7
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4709,7 +4629,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1211049497
 MeshRenderer:
@@ -4819,8 +4739,8 @@ GameObject:
   - component: {fileID: 1246657316}
   - component: {fileID: 1246657315}
   m_Layer: 0
-  m_Name: Wall (64)
-  m_TagString: Wall
+  m_Name: Block1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4838,7 +4758,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1246657315
 MeshRenderer:
@@ -5031,8 +4951,8 @@ GameObject:
   - component: {fileID: 1338853507}
   - component: {fileID: 1338853506}
   m_Layer: 0
-  m_Name: Wall (59)
-  m_TagString: Wall
+  m_Name: Block9
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5050,7 +4970,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1338853506
 MeshRenderer:
@@ -5372,8 +5292,8 @@ GameObject:
   - component: {fileID: 1412956435}
   - component: {fileID: 1412956434}
   m_Layer: 0
-  m_Name: Wall (85)
-  m_TagString: Wall
+  m_Name: Block1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5391,7 +5311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1412956434
 MeshRenderer:
@@ -5557,7 +5477,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1465950375
 MonoBehaviour:
@@ -5597,8 +5517,8 @@ GameObject:
   - component: {fileID: 1480572338}
   - component: {fileID: 1480572337}
   m_Layer: 0
-  m_Name: Wall (38)
-  m_TagString: Wall
+  m_Name: Block3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5616,7 +5536,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1480572337
 MeshRenderer:
@@ -5680,8 +5600,8 @@ GameObject:
   - component: {fileID: 1487101607}
   - component: {fileID: 1487101606}
   m_Layer: 0
-  m_Name: Wall (93)
-  m_TagString: Wall
+  m_Name: Block8
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5699,7 +5619,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1487101606
 MeshRenderer:
@@ -5809,8 +5729,8 @@ GameObject:
   - component: {fileID: 1506834299}
   - component: {fileID: 1506834298}
   m_Layer: 0
-  m_Name: Wall (61)
-  m_TagString: Wall
+  m_Name: Block4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5823,12 +5743,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506834295}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.25, y: 0, z: 6}
+  m_LocalPosition: {x: -1.8299999, y: 0, z: 6}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1750304706}
-  m_RootOrder: 8
+  m_Father: {fileID: 734451020}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1506834298
 MeshRenderer:
@@ -5892,8 +5812,8 @@ GameObject:
   - component: {fileID: 1509886373}
   - component: {fileID: 1509886372}
   m_Layer: 0
-  m_Name: Wall (62)
-  m_TagString: Wall
+  m_Name: Block5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5911,7 +5831,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1509886372
 MeshRenderer:
@@ -6187,8 +6107,8 @@ GameObject:
   - component: {fileID: 1589785582}
   - component: {fileID: 1589785581}
   m_Layer: 0
-  m_Name: Wall (45)
-  m_TagString: Wall
+  m_Name: Block6
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6206,7 +6126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1589785581
 MeshRenderer:
@@ -6270,8 +6190,8 @@ GameObject:
   - component: {fileID: 1597416102}
   - component: {fileID: 1597416101}
   m_Layer: 0
-  m_Name: Wall (50)
-  m_TagString: Wall
+  m_Name: Block5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6289,7 +6209,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1597416101
 MeshRenderer:
@@ -6399,8 +6319,8 @@ GameObject:
   - component: {fileID: 1636478159}
   - component: {fileID: 1636478158}
   m_Layer: 0
-  m_Name: Wall (63)
-  m_TagString: Wall
+  m_Name: Block8
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6413,12 +6333,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636478155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.25, y: 0, z: 6}
+  m_LocalPosition: {x: 0.17000008, y: 0, z: 6}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1750304706}
-  m_RootOrder: 10
+  m_Father: {fileID: 734451020}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1636478158
 MeshRenderer:
@@ -6823,8 +6743,8 @@ GameObject:
   - component: {fileID: 1730829627}
   - component: {fileID: 1730829626}
   m_Layer: 0
-  m_Name: Wall (34)
-  m_TagString: Wall
+  m_Name: Block1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7005,18 +6925,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 924615705}
-  - {fileID: 137807523}
-  - {fileID: 1589785579}
   - {fileID: 284818752}
-  - {fileID: 195462763}
-  - {fileID: 2000960717}
   - {fileID: 528101860}
   - {fileID: 972314128}
-  - {fileID: 1506834296}
-  - {fileID: 1143053878}
-  - {fileID: 1636478156}
-  - {fileID: 181760916}
+  - {fileID: 2000960717}
+  - {fileID: 195462763}
+  - {fileID: 1589785579}
+  - {fileID: 924615705}
+  - {fileID: 137807523}
   m_Father: {fileID: 1847929881}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7078,8 +6994,8 @@ GameObject:
   - component: {fileID: 1814590321}
   - component: {fileID: 1814590320}
   m_Layer: 0
-  m_Name: Wall (48)
-  m_TagString: Wall
+  m_Name: Block2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7097,7 +7013,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1814590320
 MeshRenderer:
@@ -7182,7 +7098,7 @@ Transform:
   - {fileID: 734451020}
   - {fileID: 1895821956}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1867739308
 GameObject:
@@ -7430,14 +7346,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 371989358}
   - {fileID: 1412956432}
   - {fileID: 1143792070}
-  - {fileID: 1971484406}
-  - {fileID: 1487101604}
-  - {fileID: 1211049495}
-  - {fileID: 867420142}
+  - {fileID: 371989358}
   - {fileID: 431550522}
+  - {fileID: 1971484406}
+  - {fileID: 867420142}
+  - {fileID: 1211049495}
+  - {fileID: 1487101604}
   m_Father: {fileID: 1847929881}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7453,8 +7369,8 @@ GameObject:
   - component: {fileID: 1924320186}
   - component: {fileID: 1924320185}
   m_Layer: 0
-  m_Name: Wall (63)
-  m_TagString: Wall
+  m_Name: Block3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7472,7 +7388,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1924320185
 MeshRenderer:
@@ -7754,8 +7670,8 @@ GameObject:
   - component: {fileID: 1971484409}
   - component: {fileID: 1971484408}
   m_Layer: 0
-  m_Name: Wall (91)
-  m_TagString: Wall
+  m_Name: Block5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7773,7 +7689,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895821956}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1971484408
 MeshRenderer:
@@ -7837,8 +7753,8 @@ GameObject:
   - component: {fileID: 1986243308}
   - component: {fileID: 1986243307}
   m_Layer: 0
-  m_Name: Wall (61)
-  m_TagString: Wall
+  m_Name: Block7
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7856,7 +7772,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734451020}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1986243307
 MeshRenderer:
@@ -7920,8 +7836,8 @@ GameObject:
   - component: {fileID: 2000960720}
   - component: {fileID: 2000960719}
   m_Layer: 0
-  m_Name: Wall (57)
-  m_TagString: Wall
+  m_Name: Block4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7939,7 +7855,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750304706}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2000960719
 MeshRenderer:
@@ -8182,7 +8098,7 @@ GameObject:
   - component: {fileID: 2061015164}
   m_Layer: 0
   m_Name: InputNameBlock
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8264,8 +8180,8 @@ GameObject:
   - component: {fileID: 2091736001}
   - component: {fileID: 2091736000}
   m_Layer: 0
-  m_Name: Wall (36)
-  m_TagString: Wall
+  m_Name: Block10
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8283,7 +8199,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133154747}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2091736000
 MeshRenderer:
