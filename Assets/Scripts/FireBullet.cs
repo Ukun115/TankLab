@@ -7,7 +7,6 @@ public class FireBullet : MonoBehaviour
     [SerializeField] GameObject m_bulletPrefab = null;
     //フィールド上に生成されている弾の数
     int m_bulletNum = 0;
-    [SerializeField] GameObject m_bulletParentObject = null;
 
     void Update()
     {
@@ -28,7 +27,7 @@ public class FireBullet : MonoBehaviour
             m_bulletObject.name = "1pBullet" + m_bulletNum;
             m_bulletNum++;
             //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-            m_bulletObject.transform.parent = m_bulletParentObject.transform;
+            m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
         }
     }
 

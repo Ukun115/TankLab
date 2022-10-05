@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーの移動スクリプト
 /// </summary>
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Photon.Pun.MonoBehaviourPun
 {
     //剛体
     Rigidbody m_rigidbody = null;

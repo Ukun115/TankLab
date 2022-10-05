@@ -26,9 +26,10 @@ public class RayCast : MonoBehaviour
 
             switch (SceneManager.GetActiveScene().name)
             {
-                //タイトルシーンと名前決めシーンの時、
+                //タイトルシーン、名前決めシーン、パスワード入力画面の時、
                 case "TitleScene":
                 case "DecideNameScene":
+                case "InputPasswordScene":
                     if (hit.collider.gameObject != m_rayHitObject)
                     {
                         if (m_rayHitObject != null && m_childrenObject != null)
@@ -112,7 +113,11 @@ public class RayCast : MonoBehaviour
                             //押されたボタンの文字を渡す
                             GameObject.Find("SceneManager").GetComponent< DecidePlayerName>().SetCharacter(hit.collider.name);
                             break;
-
+                        //パスワード入力画面
+                        case "InputPasswordScene":
+                            //押されたボタンの文字を渡す
+                            GameObject.Find("SceneManager").GetComponent<DecidePassword>().SetCharacter(hit.collider.name);
+                            break;
                         //タンク選択シーン
                         case "SelectTankScene":
                             //押されたボタンの文字を渡す
