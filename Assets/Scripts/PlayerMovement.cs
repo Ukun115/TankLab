@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーの移動スクリプト
 /// </summary>
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Photon.Pun.MonoBehaviourPun
 {
     //剛体
     Rigidbody m_rigidbody = null;
@@ -31,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
         //左右矢印キーの値(-1.0f～1.0f)を取得する
         m_horizontal = Input.GetAxis("Horizontal");
         //上下矢印キーの値(-1.0f～1.0f)を取得する

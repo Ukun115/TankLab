@@ -33,7 +33,8 @@ public class DecidePlayerName : MonoBehaviour
                 PlayerPrefs.SetString("PlayerName", m_playerNameText.text);
                 PlayerPrefs.Save();
                 //タンク選択シーンに遷移
-                SceneManager.LoadScene("SelectTankScene");
+                //SceneManager.LoadScene("SelectTankScene");
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectTankScene");
                 break;
 
             default:

@@ -11,8 +11,9 @@ public class DecideTank : MonoBehaviour
         {
             case "TANK1":
             case "TANK2":
-                //ステージ1に遷移
-                SceneManager.LoadScene("SelectStageScene");
+                //ステージ選択シーンに遷移
+                //SceneManager.LoadScene("SelectStageScene");
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectStageScene");
                 break;
         }
     }

@@ -14,15 +14,13 @@ public class DecideGameMode : MonoBehaviour
                 if (!PlayerPrefs.HasKey("PlayerName"))
                 {
                     //プレイヤー名登録シーンを挟む
-                    //SceneManager.LoadScene("DecideNameScene");
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(1);
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("DecideNameScene");
                 }
                 //通常遷移
                 else
                 {
                     //タンクシーンに遷移
-                    //SceneManager.LoadScene("SelectTankScene");
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(2);
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectTankScene");
                 }
 
                 break;
@@ -32,12 +30,13 @@ public class DecideGameMode : MonoBehaviour
                 if (!PlayerPrefs.HasKey("PlayerName"))
                 {
                     //プレイヤー名登録シーンを挟む
-                    SceneManager.LoadScene("DecideNameScene");
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("DecideNameScene");
                 }
                 //通常遷移
                 else
                 {
-
+                    //パスワード入力画面に遷移
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("InputPasswordScene");
                 }
 
                 break;
