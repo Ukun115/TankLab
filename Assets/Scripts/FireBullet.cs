@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class FireBullet : MonoBehaviour
+public class FireBullet : Photon.Pun.MonoBehaviourPun
 {
     [SerializeField] GameObject m_bulletPrefab = null;
     //フィールド上に生成されている弾の数
@@ -10,6 +12,12 @@ public class FireBullet : MonoBehaviour
 
     void Update()
     {
+        //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
         //左クリックされたとき、
         if (Input.GetMouseButtonDown(0))
         {
