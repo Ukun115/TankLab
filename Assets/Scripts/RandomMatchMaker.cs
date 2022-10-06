@@ -21,6 +21,9 @@ public class RandomMatchMaker : MonoBehaviourPunCallbacks
             //デバック
             Debug.Log("ゲーム開始");
 
+            //オンラインモードフラグを立てる
+            GameObject.Find("SaveData").GetComponent<SaveData>().GetSetIsOnline = true;
+
             //ゲームシーンに遷移
             photonView.RPC(nameof(GoGameScene), RpcTarget.All);
         }

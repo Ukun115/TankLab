@@ -20,7 +20,7 @@ public class BulletCollision : MonoBehaviour
 
     void Start()
     {
-        m_fireBulletScript = GameObject.Find("1pFireBulletPos").GetComponent<FireBullet>();
+        m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<FireBullet>();
 
         m_rigidbody = GetComponent<Rigidbody>();
     }
@@ -42,7 +42,7 @@ public class BulletCollision : MonoBehaviour
 
                 ////íeÇè¡ñ≈Ç≥ÇπÇÈ
                 Destroy(this.gameObject, 0.05f);
-            
+
             }
 
             transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);

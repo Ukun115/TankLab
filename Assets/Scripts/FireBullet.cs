@@ -11,13 +11,18 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
     int m_bulletNum = 0;
     float m_yRot = 0;
     Quaternion m_originalQuaternion = Quaternion.identity;
-    [SerializeField] GameObject m_parentObject = null;
     [SerializeField] int m_sameTimeBulletNum = 0;
+    SaveData m_saveData = null;
+
+    void Start()
+    {
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+    }
 
     void Update()
     {
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
-        if (!photonView.IsMine)
+        if (m_saveData.GetSetIsOnline && !photonView.IsMine)
         {
             return;
         }
@@ -25,6 +30,9 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
         //左クリックされたとき、
         if (Input.GetMouseButtonDown(0))
         {
+            //デバック
+            Debug.Log("発射");
+
             m_yRot = 0.0f;
             //元の回転を取得
             m_originalQuaternion = transform.rotation;
@@ -40,19 +48,39 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
                 m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
                 transform.Rotate(0.0f, m_yRot, 0.0f);
 
-                GameObject m_bulletObject = Instantiate(
+                if (m_saveData.GetSetIsOnline)
+                {
+                    GameObject m_bulletObject = PhotonNetwork.Instantiate(
+                    m_bulletPrefab.name,
+                    transform.position,
+                    new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+                    );
+
+                    //元の回転に戻す
+                    transform.rotation = m_originalQuaternion;
+
+                    m_bulletObject.name = PhotonNetwork.LocalPlayer.ActorNumber + "pBullet" + m_bulletNum;
+                    m_bulletNum++;
+                    //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+                    m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
+                }
+                else
+                {
+                    GameObject m_bulletObject = Instantiate(
                     m_bulletPrefab,
                     transform.position,
-                    new Quaternion(0.0f, transform.rotation.y , 0.0f, transform.rotation.w)
-                );
-                //元の回転に戻す
-                transform.rotation = m_originalQuaternion;
-		
-				m_bulletObject.name = "1pBullet" + m_bulletNum;
-                m_bulletNum++;
-                //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                m_bulletObject.transform.parent = m_parentObject.transform;
-            }
+                    new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+                    );
+
+                    //元の回転に戻す
+                    transform.rotation = m_originalQuaternion;
+
+                    m_bulletObject.name = 1 + "pBullet" + m_bulletNum;
+                    m_bulletNum++;
+                    //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+                    m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
+                }
+            };
         }
 
     }

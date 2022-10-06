@@ -18,7 +18,7 @@ public class DrawFootPrint : MonoBehaviour
         {
             m_time = 0;
             //足跡オブジェクトを生成
-            GameObject footPrintObject = Instantiate(m_footPrintPrefab, new Vector3(transform.position.x, transform.position.y-0.49f, transform.position.z), transform.rotation);
+            GameObject footPrintObject = Instantiate(m_footPrintPrefab, new Vector3(transform.position.x, -0.45f , transform.position.z), transform.rotation);
             //足跡オブジェクトは大量に生成され、
             //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
             footPrintObject.transform.parent = GameObject.Find("Footprints").transform;

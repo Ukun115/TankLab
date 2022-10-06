@@ -14,14 +14,27 @@ public class PlayerInit : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        m_gameObject = PhotonNetwork.Instantiate(
-            m_playerPrefab.name,
-            m_initPosition[PhotonNetwork.LocalPlayer.ActorNumber-1],    //ポジション
-            Quaternion.identity,        //回転
-            0
-            );
-        //生成するゲームオブジェクトの名前をPlayer1or2にする
-        m_gameObject.name = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
+        if (GameObject.Find("SaveData").GetComponent<SaveData>().GetSetIsOnline)
+        {
+            m_gameObject = PhotonNetwork.Instantiate(
+                m_playerPrefab.name,
+                m_initPosition[PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
+                Quaternion.identity,        //回転
+                0
+                );
+            //生成するゲームオブジェクトの名前をPlayer1or2にする
+            m_gameObject.name = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
+        }
+        else
+        {
+            m_gameObject = Instantiate(
+                m_playerPrefab,
+                m_initPosition[0],    //ポジション
+                Quaternion.identity        //回転
+                );
+            //生成するゲームオブジェクトの名前をPlayer1にする
+            m_gameObject.name = "Player1";
+        }
 
         //デバック
         Debug.Log("プレイヤー番号は「" + m_gameObject.name + "」です。");

@@ -21,18 +21,21 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
     //上下矢印キーの値(-1.0f～1.0f)
     float m_vertical = 0.0f;
 
+    SaveData m_saveData = null;
+
     Vector3 latestPos;
 
     void Start()
     {
         //Rigidbodyのコンポーネントを取得する
         m_rigidbody = GetComponent<Rigidbody>();
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
     }
 
     void Update()
     {
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
-        if (!photonView.IsMine)
+        if (m_saveData.GetSetIsOnline && !photonView.IsMine)
         {
             return;
         }
