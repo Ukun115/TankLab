@@ -462,7 +462,7 @@ MonoBehaviour:
   m_footPrintPrefab: {fileID: 5652687468675882084, guid: 0bbaee3c4d0e8294d954db0ab0cb990c,
     type: 3}
   m_drawInterval: 0.5
-  m_parentObject: {fileID: 784781525}
+  m_footPrintParentObject: {fileID: 784781525}
 --- !u!1 &78389305
 GameObject:
   m_ObjectHideFlags: 0
@@ -9636,8 +9636,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
     type: 3}
-  m_parentObject: {fileID: 503460551}
   m_sameTimeBulletNum: 3
+  m_bulletParentObject: {fileID: 503460551}
 --- !u!1 &1652146367
 GameObject:
   m_ObjectHideFlags: 0
