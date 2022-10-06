@@ -9,6 +9,11 @@ public class DecideGameMode : MonoBehaviour
     {
         switch (character)
         {
+            case "CHALLENGE":
+                //チャレンジゲームに遷移
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("ChallengeGame");
+                break;
+
             case "RANDOMMATCH":
                 //プレイヤー名を登録していなかった場合、
                 if (!PlayerPrefs.HasKey("PlayerName"))

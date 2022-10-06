@@ -8,6 +8,9 @@ using TMPro;
 /// </summary>
 public class SaveData : MonoBehaviour
 {
+    //オンラインモードかどうか
+    bool m_isOnline = false;
+
     //選択ステージ名
     string m_selectStageName = "";
     //選択タンク名
@@ -18,7 +21,7 @@ public class SaveData : MonoBehaviour
     void Start()
     {
         //30fpsで固定する。
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
 
         //以前のプレイで名前が登録されていた場合、
         if(PlayerPrefs.HasKey("PlayerName"))
@@ -45,5 +48,12 @@ public class SaveData : MonoBehaviour
     public void SetSelectTankName(string tankName)
     {
         m_selectTankName = tankName;
+    }
+
+    //オンラインモードかどうか
+    public bool GetSetIsOnline
+    {
+        get { return m_isOnline; }
+        set { m_isOnline = value; }
     }
 }
