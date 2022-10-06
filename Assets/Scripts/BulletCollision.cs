@@ -11,10 +11,12 @@ public class BulletCollision : MonoBehaviour
 
     [SerializeField] GameObject m_deathMarkPrefab = null;
     [SerializeField] GameObject m_resultPrefab = null;
+    [SerializeField] int m_refrectionNum = 0;
 
     Rigidbody m_rigidbody = null;
 
-    int m_RefrectionNum = 0;
+    int m_refrectionCount = 0;
+
 
     void Start()
     {
@@ -29,18 +31,19 @@ public class BulletCollision : MonoBehaviour
         //壁に衝突した場合
         if(collision.gameObject.tag == "Wall")
         {
-            m_RefrectionNum++;
+            m_refrectionCount++;
+            GetComponent<BulletMovement>().SetIsRefrectionBefore(true);
 
-            if (m_RefrectionNum > 1)
+            if (m_refrectionCount > m_refrectionNum)
             {
+                GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
                 ////フィールド上に生成されている弾の数データを減らす
                 m_fireBulletScript.ReduceBulletNum();
 
                 ////弾を消滅させる
-                Destroy(this.gameObject, 0.1f);
+                Destroy(this.gameObject, 0.05f);
+            
             }
-
-            GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
 
             transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
         }

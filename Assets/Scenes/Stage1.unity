@@ -3117,7 +3117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 503460552}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1pBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9600,7 +9600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1626688974}
   - component: {fileID: 1626688975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1pFireBulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9637,6 +9637,7 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
     type: 3}
   m_parentObject: {fileID: 503460551}
+  m_sameTimeBulletNum: 3
 --- !u!1 &1652146367
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7233262682372555531}
   - component: {fileID: -5872695222316291470}
   - component: {fileID: 5106183890099769052}
-  m_Layer: 0
-  m_Name: Bullet
+  m_Layer: 3
+  m_Name: Bullet01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
     type: 3}
   m_resultPrefab: {fileID: 921401857147056700, guid: 30e8296f0c7e2004e98049c9681cf0b0,
     type: 3}
+  m_refrectionNum: 0
 --- !u!135 &5106183890099769052
 SphereCollider:
   m_ObjectHideFlags: 0
