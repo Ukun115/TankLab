@@ -6,7 +6,8 @@ public class BulletMovement : MonoBehaviour
 {
     Rigidbody m_rigidbody = null;
     [SerializeField] float m_bulletSpeed = 0.0f;
-    bool m_isRefrectionBefore = true;
+    //int m_refrectionCount = 0;
+    bool m_refrectionBefore = false;
 
     void Start()
     {
@@ -17,19 +18,20 @@ public class BulletMovement : MonoBehaviour
 
     void Update()
     {
-        if (m_isRefrectionBefore)
-        {
-            //m_rigidbody.velocity = transform.forward * m_bulletSpeed;
-
+		if (m_refrectionBefore == true)
+		{
+            //‘¬“x1.5”{
+			m_rigidbody.AddForce(m_rigidbody.velocity.normalized.x * m_bulletSpeed * 1.5f,0, m_rigidbody.velocity.normalized.z * m_bulletSpeed * 1.5f, ForceMode.VelocityChange);
+            m_refrectionBefore = false;
         }
-        else
-        {
-            //m_rigidbody.velocity = transform.forward * m_bulletSpeed;
-        }
-    }
+		//if (m_refrectionCount == 2)
+		//{
+		//    m_rigidbody.AddForce(m_rigidbody.velocity, ForceMode.Impulse);
+		//}
+	}
 
     public void SetIsRefrectionBefore(bool isRefrectionBefore)
     {
-        m_isRefrectionBefore = isRefrectionBefore;
+        m_refrectionBefore = isRefrectionBefore;
     }
 }

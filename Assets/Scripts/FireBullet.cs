@@ -7,39 +7,57 @@ using Photon.Realtime;
 public class FireBullet : Photon.Pun.MonoBehaviourPun
 {
     [SerializeField] GameObject m_bulletPrefab = null;
-    //ƒtƒB[ƒ‹ƒhã‚É¶¬‚³‚ê‚Ä‚¢‚é’e‚Ì”
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã«ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹å¼¾ã®æ•°
     int m_bulletNum = 0;
+    float m_yRot = 0;
+    Quaternion m_originalQuaternion = Quaternion.identity;
+    [SerializeField] GameObject m_parentObject = null;
+    [SerializeField] int m_sameTimeBulletNum = 0;
 
     void Update()
     {
-        //‚±‚ÌƒTƒoƒCƒo[ƒIƒuƒWƒFƒNƒg‚ªŽ©•ª‚ÌŠ‚Å PhotonNetwork.Instantiate ‚µ‚Ä‚¢‚È‚©‚Á‚½‚çA
+        //ã“ã®ã‚µãƒã‚¤ãƒãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè‡ªåˆ†ã®æ‰€ã§ PhotonNetwork.Instantiate ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã€
         if (!photonView.IsMine)
         {
             return;
         }
 
-        //¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«A
+        //å·¦ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã€
         if (Input.GetMouseButtonDown(0))
         {
-            //‚T”­ˆÈã‚Í”­ŽË‚µ‚È‚¢‚æ‚¤‚É‚·‚é
-            if(m_bulletNum >= 5||m_bulletNum<0)
+            m_yRot = 0.0f;
+            //å…ƒã®å›žè»¢ã‚’å–å¾—
+            m_originalQuaternion = transform.rotation;
+            //6ç™ºä»¥ä¸Šã¯ç™ºå°„ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
+            if (m_bulletNum >= 6 || m_bulletNum < 0)
             {
                 return;
             }
 
-            GameObject m_bulletObject = Instantiate(
-                m_bulletPrefab,
-                transform.position,
-                new Quaternion(0.0f, transform.rotation.y,0.0f,transform.rotation.w)
-            );
-            m_bulletObject.name = "1pBullet" + m_bulletNum;
-            m_bulletNum++;
-            //ƒqƒGƒ‰ƒ‹ƒL[ã‚ª‚²‚¿‚á‚²‚¿‚á‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ð–h‚®‚½‚ßAe‚ð—pˆÓ‚µ‚Ä‚Ü‚Æ‚ß‚Ä‚¨‚­B
-            m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
+            for (int i = 0; i < m_sameTimeBulletNum; i++)
+            {
+                //å¼¾ã®ç™ºå°„è§’åº¦
+                m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
+                transform.Rotate(0.0f, m_yRot, 0.0f);
+
+                GameObject m_bulletObject = Instantiate(
+                    m_bulletPrefab,
+                    transform.position,
+                    new Quaternion(0.0f, transform.rotation.y , 0.0f, transform.rotation.w)
+                );
+                //å…ƒã®å›žè»¢ã«æˆ»ã™
+                transform.rotation = m_originalQuaternion;
+		
+				m_bulletObject.name = "1pBullet" + m_bulletNum;
+                m_bulletNum++;
+                //ãƒ’ã‚¨ãƒ©ãƒ«ã‚­ãƒ¼ä¸ŠãŒã”ã¡ã‚ƒã”ã¡ã‚ƒã«ãªã£ã¦ã—ã¾ã†ã®ã‚’é˜²ããŸã‚ã€è¦ªã‚’ç”¨æ„ã—ã¦ã¾ã¨ã‚ã¦ãŠãã€‚
+                m_bulletObject.transform.parent = m_parentObject.transform;
+            }
         }
+
     }
 
-    //ƒtƒB[ƒ‹ƒhã‚É¶¬‚³‚ê‚Ä‚¢‚é’e‚Ì”‚ðŒ¸‚ç‚·ˆ—
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã«ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹å¼¾ã®æ•°ã‚’æ¸›ã‚‰ã™å‡¦ç†
     public void ReduceBulletNum()
     {
         m_bulletNum--;
