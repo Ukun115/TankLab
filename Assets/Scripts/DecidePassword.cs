@@ -24,11 +24,15 @@ public class DecidePassword : MonoBehaviour
                 break;
 
             case "OK":
-                //何も入力されていなかったらokさせない
-                if (m_numberText.text.Length == 0)
+                //4文字入力されていなかったらokさせない
+                if (m_numberText.text.Length < 4)
                 {
                     return;
                 }
+
+                //入力されたパスワードを保存
+                GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword = m_numberText.text;
+
                 //タンク選択シーンに遷移
                 GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectTankScene");
                 break;

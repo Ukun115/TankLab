@@ -12,9 +12,11 @@ public class SaveData : MonoBehaviour
     bool m_isOnline = false;
 
     //選択ステージ名
-    string m_selectStageName = "";
+    string m_selectStageName = "Stage1";
     //選択タンク名
-    string m_selectTankName = "";
+    string m_selectTankName = "Tank1";
+    //入力されたパスワード
+    string m_inputPassword = "0";
 
     [SerializeField] TextMeshProUGUI m_playerNameText = null;
 
@@ -38,22 +40,39 @@ public class SaveData : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    //選択されたステージ名セッター
-    public void SetSelectStageName(string stageName)
+    //選択されたステージ名プロパティ
+    public string GetSetSelectStageName
     {
-        m_selectStageName = stageName;
+        //ゲッター
+        get { return m_selectStageName; }
+        //セッター
+        set { m_selectStageName = value; }
     }
 
-    //選択されたタンク名セッター
-    public void SetSelectTankName(string tankName)
+    //選択されたタンク名プロパティ
+    public string GetSetSelectTankName
     {
-        m_selectTankName = tankName;
+        //ゲッター
+        get { return m_selectTankName; }
+        //セッター
+        set { m_selectTankName = value; }
     }
 
-    //オンラインモードかどうか
+    //オンラインモードフラグプロパティ
     public bool GetSetIsOnline
     {
+        //ゲッター
         get { return m_isOnline; }
+        //セッター
         set { m_isOnline = value; }
+    }
+
+    //入力されたパスワードプロパティ
+    public string GetSetInputPassword
+    {
+        //ゲッター
+        get { return m_inputPassword; }
+        //セッター
+        set { m_inputPassword = value; }
     }
 }

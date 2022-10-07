@@ -1,22 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class PlayerInit : MonoBehaviourPunCallbacks
+public class GameSceneInit : MonoBehaviourPunCallbacks
 {
     //プレイヤーのプレファブ
     [SerializeField] GameObject m_playerPrefab;
 
     Vector3[] m_initPosition = {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f)};
 
+    [SerializeField] TextMeshProUGUI[] m_playerNameText = null;
+
+    SaveData m_saveData = null;
+
     void Start()
     {
-        //ステージを生成
-        SceneManager.LoadScene("Stage1", LoadSceneMode.Additive);
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
-        if (GameObject.Find("SaveData").GetComponent<SaveData>().GetSetIsOnline)
+        //選択されたステージによってステージを生成
+        SceneManager.LoadScene(m_saveData.GetSetSelectStageName, LoadSceneMode.Additive);
+        //デバック
+        Debug.Log(m_saveData.GetSetSelectStageName + "が生成されました。");
+
+        if (m_saveData.GetSetIsOnline)
         {
             GameObject m_gameObject = PhotonNetwork.Instantiate(
                 m_playerPrefab.name,
@@ -27,8 +36,8 @@ public class PlayerInit : MonoBehaviourPunCallbacks
             //生成するゲームオブジェクトの名前をPlayer1or2にする
             m_gameObject.name = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
 
-            //デバック
-            photonView.RPC(nameof(InstantiateDebug), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
+            //プレイヤー名表示
+            photonView.RPC(nameof(PlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
         }
         else
         {
@@ -40,14 +49,20 @@ public class PlayerInit : MonoBehaviourPunCallbacks
             //生成するゲームオブジェクトの名前をPlayer1にする
             m_gameObject.name = "Player1";
 
+            //プレイヤー名を表示
+            m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
+
             //デバック
             Debug.Log("プレイヤーが参加しました。");
         }
     }
 
     [PunRPC]
-    void InstantiateDebug(int num)
+    void PlayerName(int num)
     {
+        //プレイヤー名を表示
+        m_playerNameText[num-1].text = PlayerPrefs.GetString("PlayerName");
+
         //デバック
         Debug.Log("プレイヤー" + num + "が参加しました。");
     }
