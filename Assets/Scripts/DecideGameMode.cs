@@ -11,7 +11,7 @@ public class DecideGameMode : MonoBehaviour
         {
             case "CHALLENGE":
                 //ƒ`ƒƒƒŒƒ“ƒWƒQ[ƒ€‚É‘JˆÚ
-                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("ChallengeGame");
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("ChallengeGameScene");
                 break;
 
             case "RANDOMMATCH":

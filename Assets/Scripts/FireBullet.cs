@@ -33,39 +33,28 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
             //デバック
             Debug.Log("発射");
 
-            m_yRot = 0.0f;
-            //元の回転を取得
-            m_originalQuaternion = transform.rotation;
-            //6発以上は発射しないようにする
-            if (m_bulletNum >= 6 || m_bulletNum < 0)
+            //発射
+            if (m_saveData.GetSetIsOnline)
             {
-                return;
+                photonView.RPC(nameof(Fire), RpcTarget.All);
             }
-
-            for (int i = 0; i < m_sameTimeBulletNum; i++)
+            else
             {
-                //弾の発射角度
-                m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
-                transform.Rotate(0.0f, m_yRot, 0.0f);
-
-                if (m_saveData.GetSetIsOnline)
+                m_yRot = 0.0f;
+                //元の回転を取得
+                m_originalQuaternion = transform.rotation;
+                //6発以上は発射しないようにする
+                if (m_bulletNum >= 6 || m_bulletNum < 0)
                 {
-                    GameObject m_bulletObject = PhotonNetwork.Instantiate(
-                    m_bulletPrefab.name,
-                    transform.position,
-                    new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
-                    );
-
-                    //元の回転に戻す
-                    transform.rotation = m_originalQuaternion;
-
-                    m_bulletObject.name = PhotonNetwork.LocalPlayer.ActorNumber + "pBullet" + m_bulletNum;
-                    m_bulletNum++;
-                    //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                    m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
+                    return;
                 }
-                else
+
+                for (int i = 0; i < m_sameTimeBulletNum; i++)
                 {
+                    //弾の発射角度
+                    m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
+                    transform.Rotate(0.0f, m_yRot, 0.0f);
+
                     GameObject m_bulletObject = Instantiate(
                     m_bulletPrefab,
                     transform.position,
@@ -79,8 +68,8 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
                     m_bulletNum++;
                     //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                     m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
-                }
-            };
+                };
+            }
         }
 
     }
@@ -89,5 +78,39 @@ public class FireBullet : Photon.Pun.MonoBehaviourPun
     public void ReduceBulletNum()
     {
         m_bulletNum--;
+    }
+
+    [PunRPC]
+    void Fire()
+    {
+        m_yRot = 0.0f;
+        //元の回転を取得
+        m_originalQuaternion = transform.rotation;
+        //6発以上は発射しないようにする
+        if (m_bulletNum >= 6 || m_bulletNum < 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < m_sameTimeBulletNum; i++)
+        {
+            //弾の発射角度
+            m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
+            transform.Rotate(0.0f, m_yRot, 0.0f);
+
+            GameObject m_bulletObject = PhotonNetwork.Instantiate(
+            m_bulletPrefab.name,
+            transform.position,
+            new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+            );
+
+            //元の回転に戻す
+            transform.rotation = m_originalQuaternion;
+
+            m_bulletObject.name = PhotonNetwork.LocalPlayer.ActorNumber + "pBullet" + m_bulletNum;
+            m_bulletNum++;
+            //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+            m_bulletObject.transform.parent = GameObject.Find("Bullets").transform;
+        };
     }
 }

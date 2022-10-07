@@ -36,18 +36,22 @@ public class SceneSwitcher : MonoBehaviour
 			case "MatchingScene":
 				nextSceneNum = 5;
 				break;
-			case "Stage1":
+			case "ChallengeGameScene":
 				nextSceneNum = 6;
 				break;
-			case "Stage2":
+			case "OnlineGameScene":
 				nextSceneNum = 7;
 				break;
 			case "ResultScene":
 				nextSceneNum = 8;
 				break;
-			case "ChallengeGame":
+			case "Stage1":
 				nextSceneNum = 9;
 				break;
+			case "Stage2":
+				nextSceneNum = 10;
+				break;
+
 		}
 
 		var squares = new SquaresTransition()
