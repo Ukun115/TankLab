@@ -51,6 +51,7 @@ MonoBehaviour:
   - UpdateLimitTimeText
   - UpdateRoleText
   - InstantiateDebug
+  - PlayerName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

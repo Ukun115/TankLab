@@ -23,74 +23,66 @@ public class RayCast : MonoBehaviour
         //Rayを投射
         if (Physics.Raycast(ray, out hit))
         {
-
-            switch (SceneManager.GetActiveScene().name)
+            if (hit.collider.gameObject != m_rayHitObject)
             {
-                //タイトルシーン、名前決めシーン、パスワード入力画面の時、
-                case "TitleScene":
-                case "DecideNameScene":
-                case "InputPasswordScene":
-                    if (hit.collider.gameObject != m_rayHitObject)
+                if (m_rayHitObject != null && m_childrenObject != null)
+                {
+                    if (m_isColorChange)
                     {
-                        if (m_rayHitObject != null && m_childrenObject != null)
+                        //前回マウスカーソルが当たっていたブロックボタンオブジェクトをもとの色に戻す
+                        for (int i = 0; i < m_childrenObject.Length; i++)
                         {
-                            if (m_isColorChange)
+                            //割り当てられているマテリアルによって変更先のマテリアルを決定する
+                            if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Normal (Instance)")
                             {
-                                //前回マウスカーソルが当たっていたブロックボタンオブジェクトをもとの色に戻す
-                                for (int i = 0; i < m_childrenObject.Length; i++)
-                                {
-                                    //割り当てられているマテリアルによって変更先のマテリアルを決定する
-                                    if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Normal (Instance)")
-                                    {
-                                        m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[0];
-                                    }
-                                    else if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Dark (Instance)")
-                                    {
-                                        m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[1];
-                                    }
-                                }
-                                m_isColorChange = false;
+                                m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[0];
+                            }
+                            else if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Dark (Instance)")
+                            {
+                                m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[1];
                             }
                         }
-
-                        //マウスカーソルがあっているオブジェクトがブロックボタンのとき、
-                        if (hit.collider.CompareTag("BlockButton"))
-                        {
-                            // 子オブジェクト達を入れる配列の初期化
-                            m_childrenObject = new Transform[hit.collider.gameObject.transform.childCount];
-
-                            //子オブジェクトを取得
-                            for (int i = 0; i < hit.collider.gameObject.transform.childCount; i++)
-                            {
-                                m_childrenObject[i] = hit.collider.gameObject.transform.GetChild(i); // GetChild()で子オブジェクトを取得
-                            }
-
-                            //ブロックボタンの色(マテリアル)を変更する
-                            for (int i = 0; i < m_childrenObject.Length; i++)
-                            {
-                                //割り当てられているマテリアルによって変更先のマテリアルを決定する
-                                if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Light (Instance)")
-                                {
-                                    m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[1];
-                                }
-                                else if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Normal (Instance)")
-                                {
-                                    m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[2];
-                                }
-                            }
-
-                            m_isColorChange = true;
-                        }
-                        //接触しているオブジェクトを保存
-                        m_rayHitObject = hit.collider.gameObject;
+                        m_isColorChange = false;
                     }
-                    break;
+                }
+
+                //マウスカーソルがあっているオブジェクトがブロックボタンのとき、
+                if (hit.collider.CompareTag("BlockButton")|| hit.collider.CompareTag("BackButton"))
+                {
+                    // 子オブジェクト達を入れる配列の初期化
+                    m_childrenObject = new Transform[hit.collider.gameObject.transform.childCount];
+
+                    //子オブジェクトを取得
+                    for (int i = 0; i < hit.collider.gameObject.transform.childCount; i++)
+                    {
+                        m_childrenObject[i] = hit.collider.gameObject.transform.GetChild(i); // GetChild()で子オブジェクトを取得
+                    }
+
+                    //ブロックボタンの色(マテリアル)を変更する
+                    for (int i = 0; i < m_childrenObject.Length; i++)
+                    {
+                        //割り当てられているマテリアルによって変更先のマテリアルを決定する
+                        if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Light (Instance)")
+                        {
+                            m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[1];
+                        }
+                        else if (m_childrenObject[i].gameObject.GetComponent<Renderer>().material.name == "Gray_Normal (Instance)")
+                        {
+                            m_childrenObject[i].gameObject.GetComponent<Renderer>().material = m_blockButtonMaterial[2];
+                        }
+                    }
+
+                    m_isColorChange = true;
+                }
+                //接触しているオブジェクトを保存
+                m_rayHitObject = hit.collider.gameObject;
 
                 //ステージ選択シーンの時、
-                case "SelectStageScene":
+                if (SceneManager.GetActiveScene().name == "SelectStageScene")
+                {
                     //カーソルポジションを移動させる
                     GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
-                    break;
+                }
             }
 
             //左クリックされたとき、
@@ -130,6 +122,13 @@ public class RayCast : MonoBehaviour
                             GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCharacter(hit.collider.name);
                             break;
                     }
+                }
+
+                //BackButtonタグだったら処理を行う
+                if (hit.collider.CompareTag("BackButton"))
+                {
+                    //1つ前のシーンに戻る
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().BackScene();
                 }
             }
         }

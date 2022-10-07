@@ -199,11 +199,11 @@ namespace Photon.Pun
         }
 
         /// <summary>
-        /// Called on entering a lobby on the Master Server. The actual room-list updates will call OnRoomListUpdate.
+        /// マスター サーバーのロビーに入ると呼び出されます。 実際のルーム リストの更新では、OnRoomListUpdate が呼び出されます。
         /// </summary>
         /// <remarks>
-        /// While in the lobby, the roomlist is automatically updated in fixed intervals (which you can't modify in the public cloud).
-        /// The room list gets available via OnRoomListUpdate.
+        /// ロビーにいる間、ルームリストは一定の間隔で自動的に更新されます (パブリック クラウドでは変更できません)。
+        /// 部屋のリストは、OnRoomListUpdate を介して利用できます。
         /// </remarks>
         public virtual void OnJoinedLobby()
         {
@@ -307,11 +307,11 @@ namespace Photon.Pun
         }
 
         /// <summary>
-        /// Called when the client is connected to the Master Server and ready for matchmaking and other tasks.
+        /// クライアントがマスター サーバーに接続され、マッチメイキングやその他のタスクの準備が整ったときに呼び出されます。
         /// </summary>
         /// <remarks>
-        /// The list of available rooms won't become available unless you join a lobby via LoadBalancingClient.OpJoinLobby.
-        /// You can join rooms and create them even without being in a lobby. The default lobby is used in that case.
+        /// LoadBalancingClient.OpJoinLobby を介してロビーに参加しない限り、利用可能なルームのリストは利用可能になりません。
+        /// ロビーにいなくても、ルームに参加してルームを作成できます。 その場合、デフォルトのロビーが使用されます。
         /// </remarks>
         public virtual void OnConnectedToMaster()
         {

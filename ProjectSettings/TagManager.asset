@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - BlockButton
+  - BackButton
   layers:
   - Default
   - TransparentFX

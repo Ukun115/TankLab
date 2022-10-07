@@ -26,13 +26,8 @@ public class DecideStage : MonoBehaviour
     public void SetCharacter(string character)
     {
         //選択したステージを保存しておく
-        switch (character)
-        {
-            case "STAGE1":
-                break;
-            case "STAGE2":
-                break;
-        }
+        GameObject.Find("SaveData").GetComponent<SaveData>().GetSetSelectStageName = character;
+
         //マッチングに遷移
         GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("MatchingScene");
     }
