@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
 public class RandomMatchMaker : MonoBehaviourPunCallbacks
 {
+    [SerializeField]TextMeshProUGUI m_matchedText = null;
+
     void Start()
     {
         //サーバーに接続
@@ -20,9 +23,6 @@ public class RandomMatchMaker : MonoBehaviourPunCallbacks
         {
             //デバック
             Debug.Log("ゲーム開始");
-
-            //オンラインモードフラグを立てる
-            GameObject.Find("SaveData").GetComponent<SaveData>().GetSetIsOnline = true;
 
             //ゲームシーンに遷移
             photonView.RPC(nameof(GoGameScene), RpcTarget.All);
@@ -72,7 +72,13 @@ public class RandomMatchMaker : MonoBehaviourPunCallbacks
     [PunRPC]
     void GoGameScene()
     {
+        //マッチング完了テキストを表示
+        m_matchedText.text = "Matched!!";
+
+        //オンラインモードフラグを立てる
+        GameObject.Find("SaveData").GetComponent<SaveData>().GetSetIsOnline = true;
+
         //ゲームシーンに移行
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene("OnlineGameScene");
     }
 }
