@@ -866,6 +866,9 @@ MonoBehaviour:
   m_playerNameText:
   - {fileID: 1929646617}
   - {fileID: 1853994592}
+  m_tankColor:
+  - {fileID: 2100000, guid: 5e684559c743e264282e48efd7b7a9b5, type: 2}
+  - {fileID: 2100000, guid: 8367aa853ab076a4085e0db643f2bcc6, type: 2}
 --- !u!1 &1585096592
 GameObject:
   m_ObjectHideFlags: 0

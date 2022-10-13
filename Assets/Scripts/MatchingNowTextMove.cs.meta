@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 91457621d0af748059f9b09bf41768f3
+guid: bf8759d56fdd86f469089ca410e79e19
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - transitionKitCamera: {instanceID: 0}
-  - material: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -48,8 +48,8 @@ namespace Photon.Realtime
         /// <summary>Backing field for property.</summary>
         private int actorNumber = -1;
 
-        /// <summary>Identifier of this player in current room. Also known as: actorNumber or actorNumber. It's -1 outside of rooms.</summary>
-        /// <remarks>The ID is assigned per room and only valid in that context. It will change even on leave and re-join. IDs are never re-used per room.</remarks>
+        /// <summary>現在のルームにいるこのプレーヤーの識別子。 アクター番号またはアクター番号とも呼ばれます。 部屋の外では-1です。</summary>
+        /// <remarks>ID は部屋ごとに割り当てられ、そのコンテキストでのみ有効です。 退出、再参加でも変わります。 ID が部屋ごとに再利用されることはありません。</remarks>
         public int ActorNumber
         {
             get { return this.actorNumber; }

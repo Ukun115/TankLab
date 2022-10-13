@@ -18,12 +18,12 @@ public class ResultInit : MonoBehaviour
         switch(m_winPlayer)
         {
             //1P‚ÌŸ—˜
-            case 0:
-                m_winText.color = new Color(1.0f,0.0f,0.5f,1.0f);
-                break;
-                //2P‚ÌŸ—˜
             case 1:
                 m_winText.color = new Color(0.0f,0.5f,1.0f,1.0f);
+                break;
+                //2P‚ÌŸ—˜
+            case 2:
+                m_winText.color = new Color(1.0f,0.0f,0.5f,1.0f);
                 break;
         }
     }

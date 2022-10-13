@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 430560259859113090}
   - component: {fileID: 8073325307116374229}
   - component: {fileID: 2308386662267416784}
+  - component: {fileID: 5277521171461869013}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -440,3 +441,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &5277521171461869013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430560259859113099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8507ea2dbe0afa044a28fbcddc44a39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tankColor:
+  - {fileID: 2100000, guid: 5e684559c743e264282e48efd7b7a9b5, type: 2}
+  - {fileID: 2100000, guid: 8367aa853ab076a4085e0db643f2bcc6, type: 2}

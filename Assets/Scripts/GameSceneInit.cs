@@ -27,17 +27,19 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
 
         if (m_saveData.GetSetIsOnline)
         {
+            PhotonNetwork.IsMessageQueueRunning = true;
+
             GameObject m_gameObject = PhotonNetwork.Instantiate(
                 m_playerPrefab.name,
                 m_initPosition[PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
                 Quaternion.identity,        //回転
                 0
                 );
-            //生成するゲームオブジェクトの名前をPlayer1or2にする
-            m_gameObject.name = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
+            //プレイヤー番号を保存
+            m_saveData.GetSetPlayerNum = (PhotonNetwork.LocalPlayer.ActorNumber-1);
 
             //プレイヤー名表示
-            photonView.RPC(nameof(PlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
+            photonView.RPC(nameof(PlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
         }
         else
         {
@@ -58,10 +60,10 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void PlayerName(int num)
+    void PlayerName(int num,string playerName)
     {
         //プレイヤー名を表示
-        m_playerNameText[num-1].text = PlayerPrefs.GetString("PlayerName");
+        m_playerNameText[num].text = playerName;
 
         //デバック
         Debug.Log("プレイヤー" + num + "が参加しました。");
