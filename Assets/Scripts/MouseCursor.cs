@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MouseCursor : Photon.Pun.MonoBehaviourPun
 {
@@ -20,7 +21,7 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
     void Update()
     {
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
-        if (m_saveData.GetSetIsOnline && !photonView.IsMine)
+        if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == "OnlineGameScene")
         {
             return;
         }

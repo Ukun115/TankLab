@@ -11,12 +11,14 @@ public class SaveData : MonoBehaviour
     //オンラインモードかどうか
     bool m_isOnline = false;
 
+    int m_playerNum = 0;
+
     //選択ステージ名
     string m_selectStageName = "Stage1";
     //選択タンク名
     string m_selectTankName = "Tank1";
     //入力されたパスワード
-    string m_inputPassword = "0";
+    string m_inputPassword = "----";
 
     [SerializeField] TextMeshProUGUI m_playerNameText = null;
 
@@ -74,5 +76,14 @@ public class SaveData : MonoBehaviour
         get { return m_inputPassword; }
         //セッター
         set { m_inputPassword = value; }
+    }
+
+    //プレイヤー番号
+    public int GetSetPlayerNum
+    {
+        //ゲッター
+        get { return m_playerNum; }
+        //セッター
+        set { m_playerNum = value; }
     }
 }

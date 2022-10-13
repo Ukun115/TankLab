@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 /// <summary>
 /// プレイヤーの移動スクリプト
@@ -35,7 +37,7 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
     void Update()
     {
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
-        if (m_saveData.GetSetIsOnline && !photonView.IsMine)
+        if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == "OnlineGameScene")
         {
             return;
         }
@@ -63,7 +65,6 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
         latestPos = transform.position;
         if (Mathf.Abs(differenceDis.x) > 0.001f || Mathf.Abs(differenceDis.z) > 0.001f)
         {
-
             if (m_moveDirection == new Vector3(0, 0, 0)) return;
             Quaternion rot = Quaternion.LookRotation(differenceDis);
             rot = Quaternion.Slerp(m_rigidbody.transform.rotation, rot, 0.2f);

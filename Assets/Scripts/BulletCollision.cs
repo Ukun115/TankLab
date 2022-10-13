@@ -37,10 +37,10 @@ public class BulletCollision : MonoBehaviour
             if (m_refrectionCount > m_refrectionNum)
             {
                 GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
-                ////フィールド上に生成されている弾の数データを減らす
+                //フィールド上に生成されている弾の数データを減らす
                 m_fireBulletScript.ReduceBulletNum();
 
-                ////弾を消滅させる
+                //弾を消滅させる
                 Destroy(this.gameObject, 0.05f);
 
             }
