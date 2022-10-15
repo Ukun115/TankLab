@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf23d2855ad9744899cc13d9352494a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_refrectionNum: 1
   m_deathMarkPrefab: {fileID: 5029975033714381540, guid: baed38fabd8b1154bae9cb19725abc5f,
     type: 3}
   m_resultPrefab: {fileID: 921401857147056700, guid: 30e8296f0c7e2004e98049c9681cf0b0,
     type: 3}
-  m_refrectionNum: 1
 --- !u!135 &5106183890099769052
 SphereCollider:
   m_ObjectHideFlags: 0

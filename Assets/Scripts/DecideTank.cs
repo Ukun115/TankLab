@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ƒ^ƒ“ƒN‚ğŒˆ’è‚·‚éˆ—
+/// </summary>
 public class DecideTank : MonoBehaviour
 {
     public void SetCharacter(string character)

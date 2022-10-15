@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -11,6 +9,10 @@ public class SaveData : MonoBehaviour
     //オンラインモードかどうか
     bool m_isOnline = false;
 
+    //選択されたゲームモード
+    string m_selectGameMode = "";
+
+    //プレイヤー番号
     int m_playerNum = 0;
 
     //選択ステージ名
@@ -20,11 +22,12 @@ public class SaveData : MonoBehaviour
     //入力されたパスワード
     string m_inputPassword = "----";
 
+    //プレイヤー名テキスト
     [SerializeField] TextMeshProUGUI m_playerNameText = null;
 
     void Start()
     {
-        //30fpsで固定する。
+        //60fpsで固定する。
         Application.targetFrameRate = 60;
 
         //以前のプレイで名前が登録されていた場合、
@@ -40,6 +43,15 @@ public class SaveData : MonoBehaviour
 
         //シーン遷移してもこのオブジェクトは破棄されずに保持したままにする
         DontDestroyOnLoad(this);
+    }
+
+    //選択されたゲームモードプロパティ
+    public string GetSetSelectGameMode
+    {
+        //ゲッター
+        get { return m_selectGameMode; }
+        //セッター
+        set { m_selectGameMode = value; }
     }
 
     //選択されたステージ名プロパティ

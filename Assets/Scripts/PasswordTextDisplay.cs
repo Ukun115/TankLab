@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//パスワードを画面に表示させる処理
 public class PasswordTextDisplay : MonoBehaviour
 {
 

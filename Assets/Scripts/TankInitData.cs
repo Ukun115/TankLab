@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// タンクの初期化データ
+/// </summary>
 public class TankInitData : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //弾の反射回数
+
+    //移動速度
+
+    //同時に発射する弾の数
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

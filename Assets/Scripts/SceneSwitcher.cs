@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// シーンスイッチャー
+/// </summary>
 public class SceneSwitcher : MonoBehaviour
 {
-	int nextSceneNum = 0;
-
 	//来たシーンを保存していくスタック(後入れ先出し)
 	static Stack<string> scenes = new Stack<string>();
 
-	void Awake()
+	void Start()
 	{
 		//シーン遷移しても破棄しないようにする
 		DontDestroyOnLoad( gameObject );
@@ -24,7 +24,7 @@ public class SceneSwitcher : MonoBehaviour
 	{
 		//スタックに遷移するシーンを保存する
 		scenes.Push(nextSceneName);
-
+		//遷移先のシーンをロード
 		SceneManager.LoadScene(nextSceneName);
 	}
 
@@ -33,7 +33,7 @@ public class SceneSwitcher : MonoBehaviour
     {
 		//スタックに保存されているシーンを１つ減らす
 		scenes.Pop();
-		//１つ前のシーンをロードする
+		//１つ前のシーンをロード
 		SceneManager.LoadScene(scenes.Peek());
 	}
 }
