@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class PlayerInit : Photon.Pun.MonoBehaviourPun
+/// <summary>
+/// プレイヤーの初期化処理
+/// </summary>
+public class PlayerInit : MonoBehaviourPun
 {
+    //1P2Pの機体のマテリアルカラー(1P:Blue,2P:Red)
     [SerializeField] Material[] m_tankColor = new Material[2];
+    //マテリアル番号
     int m_materialNum = 0;
+    //プレイヤーオブジェクト名
     string m_objectName = "";
 
     SaveData m_saveData = null;
@@ -15,7 +20,7 @@ public class PlayerInit : Photon.Pun.MonoBehaviourPun
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
-        //自分自身じゃなかったら、
+        //オンラインだったら、
         if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == "OnlineGameScene")
         {
             if (m_saveData.GetSetPlayerNum == 0)
@@ -33,7 +38,7 @@ public class PlayerInit : Photon.Pun.MonoBehaviourPun
                 m_materialNum = 0;
             }
         }
-        //自分自身だったら、
+        //オフラインだったら、
         else
         {
             //生成するゲームオブジェクトの名前をPlayer1or2にする
@@ -42,6 +47,7 @@ public class PlayerInit : Photon.Pun.MonoBehaviourPun
             m_materialNum = m_saveData.GetSetPlayerNum;
         }
 
+        //タンクの名前とカラーを変更
         this.gameObject.name = m_objectName;
         this.gameObject.GetComponent<MeshRenderer>().material = m_tankColor[m_materialNum];
     }

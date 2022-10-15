@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-//リザルト画面の初期化処理
+/// <summary>
+/// リザルト画面の初期化処理
+/// </summary>
 public class ResultInit : MonoBehaviour
 {
+    //勝利プレイヤー
     int m_winPlayer = 0;
+    //勝利テキスト
     TextMeshProUGUI m_winText = null;
+    //勝利テキストカラー(1:1P赤,2:2P青)
+    Color[] m_winTextColor = { new Color(0.0f, 0.5f, 1.0f, 1.0f), new Color(1.0f, 0.0f, 0.5f, 1.0f) };
 
     void Start()
     {
@@ -15,17 +19,7 @@ public class ResultInit : MonoBehaviour
         m_winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
         m_winText.text = m_winPlayer + "P Win!!";
         //勝利プレイヤーによってカラーチェンジ
-        switch(m_winPlayer)
-        {
-            //1Pの勝利時
-            case 1:
-                m_winText.color = new Color(0.0f,0.5f,1.0f,1.0f);
-                break;
-                //2Pの勝利時
-            case 2:
-                m_winText.color = new Color(1.0f,0.0f,0.5f,1.0f);
-                break;
-        }
+        m_winText.color = m_winTextColor[m_winPlayer-1];
     }
 
     //勝利プレイヤーを設定するセッター

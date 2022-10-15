@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
@@ -18,15 +15,12 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
     //オンラインルームのオプション
     RoomOptions m_roomOptions = new RoomOptions();
 
-    void Awake()
+    void Start()
     {
         // シーンの自動同期: 有効
         PhotonNetwork.AutomaticallySyncScene = true;
-    }
-
-    void Start()
-    {
-        m_roomOptions.MaxPlayers = 2; // 最大2人まで入室可能
+        // 最大2人までルームに参加可能
+        m_roomOptions.MaxPlayers = 2;
 
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
@@ -58,18 +52,21 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         {
             //非公開にする
             m_roomOptions.IsVisible = false;
+            //プライベートルームに参加する。参加できるルームがなかったら、ルームを作成する。
             PhotonNetwork.JoinOrCreateRoom(m_saveData.GetSetInputPassword,m_roomOptions,TypedLobby.Default);
         }
         //ランダムマッチの場合
         else
         {
+            //ランダムなルームに参加する。参加できるルームがなかったら、ルームを作成する。
             PhotonNetwork.JoinRandomOrCreateRoom(null);
         }
-        //破壊されないようにする
+
+        //シーン遷移しても破壊されないようにする
         DontDestroyOnLoad(this);
 
         //デバック
-        Debug.Log("ロビーへの入室が完了");
+        Debug.Log("ロビーへの参加が完了");
     }
 
     // ルームの作成が成功した時に呼ばれるコールバック
@@ -96,10 +93,10 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         Debug.Log("プライベートルームへの参加に失敗しました");
     }
 
-    // ランダムなルームへの参加が失敗した時に呼ばれるコールバック
+    // ランダムルームへの参加が失敗した時に呼ばれるコールバック
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        // ランダムで参加できるルームが存在しないなら、新規でルームを作成する
+        // ランダムルームが存在しないなら、新規でルームを作成する
         PhotonNetwork.CreateRoom(null);
 
         Debug.Log("ランダムルームへの参加に失敗しました。ランダムルームを作成します。");
@@ -111,7 +108,7 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         Debug.Log("他プレイヤーがルームに参加しました。");
         //ゲームシーンに遷移
         photonView.RPC(nameof(GoGameScene), RpcTarget.All);
-        //他プレイヤーが入ってこれないようにしておく
+        //ゲーム中に他プレイヤーがルームに参加してこないようにしておく
         PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 

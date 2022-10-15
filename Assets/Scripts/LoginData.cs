@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// ログインデータ
+/// </summary>
 public class LoginData : MonoBehaviour
 {
+    //ログインタイプ
     enum EnLoginType
     {
-        enFirstUserLogin, //初回ログイン
+        enFirstUserLogin,  //初回ログイン
         enTodayLogin,      //ログイン
         enAlreadyLogin,    //ログイン済
         enErrorLogin       //不正ログイン

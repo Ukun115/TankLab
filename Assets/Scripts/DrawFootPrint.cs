@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,21 +5,40 @@ using UnityEngine;
 /// </summary>
 public class DrawFootPrint : MonoBehaviour
 {
+    //足跡プレファブ
     [SerializeField] GameObject m_footPrintPrefab;
-    float m_time = 0;
+    //タイマー
+    float m_timer = 0;
+    //足跡を表示させる間隔
     [SerializeField] float m_drawInterval = 0;
+    //足跡ゲームオブジェクトを格納するゲームオブジェクト
+    GameObject m_footPrintsBox = null;
+
+    void Start()
+    {
+        m_footPrintsBox = GameObject.Find("Footprints");
+    }
 
     void Update()
     {
-        m_time += Time.deltaTime;
-        if (m_time > m_drawInterval)
+        m_timer += Time.deltaTime;
+
+        if (m_timer > m_drawInterval)
         {
-            m_time = 0;
-            //足跡オブジェクトを生成
-            GameObject footPrintObject = Instantiate(m_footPrintPrefab, new Vector3(transform.position.x, -0.45f , transform.position.z), transform.rotation);
-            //足跡オブジェクトは大量に生成され、
-            //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-            footPrintObject.transform.parent = GameObject.Find("Footprints").transform;
+            //足跡を生成する処理
+            InstantiateFootPrint();
         }
+    }
+
+    //足跡を生成する処理
+    void InstantiateFootPrint()
+    {
+        //足跡オブジェクトを生成
+        GameObject footPrintObject = Instantiate(m_footPrintPrefab, new Vector3(transform.position.x, -0.45f, transform.position.z), transform.rotation);
+        //足跡オブジェクトは大量に生成され、
+        //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+        footPrintObject.transform.parent = m_footPrintsBox.transform;
+
+        m_timer = 0;
     }
 }

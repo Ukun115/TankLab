@@ -1,27 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
+/// <summary>
+/// ゲームシーンの初期化処理
+/// </summary>
 public class GameSceneInit : MonoBehaviourPunCallbacks
 {
     //プレイヤーのプレファブ
     [SerializeField] GameObject m_playerPrefab;
 
+    //各プレイヤーの初期位置
     Vector3[] m_initPosition = {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f)};
 
+    //各プレイヤーの画面表示される名前
     [SerializeField] TextMeshProUGUI[] m_playerNameText = null;
 
+    //セーブデータ
     SaveData m_saveData = null;
 
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
-        //選択されたステージによってステージを生成
+        //選択されたステージによってステージをシーンに合成
         SceneManager.LoadScene(m_saveData.GetSetSelectStageName, LoadSceneMode.Additive);
+
         //デバック
         Debug.Log(m_saveData.GetSetSelectStageName + "が生成されました。");
 
@@ -39,7 +44,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
             m_saveData.GetSetPlayerNum = (PhotonNetwork.LocalPlayer.ActorNumber-1);
 
             //プレイヤー名表示
-            photonView.RPC(nameof(PlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
+            photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
         }
         else
         {
@@ -59,8 +64,9 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         }
     }
 
+    //プレイヤー名を表示させる関数
     [PunRPC]
-    void PlayerName(int num,string playerName)
+    void DisplayPlayerName(int num,string playerName)
     {
         //プレイヤー名を表示
         m_playerNameText[num].text = playerName;

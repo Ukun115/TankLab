@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
@@ -7,7 +5,7 @@ using Photon.Pun;
 /// <summary>
 /// プレイヤーの移動スクリプト
 /// </summary>
-public class PlayerMovement : Photon.Pun.MonoBehaviourPun
+public class PlayerMovement : MonoBehaviourPun
 {
     //剛体
     Rigidbody m_rigidbody = null;
@@ -23,14 +21,16 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
     //上下矢印キーの値(-1.0f～1.0f)
     float m_vertical = 0.0f;
 
+    //セーブデータ
     SaveData m_saveData = null;
 
-    Vector3 latestPos;
+    //前フレームのプレイヤーの位置
+    Vector3 beforeFramePosition;
 
     void Start()
     {
-        //Rigidbodyのコンポーネントを取得する
         m_rigidbody = GetComponent<Rigidbody>();
+
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
     }
 
@@ -60,9 +60,19 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
 
     void FixedUpdate()
     {
+        //プレイヤーの回転処理
+        PlayerRotation();
+
+        //剛体に移動を割り当て(一緒に重力も割り当て)
+        m_rigidbody.velocity = new Vector3(m_moveDirection.x, m_rigidbody.velocity.y, m_moveDirection.z);
+    }
+
+    //プレイヤーの回転処理
+    void PlayerRotation()
+    {
         //前フレームとの位置の差から進行方向を割り出してその方向に回転します。
-        Vector3 differenceDis = new Vector3(transform.position.x, 0, transform.position.z) - new Vector3(latestPos.x, 0, latestPos.z);
-        latestPos = transform.position;
+        Vector3 differenceDis = new Vector3(transform.position.x, 0, transform.position.z) - new Vector3(beforeFramePosition.x, 0, beforeFramePosition.z);
+        beforeFramePosition = transform.position;
         if (Mathf.Abs(differenceDis.x) > 0.001f || Mathf.Abs(differenceDis.z) > 0.001f)
         {
             if (m_moveDirection == new Vector3(0, 0, 0)) return;
@@ -70,8 +80,5 @@ public class PlayerMovement : Photon.Pun.MonoBehaviourPun
             rot = Quaternion.Slerp(m_rigidbody.transform.rotation, rot, 0.2f);
             this.transform.rotation = rot;
         }
-
-        //剛体に移動を割り当て(一緒に重力も割り当て)
-        m_rigidbody.velocity = new Vector3(m_moveDirection.x, m_rigidbody.velocity.y, m_moveDirection.z);
     }
 }

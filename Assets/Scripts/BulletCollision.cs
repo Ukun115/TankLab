@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,15 +5,24 @@ using UnityEngine;
 /// </summary>
 public class BulletCollision : MonoBehaviour
 {
+    //弾を発射する処理が書かれたスクリプト
     FireBullet m_fireBulletScript = null;
-
-    [SerializeField] GameObject m_deathMarkPrefab = null;
-    [SerializeField] GameObject m_resultPrefab = null;
-    [SerializeField] int m_refrectionNum = 0;
-
+    BulletMovement m_bulletMovement = null;
+    //剛体
     Rigidbody m_rigidbody = null;
 
+    //弾の反射回数
+    [SerializeField] int m_refrectionNum = 0;
+    //現在の弾の反射回数
     int m_refrectionCount = 0;
+
+    //死亡地点のバッテンマークのプレファブ
+    [SerializeField] GameObject m_deathMarkPrefab = null;
+    //リザルト処理が格納されているプレファブ
+    [SerializeField] GameObject m_resultPrefab = null;
+
+    //弾を減少させたかどうか
+    bool m_isNumReduce = true;
 
 
     void Start()
@@ -23,70 +30,99 @@ public class BulletCollision : MonoBehaviour
         m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<FireBullet>();
 
         m_rigidbody = GetComponent<Rigidbody>();
+
+        m_bulletMovement = GetComponent<BulletMovement>();
     }
 
     //衝突処理
     void OnCollisionEnter(Collision collision)
     {
         //壁に衝突した場合
-        if(collision.gameObject.tag == "Wall")
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            m_refrectionCount++;
-            GetComponent<BulletMovement>().SetIsRefrectionBefore(true);
-
-            if (m_refrectionCount > m_refrectionNum)
-            {
-                GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
-                //フィールド上に生成されている弾の数データを減らす
-                m_fireBulletScript.ReduceBulletNum();
-
-                //弾を消滅させる
-                Destroy(this.gameObject, 0.05f);
-
-            }
-
-            transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
+            //壁に衝突したときの処理
+            OnCollisitonWall();
         }
 
         //プレイヤーに衝突した場合
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //プレイヤーに衝突したときの処理
+            OnCollisitonPlayer(collision);
+        }
+    }
+
+    //壁に衝突したときの処理
+    void OnCollisitonWall()
+    {
+        m_refrectionCount++;
+
+        m_bulletMovement.SetIsRefrectionBefore(true);
+
+        //指定されている反射回数分反射したら、
+        if (m_refrectionCount > m_refrectionNum)
+        {
+            m_bulletMovement.SetIsRefrectionBefore(false);
+
+            if (m_isNumReduce)
+            {
+                //フィールド上に生成されている弾の数データを減らす
+                m_fireBulletScript.ReduceBulletNum();
+
+                m_isNumReduce = false;
+            }
+
+            //弾を消滅させる
+            Destroy(this.gameObject, 0.05f);
+
+        }
+
+        transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
+    }
+
+    //プレイヤーに衝突したときの処理
+    void OnCollisitonPlayer(Collision collision)
+    {
+        if (m_isNumReduce)
         {
             //フィールド上に生成されている弾の数データを減らす
             m_fireBulletScript.ReduceBulletNum();
 
-            //弾を消滅させる
-            Destroy(this.gameObject, 0.1f);
+            m_isNumReduce = false;
+        }
 
-            //衝突したプレイヤーを消滅させる
-            Destroy(collision.gameObject,0.1f);
+        //弾を消滅させる
+        Destroy(this.gameObject, 0.1f);
 
-            //死んだ場所に×死亡マークオブジェクトを生成する。
-            Instantiate(
-                m_deathMarkPrefab,
-                new Vector3(
-                    collision.gameObject.transform.position.x,
-                    collision.gameObject.transform.position.y - 0.49f,
-                    collision.gameObject.transform.position.z
-                    ),
-                collision.gameObject.transform.rotation
-                );
+        //衝突したプレイヤーを消滅させる
+        Destroy(collision.gameObject, 0.1f);
 
-            //リザルト処理をまとめているゲームオブジェクトを生成し、
-            //リザルト処理を実行していく。
-            GameObject resultObject = Instantiate(m_resultPrefab, Vector3.zero, Quaternion.identity);
+        //死んだ場所に×死亡マークオブジェクトを生成する。
+        Instantiate(
+            m_deathMarkPrefab,
+            new Vector3(
+                collision.gameObject.transform.position.x,
+                collision.gameObject.transform.position.y - 0.49f,
+                collision.gameObject.transform.position.z
+                ),
+            collision.gameObject.transform.rotation
+            );
 
-            //死亡したのが1Pだった場合
-            if (collision.gameObject.name == "1P")
-            {
+        //リザルト処理をまとめているゲームオブジェクトを生成し、
+        //リザルト処理を実行していく。
+        GameObject resultObject = Instantiate(m_resultPrefab);
+
+        //死亡したプレイヤーによって分岐
+        switch (collision.gameObject.name)
+        {
+            case "1P":
                 //2P勝利表示
                 resultObject.GetComponent<ResultInit>().SetWinPlayer(2);
-            }
-            //死亡したのが2Pだった場合
-            if (collision.gameObject.name == "2P")
-            {
+                break;
+            case "2P":
                 //1P勝利表示
                 resultObject.GetComponent<ResultInit>().SetWinPlayer(1);
-            }
+                break;
         }
     }
 }
