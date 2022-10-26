@@ -1,0 +1,40 @@
+using System.Collections;
+using UnityEngine;
+using TMPro;
+
+/// <summary>
+/// Matching now...の「...」をアニメーションさせる処理
+/// </summary>
+public class MatchingNowTextMove : MonoBehaviour
+{
+    //MatchingNow...のテキスト
+    TextMeshProUGUI m_matchingNowText = null;
+
+    //点表示間隔
+     const int INTERVAL = 60;
+
+    int m_timer = 0;
+
+    void Start()
+    {
+        m_matchingNowText = this.GetComponent<TextMeshProUGUI>();
+
+        m_matchingNowText.text = "Matching Now.";
+    }
+
+    void Update()
+    {
+        m_timer++;
+
+        if (m_timer > INTERVAL)
+        {
+            m_matchingNowText.text += ".";
+            if (m_matchingNowText.text == "Matching Now....")
+            {
+                m_matchingNowText.text = "Matching Now";
+            }
+
+            m_timer = 0;
+        }
+    }
+}

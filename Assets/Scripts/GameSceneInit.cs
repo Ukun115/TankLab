@@ -8,17 +8,32 @@ using Photon.Pun;
 /// </summary>
 public class GameSceneInit : MonoBehaviourPunCallbacks
 {
-    //プレイヤーのプレファブ
-    [SerializeField] GameObject m_playerPrefab;
-
-    //各プレイヤーの初期位置
-    Vector3[] m_initPosition = {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f)};
-
-    //各プレイヤーの画面表示される名前
-    [SerializeField] TextMeshProUGUI[] m_playerNameText = null;
-
     //セーブデータ
     SaveData m_saveData = null;
+
+    [SerializeField, TooltipAttribute("ローカル時の各プレイヤーの位置")] Transform[] m_localPlayerPosition = null;
+    //ステージごとのプレイヤーの初期位置(ローカルの初期位置)
+    Vector3[][] m_stageLocalPlayerInitPosition =
+    {
+        //ステージ1
+          new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+          //ステージ2
+          new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)}
+    };
+
+    /// <summary>
+    /// オンラインの場合のプレイヤー生成で使用する変数たち
+    /// </summary>
+    [SerializeField, TooltipAttribute("オンライン時のプレイヤーオブジェクト")] GameObject m_onlinePlayerPrefab = null;
+    //ステージごとのプレイヤーの初期位置(オンラインの初期位置)
+    Vector3[][] m_stageOnlinePlayerInitPosition =
+    {
+        //ステージ1
+        new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+        //ステージ2
+        new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+    };
+    [SerializeField, TooltipAttribute("各プレイヤーの名前")] TextMeshProUGUI[] m_playerNameText = null;
 
     void Start()
     {
@@ -28,39 +43,29 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         SceneManager.LoadScene(m_saveData.GetSetSelectStageName, LoadSceneMode.Additive);
 
         //デバック
-        Debug.Log(m_saveData.GetSetSelectStageName + "が生成されました。");
+        Debug.Log($"{m_saveData.GetSetSelectStageName}が生成されました。");
 
-        if (m_saveData.GetSetIsOnline)
+        switch (m_saveData.GetSetSelectGameMode)
         {
-            PhotonNetwork.IsMessageQueueRunning = true;
+            //ローカルプレイ
+            case "LOCALMATCH":
+                //プレイヤーに初期位置を設定する。
+                for (int playerNum = 0; playerNum < 4; playerNum++)
+                {
+                    m_localPlayerPosition[playerNum].position = InitPlayerPosition(m_stageLocalPlayerInitPosition)[playerNum];
+                }
 
-            GameObject m_gameObject = PhotonNetwork.Instantiate(
-                m_playerPrefab.name,
-                m_initPosition[PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
-                Quaternion.identity,        //回転
-                0
-                );
-            //プレイヤー番号を保存
-            m_saveData.GetSetPlayerNum = (PhotonNetwork.LocalPlayer.ActorNumber-1);
+                break;
 
-            //プレイヤー名表示
-            photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
-        }
-        else
-        {
-            GameObject m_gameObject = Instantiate(
-                m_playerPrefab,
-                m_initPosition[0],    //ポジション
-                Quaternion.identity        //回転
-                );
-            //生成するゲームオブジェクトの名前をPlayer1にする
-            m_gameObject.name = "Player1";
+            //オンラインプレイの場合、プレイヤーを生成する。
+            case "ROCALMATCCH":
+            case "PRIVATEMATCH":
+                PhotonNetwork.IsMessageQueueRunning = true;
 
-            //プレイヤー名を表示
-            m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
+                //プレイヤー生成処理
+                PlayerGeneration();
 
-            //デバック
-            Debug.Log("プレイヤーが参加しました。");
+                break;
         }
     }
 
@@ -72,6 +77,36 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         m_playerNameText[num].text = playerName;
 
         //デバック
-        Debug.Log("プレイヤー" + num + "が参加しました。");
+        Debug.Log($"プレイヤー{num}が参加しました。");
+    }
+
+    //プレイヤーの初期位置を設定する処理
+    Vector3[] InitPlayerPosition(Vector3[][] stageInitPlayerPosition)
+    {
+        //ステージによって初期位置を設定
+        switch (m_saveData.GetSetSelectStageName)
+        {
+            case "STAGE1":
+                return stageInitPlayerPosition[0];
+            case "STAGE2":
+                return stageInitPlayerPosition[1];
+            default:
+                return null;
+        }
+    }
+
+    //プレイヤー生成処理
+    void PlayerGeneration()
+    {
+        GameObject m_gameObjectOnline = PhotonNetwork.Instantiate(
+                    m_onlinePlayerPrefab.name,
+                    InitPlayerPosition(m_stageOnlinePlayerInitPosition)[PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
+                    Quaternion.identity,        //回転
+                    0
+                    );
+        //プレイヤー番号を保存
+        m_saveData.GetSetPlayerNum = (PhotonNetwork.LocalPlayer.ActorNumber - 1);
+        //プレイヤー名表示
+        photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, PlayerPrefs.GetString("PlayerName"));
     }
 }

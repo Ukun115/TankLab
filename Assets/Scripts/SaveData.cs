@@ -17,13 +17,15 @@ public class SaveData : MonoBehaviour
 
     //選択ステージ名
     string m_selectStageName = "Stage1";
+
     //選択タンク名
-    string m_selectTankName = "Tank1";
+    string[] m_selectTankName = new string[4];
+    //選択スキル名
+    string[] m_selectSkillName = new string[4];
     //入力されたパスワード
     string m_inputPassword = "----";
 
-    //プレイヤー名テキスト
-    [SerializeField] TextMeshProUGUI m_playerNameText = null;
+    [SerializeField, TooltipAttribute("プレイヤー名テキスト")] TextMeshProUGUI m_playerNameText = null;
 
     void Start()
     {
@@ -63,13 +65,25 @@ public class SaveData : MonoBehaviour
         set { m_selectStageName = value; }
     }
 
-    //選択されたタンク名プロパティ
-    public string GetSetSelectTankName
+    //選択されたタンク名ゲッター
+    public string GetSelectTankName(int playerNum)
     {
-        //ゲッター
-        get { return m_selectTankName; }
-        //セッター
-        set { m_selectTankName = value; }
+        return m_selectTankName[playerNum];
+    }
+    //選択されたタンク名セッター
+    public void SetSelectTankName(int playerNum, string tankNum)
+    {
+        m_selectTankName[playerNum-1] = tankNum;
+    }
+    //選択されたスキル名ゲッター
+    public string GetSelectSkillName(int playerNum)
+    {
+        return m_selectSkillName[playerNum];
+    }
+    //選択されたスキル名セッター
+    public void SetSelectSkillName(int playerNum, string skillNum)
+    {
+        m_selectSkillName[playerNum - 1] = skillNum;
     }
 
     //オンラインモードフラグプロパティ
@@ -99,3 +113,6 @@ public class SaveData : MonoBehaviour
         set { m_playerNum = value; }
     }
 }
+
+//#error version
+//↑C#言語バージョンの確認
