@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/DecideNameScene.unity
     guid: fc10261aa3a434c4b9aaf52a776e047d
   - enabled: 1
-    path: Assets/Scenes/GamePadRegister.unity
-    guid: 2dd6d97a965428747a1bc21493afc2ae
-  - enabled: 1
     path: Assets/Scenes/InputPasswordScene.unity
     guid: 1ca7010c98495084f9ff4175497ed19e
   - enabled: 1
@@ -44,4 +41,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage/Stage2.unity
     guid: a9e16f6fa71086045b67bfd83f474309
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 363d7b21881f60e49bd2d1d2f114f2d5,
+      type: 2}
