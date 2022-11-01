@@ -4852,7 +4852,7 @@ GameObject:
   - component: {fileID: 1158917439}
   - component: {fileID: 1158917440}
   m_Layer: 5
-  m_Name: 3pCursor
+  m_Name: 3PCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7031,7 +7031,7 @@ GameObject:
   - component: {fileID: 1558687713}
   - component: {fileID: 1558687714}
   m_Layer: 5
-  m_Name: 1pCursor
+  m_Name: 1PCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7247,7 +7247,7 @@ GameObject:
   - component: {fileID: 1647175904}
   - component: {fileID: 1647175905}
   m_Layer: 5
-  m_Name: 4pCursor
+  m_Name: 4PCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8814,7 +8814,7 @@ GameObject:
   - component: {fileID: 2110067507}
   - component: {fileID: 2110067508}
   m_Layer: 5
-  m_Name: 2pCursor
+  m_Name: 2PCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

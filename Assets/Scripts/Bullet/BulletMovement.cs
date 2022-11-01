@@ -9,11 +9,13 @@ public class BulletMovement : MonoBehaviour
     //剛体
     Rigidbody m_rigidbody = null;
 
-    //反射する前かどうか
-    bool m_refrectionBefore = false;
-
     //発射したプレイヤー番号
     int m_myPlayerNum = 0;
+
+    //弾が当たった物体の法線ベクトル
+    Vector3 m_objectNormalVector = Vector3.zero;
+    //跳ね返った後のベクトル
+    Vector3 m_afterReflectVector = Vector3.zero;
 
     SaveData m_saveData = null;
 
@@ -34,23 +36,25 @@ public class BulletMovement : MonoBehaviour
             transform.forward.z * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
             ForceMode.VelocityChange
             );
+
+        m_rigidbody.velocity = transform.forward;
+
+        m_afterReflectVector = m_rigidbody.velocity;
 	}
 
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        if (!m_refrectionBefore)
-        {
-            return;
-        }
+        //あたった物体の法線ベクトルを取得
+        m_objectNormalVector = collision.contacts[0].normal;
+        Vector3 reflectVector = Vector3.Reflect(m_afterReflectVector, m_objectNormalVector);
 
-        //速度1.5倍
-		m_rigidbody.AddForce(m_rigidbody.velocity.normalized.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,0, m_rigidbody.velocity.normalized.z * m_tankDataBase.GetTankLists()[0].GetBulletSpeed() * 1.5f, ForceMode.VelocityChange);
-        m_refrectionBefore = false;
-	}
-
-    //反射する前かどうかのセッター
-    public void SetIsRefrectionBefore(bool isRefrectionBefore)
-    {
-        m_refrectionBefore = isRefrectionBefore;
+        //計算した反射ベクトルを保存
+        m_afterReflectVector = reflectVector;
+        m_rigidbody.AddForce(
+            m_afterReflectVector.x* m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed()*1.5f,
+            0.0f,
+            m_afterReflectVector.z* m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
+            ForceMode.VelocityChange
+            );
     }
 }

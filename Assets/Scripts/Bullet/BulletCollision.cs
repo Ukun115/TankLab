@@ -8,9 +8,6 @@ public class BulletCollision : MonoBehaviour
 {
     //弾を発射する処理が書かれたスクリプト
     PlayerFireBullet m_fireBulletScript = null;
-    BulletMovement m_bulletMovement = null;
-    //剛体
-    Rigidbody m_rigidbody = null;
 
     //現在の弾の反射回数
     int m_refrectionCount = 0;
@@ -37,10 +34,6 @@ public class BulletCollision : MonoBehaviour
         m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
 
         m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<PlayerFireBullet>();
-
-        m_rigidbody = GetComponent<Rigidbody>();
-
-        m_bulletMovement = GetComponent<BulletMovement>();
     }
 
     //衝突処理
@@ -74,13 +67,9 @@ public class BulletCollision : MonoBehaviour
     {
         m_refrectionCount++;
 
-        m_bulletMovement.SetIsRefrectionBefore(true);
-
         //指定されている反射回数分反射したら、
         if (m_refrectionCount > m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletRefrectionNum())
         {
-            m_bulletMovement.SetIsRefrectionBefore(false);
-
             if (m_isNumReduce)
             {
                 //フィールド上に生成されている弾の数データを減らす
@@ -91,10 +80,7 @@ public class BulletCollision : MonoBehaviour
 
             //弾を消滅させる
             Destroy(this.gameObject, 0.05f);
-
         }
-
-        transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
     }
 
     //プレイヤーに衝突したときの処理

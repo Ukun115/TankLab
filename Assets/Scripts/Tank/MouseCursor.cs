@@ -5,7 +5,8 @@ using System.Text.RegularExpressions;
 public class MouseCursor : Photon.Pun.MonoBehaviourPun
 {
     Plane plane = new Plane();
-    float distance = 0;
+    float distance = 0.0f;
+    float m_mouseDistance = 0.0f;
 
     SaveData m_saveData = null;
     ControllerData m_controllerData = null;
@@ -14,14 +15,18 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
 
     [SerializeField, TooltipAttribute("大砲の基点トランスフォーム")] Transform m_cannonPivotTransform = null;
 
-    Vector3 rayTarget;
+    Vector3 rayTarget = Vector3.zero;
+
+    Camera m_camera = null;
 
     void Start()
     {
-        //plane.SetNormalAndPosition(Vector3.back, transform.localPosition);
+        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
 
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+
+        m_camera = Camera.main;
     }
 
     void Update()
@@ -42,12 +47,16 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
             return;
         }
 
-        var ray = Camera.main.ScreenPointToRay(rayTarget);
+        var ray = m_camera.ScreenPointToRay(rayTarget);
         plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         if (plane.Raycast(ray, out distance))
         {
             var lookPoint = ray.GetPoint(distance);
-            m_cannonPivotTransform.LookAt(lookPoint);
+            m_mouseDistance = Vector3.Distance(lookPoint, transform.position);
+            if(m_mouseDistance > 1.2f)
+            {
+                transform.LookAt(lookPoint);
+            }
         }
     }
 }

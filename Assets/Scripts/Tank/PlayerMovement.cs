@@ -94,4 +94,9 @@ public class PlayerMovement : MonoBehaviourPun
     {
         return m_moveDirection;
     }
+
+    public float GetVertical()
+    {
+        return m_vertical;
+    }
 }
