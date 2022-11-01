@@ -8381,7 +8381,7 @@ GameObject:
   - component: {fileID: 867418045}
   - component: {fileID: 867418047}
   m_Layer: 5
-  m_Name: ControllerNotEnoughText
+  m_Name: WarningText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8516,7 +8516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac05160b3f4d024aa8b3cc6a7f55b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_controllerNotEnoughText: {fileID: 867418045}
+  m_warningText: {fileID: 867418045}
 --- !u!1 &872675226
 GameObject:
   m_ObjectHideFlags: 0
@@ -13848,7 +13848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb0f87793e68284e840c0795ebc123a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_controllerNotEnoughTextDisplay: {fileID: 867418047}
+  m_warningTextDisplay: {fileID: 867418047}
 --- !u!4 &1414053020
 Transform:
   m_ObjectHideFlags: 0

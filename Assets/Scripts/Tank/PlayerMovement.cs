@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviourPun
     //移動方向
     Vector3 m_moveDirection = Vector3.zero;
 
-    [SerializeField, TooltipAttribute("プレイヤー移動速度")]float m_speed = 5.0f;
-
     [SerializeField, TooltipAttribute("プレイヤーのトランスフォーム")] Transform m_playerTransform = null;
 
     //左右矢印キーの値(-1.0f～1.0f)
@@ -30,17 +28,34 @@ public class PlayerMovement : MonoBehaviourPun
     //垂直入力の名前(初期設定はキーボード操作)
     string m_inputVerticalName = "Vertical";
 
+    [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+
+    //自身のプレイヤー番号
+    int m_myPlayerNum = 0;
+
+    SaveData m_saveData = null;
+
     void Start()
     {
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
+        //自身のプレイヤー番号を取得
+        m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
+
         m_rigidbody = GetComponent<Rigidbody>();
 
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
         // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(this.transform.root.name, @"[^0-9]", ""))))
+        if (m_controllerData.GetIsConnectedController(m_saveData.GetSelectTankNum(m_myPlayerNum)))
         {
             m_inputHorizontalName = $"{this.name}JoystickHorizontal_L";
             m_inputVerticalName = $"{this.name}JoystickVertical_L";
         }
+
+        //選択されたタンク番号デバック
+        Debug.Log($"<color=yellow>{this.name}のタンク : Tank{m_saveData.GetSelectTankNum(m_myPlayerNum)+1}</color>");
+        //選択されたスキル番号デバック
+        Debug.Log($"<color=yellow>{this.name}のスキル : Skill{m_saveData.GetSelectSkillNum(m_myPlayerNum)+1}</color>");
     }
 
     void Update()
@@ -66,7 +81,7 @@ public class PlayerMovement : MonoBehaviourPun
         m_moveDirection.Normalize();
 
         //移動方向に速度を掛ける(通常移動)
-        m_moveDirection *= m_speed;
+        m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetTankSpeed();
     }
 
     void FixedUpdate()

@@ -32,6 +32,9 @@ public class DecideStage : MonoBehaviour
         //選択したステージを保存しておく
         m_saveData.GetSetSelectStageName = character;
 
+        //デバック
+        Debug.Log($"<color=yellow>ステージ:{m_saveData.GetSetSelectStageName}</color>");
+
         switch (m_saveData.GetSetSelectGameMode)
         {
             //オンライン対戦の際、

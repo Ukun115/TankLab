@@ -35,9 +35,9 @@ public class LoginData : MonoBehaviour
         m_lastHourMinuteData = PlayerPrefs.GetInt("LastHourMinuteGetDate", (int)EnLoginType.enFirstUserLogin);
 
         //前回ログインの日付データをデバック
-        Debug.Log($"前回のログイン（日）：{m_lastYearMonthDayDate}");
+        Debug.Log($"<color=yellow>前回のログイン（日）:{m_lastYearMonthDayDate}</color>");
         //ex)5:48の場合548になるからD4を使用することで0548にすることができている。
-        Debug.Log($"前回のログイン（時）：{m_lastHourMinuteData.ToString("D4")}");
+        Debug.Log($"<color=yellow>前回のログイン（時）:{m_lastHourMinuteData.ToString("D4")}</color>");
 
         //前回と今回の日付データ比較
 

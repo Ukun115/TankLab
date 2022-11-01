@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5622701508853210035}
   m_Layer: 3
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06702f87ad3ac994ca1379ae05551548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bulletSpeed: 3
+  m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
 --- !u!54 &7233262682372555531
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf23d2855ad9744899cc13d9352494a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_refrectionNum: 1
   m_deathMarkPrefab: {fileID: 5029975033714381540, guid: baed38fabd8b1154bae9cb19725abc5f,
     type: 3}
   m_resultPrefab: {fileID: 921401857147056700, guid: 30e8296f0c7e2004e98049c9681cf0b0,
     type: 3}
+  m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
 --- !u!135 &5106183890099769052
 SphereCollider:
   m_ObjectHideFlags: 0

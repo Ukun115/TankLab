@@ -16,7 +16,7 @@ public class ButtonMaterialChange : MonoBehaviour
     //マテリアルを戻す処理
     public void ReturnChangeMaterial()
     {
-        if (m_childrenObject != null && m_ableColorChange)
+        if (m_childrenObject is not null && m_ableColorChange)
         {
             //前回マウスカーソルが当たっていたブロックボタンオブジェクトをもとの色に戻す
             //マテリアルのカラーチェンジ処理

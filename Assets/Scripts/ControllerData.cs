@@ -9,7 +9,7 @@ public class ControllerData : MonoBehaviour
     {
         SearchConnectedController();
 
-        Debug.Log($"接続されているコントローラー数は{controllerNames.Length}つです。");
+        Debug.Log($"<color=yellow>接続されているコントローラー数:{controllerNames.Length}</color>");
     }
 
     void Update()
@@ -36,9 +36,9 @@ public class ControllerData : MonoBehaviour
     //プレイヤ―番号と一致するコントローラーが接続されているかどうか
     public bool GetIsConnectedController(int playerNum)
     {
-        if (controllerNames.Length >= playerNum)
+        if (controllerNames.Length > playerNum)
         {
-            if (controllerNames[playerNum - 1] != null)
+            if (controllerNames[playerNum - 1] is not null)
             {
                 return true;
             }

@@ -2,11 +2,11 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// 接続されているコントローラー数が不足しているときの警告メッセージ表示処理
+/// 警告メッセージ表示処理
 /// </summary>
-public class ControllerNotEnoughTextDisplay : MonoBehaviour
+public class WarningTextDisplay : MonoBehaviour
 {
-    [SerializeField, TooltipAttribute("接続コントローラー数不足警告メッセージテキスト")] TextMeshProUGUI m_controllerNotEnoughText = null;
+    [SerializeField, TooltipAttribute("警告メッセージテキスト")] TextMeshProUGUI m_warningText = null;
 
     //α値
     float alphaValue = 0.0f;
@@ -43,7 +43,7 @@ public class ControllerNotEnoughTextDisplay : MonoBehaviour
             case EnState.enFade:
                 //フェードしていく
                 alphaValue -= 0.05f;
-                m_controllerNotEnoughText.color = new Color(1.0f, 0.0f, 0.0f, alphaValue);
+                m_warningText.color = new Color(1.0f, 0.0f, 0.0f, alphaValue);
                 if(alphaValue < 0.0f)
                 {
                     //待機状態にする
@@ -53,8 +53,10 @@ public class ControllerNotEnoughTextDisplay : MonoBehaviour
         }
     }
 
-    public void Display()
+    public void Display(string text)
     {
+        m_warningText.text = text;
+
         //α値を初期化する
         alphaValue = 1.0f;
 
@@ -62,7 +64,7 @@ public class ControllerNotEnoughTextDisplay : MonoBehaviour
         m_displayTimer = 0;
 
         //α値を更新
-        m_controllerNotEnoughText.color = new Color(1.0f, 0.0f, 0.0f, alphaValue);
+        m_warningText.color = new Color(1.0f, 0.0f, 0.0f, alphaValue);
 
         m_enState = EnState.enDisplay;
     }
