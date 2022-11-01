@@ -3428,7 +3428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_localPlayerPosition: []
-  m_onlinePlayerPrefab: {fileID: 0}
+  m_onlinePlayerPrefab: {fileID: 430560259859113099, guid: aacf3de45f44b234d8972bc448442b9b,
+    type: 3}
   m_playerNameText:
   - {fileID: 1107586233}
 --- !u!1 &526723318

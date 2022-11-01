@@ -19,7 +19,7 @@ public class RayCast : MonoBehaviour
     Vector3 m_rayPoint = Vector3.zero;
 
     [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorImagePosition = null;
-    [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 0;
+    [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 1;
 
     SaveData m_saveData = null;
     ControllerData m_controllerData = null;

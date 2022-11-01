@@ -37,7 +37,7 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         //デバック
-        Debug.Log("<color=blule>Photonサーバーへの接続が完了</color>");
+        Debug.Log("<color=blue>Photonサーバーへの接続が完了</color>");
 
         //ロビーに参加する
         PhotonNetwork.JoinLobby();
@@ -65,31 +65,31 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         DontDestroyOnLoad(this);
 
         //デバック
-        Debug.Log("<color=blule>ロビーへの参加が完了</color>");
+        Debug.Log("<color=blue>ロビーへの参加が完了</color>");
     }
 
     // ルームの作成が成功した時に呼ばれるコールバック
     public override void OnCreatedRoom()
     {
-        Debug.Log("<color=blule>ルームの作成に成功しました</color>");
+        Debug.Log("<color=blue>ルームの作成に成功しました</color>");
     }
 
     // ルームの作成が失敗した時に呼ばれるコールバック
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.Log("<color=blule>ルームの作成に失敗しました</color>");
+        Debug.Log("<color=blue>ルームの作成に失敗しました</color>");
     }
 
     // ルームへの参加が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        Debug.Log("<color=blule>ルームへ参加しました</color>");
+        Debug.Log("<color=blue>ルームへ参加しました</color>");
     }
 
     // ルーム名を指定したルームへの参加が失敗した時に呼ばれるコールバック
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("<color=blule>プライベートルームへの参加に失敗しました</color>");
+        Debug.Log("<color=blue>プライベートルームへの参加に失敗しました</color>");
     }
 
     // ランダムルームへの参加が失敗した時に呼ばれるコールバック
@@ -98,13 +98,13 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         // ランダムルームが存在しないなら、新規でルームを作成する
         PhotonNetwork.CreateRoom(null);
 
-        Debug.Log("<color=blule>ランダムルームへの参加に失敗しました。ランダムルームを作成します。</color>");
+        Debug.Log("<color=blue>ランダムルームへの参加に失敗しました。ランダムルームを作成します。</color>");
     }
 
     //他プレイヤーがルームに参加したときに呼ばれるコールバック
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("<color=blule>他プレイヤーがルームに参加しました。</color>");
+        Debug.Log("<color=blue>他プレイヤーがルームに参加しました。</color>");
         //ゲームシーンに遷移
         photonView.RPC(nameof(GoGameScene), RpcTarget.All);
         //ゲーム中に他プレイヤーがルームに参加してこないようにしておく
@@ -120,7 +120,7 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
             //フォトンサーバーから切断する
             PhotonNetwork.Disconnect();
 
-            Debug.Log("<color=blule>Photonサーバーから切断しました</color>");
+            Debug.Log("<color=blue>Photonサーバーから切断しました</color>");
 
             Destroy(this);
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// 弾が何かにぶつかったときに起こる処理
@@ -6,12 +7,10 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     //弾を発射する処理が書かれたスクリプト
-    FireBullet m_fireBulletScript = null;
+    PlayerFireBullet m_fireBulletScript = null;
     BulletMovement m_bulletMovement = null;
     //剛体
     Rigidbody m_rigidbody = null;
-
-    [SerializeField, TooltipAttribute("弾の反射回数")] int m_refrectionNum = 0;
 
     //現在の弾の反射回数
     int m_refrectionCount = 0;
@@ -20,13 +19,24 @@ public class BulletCollision : MonoBehaviour
 
     [SerializeField, TooltipAttribute("リザルト処理が内包されているプレファブオブジェクト")] GameObject m_resultPrefab = null;
 
+    [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+
     //弾を減少させたかどうか
     bool m_isNumReduce = true;
 
+    //発射したプレイヤー番号
+    int m_myPlayerNum = 0;
+
+    SaveData m_saveData = null;
 
     void Start()
     {
-        m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<FireBullet>();
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
+        //発射したプレイヤー番号を取得
+        m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
+
+        m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<PlayerFireBullet>();
 
         m_rigidbody = GetComponent<Rigidbody>();
 
@@ -49,6 +59,14 @@ public class BulletCollision : MonoBehaviour
             //プレイヤーに衝突したときの処理
             OnCollisitonPlayer(collision);
         }
+
+        //弾に衝突した場合
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            //両方消滅させる
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     //壁に衝突したときの処理
@@ -59,7 +77,7 @@ public class BulletCollision : MonoBehaviour
         m_bulletMovement.SetIsRefrectionBefore(true);
 
         //指定されている反射回数分反射したら、
-        if (m_refrectionCount > m_refrectionNum)
+        if (m_refrectionCount > m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletRefrectionNum())
         {
             m_bulletMovement.SetIsRefrectionBefore(false);
 
@@ -91,7 +109,7 @@ public class BulletCollision : MonoBehaviour
         }
 
         //弾を消滅させる
-        Destroy(this.gameObject, 0.05f);
+        Destroy(this.gameObject);
 
         //衝突したプレイヤーを消滅させる
         Destroy(collision.gameObject, 0.05f);

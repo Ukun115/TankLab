@@ -13,7 +13,7 @@ public class DecideGameMode : MonoBehaviour
 
     ControllerData m_controllerData = null;
 
-    [SerializeField, TooltipAttribute("接続コントローラー数不足警告メッセージ表示処理スクリプト")] ControllerNotEnoughTextDisplay m_controllerNotEnoughTextDisplay = null;
+    [SerializeField, TooltipAttribute("警告メッセージ表示処理スクリプト")] WarningTextDisplay m_warningTextDisplay = null;
 
     void Start()
     {
@@ -26,6 +26,8 @@ public class DecideGameMode : MonoBehaviour
     //押されたボタンの種類によって処理を分岐
     public void SetCharacter(string character)
     {
+        var netWorkState = Application.internetReachability;
+
         //選択されたゲームモードを保存
         m_saveData.GetSetSelectGameMode = character;
 
@@ -49,25 +51,51 @@ public class DecideGameMode : MonoBehaviour
                 //繋がれているコントローラーの数が足りなかったら、
                 else
                 {
-                    Debug.Log($"接続されているコントローラー数があと{4- m_controllerData.GetConnectedControllerNum()}つ足りません。");
+                    Debug.Log($"<color=yellow>不足コントローラー数:{4- m_controllerData.GetConnectedControllerNum()}</color>");
 
                     //警告メッセージを画面表示
-                    m_controllerNotEnoughTextDisplay.Display();
+                    m_warningTextDisplay.Display("Not enough "+"\n"+"controllers connected."+"\n"+"Required number: 4");
                 }
 
                 break;
 
             //ランダムマッチの場合、
             case "RANDOMMATCH":
-                //タンク選択シーンに遷移
-                ChangeScene("SelectTankScene");
+                //インターネットに接続していない場合
+                if (netWorkState == NetworkReachability.NotReachable)
+                {
+                    //インターネット通信のため、シーン遷移しないようにする。
+                    //警告メッセージを画面表示
+                    Debug.Log("インターネットに接続してください。");
+                    m_warningTextDisplay.Display("Please connect to"+"\n"+"the internet.");
+
+                }
+                //インターネットに接続されている場合
+                else
+                {
+                    //タンク選択シーンに遷移
+                    ChangeScene("SelectTankScene");
+                }
 
                 break;
 
             //プライベートマッチの場合、
             case "PRIVATEMATCH":
-                //パスワード入力シーンに遷移
-                ChangeScene("SelectTankScene");
+                //インターネットに接続していない場合
+                if (netWorkState == NetworkReachability.NotReachable)
+                {
+                    //インターネット通信のため、シーン遷移しないようにする。
+                    //警告メッセージを画面表示
+                    Debug.Log("インターネットに接続してください。");
+                    m_warningTextDisplay.Display("Please connect to " + "\n" + "the internet.");
+
+                }
+                //インターネットに接続されている場合
+                else
+                {
+                    //パスワード入力シーンに遷移
+                    ChangeScene("InputPasswordScene");
+                }
 
                 break;
 
@@ -79,6 +107,9 @@ public class DecideGameMode : MonoBehaviour
 
             //終了の場合、
             case "EXIT":
+
+                Debug.Log("ゲーム終了");
+
                 //ゲーム終了
                 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
@@ -92,7 +123,6 @@ public class DecideGameMode : MonoBehaviour
             case "PLAYERNAME":
                 //ユーザー名登録シーンに遷移
                 ChangeScene("DecideNameScene");
-
                 break;
         }
     }

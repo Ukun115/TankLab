@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// ユーザーのセーブデータを管理するスクリプト
@@ -20,8 +21,12 @@ public class SaveData : MonoBehaviour
 
     //選択タンク名
     string[] m_selectTankName = new string[4];
+    //選択タンク番号
+    int[] m_selectTankNum = new int[4];
     //選択スキル名
     string[] m_selectSkillName = new string[4];
+    //選択スキル番号
+    int[] m_selectSkillNum = new int[4];
     //入力されたパスワード
     string m_inputPassword = "----";
 
@@ -37,6 +42,8 @@ public class SaveData : MonoBehaviour
         {
             //登録されていた名前を表示させる
             m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
+
+            Debug.Log($"<color=yellow>ユーザー名:{m_playerNameText.text}</color>");
         }
         else
         {
@@ -74,6 +81,9 @@ public class SaveData : MonoBehaviour
     public void SetSelectTankName(int playerNum, string tankNum)
     {
         m_selectTankName[playerNum-1] = tankNum;
+
+        //選択されたタンク番号を保存
+        m_selectTankNum[playerNum-1] = int.Parse(Regex.Replace(m_selectTankName[playerNum - 1], @"[^0-9]", ""))-1;
     }
     //選択されたスキル名ゲッター
     public string GetSelectSkillName(int playerNum)
@@ -84,6 +94,19 @@ public class SaveData : MonoBehaviour
     public void SetSelectSkillName(int playerNum, string skillNum)
     {
         m_selectSkillName[playerNum - 1] = skillNum;
+
+        //選択されたスキル番号を保存
+        m_selectSkillNum[playerNum - 1] = int.Parse(Regex.Replace(m_selectSkillName[playerNum - 1], @"[^0-9]", "")) - 1;
+    }
+    //選択されたタンク名ゲッター
+    public int GetSelectTankNum(int playerNum)
+    {
+        return m_selectTankNum[playerNum];
+    }
+    //選択されたスキル名ゲッター
+    public int GetSelectSkillNum(int playerNum)
+    {
+        return m_selectSkillNum[playerNum];
     }
 
     //オンラインモードフラグプロパティ

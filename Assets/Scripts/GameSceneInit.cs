@@ -43,10 +43,16 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         SceneManager.LoadScene(m_saveData.GetSetSelectStageName, LoadSceneMode.Additive);
 
         //デバック
-        Debug.Log($"{m_saveData.GetSetSelectStageName}が生成されました。");
+        Debug.Log($"<color=yellow>生成ステージ：{m_saveData.GetSetSelectStageName}</color>");
 
         switch (m_saveData.GetSetSelectGameMode)
         {
+            //チャレンジモード
+            case "CHALLENGE":
+                //名前をユーザー名にする
+                m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
+                break;
+
             //ローカルプレイ
             case "LOCALMATCH":
                 //プレイヤーに初期位置を設定する。
@@ -58,7 +64,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
                 break;
 
             //オンラインプレイの場合、プレイヤーを生成する。
-            case "ROCALMATCCH":
+            case "RANDOMMATCH":
             case "PRIVATEMATCH":
                 PhotonNetwork.IsMessageQueueRunning = true;
 
@@ -77,7 +83,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         m_playerNameText[num].text = playerName;
 
         //デバック
-        Debug.Log($"プレイヤー{num}が参加しました。");
+        Debug.Log($"<color=yellow>参加プレイヤー:{num}</color>");
     }
 
     //プレイヤーの初期位置を設定する処理

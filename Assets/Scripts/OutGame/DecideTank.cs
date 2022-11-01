@@ -67,11 +67,11 @@ public class DecideTank : MonoBehaviour
             for (int player = 0; player < 4; player++)
             {
                 //誰か一人でも選択していなかった場合はシーン遷移しない。
-                if (m_saveData.GetSelectTankName(player) == null)
+                if (m_saveData.GetSelectTankName(player) is null)
                 {
                     return;
                 }
-                if (m_saveData.GetSelectSkillName(player) == null)
+                if (m_saveData.GetSelectSkillName(player) is null)
                 {
                     return;
                 }
@@ -79,15 +79,16 @@ public class DecideTank : MonoBehaviour
         }
         else
         {
-            if (m_saveData.GetSelectTankName(0) == null)
+            if (m_saveData.GetSelectTankName(0) is null)
             {
                 return;
             }
-            if (m_saveData.GetSelectSkillName(0) == null)
+            if (m_saveData.GetSelectSkillName(0) is null)
             {
                 return;
             }
         }
+
         //ステージ選択シーンに遷移
         GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectStageScene");
     }
