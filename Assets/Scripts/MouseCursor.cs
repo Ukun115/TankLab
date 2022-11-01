@@ -7,14 +7,17 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
 {
     Plane plane = new Plane();
     float distance = 0;
+    float m_mouceDistance = 0.0f;
 
     SaveData m_saveData = null;
+    Camera m_mainCamera;
 
     void Start()
     {
-        //plane.SetNormalAndPosition(Vector3.back, transform.localPosition);
+        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
 
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        m_mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -26,12 +29,17 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
             return;
         }
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
+		var ray = m_mainCamera.ScreenPointToRay(Input.mousePosition);
+        //plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         if (plane.Raycast(ray, out distance))
-        {
-            var lookPoint = ray.GetPoint(distance);
-            transform.LookAt(lookPoint);
-        }
-    }
+		{
+			var lookPoint = ray.GetPoint(distance);
+            m_mouceDistance = Vector3.Distance(lookPoint, transform.position);
+            if (m_mouceDistance > 1.2f)
+            {
+                transform.LookAt(lookPoint);
+            }
+		}
+
+	}
 }

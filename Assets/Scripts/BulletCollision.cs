@@ -14,6 +14,7 @@ public class BulletCollision : MonoBehaviour
     [SerializeField] int m_refrectionNum = 0;
 
     Rigidbody m_rigidbody = null;
+    BulletMovement m_bulletMovement = null;
 
     int m_refrectionCount = 0;
 
@@ -23,6 +24,8 @@ public class BulletCollision : MonoBehaviour
         m_fireBulletScript = GameObject.Find("FireBulletPos").GetComponent<FireBullet>();
 
         m_rigidbody = GetComponent<Rigidbody>();
+
+        m_bulletMovement = GetComponent<BulletMovement>();
     }
 
     //衝突処理
@@ -32,11 +35,10 @@ public class BulletCollision : MonoBehaviour
         if(collision.gameObject.tag == "Wall")
         {
             m_refrectionCount++;
-            GetComponent<BulletMovement>().SetIsRefrectionBefore(true);
+            //m_bulletMovement.RefrectionBeforeMove();
 
             if (m_refrectionCount > m_refrectionNum)
             {
-                GetComponent<BulletMovement>().SetIsRefrectionBefore(false);
                 //フィールド上に生成されている弾の数データを減らす
                 m_fireBulletScript.ReduceBulletNum();
 
@@ -45,7 +47,6 @@ public class BulletCollision : MonoBehaviour
 
             }
 
-            transform.rotation = new Quaternion(0.0f, m_rigidbody.velocity.y, 0.0f, 1.0f);
         }
 
         //プレイヤーに衝突した場合

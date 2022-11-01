@@ -48,6 +48,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
                 m_initPosition[0],    //ポジション
                 Quaternion.identity        //回転
                 );
+  
             //生成するゲームオブジェクトの名前をPlayer1にする
             m_gameObject.name = "Player1";
 

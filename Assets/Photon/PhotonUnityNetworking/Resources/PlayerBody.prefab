@@ -97,8 +97,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430560259370082294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6666667, z: 0}
-  m_LocalScale: {x: 1, y: 1.3333334, z: 1}
+  m_LocalPosition: {x: 0, y: 0.666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 430560259474637119}
@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430560259474637058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0625, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
   m_LocalScale: {x: 0.5, y: 0.375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 8073325307116374229}
   - component: {fileID: 2308386662267416784}
   - component: {fileID: 5277521171461869013}
+  - component: {fileID: 4519421051492649378}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -456,3 +457,18 @@ MonoBehaviour:
   m_tankColor:
   - {fileID: 2100000, guid: 5e684559c743e264282e48efd7b7a9b5, type: 2}
   - {fileID: 2100000, guid: 8367aa853ab076a4085e0db643f2bcc6, type: 2}
+--- !u!114 &4519421051492649378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430560259859113099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebb58105187cce478bf4585728334d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dashLinePrefab: {fileID: 5368805142453770922, guid: 89edc23c9424e384384615ec08129889,
+    type: 3}
+  m_parentObject: {fileID: 430560259859113099}
