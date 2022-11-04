@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNameText: {fileID: 1739221912}
+  m_handCursor: {fileID: 2800000, guid: 610e9115630aa2841990da507aafb1d1, type: 3}
 --- !u!4 &66569127
 Transform:
   m_ObjectHideFlags: 0

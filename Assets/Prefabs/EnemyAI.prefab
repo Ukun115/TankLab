@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430560258180168786}
+  - component: {fileID: 4253899537444538427}
   m_Layer: 0
-  m_Name: FireBulletPos
+  m_Name: EnemyFireBulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +32,21 @@ Transform:
   m_Father: {fileID: 430560259474637119}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4253899537444538427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430560258180168785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afd58947c4b9e644bc4683dbd18942a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
+    type: 3}
+  m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
 --- !u!1 &430560259370082294
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430560259370082295}
   m_Layer: 0
-  m_Name: CannonPivot
+  m_Name: EnemyCannonPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +92,7 @@ GameObject:
   - component: {fileID: 430560259474637117}
   - component: {fileID: 430560259474637116}
   m_Layer: 0
-  m_Name: Cannon
+  m_Name: EnemyCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,9 +191,10 @@ GameObject:
   - component: {fileID: 430560259859113092}
   - component: {fileID: 430560259859113089}
   - component: {fileID: 430560259859113090}
+  - component: {fileID: 5769926014230088407}
   m_Layer: 0
   m_Name: EnemyAI
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430560259859113099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.5, y: 0, z: 0}
+  m_LocalPosition: {x: -10.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -226,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e684559c743e264282e48efd7b7a9b5, type: 2}
+  - {fileID: 2100000, guid: ed77db9b6a13a61438fb1c8c4ea68bc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -292,3 +309,16 @@ MonoBehaviour:
   m_footPrintPrefab: {fileID: 5652687468675882084, guid: 0bbaee3c4d0e8294d954db0ab0cb990c,
     type: 3}
   m_tankTransform: {fileID: 430560259859113095}
+--- !u!114 &5769926014230088407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430560259859113099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd0aab0da786a14cbe6480a1a16c640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_enemyAIType: 0
