@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
-public class MouseCursor : Photon.Pun.MonoBehaviourPun
+//プレイヤーの向いている方向を決める処理
+public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
 {
     Plane plane = new Plane();
     float distance = 0.0f;
@@ -12,8 +13,6 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
     ControllerData m_controllerData = null;
 
     [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorPosition = null;
-
-    [SerializeField, TooltipAttribute("大砲の基点トランスフォーム")] Transform m_cannonPivotTransform = null;
 
     Vector3 rayTarget = Vector3.zero;
 
@@ -58,5 +57,7 @@ public class MouseCursor : Photon.Pun.MonoBehaviourPun
                 transform.LookAt(lookPoint);
             }
         }
+        //射出方向のデバック表示
+        Debug.DrawRay(this.transform.position, this.transform.forward * 5.0f, Color.red);
     }
 }

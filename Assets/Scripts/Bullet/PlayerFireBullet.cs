@@ -16,8 +16,6 @@ public class PlayerFireBullet : MonoBehaviourPun
     //元の回転
     Quaternion m_originalQuaternion = Quaternion.identity;
 
-    [SerializeField, TooltipAttribute("弾生成位置")] Transform m_bulletInstantiatePosition = null;
-
     //セーブデータ
     SaveData m_saveData = null;
 
@@ -92,14 +90,14 @@ public class PlayerFireBullet : MonoBehaviourPun
 
         m_yRot = 0.0f;
         //元の回転を取得
-        m_originalQuaternion = m_bulletInstantiatePosition.rotation;
+        m_originalQuaternion = this.transform.rotation;
 
         //同時に撃つ弾の数によって回す
         for (int i = 0; i < m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetSameTimeBulletNum(); i++)
         {
             //弾の発射角度
             m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
-            m_bulletInstantiatePosition.Rotate(0.0f, m_yRot, 0.0f);
+            this.transform.Rotate(0.0f, m_yRot, 0.0f);
 
             //オンラインモード
             if (m_saveData.GetSetIsOnline && SceneManager.GetActiveScene().name == "OnlineGameScene")
@@ -108,8 +106,8 @@ public class PlayerFireBullet : MonoBehaviourPun
                 //弾を生成
                 GameObject m_bulletObject = PhotonNetwork.Instantiate(
                 m_bulletPrefab.name,
-                m_bulletInstantiatePosition.position,
-                new Quaternion(0.0f, m_bulletInstantiatePosition.rotation.y, 0.0f, m_bulletInstantiatePosition.rotation.w)
+                this.transform.position,
+                new Quaternion(0.0f, this.transform.rotation.y, 0.0f, this.transform.rotation.w)
                 );
 
                 //生成される弾の名前変更
@@ -117,14 +115,17 @@ public class PlayerFireBullet : MonoBehaviourPun
 
                 //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                 m_bulletObject.transform.parent = m_bulletsBox.transform;
+
+                //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
+                m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(this.gameObject);
             }
             else
             {
                 //弾を生成
                 GameObject m_bulletObject = Instantiate(
                 m_bulletPrefab,
-                m_bulletInstantiatePosition.position,
-                new Quaternion(0.0f, m_bulletInstantiatePosition.rotation.y, 0.0f, m_bulletInstantiatePosition.rotation.w)
+                this.transform.position,
+                new Quaternion(0.0f, this.transform.rotation.y, 0.0f, this.transform.rotation.w)
                 );
 
                 //生成される弾の名前変更
@@ -132,10 +133,13 @@ public class PlayerFireBullet : MonoBehaviourPun
 
                 //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                 m_bulletObject.transform.parent = m_bulletsBox.transform;
+
+                //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
+                m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(this.gameObject);
             }
 
             //元の回転に戻す
-            m_bulletInstantiatePosition.rotation = m_originalQuaternion;
+            this.transform.rotation = m_originalQuaternion;
 
             m_bulletNum++;
         }

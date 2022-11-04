@@ -21,10 +21,16 @@ public class BulletMovement : MonoBehaviour
 
     [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
+    Vector3 m_debugLineDirection = Vector3.zero;
+
     void Start()
     {
-        //発射したプレイヤー番号を取得
-        m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
+        //敵AIの弾じゃないときは実行
+        if (this.gameObject.name != "EnemyBullet")
+        {
+            //発射したプレイヤー番号を取得
+            m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
+        }
 
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
@@ -40,7 +46,16 @@ public class BulletMovement : MonoBehaviour
         m_rigidbody.velocity = transform.forward;
 
         m_afterReflectVector = m_rigidbody.velocity;
-	}
+
+        m_debugLineDirection = this.transform.forward;
+
+    }
+
+    void Update()
+    {
+        //Rayのデバック表示
+        Debug.DrawRay(this.transform.position, m_debugLineDirection * 5.0f, Color.red);
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -56,5 +71,7 @@ public class BulletMovement : MonoBehaviour
             m_afterReflectVector.z* m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
             ForceMode.VelocityChange
             );
+
+        m_debugLineDirection = m_afterReflectVector;
     }
 }

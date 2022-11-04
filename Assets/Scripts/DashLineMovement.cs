@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 public class DashLineMovement : MonoBehaviour
 {
     LineRenderer line = null;
-    Camera m_mainCamera;
+    Camera m_mainCamera = null;
     Plane plane = new Plane();
     float distance = 0;
     Vector3 rayTarget = Vector3.zero;
@@ -23,8 +23,6 @@ public class DashLineMovement : MonoBehaviour
         plane.SetNormalAndPosition(Vector3.up, new Vector3(transform.position.x, 4.0f, transform.position.z - 3));
 
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
-
-        m_cursorPosition = GameObject.Find(this.transform.root.name+"Cursor").GetComponent<Transform>();
     }
 
     void Update()
@@ -32,6 +30,10 @@ public class DashLineMovement : MonoBehaviour
         // ゲームパッドが接続されていたらゲームパッドでの操作
         if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(this.transform.root.name, @"[^0-9]", ""))))
         {
+            if (m_cursorPosition is null)
+            {
+                m_cursorPosition = GameObject.Find(this.transform.root.name + "Cursor").GetComponent<Transform>();
+            }
             rayTarget = m_cursorPosition.position;
         }
         else
@@ -44,7 +46,7 @@ public class DashLineMovement : MonoBehaviour
         {
             var lookPoint = ray.GetPoint(distance);
             line.SetPosition(0, lookPoint);
-            line.SetPosition(1, new Vector3(transform.position.x, 4.0f, transform.position.z - 3));
+            line.SetPosition(1, new Vector3(transform.position.x, 4.0f, transform.position.z - 4.0f));
         }
     }
 }

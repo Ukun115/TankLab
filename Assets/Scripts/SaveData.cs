@@ -32,13 +32,18 @@ public class SaveData : MonoBehaviour
 
     [SerializeField, TooltipAttribute("プレイヤー名テキスト")] TextMeshProUGUI m_playerNameText = null;
 
+    [SerializeField] Texture2D m_handCursor;
+
     void Start()
     {
         //60fpsで固定する。
         Application.targetFrameRate = 60;
 
+        //カーソル画像をデフォルトから変更
+        Cursor.SetCursor(m_handCursor, new Vector2(m_handCursor.width / 2, m_handCursor.height / 2), CursorMode.Auto);
+
         //以前のプレイで名前が登録されていた場合、
-        if(PlayerPrefs.HasKey("PlayerName"))
+        if (PlayerPrefs.HasKey("PlayerName"))
         {
             //登録されていた名前を表示させる
             m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
