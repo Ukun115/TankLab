@@ -4,6 +4,8 @@ using System;
 /// <summary>
 /// ログインデータ
 /// </summary>
+namespace nsTankLab
+{
 public class LoginData : MonoBehaviour
 {
     //ログインタイプ
@@ -94,4 +96,5 @@ public class LoginData : MonoBehaviour
         PlayerPrefs.SetInt("LastHourMinuteGetDate", m_hourMinuteData);
         PlayerPrefs.Save();
     }
+}
 }

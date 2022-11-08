@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー名のキーボード入力処理
 /// </summary>
+namespace nsTankLab
+{
 public class InputKeyBoardAlphabet : MonoBehaviour
 {
     //プレイヤー名決定スクリプト
@@ -63,4 +65,5 @@ public class InputKeyBoardAlphabet : MonoBehaviour
             m_decidePlayerName.SetCharacter(inputCharacter);
         }
     }
+}
 }

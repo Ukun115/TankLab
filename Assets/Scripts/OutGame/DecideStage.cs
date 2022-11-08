@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// ステージを決定する処理
 /// </summary>
+namespace nsTankLab
+{
 public class DecideStage : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("ステージ選択カーソルオブジェクトのトランスフォーム")] Transform m_cursorObject = null;
@@ -53,4 +55,5 @@ public class DecideStage : MonoBehaviour
                 break;
         }
     }
+}
 }

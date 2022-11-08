@@ -4,6 +4,8 @@ using Photon.Pun;
 /// <summary>
 /// オンラインの際のプレイヤーの初期化処理
 /// </summary>
+namespace nsTankLab
+{
 public class OnlinePlayerInit : MonoBehaviourPun
 {
     [SerializeField, TooltipAttribute("各プレイヤーのタンクのマテリアル")] Material[] m_tankColor = new Material[2];
@@ -30,7 +32,8 @@ public class OnlinePlayerInit : MonoBehaviourPun
     //タンクの名前とカラーを設定
     void SettingNameAndColor(string name,int materialNum)
     {
-        this.gameObject.name = name;
-        this.gameObject.GetComponent<MeshRenderer>().material = m_tankColor[materialNum];
+        gameObject.name = name;
+        gameObject.GetComponent<MeshRenderer>().material = m_tankColor[materialNum];
     }
+}
 }

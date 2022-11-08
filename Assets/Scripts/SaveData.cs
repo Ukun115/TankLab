@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// ユーザーのセーブデータを管理するスクリプト
 /// </summary>
+namespace nsTankLab
+{
 public class SaveData : MonoBehaviour
 {
     //オンラインモードかどうか
@@ -141,6 +143,6 @@ public class SaveData : MonoBehaviour
         set { m_playerNum = value; }
     }
 }
-
+}
 //#error version
 //↑C#言語バージョンの確認

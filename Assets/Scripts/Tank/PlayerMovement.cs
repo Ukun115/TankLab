@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// プレイヤーの移動スクリプト
 /// </summary>
+namespace nsTankLab
+{
 public class PlayerMovement : MonoBehaviourPun
 {
     //剛体
@@ -38,24 +40,23 @@ public class PlayerMovement : MonoBehaviourPun
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-
-        //自身のプレイヤー番号を取得
-        m_myPlayerNum = int.Parse(Regex.Replace(this.transform.name, @"[^1-4]", "")) - 1;
-
+        m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
         m_rigidbody = GetComponent<Rigidbody>();
 
-        m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+        //自身のプレイヤー番号を取得
+        m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+
         // ゲームパッドが接続されていたらゲームパッドでの操作
         if (m_controllerData.GetIsConnectedController(m_saveData.GetSelectTankNum(m_myPlayerNum)))
         {
-            m_inputHorizontalName = $"{this.name}JoystickHorizontal_L";
-            m_inputVerticalName = $"{this.name}JoystickVertical_L";
+            m_inputHorizontalName = $"{name}JoystickHorizontal_L";
+            m_inputVerticalName = $"{name}JoystickVertical_L";
         }
 
         //選択されたタンク番号デバック
-        Debug.Log($"<color=yellow>{this.name}のタンク : Tank{m_saveData.GetSelectTankNum(m_myPlayerNum)+1}</color>");
+        Debug.Log($"<color=yellow>{name}のタンク : Tank{m_saveData.GetSelectTankNum(m_myPlayerNum)+1}</color>");
         //選択されたスキル番号デバック
-        Debug.Log($"<color=yellow>{this.name}のスキル : Skill{m_saveData.GetSelectSkillNum(m_myPlayerNum)+1}</color>");
+        Debug.Log($"<color=yellow>{name}のスキル : Skill{m_saveData.GetSelectSkillNum(m_myPlayerNum)+1}</color>");
     }
 
     void Update()
@@ -99,4 +100,5 @@ public class PlayerMovement : MonoBehaviourPun
     {
         return m_vertical;
     }
+}
 }

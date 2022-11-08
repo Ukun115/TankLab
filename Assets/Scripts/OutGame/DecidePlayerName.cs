@@ -4,6 +4,8 @@ using TMPro;
 /// <summary>
 /// プレイヤー名を決定する処理
 /// </summary>
+namespace nsTankLab
+{
 public class DecidePlayerName : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("プレイヤー名TMPro")] TextMeshProUGUI m_playerNameText = null;
@@ -92,4 +94,5 @@ public class DecidePlayerName : MonoBehaviour
     {
         GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(nextScene);
     }
+}
 }

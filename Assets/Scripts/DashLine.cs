@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// ダッシュラインを生成する処理
 /// </summary>
+namespace nsTankLab
+{
 public class DashLine : MonoBehaviour
 {
     [SerializeField] GameObject m_dashLinePrefab = null;
@@ -14,6 +16,7 @@ public class DashLine : MonoBehaviour
             transform.position,
             new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
             );
-        m_dashLineObject.transform.parent = this.transform;
+        m_dashLineObject.transform.parent = transform;
     }
+}
 }

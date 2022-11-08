@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーの回転処理
 /// </summary>
+namespace nsTankLab
+{
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("プレイヤーのトランスフォーム")] Transform m_playerTransform = null;
@@ -22,7 +24,6 @@ public class PlayerRotation : MonoBehaviour
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
-
         m_playerMovement = GetComponent<PlayerMovement>();
     }
 
@@ -38,6 +39,7 @@ public class PlayerRotation : MonoBehaviour
         //前フレームとの位置の差から進行方向を割り出してその方向に回転します。
         Vector3 differenceDis = new Vector3(m_playerTransform.position.x, 0, m_playerTransform.position.z) - new Vector3(m_beforeFramePosition.x, 0, m_beforeFramePosition.z);
         m_beforeFramePosition = m_playerTransform.position;
+        //少しでも動いていたら、
         if (Mathf.Abs(differenceDis.x) > 0.001f || Mathf.Abs(differenceDis.z) > 0.001f)
         {
             if (m_playerMovement.GetMoveDirection() == Vector3.zero)
@@ -57,4 +59,5 @@ public class PlayerRotation : MonoBehaviour
         }
         m_beforeFrameVertical = m_playerMovement.GetVertical();
     }
+}
 }

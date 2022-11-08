@@ -6,6 +6,8 @@ using Photon.Realtime;
 /// <summary>
 /// オンラインのマッチングの処理
 /// </summary>
+namespace nsTankLab
+{
 public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
 {
     [SerializeField, TooltipAttribute("マッチング完了テキスト")] TextMeshProUGUI m_matchedText = null;
@@ -16,12 +18,12 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
         // シーンの自動同期: 有効
         PhotonNetwork.AutomaticallySyncScene = true;
         // 最大2人までルームに参加可能
         m_roomOptions.MaxPlayers = 2;
-
-        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
         //オンラインモードフラグを立てる
         m_saveData.GetSetIsOnline = true;
@@ -153,4 +155,5 @@ public class OnlineMatchingMaker : MonoBehaviourPunCallbacks
         //ゲームシーンに移行
         PhotonNetwork.LoadLevel("OnlineGameScene");
     }
+}
 }

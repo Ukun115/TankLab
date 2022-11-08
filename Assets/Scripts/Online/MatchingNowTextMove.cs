@@ -5,19 +5,21 @@ using TMPro;
 /// <summary>
 /// Matching now...の「...」をアニメーションさせる処理
 /// </summary>
+namespace nsTankLab
+{
 public class MatchingNowTextMove : MonoBehaviour
 {
     //MatchingNow...のテキスト
     TextMeshProUGUI m_matchingNowText = null;
 
     //点表示間隔
-     const int INTERVAL = 60;
+    const int INTERVAL = 60;
 
     int m_timer = 0;
 
     void Start()
     {
-        m_matchingNowText = this.GetComponent<TextMeshProUGUI>();
+        m_matchingNowText = GetComponent<TextMeshProUGUI>();
 
         m_matchingNowText.text = "Matching Now.";
     }
@@ -37,4 +39,5 @@ public class MatchingNowTextMove : MonoBehaviour
             m_timer = 0;
         }
     }
+}
 }

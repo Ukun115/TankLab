@@ -4,6 +4,8 @@ using UnityEngine.AI;
 /// <summary>
 /// 敵AIのランダム移動処理
 /// </summary>
+namespace nsTankLab
+{
 public class EnemyAIRandomMovement : MonoBehaviour
 {
 	float m_wanderRangeX = 13.0f;
@@ -14,19 +16,19 @@ public class EnemyAIRandomMovement : MonoBehaviour
 	void Start()
 	{
 		m_navMeshAgent = GetComponent<NavMeshAgent>();
-		m_navMeshAgent.destination = this.transform.position;
+		m_navMeshAgent.destination = transform.position;
 		SetDestination();
 		m_navMeshAgent.avoidancePriority = Random.Range(0, 100);
 		//速度設定
 		m_navMeshAgent.speed = 1.0f;
 	}
 
-    void Update()
-    {
+	void Update()
+	{
 		RandomWander();
-    }
+	}
 
-    void RandomWander()
+	void RandomWander()
 	{
 		//指定した目的地に障害物があるかどうか、そもそも到達可能なのかを確認して問題なければセットする。
 		//pathPending 経路探索の準備できているかどうか
@@ -51,4 +53,5 @@ public class EnemyAIRandomMovement : MonoBehaviour
 		NavMesh.SamplePosition(randomPos, out m_navMeshHit, 5, 1);
 		m_navMeshAgent.destination = m_navMeshHit.position;
 	}
+}
 }

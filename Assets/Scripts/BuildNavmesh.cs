@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
+/// <summary>
+/// ナビメッシュ作成処理
+/// </summary>
+namespace nsTankLab
+{
 //DefaultExecutionOrderに0より低い値(標準が0)を指定することで、他の処理よりも先に実行されている
 [DefaultExecutionOrder(-103)]
 public class BuildNavmesh : MonoBehaviour
@@ -17,10 +22,10 @@ public class BuildNavmesh : MonoBehaviour
 	void Awake()
 	{
 		//チャレンジモードのときのみナビメッシュとプレイヤーと敵AIを生成を実行する
-		if(SceneManager.GetActiveScene().name != "ChallengeGameScene")
-        {
+		if (SceneManager.GetActiveScene().name != "ChallengeGameScene")
+		{
 			return;
-        }
+		}
 
 		//ナビメッシュを生成する。
 		m_navMeshSurface = GameObject.Find("Floor").GetComponent<NavMeshSurface>();
@@ -34,4 +39,5 @@ public class BuildNavmesh : MonoBehaviour
 			m_enemyObject[enemyNum].SetActive(true);
 		}
 	}
+}
 }

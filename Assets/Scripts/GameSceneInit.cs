@@ -6,6 +6,8 @@ using Photon.Pun;
 /// <summary>
 /// ゲームシーンの初期化処理
 /// </summary>
+namespace nsTankLab
+{
 public class GameSceneInit : MonoBehaviourPunCallbacks
 {
     //セーブデータ
@@ -115,4 +117,5 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         //プレイヤー名表示
         photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, PlayerPrefs.GetString("PlayerName"));
     }
+}
 }

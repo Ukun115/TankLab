@@ -2,7 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
-//プレイヤーの向いている方向を決める処理
+/// <summary>
+/// プレイヤーの向いている方向を決める処理
+/// </summary>
+namespace nsTankLab
+{
 public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
 {
     Plane plane = new Plane();
@@ -20,25 +24,16 @@ public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
 
     void Start()
     {
-        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
-
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
 
+        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         m_camera = Camera.main;
     }
 
     void Update()
     {
-        // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(this.transform.root.name, @"[^0-9]", ""))))
-        {
-            rayTarget = m_cursorPosition.position;
-        }
-        else
-        {
-            rayTarget = Input.mousePosition;
-        }
+        DecideRayTarget();
 
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
         if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == "OnlineGameScene")
@@ -58,6 +53,20 @@ public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
             }
         }
         //射出方向のデバック表示
-        Debug.DrawRay(this.transform.position, this.transform.forward * 5.0f, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * 5.0f, Color.red);
     }
+
+    void DecideRayTarget()
+    {
+       // ゲームパッドが接続されていたらゲームパッドでの操作
+       if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", ""))))
+       {
+           rayTarget = m_cursorPosition.position;
+       }
+       else
+       {
+           rayTarget = Input.mousePosition;
+       }
+    }
+}
 }
