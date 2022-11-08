@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// ゲームモードを決定する処理
 /// </summary>
+namespace nsTankLab
+{
 public class DecideGameMode : MonoBehaviour
 {
     //シーンスイッチャースクリプト
@@ -18,7 +20,6 @@ public class DecideGameMode : MonoBehaviour
     void Start()
     {
         m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
-
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
     }
@@ -143,4 +144,5 @@ public class DecideGameMode : MonoBehaviour
             m_sceneSwitcher.StartTransition(nextSceneName);
         }
     }
+}
 }

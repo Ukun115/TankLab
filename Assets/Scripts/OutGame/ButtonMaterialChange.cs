@@ -3,7 +3,9 @@ using UnityEngine;
 /// <summary>
 /// ボタンのマテリアルを変更する処理
 /// </summary>
-public class ButtonMaterialChange : MonoBehaviour
+namespace nsTankLab
+{
+    public class ButtonMaterialChange : MonoBehaviour
 {
     //子オブジェクト達を入れる配列
     Transform[] m_childrenObject;
@@ -57,4 +59,5 @@ public class ButtonMaterialChange : MonoBehaviour
         }
         m_ableColorChange = ableColorChange;
     }
+}
 }

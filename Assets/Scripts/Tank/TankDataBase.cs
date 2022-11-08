@@ -4,6 +4,8 @@ using UnityEngine;
 /// <summary>
 /// タンクデータベース
 /// </summary>
+namespace nsTankLab
+{
 [CreateAssetMenu]
 public class TankDataBase : ScriptableObject
 {
@@ -14,4 +16,5 @@ public class TankDataBase : ScriptableObject
 	{
 		return m_tankLists;
 	}
+}
 }

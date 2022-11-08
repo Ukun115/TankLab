@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 ///選択しているタンクをキャンセルする処理
 /// </summary>
+namespace nsTankLab
+{
 public class SelectCancel : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 0;
@@ -20,24 +22,10 @@ public class SelectCancel : MonoBehaviour
     void Update()
     {
         //ボタンが押されたら、
-        //(文字列補間を使用)
-        switch(m_buttonCharacter)
+        if (Input.GetAxisRaw($"{ m_playerNum }PJoystick{m_buttonCharacter}") < -0.1f)
         {
-            case "LT":
-                if (Input.GetAxisRaw($"{ m_playerNum }PJoystickLT") < -0.1f)
-                {
-                    //選択をキャンセル
-                    Cancel();
-                }
-                break;
-
-            case "RT":
-                if (Input.GetAxisRaw($"{ m_playerNum }PJoystickRT") > 0.1f)
-                {
-                    //選択をキャンセル
-                    Cancel();
-                }
-                break;
+            //選択をキャンセル
+            Cancel();
         }
     }
 
@@ -47,6 +35,7 @@ public class SelectCancel : MonoBehaviour
         //保存されていたタンクをキャンセル
         m_saveData.SetSelectTankName(m_playerNum, null);
         //UI表示を非表示にする
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
+}
 }

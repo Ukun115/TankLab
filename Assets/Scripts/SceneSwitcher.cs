@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// シーンスイッチャー
 /// </summary>
+namespace nsTankLab
+{
 public class SceneSwitcher : MonoBehaviour
 {
 	//来たシーンを保存していくスタック(後入れ先出し)
@@ -36,4 +38,5 @@ public class SceneSwitcher : MonoBehaviour
 		//１つ前のシーンをロード
 		SceneManager.LoadScene(scenes.Peek());
 	}
+}
 }

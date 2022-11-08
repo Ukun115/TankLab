@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// ゲームパッド用のカーソル移動処理
 /// </summary>
+namespace nsTankLab
+{
 public class GamePadCursorMovement : MonoBehaviour
 {
     //左右矢印キーの値(-1.0f～1.0f)
@@ -41,4 +43,5 @@ public class GamePadCursorMovement : MonoBehaviour
         //移動方向を更新
         m_rigidbody2d.velocity = m_moveDirection;
     }
+}
 }

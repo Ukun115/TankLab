@@ -1,6 +1,11 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 接続されているコントローラーのデータを保存している場所
+/// </summary>
+namespace nsTankLab
+{
 public class ControllerData : MonoBehaviour
 {
     string[] controllerNames = { "" };
@@ -51,4 +56,5 @@ public class ControllerData : MonoBehaviour
     {
         return controllerNames.Length;
     }
+}
 }

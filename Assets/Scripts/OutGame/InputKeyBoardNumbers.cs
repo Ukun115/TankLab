@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー名のキーボード入力処理
 /// </summary>
+namespace nsTankLab
+{
 public class InputKeyBoardNumbers : MonoBehaviour
 {
     //パスワード決定処理スクリプト
@@ -59,4 +61,5 @@ public class InputKeyBoardNumbers : MonoBehaviour
             m_decidePassword.SetCharacter(inputCharacter);
         }
     }
+}
 }

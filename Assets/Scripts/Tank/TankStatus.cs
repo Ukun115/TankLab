@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// タンクのステータス
 /// </summary>
+namespace nsTankLab
+{
 [CreateAssetMenu]
 public class TankStatus : ScriptableObject
 {
@@ -15,7 +17,6 @@ public class TankStatus : ScriptableObject
     [SerializeField, TooltipAttribute("連射数")] int m_rapidFireNum = 0;
 
     [SerializeField, TooltipAttribute("同時発射弾数"),Range(1,3)] int m_sameTimeBulletNum = 0;
-
 
     //タンク移動速度
     public float GetTankSpeed()
@@ -46,4 +47,5 @@ public class TankStatus : ScriptableObject
     {
         return m_sameTimeBulletNum;
     }
+}
 }

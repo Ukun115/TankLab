@@ -4,6 +4,8 @@ using TMPro;
 /// <summary>
 /// パスワードを決定する処理
 /// </summary>
+namespace nsTankLab
+{
 public class DecidePassword : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("パスワードTMPro")] TextMeshProUGUI m_numberText = null;
@@ -53,4 +55,5 @@ public class DecidePassword : MonoBehaviour
                 break;
         }
     }
+}
 }

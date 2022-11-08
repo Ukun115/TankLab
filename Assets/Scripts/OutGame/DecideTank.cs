@@ -4,6 +4,8 @@ using TMPro;
 /// <summary>
 /// ƒ^ƒ“ƒN‚ğŒˆ’è‚·‚éˆ—
 /// </summary>
+namespace nsTankLab
+{
 public class DecideTank : MonoBehaviour
 {
     SaveData m_saveData = null;
@@ -102,4 +104,5 @@ public class DecideTank : MonoBehaviour
             m_playerCursor[playerNum].SetActive(doDisplay);
         }
     }
+}
 }

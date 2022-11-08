@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// 敵AIが弾を発射する処理
 /// </summary>
+namespace nsTankLab
+{
 public class EnemyAIFireBullet : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("弾プレファブオブジェクト")] GameObject m_bulletPrefab = null;
@@ -24,20 +26,19 @@ public class EnemyAIFireBullet : MonoBehaviour
 
     void Start()
     {
+        m_bulletsBox = GameObject.Find("Bullets");
+        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
         //初手ゲーム開始と同時に撃ってしまわないように初めにディレイをかけてからスタートさせる
         m_timer = BULLET_FIRE_DELAY;
-
-        m_bulletsBox = GameObject.Find("Bullets");
-
-        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
     }
 
     void Update()
     {
         //Rayを作成
-        Ray ray = new Ray(this.transform.root.position, this.transform.forward);
+        Ray ray = new Ray(transform.root.position, transform.forward);
         //Rayのデバック表示
-        Debug.DrawRay(this.transform.root.position, this.transform.forward * 5.0f, Color.red);
+        Debug.DrawRay(transform.root.position, transform.forward * 5.0f, Color.red);
 
         //プレイヤーに衝突したときの処理
         RaycastHit hit;
@@ -78,8 +79,8 @@ public class EnemyAIFireBullet : MonoBehaviour
         //弾を生成
         GameObject m_bulletObject = Instantiate(
         m_bulletPrefab,
-        this.transform.position,
-        new Quaternion(0.0f, this.transform.rotation.y, 0.0f, this.transform.rotation.w)
+        transform.position,
+        new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
         );
 
         //生成される弾の名前変更
@@ -89,12 +90,13 @@ public class EnemyAIFireBullet : MonoBehaviour
         m_bulletObject.transform.parent = m_bulletsBox.transform;
 
         //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
-        m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(this.gameObject);
+        m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
     }
 
     //フィールド上に生成されている弾の数を減らす処理
     public void ReduceBulletNum()
     {
-        m_bulletNum--;
+        m_bulletNum = Mathf.Clamp(m_bulletNum-1,0,m_bulletNum);
     }
+}
 }

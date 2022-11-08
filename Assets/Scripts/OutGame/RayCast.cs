@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// マウスカーソルのRayを飛ばしてRayにヒットしたオブジェクトを判別する処理
 /// </summary>
+namespace nsTankLab
+{
 public class RayCast : MonoBehaviour
 {
     //Rayがヒットしたオブジェクト
@@ -29,13 +31,11 @@ public class RayCast : MonoBehaviour
     void Start()
     {
         m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
-
-        m_camera = Camera.main;
-
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+        m_buttonMaterialChange = GetComponent<ButtonMaterialChange>();
 
-        m_buttonMaterialChange = GameObject.Find(this.name).GetComponent<ButtonMaterialChange>();
+        m_camera = Camera.main;
     }
 
     void Update()
@@ -185,4 +185,5 @@ public class RayCast : MonoBehaviour
             m_sceneSwitcher.BackScene();
         }
     }
+}
 }

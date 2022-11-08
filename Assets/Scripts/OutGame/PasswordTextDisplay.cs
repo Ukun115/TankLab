@@ -1,11 +1,16 @@
 using UnityEngine;
 using TMPro;
 
-//パスワードを画面に表示させる処理
+/// <summary>
+/// パスワードを画面に表示させる処理
+/// </summary>
+namespace nsTankLab
+{
 public class PasswordTextDisplay : MonoBehaviour
 {
     void Start()
     {
-        this.GetComponent<TextMeshProUGUI>().text = $"PassWord:{GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword}";
+        GetComponent<TextMeshProUGUI>().text = $"PassWord:{GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword}";
     }
+}
 }

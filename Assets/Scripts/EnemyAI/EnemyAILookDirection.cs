@@ -1,6 +1,10 @@
 using UnityEngine;
 
-//“GAI‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚ğŒˆ‚ß‚éˆ—
+/// <summary>
+/// “GAI‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚ğŒˆ‚ß‚éˆ—
+/// </summary>
+namespace nsTankLab
+{
 public class EnemyAILookDirection : MonoBehaviour
 {
     //‰ñ“]‘¬“x
@@ -15,6 +19,7 @@ public class EnemyAILookDirection : MonoBehaviour
         }
 
         //Œü‚«‚ğ‰ñ“]‚³‚¹‚é
-        this.transform.Rotate(0.0f, m_rotationSpeed, 0.0f);
+        transform.Rotate(0.0f, m_rotationSpeed, 0.0f);
     }
+}
 }

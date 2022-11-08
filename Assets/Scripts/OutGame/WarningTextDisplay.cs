@@ -4,6 +4,8 @@ using TMPro;
 /// <summary>
 /// 警告メッセージ表示処理
 /// </summary>
+namespace nsTankLab
+{
 public class WarningTextDisplay : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("警告メッセージテキスト")] TextMeshProUGUI m_warningText = null;
@@ -68,4 +70,5 @@ public class WarningTextDisplay : MonoBehaviour
 
         m_enState = EnState.enDisplay;
     }
+}
 }
