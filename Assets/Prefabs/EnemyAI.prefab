@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430560258180168786}
   - component: {fileID: 4253899537444538427}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyFireBulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 430560258180168785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9afd58947c4b9e644bc4683dbd18942a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e977bacbe40f374d91c7ef5ea5d66b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430560259370082295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyCannonPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 430560259474637118}
   - component: {fileID: 430560259474637117}
   - component: {fileID: 430560259474637116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 430560259859113089}
   - component: {fileID: 430560259859113090}
   - component: {fileID: 5769926014230088407}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyAI
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7723ba672410e042ac414a4c74e1945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_footPrintPrefab: {fileID: 5652687468675882084, guid: 0bbaee3c4d0e8294d954db0ab0cb990c,
+  m_footPrintPrefab: {fileID: 4672802141161126323, guid: 6667c53c09fe78f4e8fb819c0e97a2a4,
     type: 3}
   m_tankTransform: {fileID: 430560259859113095}
 --- !u!114 &5769926014230088407

@@ -17,7 +17,9 @@ public class DecideGameMode : MonoBehaviour
 
     [SerializeField, TooltipAttribute("警告メッセージ表示処理スクリプト")] WarningTextDisplay m_warningTextDisplay = null;
 
-    void Start()
+        bool m_notGood = false;
+
+        void Start()
     {
         m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
@@ -27,7 +29,9 @@ public class DecideGameMode : MonoBehaviour
     //押されたボタンの種類によって処理を分岐
     public void SetCharacter(string character)
     {
-        var netWorkState = Application.internetReachability;
+            m_notGood = false;
+
+            var netWorkState = Application.internetReachability;
 
         //選択されたゲームモードを保存
         m_saveData.GetSetSelectGameMode = character;
@@ -36,9 +40,8 @@ public class DecideGameMode : MonoBehaviour
         {
             //チャレンジモードの場合、
             case "CHALLENGE":
-                //チャレンジゲームシーンに遷移
-                ChangeScene("ChallengeGameScene");
-
+                //現在のチャレンジ数カウントシーンに遷移
+                ChangeScene("ChallengeNowNumCountScene");
                 break;
 
             //ローカルマッチモードの場合、
@@ -56,7 +59,9 @@ public class DecideGameMode : MonoBehaviour
 
                     //警告メッセージを画面表示
                     m_warningTextDisplay.Display("Not enough "+"\n"+"controllers connected."+"\n"+"Required number: 4");
-                }
+
+                        m_notGood = true;
+                    }
 
                 break;
 
@@ -144,5 +149,10 @@ public class DecideGameMode : MonoBehaviour
             m_sceneSwitcher.StartTransition(nextSceneName);
         }
     }
-}
+
+        public bool GetNoGood()
+        {
+            return m_notGood;
+        }
+    }
 }

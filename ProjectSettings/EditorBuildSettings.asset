@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ChallengeGameScene.unity
     guid: 733b8d452a7c89c4eb06156b514e4477
   - enabled: 1
+    path: Assets/Scenes/ChallengeNowNumCountScene.unity
+    guid: 944e64b84049f794e8ff04f9a718bdca
+  - enabled: 1
     path: Assets/Scenes/LocalGameScene.unity
     guid: edc4569c3635440489896db6ed3f1c80
   - enabled: 1

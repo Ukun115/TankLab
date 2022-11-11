@@ -44,7 +44,7 @@ public class DrawFootPrint : MonoBehaviour
         //足跡オブジェクトを生成
         GameObject footPrintObject = Instantiate(
             m_footPrintPrefab,
-            new Vector3(m_tankTransform.position.x, -0.45f, m_tankTransform.position.z),
+            new Vector3(m_tankTransform.position.x, -0.45f,m_tankTransform.position.z),
             m_tankTransform.rotation
             );
 

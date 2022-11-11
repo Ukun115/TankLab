@@ -87,8 +87,12 @@ public class PlayerMovement : MonoBehaviourPun
 
     void FixedUpdate()
     {
-        //„‘Ì‚ÉˆÚ“®‚ğŠ„‚è“–‚Ä(ˆê‚Éd—Í‚àŠ„‚è“–‚Ä)
-        m_rigidbody.velocity = new Vector3(m_moveDirection.x, m_rigidbody.velocity.y, m_moveDirection.z);
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+                //„‘Ì‚ÉˆÚ“®‚ğŠ„‚è“–‚Ä(ˆê‚Éd—Í‚àŠ„‚è“–‚Ä)
+                m_rigidbody.velocity = new Vector3(m_moveDirection.x, m_rigidbody.velocity.y, m_moveDirection.z);
     }
 
     public Vector3 GetMoveDirection()

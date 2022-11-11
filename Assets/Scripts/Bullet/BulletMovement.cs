@@ -38,18 +38,7 @@ public class BulletMovement : MonoBehaviour
 
         m_rigidbody = GetComponent<Rigidbody>();
 
-        m_rigidbody.AddForce(
-            transform.forward.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
-            0,
-            transform.forward.z * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
-            ForceMode.VelocityChange
-            );
-
-        m_rigidbody.velocity = transform.forward;
-
-        m_afterReflectVector = m_rigidbody.velocity;
-
-        m_debugLineDirection = transform.forward;
+        AddForce();
     }
 
     void Update()
@@ -58,7 +47,19 @@ public class BulletMovement : MonoBehaviour
         Debug.DrawRay(transform.position, m_debugLineDirection * 5.0f, Color.red);
     }
 
-    void OnCollisionEnter(Collision collision)
+        void FixedUpdate()
+        {
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                m_rigidbody.velocity = Vector3.zero;
+            }
+            else
+            {
+                m_rigidbody.velocity = m_debugLineDirection * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed();
+            }
+        }
+
+        void OnCollisionEnter(Collision collision)
     {
         //あたった物体の法線ベクトルを取得
         m_objectNormalVector = collision.contacts[0].normal;
@@ -75,5 +76,21 @@ public class BulletMovement : MonoBehaviour
 
         m_debugLineDirection = m_afterReflectVector;
     }
+
+        void AddForce()
+        {
+            m_rigidbody.AddForce(
+            transform.forward.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
+            0,
+            transform.forward.z * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
+            ForceMode.VelocityChange
+            );
+
+            m_rigidbody.velocity = transform.forward;
+
+            m_afterReflectVector = m_rigidbody.velocity;
+
+            m_debugLineDirection = transform.forward;
+        }
 }
 }
