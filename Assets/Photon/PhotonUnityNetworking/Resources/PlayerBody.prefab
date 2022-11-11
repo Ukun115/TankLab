@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 430560258180168787}
   - component: {fileID: 2034827773558130342}
   - component: {fileID: 3014676281714515317}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerFireBulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 430560259370082288}
   - component: {fileID: 3064898681875292921}
   - component: {fileID: 8382594434556777056}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCannonPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 430560259474637119}
   - component: {fileID: 430560259474637118}
   - component: {fileID: 430560259474637117}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 8073325307116374229}
   - component: {fileID: 2308386662267416784}
   - component: {fileID: 5277521171461869013}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerBody
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430560259859113099}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f4e201e182886ec45a71e3dc715c558d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7723ba672410e042ac414a4c74e1945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_footPrintPrefab: {fileID: 5652687468675882084, guid: 0bbaee3c4d0e8294d954db0ab0cb990c,
+  m_footPrintPrefab: {fileID: 4672802141161126323, guid: 6667c53c09fe78f4e8fb819c0e97a2a4,
     type: 3}
   m_tankTransform: {fileID: 430560259859113095}
 --- !u!114 &8073325307116374229

@@ -12,6 +12,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
 {
     //セーブデータ
     SaveData m_saveData = null;
+    SoundManager m_soundManager = null;
 
     [SerializeField, TooltipAttribute("ローカル時の各プレイヤーの位置")] Transform[] m_localPlayerPosition = null;
     //ステージごとのプレイヤーの初期位置(ローカルの初期位置)
@@ -40,12 +41,13 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 
         //選択されたステージによってステージをシーンに合成
-        SceneManager.LoadScene(m_saveData.GetSetSelectStageName, LoadSceneMode.Additive);
+        SceneManager.LoadScene($"Stage{ m_saveData.GetSetSelectStageNum}", LoadSceneMode.Additive);
 
         //デバック
-        Debug.Log($"<color=yellow>生成ステージ：{m_saveData.GetSetSelectStageName}</color>");
+        Debug.Log($"<color=yellow>生成ステージ：Stage{m_saveData.GetSetSelectStageNum}</color>");
 
         switch (m_saveData.GetSetSelectGameMode)
         {
@@ -53,6 +55,8 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
             case "CHALLENGE":
                 //名前をユーザー名にする
                 m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
+                    //チャレンジモードのBGMを再生する
+                    m_soundManager.PlayBGM("GameSceneBGM01");
                 break;
 
             //ローカルプレイ
@@ -60,10 +64,12 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
                 //プレイヤーに初期位置を設定する。
                 for (int playerNum = 0; playerNum < 4; playerNum++)
                 {
-                    m_localPlayerPosition[playerNum].position = InitPlayerPosition(m_stageLocalPlayerInitPosition)[playerNum];
+                    m_localPlayerPosition[playerNum].position = m_stageLocalPlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][playerNum];
                 }
+                    //チャレンジモードのBGMを再生する
+                    m_soundManager.PlayBGM("GameSceneBGM02");
 
-                break;
+                    break;
 
             //オンラインプレイの場合、プレイヤーを生成する。
             case "RANDOMMATCH":
@@ -88,27 +94,12 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         Debug.Log($"<color=yellow>参加プレイヤー:{num}</color>");
     }
 
-    //プレイヤーの初期位置を設定する処理
-    Vector3[] InitPlayerPosition(Vector3[][] stageInitPlayerPosition)
-    {
-        //ステージによって初期位置を設定
-        switch (m_saveData.GetSetSelectStageName)
-        {
-            case "STAGE1":
-                return stageInitPlayerPosition[0];
-            case "STAGE2":
-                return stageInitPlayerPosition[1];
-            default:
-                return null;
-        }
-    }
-
     //プレイヤー生成処理
     void PlayerGeneration()
     {
         GameObject m_gameObjectOnline = PhotonNetwork.Instantiate(
                     m_onlinePlayerPrefab.name,
-                    InitPlayerPosition(m_stageOnlinePlayerInitPosition)[PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
+                    m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum-1][PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
                     Quaternion.identity,        //回転
                     0
                     );

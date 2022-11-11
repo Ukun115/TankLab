@@ -14,6 +14,7 @@ public class EnemyAIFireBullet : MonoBehaviour
     [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
     SaveData m_saveData = null;
+    SoundManager m_soundManager = null;
 
     //発射したタンク番号
     int m_myTankNum = 0;
@@ -28,6 +29,7 @@ public class EnemyAIFireBullet : MonoBehaviour
     {
         m_bulletsBox = GameObject.Find("Bullets");
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 
         //初手ゲーム開始と同時に撃ってしまわないように初めにディレイをかけてからスタートさせる
         m_timer = BULLET_FIRE_DELAY;
@@ -62,6 +64,11 @@ public class EnemyAIFireBullet : MonoBehaviour
     //弾生成処理
     void BulletInstantiate()
     {
+            if(!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
         //連射できる回数以上は発射しないようにする
         if (m_bulletNum >= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myTankNum)].GetRapidFireNum())
         {
@@ -75,6 +82,9 @@ public class EnemyAIFireBullet : MonoBehaviour
         }
         //タイマー作動
         m_timer = BULLET_FIRE_DELAY;
+
+            //弾発射SE再生
+            m_soundManager.PlaySE("FireSE");
 
         //弾を生成
         GameObject m_bulletObject = Instantiate(

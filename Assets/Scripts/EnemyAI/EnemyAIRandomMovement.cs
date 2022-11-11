@@ -13,8 +13,12 @@ public class EnemyAIRandomMovement : MonoBehaviour
 	NavMeshAgent m_navMeshAgent;
 	NavMeshHit m_navMeshHit;
 
+		SaveData m_saveData = null;
+
 	void Start()
 	{
+			m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
 		m_navMeshAgent = GetComponent<NavMeshAgent>();
 		m_navMeshAgent.destination = transform.position;
 		SetDestination();
@@ -25,7 +29,18 @@ public class EnemyAIRandomMovement : MonoBehaviour
 
 	void Update()
 	{
-		RandomWander();
+			if (!m_saveData.GetSetmActiveGameTime)
+			{
+				m_navMeshAgent.speed = 0.0f;
+
+				return;
+			}
+			else
+            {
+				m_navMeshAgent.speed = 1.0f;
+			}
+
+			RandomWander();
 	}
 
 	void RandomWander()

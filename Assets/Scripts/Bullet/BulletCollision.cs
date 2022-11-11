@@ -19,6 +19,7 @@ public class BulletCollision : MonoBehaviour
     int m_myPlayerNum = 0;
 
     SaveData m_saveData = null;
+    SoundManager m_soundManager = null;
 
     //自身を発射したタンクのオブジェクトデータ
     GameObject m_tankObject = null;
@@ -26,6 +27,7 @@ public class BulletCollision : MonoBehaviour
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 
         //敵AIの弾じゃないときは実行
         if (gameObject.name != "EnemyBullet")
@@ -54,7 +56,9 @@ public class BulletCollision : MonoBehaviour
                 //両方消滅させる
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
-                break;
+                    //弾消滅SE再生
+                    m_soundManager.PlaySE("BulletDestroySE");
+                    break;
         }
     }
 
@@ -66,23 +70,34 @@ public class BulletCollision : MonoBehaviour
         //指定されている反射回数分反射したら、
         if (m_refrectionCount > m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletRefrectionNum())
         {
+                //弾消滅SE再生
+                m_soundManager.PlaySE("BulletDestroySE");
+
             //弾を消滅させる
-            Destroy(gameObject);
+                Destroy(gameObject);
         }
+        else
+            {
+                //壁反射音再生
+                m_soundManager.PlaySE("BulletRefrectionSE");
+            }
     }
 
     //プレイヤーに衝突したときの処理
     void OnCollisitonPlayerOrEnemyAI(Collision collision)
     {
-        //死んだ場所に×死亡マークオブジェクトを生成する。
-        GameObject deathMark = Instantiate(
+            //撃破音再生
+            m_soundManager.PlaySE("DeathSE");
+
+            //死んだ場所に×死亡マークオブジェクトを生成する。
+            GameObject deathMark = Instantiate(
             m_deathMarkPrefab,
             new Vector3(
                 collision.gameObject.transform.position.x,
                 -0.4f,
                 collision.gameObject.transform.position.z
                 ),
-            collision.gameObject.transform.rotation
+            Quaternion.identity
             );
         deathMark.name = "DeathMark";
 
@@ -101,26 +116,24 @@ public class BulletCollision : MonoBehaviour
     //弾が削除されたときに呼ばれる
     void OnDestroy()
     {
-        switch (gameObject.name)
-        {
             //敵AIの弾
-            case "EnemyBullet":
-                if (m_tankObject is not null)
+            if(gameObject.name.Contains("EnemyBullet"))
+            {
+                if (m_tankObject.ToString() != "null")
                 {
                     //フィールド上に生成されている弾の数データを減らす
                     m_tankObject.GetComponent<EnemyAIFireBullet>().ReduceBulletNum();
                 }
-                break;
-
+            }
             //プレイヤーの弾
-            default:
-                if (m_tankObject is not null)
+            if (gameObject.name.Contains("PlayerBullet"))
+            {
+                if (m_tankObject.ToString() != "null")
                 {
                     //フィールド上に生成されている弾の数データを減らす
                     m_tankObject.gameObject.GetComponent<PlayerFireBullet>().ReduceBulletNum();
                 }
-                break;
-        }
+            }
     }
 }
 }

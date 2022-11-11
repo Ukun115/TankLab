@@ -10,11 +10,16 @@ public class GoResult : MonoBehaviour
 {
     GameObject resultObject = null;
     SaveData m_saveData = null;
+    SoundManager m_soundManager = null;
     [SerializeField, TooltipAttribute("リザルト処理が内包されているプレファブオブジェクト")] GameObject m_resultPrefab = null;
+
+        SceneSwitcher m_sceneSwitcher = null;
 
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+        m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
     }
 
     void Update()
@@ -30,9 +35,19 @@ public class GoResult : MonoBehaviour
             //敵AIが全機死んでいたら、
             if (enemyObject.Length <= 0)
             {
-                //リザルト突入
-                InstantiateResultObject(1);
                 Debug.Log("敵が全機死亡しました。");
+                    //現在のステージが最後のステージの場合
+                    if(m_saveData.GetSetSelectStageNum.Equals(m_saveData.GetTotalStageNum()))
+                    {
+                        //リザルト突入
+                        InstantiateResultObject(1);
+                    }
+                    else
+                    {
+                        //現在のチャレンジ数カウントシーンに遷移
+                        m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+                        m_saveData.NextStageNum();
+                    }
                 Destroy(this);
             }
             //全機死んでいないとき、
@@ -40,7 +55,7 @@ public class GoResult : MonoBehaviour
             else if (playerObject is null)
             {
                 //リザルト突入
-                InstantiateResultObject(2);
+                InstantiateResultObject(5);
                 Debug.Log("プレイヤーが死亡しました。");
                 Destroy(this);
             }
@@ -76,6 +91,14 @@ public class GoResult : MonoBehaviour
             resultObject.name = "Result";
             //勝利表示
             resultObject.GetComponent<ResultInit>().SetWinPlayer(winPlayer);
+
+                //勝利SE再生
+                m_soundManager.PlaySE("WinSE");
+                //BGM止める
+                m_soundManager.StopBGM();
+
+                //タンクや弾の動きを止める
+                m_saveData.GetSetmActiveGameTime = false;
         }
     }
 }

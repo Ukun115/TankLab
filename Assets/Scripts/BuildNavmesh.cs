@@ -14,8 +14,6 @@ public class BuildNavmesh : MonoBehaviour
 	//ナビメッシュサーフェース
 	NavMeshSurface m_navMeshSurface = null;
 
-	//プレイヤーオブジェクト
-	[SerializeField] GameObject m_playerObject = null;
 	//敵AIオブジェクト
 	[SerializeField] GameObject[] m_enemyObject = null;
 
@@ -31,8 +29,6 @@ public class BuildNavmesh : MonoBehaviour
 		m_navMeshSurface = GameObject.Find("Floor").GetComponent<NavMeshSurface>();
 		m_navMeshSurface.BuildNavMesh();
 
-		//プレイヤーを生成する
-		m_playerObject.SetActive(true);
 		//敵AIを生成する
 		for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
 		{
