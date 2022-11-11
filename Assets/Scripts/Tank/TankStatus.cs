@@ -23,6 +23,10 @@ public class TankStatus : ScriptableObject
     {
         return m_tankSpeed;
     }
+    public float SetTankSpeed(float tankSpeed)
+    {
+         return m_tankSpeed = tankSpeed;
+    }
 
     //’e‚ÌˆÚ“®‘¬“x
     public float GetBulletSpeed()

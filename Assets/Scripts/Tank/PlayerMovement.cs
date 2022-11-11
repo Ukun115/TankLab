@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviourPun
     //自身のプレイヤー番号
     int m_myPlayerNum = 0;
 
+    float m_skillSpeed = 1.0f;
+
     SaveData m_saveData = null;
 
     void Start()
@@ -82,7 +84,7 @@ public class PlayerMovement : MonoBehaviourPun
         m_moveDirection.Normalize();
 
         //移動方向に速度を掛ける(通常移動)
-        m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetTankSpeed();
+        m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetTankSpeed() * m_skillSpeed;
     }
 
     void FixedUpdate()
@@ -103,6 +105,20 @@ public class PlayerMovement : MonoBehaviourPun
     public float GetVertical()
     {
         return m_vertical;
+    }
+    public float SetSkillSpeed(float skillspeed)
+    {
+        return m_skillSpeed = skillspeed;
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return m_playerTransform.position;
+    }
+
+    public Vector3 SetPlayerPosition(Vector3 playerPosition)
+    {
+        return m_playerTransform.position = playerPosition;
     }
 }
 }
