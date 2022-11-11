@@ -15,7 +15,9 @@ public class DecidePlayerName : MonoBehaviour
     //セーブデータ
     SaveData m_saveData = null;
 
-    void Start()
+        bool m_notGood = false;
+
+        void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
     }
@@ -23,14 +25,18 @@ public class DecidePlayerName : MonoBehaviour
     //押されたボタンの種類によって処理を分岐
     public void SetCharacter(string character)
     {
-        switch (character)
+            m_notGood = false;
+
+            switch (character)
         {
             //戻るボタン
             case "BACK":
                 //何も入力されていなかったら末尾を削除しない
                 if (m_playerNameText.text.Length == 0)
                 {
-                    return;
+                        m_notGood = true;
+
+                        return;
                 }
                 //名前の末尾を削除する。
                 m_playerNameText.text = m_playerNameText.text[..^1];
@@ -41,7 +47,9 @@ public class DecidePlayerName : MonoBehaviour
                 //何も入力されていなかったらokさせない
                 if (m_playerNameText.text.Length == 0)
                 {
-                    return;
+                        m_notGood = true;
+
+                        return;
                 }
 
                 //登録された名前をセーブ
@@ -81,7 +89,9 @@ public class DecidePlayerName : MonoBehaviour
                 //上限文字以上だったら反映させない
                 if(m_playerNameText.text.Length > MAX_CHARACTER_NUM-1)
                 {
-                    return;
+                        m_notGood = true;
+
+                        return;
                 }
 
                 m_playerNameText.text += character;
@@ -94,5 +104,10 @@ public class DecidePlayerName : MonoBehaviour
     {
         GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(nextScene);
     }
-}
+
+        public bool GetNoGood()
+        {
+            return m_notGood;
+        }
+    }
 }

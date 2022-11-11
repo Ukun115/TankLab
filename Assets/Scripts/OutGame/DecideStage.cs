@@ -29,13 +29,13 @@ public class DecideStage : MonoBehaviour
         };
     }
 
-    public void SetCharacter(string character)
+    public void SetStageNum(int stageNum)
     {
         //選択したステージを保存しておく
-        m_saveData.GetSetSelectStageName = character;
+        m_saveData.GetSetSelectStageNum = stageNum;
 
         //デバック
-        Debug.Log($"<color=yellow>ステージ:{m_saveData.GetSetSelectStageName}</color>");
+        Debug.Log($"<color=yellow>ステージ:Stage{m_saveData.GetSetSelectStageNum}</color>");
 
         switch (m_saveData.GetSetSelectGameMode)
         {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// マウスカーソルのRayを飛ばしてRayにヒットしたオブジェクトを判別する処理
@@ -24,6 +25,7 @@ public class RayCast : MonoBehaviour
     [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 1;
 
     SaveData m_saveData = null;
+    SoundManager m_soundManager = null;
     ControllerData m_controllerData = null;
 
     [SerializeField, TooltipAttribute("カーソル画像オブジェクト")] GameObject m_cursorObject = null;
@@ -32,6 +34,7 @@ public class RayCast : MonoBehaviour
     {
         m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
         m_buttonMaterialChange = GetComponent<ButtonMaterialChange>();
 
@@ -103,7 +106,10 @@ public class RayCast : MonoBehaviour
         if (hit.collider.CompareTag("BlockButton") || hit.collider.CompareTag("BackButton"))
         {
             m_buttonMaterialChange.ChangeMaterial(hit);
-        }
+
+                //カーソルヒットSE再生
+                m_soundManager.PlaySE("CursorHitSE");
+            }
     }
 
     //ボタンが押されたときの処理
@@ -173,10 +179,62 @@ public class RayCast : MonoBehaviour
                 //ステージ選択シーン
                 case "SelectStageScene":
                     //押されたボタンの文字を渡す
-                    GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCharacter(hit.collider.name);
+                    GameObject.Find("SceneManager").GetComponent<DecideStage>().SetStageNum(int.Parse(Regex.Replace(hit.collider.name, @"[^0-9]", "")));
                     break;
+
+                    //現在のチャレンジ数カウントシーン
+                    case "ChallengeNowNumCountScene":
+                        //チャレンジゲームシーンに遷移
+                        m_sceneSwitcher.StartTransition("ChallengeGameScene");
+                        break;
             }
-        }
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "TitleScene":
+                        if (GameObject.Find("SceneManager").GetComponent<DecideGameMode>().GetNoGood())
+                        {
+                            //ダメSE再生
+                            m_soundManager.PlaySE("NoGoodSE");
+                        }
+                        else
+                        {
+                            //選択SE再生
+                            m_soundManager.PlaySE("SelectSE");
+                        }
+                        break;
+
+                    case "DecideNameScene":
+                        if (GameObject.Find("SceneManager").GetComponent<DecidePlayerName>().GetNoGood())
+                        {
+                            //ダメSE再生
+                            m_soundManager.PlaySE("NoGoodSE");
+                        }
+                        else
+                        {
+                            //選択SE再生
+                            m_soundManager.PlaySE("SelectSE");
+                        }
+                        break;
+
+                        case "InputPasswordScene":
+                        if (GameObject.Find("SceneManager").GetComponent<DecidePassword>().GetNoGood())
+                        {
+                            //ダメSE再生
+                            m_soundManager.PlaySE("NoGoodSE");
+                        }
+                        else
+                        {
+                            //選択SE再生
+                            m_soundManager.PlaySE("SelectSE");
+                        }
+                        break;
+
+                    default:
+                        //選択SE再生
+                        m_soundManager.PlaySE("SelectSE");
+                        break;
+                }
+            }
 
         //BackButtonタグだったら処理を行う
         if (hit.collider.CompareTag("BackButton"))

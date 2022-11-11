@@ -10,12 +10,12 @@ public class ControllerData : MonoBehaviour
 {
     string[] controllerNames = { "" };
 
-    void Start()
+        void Start()
     {
-        SearchConnectedController();
+                SearchConnectedController();
 
-        Debug.Log($"<color=yellow>接続されているコントローラー数:{controllerNames.Length}</color>");
-    }
+                Debug.Log($"<color=yellow>接続されているコントローラー数:{controllerNames.Length}</color>");
+        }
 
     void Update()
     {
@@ -56,5 +56,5 @@ public class ControllerData : MonoBehaviour
     {
         return controllerNames.Length;
     }
-}
+    }
 }

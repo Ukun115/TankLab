@@ -12,16 +12,22 @@ public class DecidePassword : MonoBehaviour
     //パスワードにできる最大文字数
     const int MAX_CHARACTER_NUM = 4;
 
+        bool m_notGood = false;
+
     //押されたボタンの種類によって処理を分岐
     public void SetCharacter(string character)
     {
-        switch (character)
+            m_notGood = false;
+
+            switch (character)
         {
             //戻るボタン
             case "BACK":
                 //何も入力されていなかったら末尾を削除しない
                 if(m_numberText.text.Length == 0)
                 {
+                        m_notGood = true;
+
                     return;
                 }
                 //現時点で入力されているパスワードの末尾を削除する。
@@ -33,6 +39,8 @@ public class DecidePassword : MonoBehaviour
                 //4文字入力されていなかったらokさせない
                 if (m_numberText.text.Length < 4)
                 {
+                        m_notGood = true;
+
                     return;
                 }
 
@@ -48,6 +56,8 @@ public class DecidePassword : MonoBehaviour
                 //上限文字以上だったら反映させない
                 if(m_numberText.text.Length > MAX_CHARACTER_NUM-1)
                 {
+                        m_notGood = true;
+
                     return;
                 }
 
@@ -55,5 +65,10 @@ public class DecidePassword : MonoBehaviour
                 break;
         }
     }
+
+        public bool GetNoGood()
+        {
+            return m_notGood;
+        }
 }
 }

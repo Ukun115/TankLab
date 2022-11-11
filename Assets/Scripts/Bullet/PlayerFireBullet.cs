@@ -20,8 +20,9 @@ public class PlayerFireBullet : MonoBehaviourPun
 
     //セーブデータ
     SaveData m_saveData = null;
+        SoundManager m_soundManager = null;
 
-    [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
     ControllerData m_controllerData = null;
     //弾オブジェクトを格納するオブジェクト
@@ -34,6 +35,7 @@ public class PlayerFireBullet : MonoBehaviourPun
     {
         m_bulletsBox = GameObject.Find("Bullets");
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
 
         //発射したプレイヤー番号を取得
@@ -47,6 +49,11 @@ public class PlayerFireBullet : MonoBehaviourPun
         {
             return;
         }
+
+        if(!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
 
         // ゲームパッドが接続されていたらゲームパッドでの操作
         if (m_controllerData.GetIsConnectedController(m_myPlayerNum))
@@ -89,7 +96,10 @@ public class PlayerFireBullet : MonoBehaviourPun
             return;
         }
 
-        m_yRot = 0.0f;
+        //発射音再生
+            m_soundManager.PlaySE("FireSE");
+
+            m_yRot = 0.0f;
         //元の回転を取得
         m_originalQuaternion = transform.rotation;
 
@@ -114,7 +124,7 @@ public class PlayerFireBullet : MonoBehaviourPun
                         );
 
                         //生成される弾の名前変更
-                        m_bulletObjectOnline.name = $"{ PhotonNetwork.LocalPlayer.ActorNumber}pBullet";
+                        m_bulletObjectOnline.name = $"PlayerBullet{ PhotonNetwork.LocalPlayer.ActorNumber}";
 
                         //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                         m_bulletObjectOnline.transform.parent = m_bulletsBox.transform;
@@ -133,7 +143,7 @@ public class PlayerFireBullet : MonoBehaviourPun
                     );
 
                     //生成される弾の名前変更
-                    m_bulletObject.name = $"{1}pBullet";
+                    m_bulletObject.name = $"PlayerBullet{m_myPlayerNum+1}";
 
                     //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                     m_bulletObject.transform.parent = m_bulletsBox.transform;
