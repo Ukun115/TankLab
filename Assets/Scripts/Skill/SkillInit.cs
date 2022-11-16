@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 /// <summary>
@@ -7,11 +8,15 @@ namespace nsTankLab
 {
     public class SkillInit : MonoBehaviour
     {
-        [SerializeField, TooltipAttribute("スキルのタイプ")] int m_skillType = 0;
+        SaveData m_saveData = null;
 
         void Start()
         {
-            switch (m_skillType)
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
+            int playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", "")) - 1;
+
+            switch (m_saveData.GetSelectSkillNum(playerNum))
             {
                 case 0:
                     //一定時間加速

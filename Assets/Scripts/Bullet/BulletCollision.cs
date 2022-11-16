@@ -12,6 +12,9 @@ public class BulletCollision : MonoBehaviour
     int m_refrectionCount = 0;
 
     [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
+    [SerializeField, TooltipAttribute("スパークエフェクト")] GameObject m_sparkEffectPrefab = null;
+    [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(タンク)")] GameObject m_explosionTankEffectPrefab = null;
+    [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(弾)")] GameObject m_explosionBulletEffectPrefab = null;
 
     [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
@@ -53,8 +56,17 @@ public class BulletCollision : MonoBehaviour
                 break;
             //弾に衝突したときの処理
             case "Bullet":
-                //両方消滅させる
-                Destroy(gameObject);
+
+                    //接触した壁にスパークエフェクトを生成する。
+                    GameObject explosionBulletEffect = Instantiate(
+                    m_explosionBulletEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                    );
+                    explosionBulletEffect.name = "ExplosionBulletEffect";
+
+                    //両方消滅させる
+                    Destroy(gameObject);
                 Destroy(collision.gameObject);
                     //弾消滅SE再生
                     m_soundManager.PlaySE("BulletDestroySE");
@@ -73,11 +85,27 @@ public class BulletCollision : MonoBehaviour
                 //弾消滅SE再生
                 m_soundManager.PlaySE("BulletDestroySE");
 
-            //弾を消滅させる
+                //接触した壁にスパークエフェクトを生成する。
+                GameObject explosionBulletEffect = Instantiate(
+                m_explosionBulletEffectPrefab,
+                transform.position,
+                Quaternion.identity
+                );
+                explosionBulletEffect.name = "ExplosionBulletEffect";
+
+                //弾を消滅させる
                 Destroy(gameObject);
         }
         else
             {
+                //接触した壁にスパークエフェクトを生成する。
+                GameObject sparkEffect = Instantiate(
+                m_sparkEffectPrefab,
+                transform.position,
+                Quaternion.identity
+                );
+                sparkEffect.name = "SparkEffect";
+
                 //壁反射音再生
                 m_soundManager.PlaySE("BulletRefrectionSE");
             }
@@ -100,6 +128,20 @@ public class BulletCollision : MonoBehaviour
             Quaternion.identity
             );
         deathMark.name = "DeathMark";
+
+            //死んだ場所に爆発エフェクトを生成する。
+            GameObject m_explosionEffect = Instantiate(
+            m_explosionTankEffectPrefab,
+            transform.position,
+            Quaternion.identity
+            );
+            m_explosionEffect.name = "ExplosionTankEffect";
+
+            if (collision.gameObject.tag == "Player")
+            {
+                //プレイヤーの体力を減少させる
+                m_saveData.GetSetHitPoint--;
+            }
 
         //弾を消滅させる
         Destroy(gameObject);

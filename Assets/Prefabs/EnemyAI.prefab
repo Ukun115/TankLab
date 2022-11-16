@@ -47,6 +47,7 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
+  m_firePositionTransform: {fileID: 430560258180168786}
 --- !u!1 &430560259370082294
 GameObject:
   m_ObjectHideFlags: 0

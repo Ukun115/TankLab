@@ -7,7 +7,7 @@ namespace nsTankLab
 {
 public class DrawFootPrint : MonoBehaviour
 {
-    [SerializeField, TooltipAttribute("足跡プレファブオブジェクト")] GameObject m_footPrintPrefab;
+    [SerializeField, TooltipAttribute("足跡プレファブオブジェクト")] GameObject m_footPrintPrefab = null;
 
     //足跡表示間隔
     const float DRAW_INTERVAL = 45.0f;

@@ -13,7 +13,7 @@ public class SaveData : MonoBehaviour
     bool m_isOnline = false;
 
     //選択されたゲームモード
-    string m_selectGameMode = "";
+    string m_selectGameMode = string.Empty;
 
     //プレイヤー番号
     int m_playerNum = 0;
@@ -22,6 +22,9 @@ public class SaveData : MonoBehaviour
         int m_nowStageNum = 1;
         //合計ステージ数
      const int TOTAL_STAGE_NUM = 2;
+
+        //現在の体力(チャレンジモードのみで使用)
+        int m_hitPoint = 3;
 
     //選択タンク名
     string[] m_selectTankName = new string[4];
@@ -37,13 +40,13 @@ public class SaveData : MonoBehaviour
         //ゲームの進む時間がアクティブかどうか
         bool m_activeGameTime = true;
 
-    [SerializeField, TooltipAttribute("プレイヤー名テキスト")] TextMeshProUGUI m_playerNameText = null;
-
     [SerializeField] Texture2D m_handCursor = null;
 
        public static GameObject m_instanceSaveData = null;
 
-    void Awake()
+        [SerializeField] SoundManager m_soundManager = null;
+
+        void Awake()
     {
             CheckInstance();
     }
@@ -55,19 +58,6 @@ public class SaveData : MonoBehaviour
 
             //カーソル画像をデフォルトから変更
             Cursor.SetCursor(m_handCursor, new Vector2(m_handCursor.width / 2, m_handCursor.height / 2), CursorMode.Auto);
-
-            //以前のプレイで名前が登録されていた場合、
-            if (PlayerPrefs.HasKey("PlayerName"))
-            {
-                //登録されていた名前を表示させる
-                m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
-
-                Debug.Log($"<color=yellow>ユーザー名:{m_playerNameText.text}</color>");
-            }
-            else
-            {
-                m_playerNameText.text = "NoName";
-            }
         }
 
         //ゲームの進む時間がアクティブかどうかプロパティ
@@ -173,6 +163,15 @@ public class SaveData : MonoBehaviour
         set { m_playerNum = value; }
     }
 
+        //体力プロパティ
+        public int GetSetHitPoint
+        {
+            //ゲッター
+            get { return m_hitPoint; }
+            //セッター
+            set { m_hitPoint = value; }
+        }
+
         //セーブデータを初期状態に戻す処理
         public void SaveDataInit()
         {
@@ -196,6 +195,11 @@ public class SaveData : MonoBehaviour
             m_inputPassword = "----";
             //ゲームの進む時間がアクティブかどうか
             m_activeGameTime = true;
+            //体力を戻す
+            m_hitPoint = 3;
+
+            //BGMを初期化
+            m_soundManager.PlayBGM("OutGameSceneBGM");
         }
 
         //アプリケーションが終了する前に呼び出される関数

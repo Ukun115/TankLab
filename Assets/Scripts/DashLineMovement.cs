@@ -11,7 +11,7 @@ public class DashLineMovement : MonoBehaviour
     LineRenderer line = null;
     Camera m_mainCamera = null;
     Plane plane = new Plane();
-    float distance = 0;
+    float distance = 0.0f;
     Vector3 rayTarget = Vector3.zero;
     ControllerData m_controllerData = null;
 

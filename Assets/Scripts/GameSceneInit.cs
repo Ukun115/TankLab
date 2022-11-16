@@ -74,6 +74,12 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
             //オンラインプレイの場合、プレイヤーを生成する。
             case "RANDOMMATCH":
             case "PRIVATEMATCH":
+                    //マッチングシーンはオンライン対応のプレイヤーモデルは生成しない。
+                    if(SceneManager.GetActiveScene().name == "MatchingScene")
+                    {
+                        break;
+                    }
+
                 PhotonNetwork.IsMessageQueueRunning = true;
 
                 //プレイヤー生成処理
@@ -91,22 +97,24 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         m_playerNameText[num].text = playerName;
 
         //デバック
-        Debug.Log($"<color=yellow>参加プレイヤー:{num}</color>");
+        Debug.Log($"<color=blue>参加プレイヤー:{num}</color>");
     }
 
-    //プレイヤー生成処理
-    void PlayerGeneration()
-    {
+        //プレイヤー生成処理
+        void PlayerGeneration()
+        {
+            Debug.Log($"<color=blue>Photonローカルプレイヤーのアクターナンバー:{PhotonNetwork.LocalPlayer.ActorNumber}</color>");
+
         GameObject m_gameObjectOnline = PhotonNetwork.Instantiate(
                     m_onlinePlayerPrefab.name,
-                    m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum-1][PhotonNetwork.LocalPlayer.ActorNumber - 1],    //ポジション
+                    m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum-1][PhotonNetwork.LocalPlayer.ActorNumber-1],    //ポジション
                     Quaternion.identity,        //回転
                     0
                     );
         //プレイヤー番号を保存
-        m_saveData.GetSetPlayerNum = (PhotonNetwork.LocalPlayer.ActorNumber - 1);
+        m_saveData.GetSetPlayerNum = PhotonNetwork.LocalPlayer.ActorNumber-1;
         //プレイヤー名表示
-        photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, PlayerPrefs.GetString("PlayerName"));
+        photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
     }
 }
 }

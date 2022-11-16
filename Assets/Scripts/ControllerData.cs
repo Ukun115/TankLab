@@ -6,9 +6,9 @@ using UnityEngine;
 /// </summary>
 namespace nsTankLab
 {
-public class ControllerData : MonoBehaviour
-{
-    string[] controllerNames = { "" };
+    public class ControllerData : MonoBehaviour
+    {
+        string[] controllerNames = {string.Empty};
 
         void Start()
     {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// タンクを決定する処理
@@ -11,13 +12,22 @@ public class DecideTank : MonoBehaviour
     SaveData m_saveData = null;
     ControllerData m_controllerData = null;
 
+        [SerializeField]TankDataBase m_tankDataBase = null;
+
     [SerializeField, TooltipAttribute("プレイヤーボード")] GameObject[] m_playerBoard = null;
     [SerializeField, TooltipAttribute("プレイヤー名テキスト")] TextMeshProUGUI m_playerNameText = null;
     [SerializeField, TooltipAttribute("ゲームパッド操作時のカーソル画像オブジェクト")] GameObject[] m_playerCursor = null;
     [SerializeField, TooltipAttribute("タンク選択完了画像オブジェクト")] GameObject[] m_playerTankAlreadyDecide = null;
     [SerializeField, TooltipAttribute("スキル選択完了画像オブジェクト")] GameObject[] m_playerSkillAlreadyDecide = null;
 
-    void Start()
+
+    [SerializeField, TooltipAttribute("タンクorスキル名テキスト")] TextMeshProUGUI[] m_tankSkillNameText = null;
+    [SerializeField, TooltipAttribute("タンクorスキル説明文テキスト")] TextMeshProUGUI[] m_tankSkillInfoText = null;
+
+        //読む込むスキル説明テキストが書き込まれている.txtファイル
+        [SerializeField] TextAsset[] m_skillTextAsset = { null };
+
+        void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
@@ -43,6 +53,27 @@ public class DecideTank : MonoBehaviour
             }
         }
     }
+
+        public void UpdateTankSkillInfo(int playerNum, string character)
+        {
+                //タイトル更新
+                m_tankSkillNameText[playerNum - 1].text = character;
+
+            //説明文更新
+
+            //タンク
+            if (character.Contains("TANK"))
+            {
+                //選択しているタンクのステータス
+                TankStatus tankStatus = m_tankDataBase.GetTankLists()[int.Parse(Regex.Replace(character, @"[^1-4]", "")) - 1];
+                m_tankSkillInfoText[playerNum - 1].text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
+            }
+            //スキル
+            else if (character.Contains("SKILL"))
+            {
+                m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^1-4]", "")) - 1].text}";
+            }
+        }
 
     public void SetCharacter(int playerNum,string character)
     {

@@ -25,7 +25,10 @@ public class BulletMovement : MonoBehaviour
 
     Vector3 m_debugLineDirection = Vector3.zero;
 
-    void Start()
+        [SerializeField, TooltipAttribute("煙エフェクト")] GameObject m_smokeEffectPrefab = null;
+        [SerializeField, TooltipAttribute("弾メッシュ")] GameObject m_bulletMesh = null;
+
+        void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
@@ -45,7 +48,7 @@ public class BulletMovement : MonoBehaviour
     {
         //Rayのデバック表示
         Debug.DrawRay(transform.position, m_debugLineDirection * 5.0f, Color.red);
-    }
+        }
 
         void FixedUpdate()
         {
@@ -75,6 +78,11 @@ public class BulletMovement : MonoBehaviour
             );
 
         m_debugLineDirection = m_afterReflectVector;
+
+            //弾の煙の向きを壁反射後の向きに変更
+            m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
+            //メッシュの向きを壁反射後の向きに変更
+            m_bulletMesh.transform.LookAt(transform.position - m_debugLineDirection);
     }
 
         void AddForce()

@@ -83,12 +83,25 @@ public class RayCast : MonoBehaviour
             //接触しているオブジェクトを保存
             m_rayHitObject = hit.collider.gameObject;
 
-            //ステージ選択シーンの時、
-            if (SceneManager.GetActiveScene().name == "SelectStageScene")
-            {
-                //カーソルポジションを移動させる
-                GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
-            }
+
+                switch(SceneManager.GetActiveScene().name)
+                {
+                    //タンク選択シーンの場合
+                    case "SelectTankScene":
+                        //Reyがヒットしているオブジェクトがタンクとスキルのボタンの場合のみテキスト更新
+                        if (hit.collider.name.Contains("TANK") || hit.collider.name.Contains("SKILL"))
+                        {
+                            //説明文を更新
+                            GameObject.Find("SceneManager").GetComponent<DecideTank>().UpdateTankSkillInfo(m_playerNum, hit.collider.name);
+                        }
+                        break;
+
+                    //ステージ選択シーンの場合
+                    case "SelectStageScene":
+                        //カーソルポジションを移動させる
+                        GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
+                        break;
+                }
         }
 
         //ボタンが押されたとき、

@@ -10,8 +10,8 @@ public class EnemyAIRandomMovement : MonoBehaviour
 {
 	float m_wanderRangeX = 13.0f;
 	float m_wanderRangeZ = 8.0f;
-	NavMeshAgent m_navMeshAgent;
-	NavMeshHit m_navMeshHit;
+	NavMeshAgent m_navMeshAgent = null;
+	NavMeshHit m_navMeshHit = new NavMeshHit();
 
 		SaveData m_saveData = null;
 

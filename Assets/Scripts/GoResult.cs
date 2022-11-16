@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -17,7 +18,13 @@ public class GoResult : MonoBehaviour
 
     void Start()
     {
-        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            //マッチングシーンの場合は勝利処理は実行しないでいいので破棄しておく
+            if (SceneManager.GetActiveScene().name == "MatchingScene")
+            {
+                Destroy(this);
+            }
+
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
     }
@@ -40,24 +47,33 @@ public class GoResult : MonoBehaviour
                     if(m_saveData.GetSetSelectStageNum.Equals(m_saveData.GetTotalStageNum()))
                     {
                         //リザルト突入
-                        InstantiateResultObject(1);
+                        InstantiateResultObject(6);
                     }
                     else
                     {
                         //現在のチャレンジ数カウントシーンに遷移
                         m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+                        //次のステージ番号に進める
                         m_saveData.NextStageNum();
                     }
-                Destroy(this);
             }
             //全機死んでいないとき、
             //(つまりプレイヤーが死んでいるとき、)
             else if (playerObject is null)
             {
-                //リザルト突入
-                InstantiateResultObject(5);
-                Debug.Log("プレイヤーが死亡しました。");
-                Destroy(this);
+                    Debug.Log("プレイヤーが死亡しました。");
+
+                    //体力がまだ残っている場合はやり直し
+                    if (m_saveData.GetSetHitPoint != 0)
+                    {
+                        //現在のチャレンジ数カウントシーンに遷移
+                        m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+                    }
+                    else
+                    {
+                        //リザルト突入
+                        InstantiateResultObject(5);
+                    }
             }
         }
         //チャレンジモード以外のモードの時
@@ -73,7 +89,6 @@ public class GoResult : MonoBehaviour
                 int winPlayerNum = int.Parse(Regex.Replace(playerObject[0].name, @"[^1-4]", ""));
                 InstantiateResultObject(winPlayerNum);
                 Debug.Log("勝敗がつきました。");
-                Destroy(this);
             }
         }
     }
@@ -83,8 +98,6 @@ public class GoResult : MonoBehaviour
         //リザルトに突入
         //リザルト処理は毎シーンごとに１度のみしか実行しない
         resultObject = GameObject.Find("Result");
-        if (resultObject is null)
-        {
             //リザルト処理をまとめているゲームオブジェクトを生成し、
             //リザルト処理を実行していく。
             resultObject = Instantiate(m_resultPrefab);
@@ -99,7 +112,8 @@ public class GoResult : MonoBehaviour
 
                 //タンクや弾の動きを止める
                 m_saveData.GetSetmActiveGameTime = false;
-        }
+
+            Destroy(this);
     }
 }
 }

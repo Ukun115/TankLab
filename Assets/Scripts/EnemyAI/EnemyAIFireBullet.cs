@@ -25,7 +25,9 @@ public class EnemyAIFireBullet : MonoBehaviour
     int m_timer = 0;
     const int BULLET_FIRE_DELAY = 120;
 
-    void Start()
+        [SerializeField, TooltipAttribute("発射位置Transformコンポーネント")] Transform m_firePositionTransform = null;
+
+        void Start()
     {
         m_bulletsBox = GameObject.Find("Bullets");
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
@@ -38,9 +40,9 @@ public class EnemyAIFireBullet : MonoBehaviour
     void Update()
     {
         //Rayを作成
-        Ray ray = new Ray(transform.root.position, transform.forward);
+        Ray ray = new Ray(m_firePositionTransform.root.position, m_firePositionTransform.forward);
         //Rayのデバック表示
-        Debug.DrawRay(transform.root.position, transform.forward * 5.0f, Color.red);
+        Debug.DrawRay(m_firePositionTransform.root.position, m_firePositionTransform.forward * 5.0f, Color.red);
 
         //プレイヤーに衝突したときの処理
         RaycastHit hit;
@@ -89,8 +91,8 @@ public class EnemyAIFireBullet : MonoBehaviour
         //弾を生成
         GameObject m_bulletObject = Instantiate(
         m_bulletPrefab,
-        transform.position,
-        new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+        m_firePositionTransform.position,
+        new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
         );
 
         //生成される弾の名前変更

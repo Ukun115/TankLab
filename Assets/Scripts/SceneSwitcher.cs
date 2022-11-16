@@ -43,7 +43,6 @@ public class SceneSwitcher : MonoBehaviour
 			SceneManager.LoadScene(scenes.Peek());
 		}
 
-
 		//アプリケーションが終了する前に呼び出される関数
 		//static変数はアプリケーションが終了されても初期化されず、ずっと残り続けるため、手動で初期化する
 		void OnApplicationQuit()

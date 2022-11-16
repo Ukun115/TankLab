@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviourPun
         //入力されたキーの値を保存
         m_moveDirection = new Vector3(m_horizontal, 0, m_vertical);
         m_moveDirection = m_playerTransform.TransformDirection(m_moveDirection);
-        //斜めの距離が長くなる√2倍になるのを防ぐ。
+        //斜めの距離が長くなる(√2倍になる)のを防ぐ。
         m_moveDirection.Normalize();
 
         //移動方向に速度を掛ける(通常移動)
@@ -89,9 +89,10 @@ public class PlayerMovement : MonoBehaviourPun
 
     void FixedUpdate()
     {
+            //ゲーム進行が止まっているときは移動速度を0にする。
             if (!m_saveData.GetSetmActiveGameTime)
             {
-                return;
+                m_moveDirection = Vector3.zero;
             }
                 //剛体に移動を割り当て(一緒に重力も割り当て)
                 m_rigidbody.velocity = new Vector3(m_moveDirection.x, m_rigidbody.velocity.y, m_moveDirection.z);
@@ -111,14 +112,10 @@ public class PlayerMovement : MonoBehaviourPun
         return m_skillSpeed = skillspeed;
     }
 
-    public Vector3 GetPlayerPosition()
-    {
-        return m_playerTransform.position;
-    }
-
-    public Vector3 SetPlayerPosition(Vector3 playerPosition)
-    {
-        return m_playerTransform.position = playerPosition;
-    }
+        public Vector3 GetSetPlayerPosition
+        {
+            get { return m_playerTransform.position; }
+            set { m_playerTransform.position = value; }
+        }
 }
 }

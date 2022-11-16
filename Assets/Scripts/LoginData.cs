@@ -24,7 +24,7 @@ public class LoginData : MonoBehaviour
     int m_lastYearMonthDayDate = 0;
     int m_lastHourMinuteData = 0;
     //ログインタイプ
-    EnLoginType m_judgeType;
+    EnLoginType m_judgeType = EnLoginType.enFirstUserLogin;
 
         void Start()
     {

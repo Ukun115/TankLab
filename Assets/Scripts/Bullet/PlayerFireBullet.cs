@@ -14,7 +14,7 @@ public class PlayerFireBullet : MonoBehaviourPun
     //フィールド上に生成されている弾の数
     int m_bulletNum = 0;
     //弾の発射角度
-    float m_yRot = 0;
+    float m_yRot = 0.0f;
     //元の回転
     Quaternion m_originalQuaternion = Quaternion.identity;
 
@@ -31,6 +31,11 @@ public class PlayerFireBullet : MonoBehaviourPun
     //発射したプレイヤー番号
     int m_myPlayerNum = 0;
 
+        [SerializeField, TooltipAttribute("発射位置Transformコンポーネント")] Transform m_firePositionTransform = null;
+
+        [SerializeField, TooltipAttribute("発射エフェクトプレファブ")] GameObject m_fireEffectPrefab = null;
+        [SerializeField, TooltipAttribute("発射エフェクト生成位置")] Transform m_fireEffectInstantiatePosition = null;
+
     void Start()
     {
         m_bulletsBox = GameObject.Find("Bullets");
@@ -39,7 +44,7 @@ public class PlayerFireBullet : MonoBehaviourPun
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
 
         //発射したプレイヤー番号を取得
-        m_myPlayerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", "")) - 1;
+        m_myPlayerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", "")) - 1;
     }
 
     void Update()
@@ -90,25 +95,34 @@ public class PlayerFireBullet : MonoBehaviourPun
     //弾生成処理
     void BulletInstantiate()
     {
-        //連射できる回数以上は発射しないようにする
-        if (m_bulletNum >= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetRapidFireNum())
+            //連射できる回数以上は発射しないようにする
+            if (m_bulletNum >= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetRapidFireNum())
         {
             return;
         }
 
-        //発射音再生
+            //発射エフェクトを生成する。
+            GameObject fireEffect = Instantiate(
+            m_fireEffectPrefab,
+            m_fireEffectInstantiatePosition.position,
+            transform.rotation,
+            m_fireEffectInstantiatePosition
+            );
+            fireEffect.name = "FireBulletEffect";
+
+            //発射音再生
             m_soundManager.PlaySE("FireSE");
 
             m_yRot = 0.0f;
         //元の回転を取得
-        m_originalQuaternion = transform.rotation;
+        m_originalQuaternion = m_firePositionTransform.rotation;
 
         //同時に撃つ弾の数によって回す
         for (int i = 0; i < m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetSameTimeBulletNum(); i++)
         {
             //弾の発射角度
             m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
-            transform.Rotate(0.0f, m_yRot, 0.0f);
+                m_firePositionTransform.Rotate(0.0f, m_yRot, 0.0f);
 
             switch (SceneManager.GetActiveScene().name)
             {
@@ -119,8 +133,8 @@ public class PlayerFireBullet : MonoBehaviourPun
                         //弾を生成
                         GameObject m_bulletObjectOnline = PhotonNetwork.Instantiate(
                         m_bulletPrefab.name,
-                        transform.position,
-                        new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+                        m_firePositionTransform.position,
+                        new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
                         );
 
                         //生成される弾の名前変更
@@ -138,8 +152,8 @@ public class PlayerFireBullet : MonoBehaviourPun
                     //弾を生成
                     GameObject m_bulletObject = Instantiate(
                     m_bulletPrefab,
-                    transform.position,
-                    new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w)
+                    m_firePositionTransform.position,
+                    new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
                     );
 
                     //生成される弾の名前変更
@@ -153,8 +167,8 @@ public class PlayerFireBullet : MonoBehaviourPun
                     break;
             }
 
-            //元の回転に戻す
-            transform.rotation = m_originalQuaternion;
+                //元の回転に戻す
+                m_firePositionTransform.rotation = m_originalQuaternion;
 
             m_bulletNum++;
         }
