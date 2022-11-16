@@ -8,7 +8,7 @@ namespace nsTankLab
     public class ButtonMaterialChange : MonoBehaviour
 {
     //子オブジェクト達を入れる配列
-    Transform[] m_childrenObject;
+    Transform[] m_childrenObject = null;
 
     [SerializeField, TooltipAttribute("ブロックボタンのマテリアル")] Material[] m_blockButtonMaterial = null;
 

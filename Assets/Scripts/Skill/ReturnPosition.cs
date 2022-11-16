@@ -10,7 +10,7 @@ namespace nsTankLab
 	{
 
 		PlayerMovement m_playerMovement = null;
-		Vector3 m_returnPosition;
+		Vector3 m_returnPosition = Vector3.zero;
 		Queue<Vector3> m_playerPosition;
 		bool m_skillFlg = true;
 
@@ -19,14 +19,14 @@ namespace nsTankLab
 		{
 			m_playerMovement = GetComponent<PlayerMovement>();
 			m_playerPosition = new Queue<Vector3>();
-			m_returnPosition = m_playerMovement.GetPlayerPosition();
+			m_returnPosition = m_playerMovement.GetSetPlayerPosition;
 		}
 
 		void FixedUpdate()
 		{
-			m_playerPosition.Enqueue(m_playerMovement.GetPlayerPosition());
+			m_playerPosition.Enqueue(m_playerMovement.GetSetPlayerPosition);
 
-			if (m_playerPosition.Count == 90)
+			if (m_playerPosition.Count == 120)
 			{
 				m_returnPosition = m_playerPosition.Dequeue();
 			}
@@ -34,11 +34,11 @@ namespace nsTankLab
 
 		void Update()
 		{
-			if (Input.GetMouseButtonDown(1) && m_skillFlg == true)
+			if (Input.GetMouseButtonDown(1) && m_skillFlg)
 			{
 				m_skillFlg = false;
-				m_playerMovement.SetPlayerPosition(m_returnPosition);
-				Invoke(nameof(Ct), 6.0f);
+				m_playerMovement.GetSetPlayerPosition = m_returnPosition;
+				Invoke(nameof(Ct), 5.0f);
 			}
 		}
 

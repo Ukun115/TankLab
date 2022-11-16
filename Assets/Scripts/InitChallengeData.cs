@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
@@ -9,28 +10,43 @@ namespace nsTankLab
     /// </summary>
     public class InitChallengeData : MonoBehaviour
     {
-        [SerializeField]TextMeshProUGUI m_challengeNumText = null;
-        [SerializeField]TextMeshProUGUI m_enemyNumText = null;
-        [SerializeField]TextMeshProUGUI m_heartNumText = null;
-        [SerializeField]TextMeshProUGUI m_tankNumText = null;
-        [SerializeField]TextMeshProUGUI m_skillNumText = null;
+        [SerializeField] TextMeshProUGUI m_challengeNumText = null;
+        [SerializeField] TextMeshProUGUI m_enemyNumText = null;
+        [SerializeField] TextMeshProUGUI m_tankNumText = null;
+        [SerializeField] TextMeshProUGUI m_skillNumText = null;
 
         [SerializeField] GameObject m_backButtonText = null;
         [SerializeField] GameObject m_backButtonObject = null;
-        [SerializeField]  RectTransform m_goButtonText = null;
+        [SerializeField] RectTransform m_goButtonText = null;
         [SerializeField] GameObject m_goButtonObject = null;
 
         SaveData m_saveData = null;
 
         [SerializeField] List<StageData> m_stageData = null;
 
+        [SerializeField] TextMeshProUGUI m_playerNameText = null;
+
+        //タンク説明文テキスト
+        [SerializeField] TextMeshProUGUI m_tankInfoText = null;
+        //スキル説明文テキスト
+        [SerializeField] TextMeshProUGUI m_skillInfoText = null;
+
+        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+
+        //読む込むスキル説明テキストが書き込まれている.txtファイル
+        [SerializeField]TextAsset[] m_skillTextAsset = { null };
+
         void Start()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
+            //名前をユーザー名にする
+            m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
+
             //チャレンジモードを進めている最中はBackボタンでタイトルに戻れないようにしておく
-            if(m_saveData.GetSetSelectStageNum != 1)
+            if (m_saveData.GetSetSelectStageNum != 1 || m_saveData.GetSetHitPoint != 3)
             {
+                //Backボタン削除
                 m_backButtonText.SetActive(false);
                 m_backButtonObject.SetActive(false);
 
@@ -44,10 +60,16 @@ namespace nsTankLab
             m_saveData.SetSelectSkillName(1, m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType());
 
             m_challengeNumText.text = $"{m_saveData.GetSetSelectStageNum}";
-            m_enemyNumText.text = $"{m_stageData[m_saveData.GetSetSelectStageNum - 1].GetEnemiesNum()}";
-            m_heartNumText.text = "";
+            m_enemyNumText.text = $"x{m_stageData[m_saveData.GetSetSelectStageNum - 1].GetEnemiesNum()}";
             m_tankNumText.text = m_saveData.GetSelectTankName(0);
             m_skillNumText.text = m_saveData.GetSelectSkillName(0);
+
+            //選択しているタンクのステータス
+            TankStatus tankStatus = m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(0)];
+            //タンク説明文テキスト更新
+            m_tankInfoText.text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
+            //スキル説明文テキスト更新
+            m_skillInfoText.text = $"Info :\n{ m_skillTextAsset[m_saveData.GetSelectSkillNum(0)].text}";
         }
     }
 

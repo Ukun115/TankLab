@@ -4165,6 +4165,13 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
+  m_firePositionTransform: {fileID: 786930104}
+--- !u!4 &786930104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 430560258180168786, guid: d6344559e100c664e86deb2d35216c14,
+    type: 3}
+  m_PrefabInstance: {fileID: 786930099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800462072
 GameObject:
   m_ObjectHideFlags: 0
@@ -9087,7 +9094,7 @@ PrefabInstance:
     - target: {fileID: 4021983772039751812, guid: 7526a898bfcc9ce46817395e86e8ce07,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4021983772039751812, guid: 7526a898bfcc9ce46817395e86e8ce07,
         type: 3}
@@ -9441,7 +9448,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786967295
 GameObject:

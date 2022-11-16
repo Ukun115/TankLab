@@ -26,7 +26,12 @@ public class ResultInit : MonoBehaviour
             //チャレンジモードで敵AIが勝利した場合
             if (m_winPlayer == 5)
             {
-                m_winText.text = "Finish!!";
+                m_winText.text = "Game Over!!";
+            }
+            //チャレンジモードでチャレンジをすべてクリアした場合
+            else if (m_winPlayer == 6)
+            {
+                m_winText.text = "Challenge Clear!!";
             }
             //いずれかのプレイヤーが勝利した場合
             else

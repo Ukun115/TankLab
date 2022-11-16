@@ -3,7 +3,9 @@ guid: c8aeffb362547284490f2bbe028fb369
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_accelerationEffectPrefab: {fileID: 1000010253375032, guid: d07dcf1c4925519428ccc85a40bf7fa6,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

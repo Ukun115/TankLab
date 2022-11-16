@@ -9,7 +9,7 @@ public class SelectCancel : MonoBehaviour
 {
     [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 0;
 
-    [SerializeField, TooltipAttribute("押されるボタンの文字列(LT or RT)")]string m_buttonCharacter = "";
+    [SerializeField, TooltipAttribute("押されるボタンの文字列(LT or RT)")]string m_buttonCharacter = string.Empty;
 
     //セーブデータ
     SaveData m_saveData = null;
