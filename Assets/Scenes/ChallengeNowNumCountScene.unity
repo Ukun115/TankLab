@@ -3863,12 +3863,12 @@ MonoBehaviour:
   m_goButtonText: {fileID: 698959529}
   m_goButtonObject: {fileID: 635914571}
   m_stageData:
-  - m_numberOfEnemiesOnStage: 2
-    m_tankType: Tank1
-    m_skillType: Skill1
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank2
-    m_skillType: Skill2
+    m_skillType: Skill3
+  - m_numberOfEnemiesOnStage: 1
+    m_tankType: Tank2
+    m_skillType: Skill1
   m_playerNameText: {fileID: 34956169}
   m_tankInfoText: {fileID: 184574695}
   m_skillInfoText: {fileID: 718635591}

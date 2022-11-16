@@ -19,12 +19,18 @@ namespace nsTankLab
             switch (m_saveData.GetSelectSkillNum(playerNum))
             {
                 case 0:
-                    //一定時間加速
+                    //一定時間加速スキル
                     gameObject.AddComponent<AccelerationSkill>();
                     break;
+
                 case 1:
-                    //3秒前の位置に戻る
+                    //3秒前の位置に戻るスキル
                     gameObject.AddComponent<ReturnPosition>();
+                    break;
+
+                case 2:
+                    //爆弾設置スキル
+                    gameObject.AddComponent<DropBomb>();
                     break;
             }
         }
