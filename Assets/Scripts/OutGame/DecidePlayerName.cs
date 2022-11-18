@@ -60,8 +60,8 @@ public class DecidePlayerName : MonoBehaviour
                 {
                     //チャレンジモード
                     case "CHALLENGE":
-                        //チャレンジゲームに遷移
-                        ChangeScene("ChallengeGameScene");
+                        //現在のチャレンジ数カウントシーンに遷移
+                        ChangeScene("ChallengeNowNumCountScene");
                         break;
 
                         //ランダムマッチ

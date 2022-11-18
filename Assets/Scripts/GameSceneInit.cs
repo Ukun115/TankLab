@@ -49,7 +49,10 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
         //デバック
         Debug.Log($"<color=yellow>生成ステージ：Stage{m_saveData.GetSetSelectStageNum}</color>");
 
-        switch (m_saveData.GetSetSelectGameMode)
+            //タンクや弾が動けるようにする
+            m_saveData.GetSetmActiveGameTime = true;
+
+            switch (m_saveData.GetSetSelectGameMode)
         {
             //チャレンジモード
             case "CHALLENGE":
@@ -66,7 +69,7 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
                 {
                     m_localPlayerPosition[playerNum].position = m_stageLocalPlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][playerNum];
                 }
-                    //チャレンジモードのBGMを再生する
+                    //ローカルプレイモードのBGMを再生する
                     m_soundManager.PlayBGM("GameSceneBGM02");
 
                     break;
@@ -80,7 +83,10 @@ public class GameSceneInit : MonoBehaviourPunCallbacks
                         break;
                     }
 
-                PhotonNetwork.IsMessageQueueRunning = true;
+                    //オンラインプレイモードのBGMを再生する
+                    m_soundManager.PlayBGM("GameSceneBGM02");
+
+                    PhotonNetwork.IsMessageQueueRunning = true;
 
                 //プレイヤー生成処理
                 PlayerGeneration();

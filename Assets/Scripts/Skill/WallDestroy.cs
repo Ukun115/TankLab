@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace nsTankLab
@@ -7,6 +5,15 @@ namespace nsTankLab
     public class WallDestroy : MonoBehaviour
     {
         int m_bulletDestroyCount = 0;
+
+        //‚Ð‚ÑŠ„‚êƒ}ƒeƒŠƒAƒ‹
+        [SerializeField] MeshRenderer m_meshRenderer = null;
+
+        void Start()
+        {
+            //‚Ð‚ÑŠ„‚ê‰Šú‰»
+            m_meshRenderer.material.SetFloat("_CrackProgress", 0.0f);
+        }
 
         void OnCollisionEnter(Collision collision)
         {
@@ -33,17 +40,22 @@ namespace nsTankLab
         {
             m_bulletDestroyCount++;
 
-            if (m_bulletDestroyCount > 1)
+            //‚Ð‚ÑŠ„‚ê‚ð“ü‚ê‚Ä‚¢‚­
+            m_meshRenderer.material.SetFloat("_CrackProgress", m_bulletDestroyCount/5.0f);
+
+            //‘Ï‹v’lŒÀŠE‚Ü‚Å—ˆ‚½‚çA
+            if (m_bulletDestroyCount >= 5)
             {
+                //•Ç”j‰ó
                 Destroy(gameObject);
             }
         }
 
         void OnCollisitonBomb()
         {
-            
+
              Destroy(gameObject);
- 
+
         }
     }
 }
