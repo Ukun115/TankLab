@@ -27,6 +27,9 @@ public class BulletCollision : MonoBehaviour
     //自身を発射したタンクのオブジェクトデータ
     GameObject m_tankObject = null;
 
+        //バーチャルカメラ
+        Cinemachine.CinemachineImpulseSource m_virtualCamera = null;
+
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
@@ -38,6 +41,9 @@ public class BulletCollision : MonoBehaviour
             //発射したプレイヤー番号を取得
             m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
         }
+
+        //バーチャルカメラ
+        m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
     }
 
     //衝突処理
@@ -74,8 +80,32 @@ public class BulletCollision : MonoBehaviour
         }
     }
 
-    //壁に衝突したときの処理
-    void OnCollisitonWall()
+        void OnTriggerEnter(Collider other)
+        {
+            switch (other.gameObject.tag)
+            {
+                //爆弾の爆発にあたったとき
+                case "Bomb":
+                    //接触した爆弾にスパークエフェクトを生成する。
+                    GameObject explosionBulletEffect = Instantiate(
+                    m_explosionBulletEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                    );
+                    explosionBulletEffect.name = "ExplosionBulletEffect";
+
+                    Destroy(gameObject);
+                    //弾消滅SE再生
+                    m_soundManager.PlaySE("BulletDestroySE");
+
+                    //爆弾を爆発させる
+                    other.gameObject.GetComponent<ExplosionBomb>().ActiveCollision();
+                    break;
+            }
+        }
+
+        //壁に衝突したときの処理
+        void OnCollisitonWall()
     {
         m_refrectionCount++;
 
@@ -148,7 +178,10 @@ public class BulletCollision : MonoBehaviour
 
         //衝突したプレイヤーを消滅させる
         Destroy(collision.gameObject);
-    }
+
+            //カメラを振動させる
+            m_virtualCamera.GenerateImpulse();
+        }
 
     public void SetFireTankObject(GameObject tankObject)
     {

@@ -16,6 +16,8 @@ public class GoResult : MonoBehaviour
 
         SceneSwitcher m_sceneSwitcher = null;
 
+        bool m_canGoResult = true;
+
     void Start()
     {
             //マッチングシーンの場合は勝利処理は実行しないでいいので破棄しておく
@@ -31,6 +33,11 @@ public class GoResult : MonoBehaviour
 
     void Update()
     {
+            if(!m_canGoResult)
+            {
+                return;
+            }
+
         //チャレンジモードの時
         if (m_saveData.GetSetSelectGameMode == "CHALLENGE")
         {
@@ -51,10 +58,8 @@ public class GoResult : MonoBehaviour
                     }
                     else
                     {
-                        //現在のチャレンジ数カウントシーンに遷移
-                        m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
-                        //次のステージ番号に進める
-                        m_saveData.NextStageNum();
+                        StopGame();
+                        Invoke(nameof(ChangeChallengeNowNumCountSceneAndStageNum), 3.0f);
                     }
             }
             //全機死んでいないとき、
@@ -66,8 +71,8 @@ public class GoResult : MonoBehaviour
                     //体力がまだ残っている場合はやり直し
                     if (m_saveData.GetSetHitPoint != 0)
                     {
-                        //現在のチャレンジ数カウントシーンに遷移
-                        m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+                        StopGame();
+                        Invoke(nameof(ChangeChallengeNowNumCountScene),3.0f);
                     }
                     else
                     {
@@ -93,7 +98,21 @@ public class GoResult : MonoBehaviour
         }
     }
 
-    void InstantiateResultObject(int winPlayer)
+        void ChangeChallengeNowNumCountScene()
+        {
+            //現在のチャレンジ数カウントシーンに遷移
+            m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+        }
+
+        void ChangeChallengeNowNumCountSceneAndStageNum()
+        {
+            //現在のチャレンジ数カウントシーンに遷移
+            m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene");
+                //次のステージ番号に進める
+                m_saveData.NextStageNum();
+        }
+
+        void InstantiateResultObject(int winPlayer)
     {
         //リザルトに突入
         //リザルト処理は毎シーンごとに１度のみしか実行しない
@@ -105,15 +124,22 @@ public class GoResult : MonoBehaviour
             //勝利表示
             resultObject.GetComponent<ResultInit>().SetWinPlayer(winPlayer);
 
-                //勝利SE再生
-                m_soundManager.PlaySE("WinSE");
-                //BGM止める
-                m_soundManager.StopBGM();
-
-                //タンクや弾の動きを止める
-                m_saveData.GetSetmActiveGameTime = false;
+            StopGame();
 
             Destroy(this);
     }
+
+    void StopGame()
+        {
+            //勝利SE再生
+            m_soundManager.PlaySE("WinSE");
+            //BGM止める
+            m_soundManager.StopBGM();
+
+            //タンクや弾の動きを止める
+            m_saveData.GetSetmActiveGameTime = false;
+
+            m_canGoResult = false;
+        }
 }
 }
