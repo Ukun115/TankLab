@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using System.Text.RegularExpressions;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// プレイヤーの移動スクリプト
@@ -25,11 +26,6 @@ public class PlayerMovement : MonoBehaviourPun
     //上下矢印キーの値(-1.0f～1.0f)
     float m_vertical = 0.0f;
 
-    //水平入力の名前(初期設定はキーボード操作)
-    string m_inputHorizontalName = "Horizontal";
-    //垂直入力の名前(初期設定はキーボード操作)
-    string m_inputVerticalName = "Vertical";
-
     [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
     //自身のプレイヤー番号
@@ -46,19 +42,12 @@ public class PlayerMovement : MonoBehaviourPun
         m_rigidbody = GetComponent<Rigidbody>();
 
         //自身のプレイヤー番号を取得
-        m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
-
-        // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (m_controllerData.GetIsConnectedController(m_saveData.GetSelectTankNum(m_myPlayerNum)))
-        {
-            m_inputHorizontalName = $"{name}JoystickHorizontal_L";
-            m_inputVerticalName = $"{name}JoystickVertical_L";
-        }
+        m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", ""));
 
         //選択されたタンク番号デバック
-        Debug.Log($"<color=yellow>{name}のタンク : Tank{m_saveData.GetSelectTankNum(m_myPlayerNum)+1}</color>");
+        Debug.Log($"<color=yellow>{name}のタンク : Tank{m_saveData.GetSelectTankNum(m_myPlayerNum-1)}</color>");
         //選択されたスキル番号デバック
-        Debug.Log($"<color=yellow>{name}のスキル : Skill{m_saveData.GetSelectSkillNum(m_myPlayerNum)+1}</color>");
+        Debug.Log($"<color=yellow>{name}のスキル : Skill{m_saveData.GetSelectSkillNum(m_myPlayerNum-1)}</color>");
     }
 
     void Update()
@@ -69,14 +58,6 @@ public class PlayerMovement : MonoBehaviourPun
             return;
         }
 
-        //Input.GetAxisRaw()は、入力された軸に補正をかけず、-1か0か1でをfloat型で返します。
-        //Input.GetAxis()は、入力された軸に補正をかけて、-1から1の範囲をfloat型で返します。
-
-        //左右矢印キーの値(-1.0f～1.0f)を取得する
-        m_horizontal = Input.GetAxisRaw(m_inputHorizontalName);
-        //上下矢印キーの値(-1.0f～1.0f)を取得する
-        m_vertical = Input.GetAxisRaw(m_inputVerticalName);
-
         //入力されたキーの値を保存
         m_moveDirection = new Vector3(m_horizontal, 0, m_vertical);
         m_moveDirection = m_playerTransform.TransformDirection(m_moveDirection);
@@ -84,7 +65,7 @@ public class PlayerMovement : MonoBehaviourPun
         m_moveDirection.Normalize();
 
         //移動方向に速度を掛ける(通常移動)
-        m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetTankSpeed() * m_skillSpeed;
+        m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum-1)].GetTankSpeed() * m_skillSpeed;
     }
 
     void FixedUpdate()
@@ -117,5 +98,25 @@ public class PlayerMovement : MonoBehaviourPun
             get { return m_playerTransform.position; }
             set { m_playerTransform.position = value; }
         }
-}
+
+        /// <summary>
+        /// 移動操作（上下左右キーなど）を取得
+        /// </summary>
+        /// <param name="movementValue"></param>
+        void OnMove(InputValue movementValue)
+        {
+            //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+            if (SceneManager.GetActiveScene().name == "OnlineGameScene" && !photonView.IsMine)
+            {
+                return;
+            }
+
+            // Moveアクションの入力値を取得
+            Vector2 movementVector = movementValue.Get<Vector2>();
+
+            // x,y軸方向の入力値を変数に代入
+            m_horizontal = movementVector.x;
+            m_vertical = movementVector.y;
+        }
+    }
 }

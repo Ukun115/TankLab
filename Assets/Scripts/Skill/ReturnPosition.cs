@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 /// <summary>
@@ -13,7 +14,7 @@ namespace nsTankLab
 		Vector3 m_returnPosition = Vector3.zero;
 		Queue<Vector3> m_playerPosition;
 		bool m_skillFlg = true;
-
+		bool m_isPressedButton = false;
 
 		void Start()
 		{
@@ -34,7 +35,16 @@ namespace nsTankLab
 
 		void Update()
 		{
-			if (Input.GetMouseButtonDown(1) && m_skillFlg)
+			if (Gamepad.current is not null)
+			{
+				m_isPressedButton = Gamepad.current.leftShoulder.wasPressedThisFrame;
+			}
+			else
+			{
+				m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+			}
+
+			if (m_isPressedButton && m_skillFlg)
 			{
 				m_skillFlg = false;
 				m_playerMovement.GetSetPlayerPosition = m_returnPosition;

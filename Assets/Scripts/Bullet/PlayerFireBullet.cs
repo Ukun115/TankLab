@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using System.Text.RegularExpressions;
@@ -44,7 +45,7 @@ public class PlayerFireBullet : MonoBehaviourPun
         m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
 
         //発射したプレイヤー番号を取得
-        m_myPlayerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", "")) - 1;
+        m_myPlayerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", ""));
     }
 
     void Update()
@@ -61,13 +62,11 @@ public class PlayerFireBullet : MonoBehaviourPun
             }
 
         // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (m_controllerData.GetIsConnectedController(m_myPlayerNum))
+        if (Gamepad.current is not null)
         {
             //ゲームパッド操作
             //RBボタンが押されたとき、
-            //transform.root.nameは最上位の親の名前を取得しています。
-            //(1つ上の親の名前はtransform.parent.nameで取得できます。)
-            if (Input.GetButtonDown($"{m_myPlayerNum}JoystickRB"))
+            if (Gamepad.current.rightShoulder.wasPressedThisFrame)
             {
                 //弾生成処理
                 BulletInstantiate();
@@ -78,7 +77,7 @@ public class PlayerFireBullet : MonoBehaviourPun
         {
             //キーマウ操作
             //左クリックが押されたとき、
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //弾生成処理
                 BulletInstantiate();
@@ -118,7 +117,7 @@ public class PlayerFireBullet : MonoBehaviourPun
         m_originalQuaternion = m_firePositionTransform.rotation;
 
         //同時に撃つ弾の数によって回す
-        for (int i = 0; i < m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetSameTimeBulletNum(); i++)
+        for (int i = 0; i < m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum-1)].GetSameTimeBulletNum(); i++)
         {
             //弾の発射角度
             m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
@@ -157,7 +156,7 @@ public class PlayerFireBullet : MonoBehaviourPun
                     );
 
                     //生成される弾の名前変更
-                    m_bulletObject.name = $"PlayerBullet{m_myPlayerNum+1}";
+                    m_bulletObject.name = $"PlayerBullet{m_myPlayerNum}";
 
                     //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
                     m_bulletObject.transform.parent = m_bulletsBox.transform;

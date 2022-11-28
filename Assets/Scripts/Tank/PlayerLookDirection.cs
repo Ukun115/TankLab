@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
@@ -16,9 +17,7 @@ public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
     SaveData m_saveData = null;
     ControllerData m_controllerData = null;
 
-    [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorPosition = null;
-
-    Vector3 rayTarget = Vector3.zero;
+    Transform m_cursorPosition = null;
 
     Camera m_camera = null;
 
@@ -29,19 +28,19 @@ public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
 
         plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         m_camera = Camera.main;
+
+            m_cursorPosition = GameObject.Find("1PCursor").GetComponent<Transform>();
     }
 
     void Update()
     {
-        DecideRayTarget();
-
         //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
         if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == "OnlineGameScene")
         {
             return;
         }
 
-        var ray = m_camera.ScreenPointToRay(rayTarget);
+        var ray = m_camera.ScreenPointToRay(DecideRayTarget());
         plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         if (plane.Raycast(ray, out distance))
         {
@@ -56,16 +55,16 @@ public class PlayerLookDirection : Photon.Pun.MonoBehaviourPun
         Debug.DrawRay(transform.position, transform.forward * 5.0f, Color.red);
     }
 
-    void DecideRayTarget()
+    Vector3 DecideRayTarget()
     {
        // ゲームパッドが接続されていたらゲームパッドでの操作
-       if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", ""))))
+       if (Gamepad.current is not null)
        {
-           rayTarget = m_cursorPosition.position;
+           return m_cursorPosition.position;
        }
        else
        {
-           rayTarget = Input.mousePosition;
+           return Mouse.current.position.ReadValue();
        }
     }
 }

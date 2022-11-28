@@ -81,6 +81,12 @@ public class DecidePlayerName : MonoBehaviour
                         //タイトル画面に遷移
                         ChangeScene("TitleScene");
                         break;
+
+                            //コンフィグ
+                        case "CONFIG":
+                            //コンフィグ画面に遷移
+                            ChangeScene("ConfigScene");
+                            break;
                 }
                 break;
 

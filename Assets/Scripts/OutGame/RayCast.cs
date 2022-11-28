@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
@@ -44,21 +46,21 @@ public class RayCast : MonoBehaviour
     void Update()
     {
         // ゲームパッドが接続されていたらゲームパッド操作
-        if (m_controllerData.GetIsConnectedController(m_playerNum))
+        if(Gamepad.current is not null)
         {
             m_rayPoint = m_cursorImagePosition.position;
 
             //カーソル画像を表示
             m_cursorObject.SetActive(true);
-        }
+            }
         //ゲームパッドが接続されていなかったらマウス操作
         else
         {
-            m_rayPoint = Input.mousePosition;
+            m_rayPoint = Mouse.current.position.ReadValue();
 
-            //カーソル画像を非表示
-            m_cursorObject.SetActive(false);
-        }
+                //カーソル画像を非表示
+                m_cursorObject.SetActive(false);
+            }
 
         //Rayを生成
         Ray ray = m_camera.ScreenPointToRay(m_rayPoint);
@@ -129,10 +131,10 @@ public class RayCast : MonoBehaviour
     void FireButton(RaycastHit hit)
     {
         //ゲームパッドが接続されていたらゲームパッド操作
-        if (m_controllerData.GetIsConnectedController(m_playerNum))
+        if (Gamepad.current is not null)
         {
-            //RBボタンがおされたとき、
-            if (Input.GetButtonDown($"{m_playerNum}PJoystickRB"))
+            //Aボタンがおされたとき、
+            if (Gamepad.current.rightShoulder.wasPressedThisFrame)
             {
                 //文字を渡す
                 PassCharacter(hit);
@@ -142,7 +144,7 @@ public class RayCast : MonoBehaviour
         else
         {
             //左クリックされたとき、
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //文字を渡す
                 PassCharacter(hit);
@@ -175,8 +177,13 @@ public class RayCast : MonoBehaviour
                     //押されたボタンの文字を渡す
                     GameObject.Find("SceneManager").GetComponent<DecidePassword>().SetCharacter(hit.collider.name);
                     break;
-                //タンク選択シーン
-                case "SelectTankScene":
+                    //設定シーン
+                    case "ConfigScene":
+                    //押されたボタンの文字を渡す
+                    GameObject.Find("SceneManager").GetComponent<DecideVolume>().SetCharacter(hit.collider.name);
+                        break;
+                    //タンク選択シーン
+                    case "SelectTankScene":
                     if (m_saveData.GetSetSelectGameMode == "LOCALMATCH")
                     {
                         //押されたボタンの文字を渡す

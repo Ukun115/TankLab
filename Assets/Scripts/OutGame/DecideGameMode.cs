@@ -47,7 +47,7 @@ public class DecideGameMode : MonoBehaviour
             //ローカルマッチモードの場合、
             case "LOCALMATCH":
                 //繋がれているコントローラーの数が足りたら、
-                if (m_controllerData.GetConnectedControllerNum() >= 2)
+                if (m_controllerData.GetConnectGamepad() >= 2)
                 {
                     //タンクシーンに遷移
                     m_sceneSwitcher.StartTransition("SelectTankScene");
@@ -55,7 +55,7 @@ public class DecideGameMode : MonoBehaviour
                 //繋がれているコントローラーの数が足りなかったら、
                 else
                 {
-                    Debug.Log($"<color=yellow>不足コントローラー数:{4- m_controllerData.GetConnectedControllerNum()}</color>");
+                    Debug.Log($"<color=yellow>不足コントローラー数:{4- m_controllerData.GetConnectGamepad()}</color>");
 
                     //警告メッセージを画面表示
                     m_warningTextDisplay.Display("Not enough "+"\n"+"controllers connected."+"\n"+"Required number: 4");
@@ -106,22 +106,17 @@ public class DecideGameMode : MonoBehaviour
                 break;
 
             //設定の場合、
-            case "SETTING":
+            case "CONFIG":
+                    //設定シーンに遷移
+                    ChangeScene("ConfigScene");
 
-
-                break;
+                    break;
 
             //終了の場合、
             case "EXIT":
 
-                Debug.Log("ゲーム終了");
-
-                //ゲーム終了
-                #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                    Application.Quit();
-                #endif
+                    //ゲーム終了
+                    Invoke(nameof(GameEnd), 0.5f);
 
                 break;
 
@@ -133,8 +128,20 @@ public class DecideGameMode : MonoBehaviour
         }
     }
 
-    //シーン遷移処理
-    void ChangeScene(string nextSceneName)
+    void GameEnd()
+        {
+            Debug.Log("ゲーム終了");
+
+            //ゲーム終了
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+        }
+
+        //シーン遷移処理
+        void ChangeScene(string nextSceneName)
     {
         //プレイヤー名を登録していなかった場合、
         if (!PlayerPrefs.HasKey("PlayerName"))
