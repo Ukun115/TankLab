@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 /// <summary>
 /// プレイヤー名のキーボード入力処理
@@ -24,43 +26,43 @@ public class InputKeyBoardAlphabet : MonoBehaviour
     //キーボード入力されたときの処理
     void FireKeyBoard()
     {
-        InputKey(KeyCode.A,"A");
-        InputKey(KeyCode.B,"B");
-        InputKey(KeyCode.C,"C");
-        InputKey(KeyCode.D,"D");
-        InputKey(KeyCode.E,"E");
-        InputKey(KeyCode.F,"F");
-        InputKey(KeyCode.G,"G");
-        InputKey(KeyCode.H,"H");
-        InputKey(KeyCode.I,"I");
-        InputKey(KeyCode.J,"J");
-        InputKey(KeyCode.K,"K");
-        InputKey(KeyCode.L,"L");
-        InputKey(KeyCode.M,"M");
-        InputKey(KeyCode.N,"N");
-        InputKey(KeyCode.O,"O");
-        InputKey(KeyCode.P,"P");
-        InputKey(KeyCode.Q,"Q");
-        InputKey(KeyCode.R,"R");
-        InputKey(KeyCode.S,"S");
-        InputKey(KeyCode.T,"T");
-        InputKey(KeyCode.U,"U");
-        InputKey(KeyCode.V,"V");
-        InputKey(KeyCode.W,"W");
-        InputKey(KeyCode.X,"X");
-        InputKey(KeyCode.Y,"Y");
-        InputKey(KeyCode.Z,"Z");
+        InputKey(Keyboard.current.aKey,"A");
+        InputKey(Keyboard.current.bKey,"B");
+        InputKey(Keyboard.current.cKey,"C");
+        InputKey(Keyboard.current.dKey,"D");
+        InputKey(Keyboard.current.eKey,"E");
+        InputKey(Keyboard.current.fKey,"F");
+        InputKey(Keyboard.current.gKey,"G");
+        InputKey(Keyboard.current.hKey,"H");
+        InputKey(Keyboard.current.iKey,"I");
+        InputKey(Keyboard.current.jKey,"J");
+        InputKey(Keyboard.current.kKey,"K");
+        InputKey(Keyboard.current.lKey,"L");
+        InputKey(Keyboard.current.mKey,"M");
+        InputKey(Keyboard.current.nKey,"N");
+        InputKey(Keyboard.current.oKey,"O");
+        InputKey(Keyboard.current.pKey,"P");
+        InputKey(Keyboard.current.qKey,"Q");
+        InputKey(Keyboard.current.rKey,"R");
+        InputKey(Keyboard.current.sKey,"S");
+        InputKey(Keyboard.current.tKey,"T");
+        InputKey(Keyboard.current.uKey,"U");
+        InputKey(Keyboard.current.vKey,"V");
+        InputKey(Keyboard.current.wKey,"W");
+        InputKey(Keyboard.current.xKey,"X");
+        InputKey(Keyboard.current.yKey,"Y");
+        InputKey(Keyboard.current.zKey, "Z");
 
         //バックスペースキーで一文字消す
-        InputKey(KeyCode.Backspace, "BACK");
+        InputKey(Keyboard.current.backspaceKey, "BACK");
         //エンターキーで名前確定
-        InputKey(KeyCode.Return,"OK");
+        InputKey(Keyboard.current.enterKey,"OK");
     }
 
     //キーボード入力されたときの処理
-    void InputKey(KeyCode keyCode,string inputCharacter)
+    void InputKey(KeyControl key, string inputCharacter)
     {
-        if (Input.GetKeyDown(keyCode))
+        if (key.wasPressedThisFrame)
         {
             m_decidePlayerName.SetCharacter(inputCharacter);
         }

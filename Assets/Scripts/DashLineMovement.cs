@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -31,7 +32,7 @@ public class DashLineMovement : MonoBehaviour
     void Update()
     {
         // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (m_controllerData.GetIsConnectedController(int.Parse(Regex.Replace(transform.root.name, @"[^0-9]", ""))))
+        if (Gamepad.current is not null)
         {
             if (m_cursorPosition is null)
             {
@@ -41,7 +42,7 @@ public class DashLineMovement : MonoBehaviour
         }
         else
         {
-            rayTarget = Input.mousePosition;
+            rayTarget = Mouse.current.position.ReadValue();
         }
 
         var ray = m_mainCamera.ScreenPointToRay(rayTarget);

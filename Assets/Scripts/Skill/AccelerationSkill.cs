@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// àÍíËéûä‘â¡ë¨Ç∑ÇÈÉXÉLÉãÇÃèàóù
@@ -17,6 +18,8 @@ public class AccelerationSkill : MonoBehaviour
 		GameObject accelerationEffect = null;
 	GameObject m_accelerationEffectPrefab = null;
 
+		bool m_isPressedButton = false;
+
 		void Start()
 	{
 		m_playerMovement = GetComponent<PlayerMovement>();
@@ -24,9 +27,18 @@ public class AccelerationSkill : MonoBehaviour
 			m_accelerationEffectPrefab = (GameObject)Resources.Load("Ef_SmokeRocketBigParticle");
 		}
 
-	private void Update()
+	void Update()
 	{
-		if (Input.GetMouseButtonDown(1) && m_skillFlg == true)
+			if(Gamepad.current is not null)
+            {
+				m_isPressedButton = Gamepad.current.leftShoulder.wasPressedThisFrame;
+			}
+			else
+            {
+				m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+            }
+
+		if (m_isPressedButton && m_skillFlg == true)
 		{
 			m_skillFlg = false;
 			m_playerMovement.SetSkillSpeed(m_acceleTankSpeed);

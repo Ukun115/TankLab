@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 /// <summary>
 /// プレイヤー名のキーボード入力処理
@@ -24,39 +26,27 @@ public class InputKeyBoardNumbers : MonoBehaviour
     //キーボード入力されたときの処理
     void FireKeyboard()
     {
-        //キーボード上のキー
-        InputKey(KeyCode.Alpha0, "0");
-        InputKey(KeyCode.Alpha1, "1");
-        InputKey(KeyCode.Alpha2, "2");
-        InputKey(KeyCode.Alpha3, "3");
-        InputKey(KeyCode.Alpha4, "4");
-        InputKey(KeyCode.Alpha5, "5");
-        InputKey(KeyCode.Alpha6, "6");
-        InputKey(KeyCode.Alpha7, "7");
-        InputKey(KeyCode.Alpha8, "8");
-        InputKey(KeyCode.Alpha9, "9");
-        //テンキー
-        InputKey(KeyCode.Keypad0, "0");
-        InputKey(KeyCode.Keypad1, "1");
-        InputKey(KeyCode.Keypad2, "2");
-        InputKey(KeyCode.Keypad3, "3");
-        InputKey(KeyCode.Keypad4, "4");
-        InputKey(KeyCode.Keypad5, "5");
-        InputKey(KeyCode.Keypad6, "6");
-        InputKey(KeyCode.Keypad7, "7");
-        InputKey(KeyCode.Keypad8, "8");
-        InputKey(KeyCode.Keypad9, "9");
+        InputKey(Keyboard.current.numpad0Key, "0");
+        InputKey(Keyboard.current.numpad1Key, "1");
+        InputKey(Keyboard.current.numpad2Key, "2");
+        InputKey(Keyboard.current.numpad3Key, "3");
+        InputKey(Keyboard.current.numpad4Key, "4");
+        InputKey(Keyboard.current.numpad5Key, "5");
+        InputKey(Keyboard.current.numpad6Key, "6");
+        InputKey(Keyboard.current.numpad7Key, "7");
+        InputKey(Keyboard.current.numpad8Key, "8");
+        InputKey(Keyboard.current.numpad9Key, "9");
 
         //バックスペースキーで一文字消す
-        InputKey(KeyCode.Backspace, "BACK");
+        InputKey(Keyboard.current.backspaceKey, "BACK");
         //エンターキーで名前確定
-        InputKey(KeyCode.Return,"OK");
+        InputKey(Keyboard.current.enterKey,"OK");
     }
 
     //キーボード入力されたときの処理
-    void InputKey(KeyCode keyCode, string inputCharacter)
+    void InputKey(KeyControl key, string inputCharacter)
     {
-        if (Input.GetKeyDown(keyCode))
+        if (key.wasPressedThisFrame)
         {
             m_decidePassword.SetCharacter(inputCharacter);
         }

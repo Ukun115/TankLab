@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// ゲームパッド用のカーソル移動処理
@@ -7,11 +8,6 @@ namespace nsTankLab
 {
 public class GamePadCursorMovement : MonoBehaviour
 {
-    //左右矢印キーの値(-1.0f～1.0f)
-    float m_horizontal = 0.0f;
-    //上下矢印キーの値(-1.0f～1.0f)
-    float m_vertical = 0.0f;
-
     //移動方向
     Vector2 m_moveDirection = Vector2.zero;
 
@@ -22,19 +18,26 @@ public class GamePadCursorMovement : MonoBehaviour
 
     Rigidbody2D m_rigidbody2d = null;
 
-    void Start()
+        [SerializeField, TooltipAttribute("インゲームかどうか")] bool m_isInGame = false;
+
+        Vector2 m_stickValue = Vector2.zero;
+
+        void Start()
     {
         m_rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        //左右矢印キーの値(-1.0f～1.0f)を取得する
-        m_horizontal = Input.GetAxisRaw($"{m_playerNum}PJoystickHorizontal_R");
-        //上下矢印キーの値(-1.0f～1.0f)を取得する
-        m_vertical = Input.GetAxisRaw($"{m_playerNum}PJoystickVertical_R");
-
-        m_moveDirection = new Vector2(m_horizontal,m_vertical);
+            if(m_isInGame)
+            {
+                m_stickValue = Gamepad.current.rightStick.ReadValue();
+            }
+            else
+            {
+                m_stickValue = Gamepad.current.leftStick.ReadValue();
+            }
+            m_moveDirection = m_stickValue;
         //斜めの距離が長くなる√2倍になるのを防ぐ。
         m_moveDirection.Normalize();
         //移動方向に速度を掛ける(通常移動)

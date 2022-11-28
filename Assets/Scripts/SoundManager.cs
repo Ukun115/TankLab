@@ -12,9 +12,9 @@ namespace nsTankLab
         [SerializeField] AudioSource m_seAudioSource = null;
         [SerializeField] List<BGMSoundData> m_bgmSoundDatas = null;
         [SerializeField] List<SESoundData> m_seSoundDatas = null;
-        [SerializeField] float m_masterVolume = 1.0f;
-        [SerializeField] float m_bgmMasterVolume = 1.0f;
-        [SerializeField] float m_seMasterVolume = 1.0f;
+        float m_masterVolume = 1.0f;
+        float m_bgmMasterVolume = 1.0f;
+        float m_seMasterVolume = 1.0f;
         BGMSoundData m_bgmSoundData = null;
         SESoundData m_seSoundData = null;
 
@@ -22,6 +22,19 @@ namespace nsTankLab
         {
             //ÉQÅ[ÉÄãNìÆéûBGMÇçƒê∂Ç∑ÇÈ
             PlayBGM("OutGameSceneBGM");
+
+            if(PlayerPrefs.HasKey("MasterVolume"))
+            {
+                m_masterVolume = PlayerPrefs.GetFloat("MasterVolume");
+            }
+            if (PlayerPrefs.HasKey("BGMMasterVolume"))
+            {
+                m_bgmMasterVolume = PlayerPrefs.GetFloat("BGMMasterVolume");
+            }
+            if (PlayerPrefs.HasKey("SEMasterVolume"))
+            {
+                m_seMasterVolume = PlayerPrefs.GetFloat("SEMasterVolume");
+            }
         }
 
         //BGMçƒê∂èàóù
@@ -46,19 +59,34 @@ namespace nsTankLab
             m_bgmAudioSource.Stop();
         }
 
-        public void SetMasterVolume(int newMasterVolume)
+        public float GetSetMasterVolume
         {
-            m_masterVolume = newMasterVolume;
+            get { return m_masterVolume; }
+            set
+            {
+                m_masterVolume = value;
+                PlayerPrefs.SetFloat("MasterVolume", value);
+            }
         }
 
-        public void SetBGMMasterVolume(int newBGMMasterVolume)
+        public float GetSetBGMMasterVolume
         {
-            m_bgmMasterVolume = newBGMMasterVolume;
+            get { return m_bgmMasterVolume; }
+            set
+            {
+                m_bgmMasterVolume = value;
+                PlayerPrefs.SetFloat("BGMMasterVolume", value);
+            }
         }
 
-        public void SetSEMasterVolume(int newSEMasterVolume)
+        public float GetSetSEMasterVolume
         {
-            m_seMasterVolume = newSEMasterVolume;
+            get { return m_seMasterVolume; }
+            set
+            {
+                m_seMasterVolume = value;
+                PlayerPrefs.SetFloat("SEMasterVolume", value);
+            }
         }
     }
 

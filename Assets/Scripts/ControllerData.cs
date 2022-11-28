@@ -1,4 +1,5 @@
 using System.Linq;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 /// <summary>
@@ -8,53 +9,54 @@ namespace nsTankLab
 {
     public class ControllerData : MonoBehaviour
     {
-        string[] controllerNames = {string.Empty};
+        int m_controllerNum = 0;
+
+        [SerializeField, TooltipAttribute("マウスカーソル画像オブジェクト")] Texture2D m_mouseCursorTexture = null;
+
+        Vector2 m_hotSpot = Vector2.zero;
 
         void Start()
-    {
-                SearchConnectedController();
+        {
+            SearchConnectedController();
 
-                Debug.Log($"<color=yellow>接続されているコントローラー数:{controllerNames.Length}</color>");
+            Debug.Log($"<color=yellow>接続されているコントローラー数:{m_controllerNum}</color>");
         }
 
-    void Update()
-    {
-        SearchConnectedController();
-    }
-
-    void SearchConnectedController()
-    {
-        // 接続されているコントローラーの名前を調べる
-        controllerNames = Input.GetJoystickNames();
-
-        //一旦リストに変換
-        var list = controllerNames.ToList();
-
-        //空白の要素は排除しておく。
-        //どうやらコントローラーを抜き差ししていたら空白の要素が出てきてしまうバグがあるみたい...
-        list.RemoveAll(item => item == "");
-
-        //配列に変換
-        controllerNames = list.ToArray();
-    }
-
-    //プレイヤ―番号と一致するコントローラーが接続されているかどうか
-    public bool GetIsConnectedController(int playerNum)
-    {
-        if (controllerNames.Length > playerNum)
+        void Update()
         {
-            if (controllerNames[playerNum - 1] is not null)
+            SearchConnectedController();
+
+            if(Gamepad.current is not null)
             {
-                return true;
+                //マウスカーソルの画像を無くす。
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            }
+            else
+            {
+                //マウスカーソルの画像をレティクルにする
+                Cursor.SetCursor(m_mouseCursorTexture, new Vector2(64,64), CursorMode.Auto);
             }
         }
-        return false;
-    }
 
-    //接続されているコントローラー数
-    public int GetConnectedControllerNum()
-    {
-        return controllerNames.Length;
-    }
+        void SearchConnectedController()
+        {
+            // 接続されているコントローラー数を調べる
+            m_controllerNum = Gamepad.all.Count;
+        }
+
+        public Gamepad GetGamepad(int playerNum)
+        {
+            if(m_controllerNum < playerNum)
+            {
+                return null;
+            }
+
+            return Gamepad.all[playerNum];
+        }
+
+        public int GetConnectGamepad()
+        {
+            return m_controllerNum;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -30,6 +31,8 @@ public class BulletCollision : MonoBehaviour
         //バーチャルカメラ
         Cinemachine.CinemachineImpulseSource m_virtualCamera = null;
 
+        ControllerData m_controllerData = null;
+
     void Start()
     {
         m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
@@ -44,6 +47,8 @@ public class BulletCollision : MonoBehaviour
 
         //バーチャルカメラ
         m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
+
+            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
     }
 
     //衝突処理
@@ -181,6 +186,16 @@ public class BulletCollision : MonoBehaviour
 
             //カメラを振動させる
             m_virtualCamera.GenerateImpulse();
+
+            if (collision.gameObject.tag == "Player")
+            {
+                //ゲームパッドが接続されていたら、
+                if (Gamepad.current is not null)
+                {
+                    //撃破されたゲームパッドを振動させる
+                    Gamepad.current.SetMotorSpeeds(0.0f, 1.0f);
+                }
+            }
         }
 
     public void SetFireTankObject(GameObject tankObject)

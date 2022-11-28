@@ -47,7 +47,7 @@ public class DecideTank : MonoBehaviour
             m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
 
             // ゲームパッドが接続されていたらゲームパッドでの操作
-            if (m_controllerData.GetIsConnectedController(1))
+            if (m_controllerData.GetGamepad(1) is not null)
             {
                 m_playerCursor[0].SetActive(true);
             }
