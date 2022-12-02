@@ -6,18 +6,16 @@ namespace nsTankLab
     {
         [SerializeField, TooltipAttribute("Rigidbody")] Rigidbody m_rigidbody = null;
         [SerializeField, TooltipAttribute("爆発の当たり判定")] SphereCollider m_sphereCollider = null;
-        SoundManager m_soundManager = null;
-
         [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
-
         [SerializeField, TooltipAttribute("爆発エフェクトプレファブ")] GameObject m_explosionEffectPrefab = null;
+        [SerializeField, TooltipAttribute("爆弾のマテリアル")] Material[] m_bombMaterial = null;
+
+        SoundManager m_soundManager = null;
 
         GameObject m_dropPlayer = null;
 
         //点滅するかどうか
         bool m_isFlashing = false;
-
-        [SerializeField, TooltipAttribute("爆弾のマテリアル")] Material[] m_bombMaterial = null;
 
         Renderer m_renderer = null;
 
@@ -31,11 +29,8 @@ namespace nsTankLab
             Invoke(nameof(ActiveFlashing), 3.5f);
             Invoke(nameof(ActiveCollision), 5.0f);
 
-            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
-            m_renderer = GetComponent<Renderer>();
-
-            //バーチャルカメラ
-            m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
+            //コンポーネント取得まとめ
+            GetComponents();
         }
 
         void Update()
@@ -134,6 +129,15 @@ namespace nsTankLab
 
             //爆発に巻き込まれたプレイヤーを消滅させる
             Destroy(other.gameObject);
+        }
+
+        //コンポーネント取得
+        void GetComponents()
+        {
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+            m_renderer = GetComponent<Renderer>();
+            //バーチャルカメラ
+            m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
         }
     }
 }

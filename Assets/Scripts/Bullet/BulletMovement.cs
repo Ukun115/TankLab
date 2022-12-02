@@ -6,48 +6,47 @@ using System.Text.RegularExpressions;
 /// </summary>
 namespace nsTankLab
 {
-public class BulletMovement : MonoBehaviour
-{
-    //剛体
-    Rigidbody m_rigidbody = null;
-
-    //発射したプレイヤー番号
-    int m_myPlayerNum = 0;
-
-    //弾が当たった物体の法線ベクトル
-    Vector3 m_objectNormalVector = Vector3.zero;
-    //跳ね返った後のベクトル
-    Vector3 m_afterReflectVector = Vector3.zero;
-
-    SaveData m_saveData = null;
-
-    [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
-
-    Vector3 m_debugLineDirection = Vector3.zero;
-
+    public class BulletMovement : MonoBehaviour
+    {
+        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
         [SerializeField, TooltipAttribute("煙エフェクト")] GameObject m_smokeEffectPrefab = null;
         [SerializeField, TooltipAttribute("弾メッシュ")] GameObject m_bulletMesh = null;
 
-        void Start()
-    {
-        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        //剛体
+        Rigidbody m_rigidbody = null;
 
-        //敵AIの弾じゃないときは実行
-        if (gameObject.name != "EnemyBullet")
+        //発射したプレイヤー番号
+        int m_myPlayerNum = 0;
+
+        //弾が当たった物体の法線ベクトル
+        Vector3 m_objectNormalVector = Vector3.zero;
+        //跳ね返った後のベクトル
+        Vector3 m_afterReflectVector = Vector3.zero;
+
+        SaveData m_saveData = null;
+
+        Vector3 m_debugLineDirection = Vector3.zero;
+
+
+        void Start()
         {
-            //発射したプレイヤー番号を取得
-            m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+            //コンポーネント取得まとめ
+            GetComponens();
+
+            //敵AIの弾じゃないときは実行
+            if (gameObject.name != "EnemyBullet")
+            {
+                //発射したプレイヤー番号を取得
+                m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+            }
+
+            AddForce();
         }
 
-        m_rigidbody = GetComponent<Rigidbody>();
-
-        AddForce();
-    }
-
-    void Update()
-    {
-        //Rayのデバック表示
-        Debug.DrawRay(transform.position, m_debugLineDirection * 5.0f, Color.red);
+        void Update()
+        {
+            //Rayのデバック表示
+            Debug.DrawRay(transform.position, m_debugLineDirection * 5.0f, Color.red);
         }
 
         void FixedUpdate()
@@ -63,27 +62,27 @@ public class BulletMovement : MonoBehaviour
         }
 
         void OnCollisionEnter(Collision collision)
-    {
-        //あたった物体の法線ベクトルを取得
-        m_objectNormalVector = collision.contacts[0].normal;
-        Vector3 reflectVector = Vector3.Reflect(m_afterReflectVector, m_objectNormalVector);
+        {
+            //あたった物体の法線ベクトルを取得
+            m_objectNormalVector = collision.contacts[0].normal;
+            Vector3 reflectVector = Vector3.Reflect(m_afterReflectVector, m_objectNormalVector);
 
-        //計算した反射ベクトルを保存
-        m_afterReflectVector = reflectVector;
-        m_rigidbody.AddForce(
-            m_afterReflectVector.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
-            0.0f,
-            m_afterReflectVector.z * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
-            ForceMode.VelocityChange
+            //計算した反射ベクトルを保存
+            m_afterReflectVector = reflectVector;
+            m_rigidbody.AddForce(
+                m_afterReflectVector.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
+                0.0f,
+                m_afterReflectVector.z * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
+                ForceMode.VelocityChange
             );
 
-        m_debugLineDirection = m_afterReflectVector;
+            m_debugLineDirection = m_afterReflectVector;
 
             //弾の煙の向きを壁反射後の向きに変更
             m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
             //メッシュの向きを壁反射後の向きに変更
             m_bulletMesh.transform.LookAt(transform.position - m_debugLineDirection);
-    }
+        }
 
         void AddForce()
         {
@@ -100,5 +99,12 @@ public class BulletMovement : MonoBehaviour
 
             m_debugLineDirection = transform.forward;
         }
-}
+
+        //コンポーネント取得
+        void GetComponens()
+        {
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_rigidbody = GetComponent<Rigidbody>();
+        }
+    }
 }

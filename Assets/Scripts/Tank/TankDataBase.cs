@@ -6,15 +6,15 @@ using UnityEngine;
 /// </summary>
 namespace nsTankLab
 {
-[CreateAssetMenu]
-public class TankDataBase : ScriptableObject
-{
-	[SerializeField,TooltipAttribute("タンクリスト")] List<TankStatus> m_tankLists = new List<TankStatus>();
-
-	//タンクリストを返す
-	public List<TankStatus> GetTankLists()
+	[CreateAssetMenu]
+	public class TankDataBase : ScriptableObject
 	{
-		return m_tankLists;
+		[SerializeField,TooltipAttribute("タンクリスト")] List<TankStatus> m_tankLists = new List<TankStatus>();
+
+		//タンクリストを返す
+		public List<TankStatus> GetTankLists()
+		{
+			return m_tankLists;
+		}
 	}
-}
 }

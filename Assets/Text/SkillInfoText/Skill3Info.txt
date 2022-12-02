@@ -1,1 +1,1 @@
-skill3
+Place a bomb. It explodes after a while.

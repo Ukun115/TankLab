@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -7,37 +6,37 @@ using TMPro;
 /// </summary>
 namespace nsTankLab
 {
-public class MatchingNowTextMove : MonoBehaviour
-{
-    //MatchingNow...のテキスト
-    TextMeshProUGUI m_matchingNowText = null;
-
-    //点表示間隔
-    const int INTERVAL = 60;
-
-    int m_timer = 0;
-
-    void Start()
+    public class MatchingNowTextMove : MonoBehaviour
     {
-        m_matchingNowText = GetComponent<TextMeshProUGUI>();
+        //MatchingNow...のテキスト
+        TextMeshProUGUI m_matchingNowText = null;
 
-        m_matchingNowText.text = "Matching Now.";
-    }
+        //点表示間隔
+        const int INTERVAL = 60;
 
-    void Update()
-    {
-        m_timer++;
+        int m_timer = 0;
 
-        if (m_timer > INTERVAL)
+        void Start()
         {
-            m_matchingNowText.text += ".";
-            if (m_matchingNowText.text == "Matching Now....")
-            {
-                m_matchingNowText.text = "Matching Now";
-            }
+            m_matchingNowText = GetComponent<TextMeshProUGUI>();
 
-            m_timer = 0;
+            m_matchingNowText.text = "Matching Now.";
+        }
+
+        void Update()
+        {
+            m_timer++;
+
+            if (m_timer > INTERVAL)
+            {
+                m_matchingNowText.text += ".";
+                if (m_matchingNowText.text == "Matching Now....")
+                {
+                    m_matchingNowText.text = "Matching Now";
+                }
+
+                m_timer = 0;
+            }
         }
     }
-}
 }

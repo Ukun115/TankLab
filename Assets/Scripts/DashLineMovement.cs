@@ -7,51 +7,58 @@ using System.Text.RegularExpressions;
 /// </summary>
 namespace nsTankLab
 {
-public class DashLineMovement : MonoBehaviour
-{
-    LineRenderer line = null;
-    Camera m_mainCamera = null;
-    Plane plane = new Plane();
-    float distance = 0.0f;
-    Vector3 rayTarget = Vector3.zero;
-    ControllerData m_controllerData = null;
-
-    Transform m_cursorPosition = null;
-
-    void Start()
+    public class DashLineMovement : MonoBehaviour
     {
-        m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
-        line = GetComponent<LineRenderer>();
+        LineRenderer line = null;
+        Camera m_mainCamera = null;
+        Plane plane = new Plane();
+        float distance = 0.0f;
+        Vector3 rayTarget = Vector3.zero;
+        ControllerData m_controllerData = null;
 
-        line.positionCount = 2;
-        m_mainCamera = Camera.main;
-        plane.SetNormalAndPosition(Vector3.up, new Vector3(transform.position.x, 4.0f, transform.position.z - 3));
+        Transform m_cursorPosition = null;
 
-    }
-
-    void Update()
-    {
-        // ゲームパッドが接続されていたらゲームパッドでの操作
-        if (Gamepad.current is not null)
+        void Start()
         {
-            if (m_cursorPosition is null)
+            //コンポーネント取得まとめ
+            GetComponents();
+
+            line.positionCount = 2;
+            m_mainCamera = Camera.main;
+            plane.SetNormalAndPosition(Vector3.up, new Vector3(transform.position.x, 4.0f, transform.position.z - 3));
+
+        }
+
+        void Update()
+        {
+            // ゲームパッドが接続されていたらゲームパッドでの操作
+            if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", ""))) is not null)
             {
-                m_cursorPosition = GameObject.Find(transform.root.name + "Cursor").GetComponent<Transform>();
+                if (m_cursorPosition is null)
+                {
+                    m_cursorPosition = GameObject.Find(transform.root.name + "Cursor").GetComponent<Transform>();
+                }
+                rayTarget = m_cursorPosition.position;
             }
-            rayTarget = m_cursorPosition.position;
-        }
-        else
-        {
-            rayTarget = Mouse.current.position.ReadValue();
+            else
+            {
+                rayTarget = Mouse.current.position.ReadValue();
+            }
+
+            var ray = m_mainCamera.ScreenPointToRay(rayTarget);
+            if (plane.Raycast(ray, out distance))
+            {
+                var lookPoint = ray.GetPoint(distance);
+                line.SetPosition(0, lookPoint);
+                line.SetPosition(1, new Vector3(transform.position.x, 4.0f, transform.position.z - 4.0f));
+            }
         }
 
-        var ray = m_mainCamera.ScreenPointToRay(rayTarget);
-        if (plane.Raycast(ray, out distance))
+        //コンポーネント取得
+        void GetComponents()
         {
-            var lookPoint = ray.GetPoint(distance);
-            line.SetPosition(0, lookPoint);
-            line.SetPosition(1, new Vector3(transform.position.x, 4.0f, transform.position.z - 4.0f));
+            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+            line = GetComponent<LineRenderer>();
         }
     }
-}
 }

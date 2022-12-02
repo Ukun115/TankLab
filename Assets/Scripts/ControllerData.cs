@@ -9,11 +9,9 @@ namespace nsTankLab
 {
     public class ControllerData : MonoBehaviour
     {
-        int m_controllerNum = 0;
-
         [SerializeField, TooltipAttribute("マウスカーソル画像オブジェクト")] Texture2D m_mouseCursorTexture = null;
 
-        Vector2 m_hotSpot = Vector2.zero;
+        int m_controllerNum = 0;
 
         void Start()
         {
@@ -40,8 +38,13 @@ namespace nsTankLab
 
         void SearchConnectedController()
         {
-            // 接続されているコントローラー数を調べる
-            m_controllerNum = Gamepad.all.Count;
+            if(m_controllerNum != Gamepad.all.Count)
+            {
+                Debug.Log($"接続されているコントローラー数 : {m_controllerNum}→{Gamepad.all.Count}");
+            }
+
+                // 接続されているコントローラー数を調べる
+                m_controllerNum = Gamepad.all.Count;
         }
 
         public Gamepad GetGamepad(int playerNum)
@@ -51,7 +54,7 @@ namespace nsTankLab
                 return null;
             }
 
-            return Gamepad.all[playerNum];
+            return Gamepad.all[playerNum-1];
         }
 
         public int GetConnectGamepad()

@@ -7,33 +7,32 @@ using UnityEngine.AI;
 /// </summary>
 namespace nsTankLab
 {
-//DefaultExecutionOrderに0より低い値(標準が0)を指定することで、他の処理よりも先に実行されている
-[DefaultExecutionOrder(-103)]
-public class BuildNavmesh : MonoBehaviour
-{
-	//ナビメッシュサーフェース
-	NavMeshSurface m_navMeshSurface = null;
-
-	//敵AIオブジェクト
-	[SerializeField] GameObject[] m_enemyObject = null;
-
-	void Awake()
+	//DefaultExecutionOrderに0より低い値(標準が0)を指定することで、他の処理よりも先に実行されている
+	[DefaultExecutionOrder(-103)]
+	public class BuildNavmesh : MonoBehaviour
 	{
-		//チャレンジモードのときのみナビメッシュとプレイヤーと敵AIを生成を実行する
-		if (SceneManager.GetActiveScene().name != "ChallengeGameScene")
-		{
-			return;
-		}
+		[SerializeField, TooltipAttribute("敵AIオブジェクト")] GameObject[] m_enemyObject = null;
 
-		//ナビメッシュを生成する。
-		m_navMeshSurface = GameObject.Find("Floor").GetComponent<NavMeshSurface>();
-		m_navMeshSurface.BuildNavMesh();
+		//ナビメッシュサーフェース
+		NavMeshSurface m_navMeshSurface = null;
 
-		//敵AIを生成する
-		for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
+		void Awake()
 		{
-			m_enemyObject[enemyNum].SetActive(true);
+			//チャレンジモードのときのみナビメッシュとプレイヤーと敵AIを生成を実行する
+			if (SceneManager.GetActiveScene().name != SceneName.ChallengeGameScene)
+			{
+				return;
+			}
+
+			//ナビメッシュを生成する。
+			m_navMeshSurface = GameObject.Find("Floor").GetComponent<NavMeshSurface>();
+			m_navMeshSurface.BuildNavMesh();
+
+			//敵AIを生成する
+			for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
+			{
+				m_enemyObject[enemyNum].SetActive(true);
+			}
 		}
 	}
-}
 }

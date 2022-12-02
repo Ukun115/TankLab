@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ConfigScene.unity
     guid: 697c5a7709d651f46a0e9c28450ddaf2
   - enabled: 1
-    path: Assets/Scenes/InputPasswordScene.unity
+    path: Assets/Scenes/DecidePasswordScene.unity
     guid: 1ca7010c98495084f9ff4175497ed19e
   - enabled: 1
     path: Assets/Scenes/SelectTankScene.unity

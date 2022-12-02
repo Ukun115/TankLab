@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using System.Text.RegularExpressions;
 
 namespace nsTankLab
 {
@@ -14,27 +14,19 @@ namespace nsTankLab
         [SerializeField] TextMeshProUGUI m_enemyNumText = null;
         [SerializeField] TextMeshProUGUI m_tankNumText = null;
         [SerializeField] TextMeshProUGUI m_skillNumText = null;
-
         [SerializeField] GameObject m_backButtonText = null;
         [SerializeField] GameObject m_backButtonObject = null;
         [SerializeField] RectTransform m_goButtonText = null;
         [SerializeField] GameObject m_goButtonObject = null;
+        [SerializeField] List<StageData> m_stageData = null;
+        [SerializeField] TextMeshProUGUI m_playerNameText = null;
+        [SerializeField, TooltipAttribute("タンク説明文テキスト")] TextMeshProUGUI m_tankInfoText = null;
+        [SerializeField, TooltipAttribute("スキル説明文テキスト")] TextMeshProUGUI m_skillInfoText = null;
+        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+        [SerializeField, TooltipAttribute("読む込むスキル説明テキストが書き込まれている.txtファイル")] TextAsset[] m_skillTextAsset = { null };
 
         SaveData m_saveData = null;
 
-        [SerializeField] List<StageData> m_stageData = null;
-
-        [SerializeField] TextMeshProUGUI m_playerNameText = null;
-
-        //タンク説明文テキスト
-        [SerializeField] TextMeshProUGUI m_tankInfoText = null;
-        //スキル説明文テキスト
-        [SerializeField] TextMeshProUGUI m_skillInfoText = null;
-
-        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
-
-        //読む込むスキル説明テキストが書き込まれている.txtファイル
-        [SerializeField]TextAsset[] m_skillTextAsset = { null };
 
         void Start()
         {
@@ -69,7 +61,7 @@ namespace nsTankLab
             //タンク説明文テキスト更新
             m_tankInfoText.text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
             //スキル説明文テキスト更新
-            m_skillInfoText.text = $"Info :\n{ m_skillTextAsset[m_saveData.GetSelectSkillNum(0)].text}";
+            m_skillInfoText.text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType(), @"[^0-9]", ""))-1].text}";
         }
     }
 

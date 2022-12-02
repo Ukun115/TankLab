@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 32850781}
   - component: {fileID: 32850780}
   m_Layer: 0
-  m_Name: Wall (26)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 36142781}
   - component: {fileID: 36142780}
   m_Layer: 0
-  m_Name: Wall (77)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 78389309}
   - component: {fileID: 78389308}
   m_Layer: 0
-  m_Name: Wall (6)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 134712927}
   - component: {fileID: 134712926}
   m_Layer: 0
-  m_Name: Wall (10)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 135064062}
   - component: {fileID: 135064061}
   m_Layer: 0
-  m_Name: Wall (86)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 151639001}
   - component: {fileID: 151639000}
   m_Layer: 0
-  m_Name: WallCollision_2
+  m_Name: WallCollision
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -581,7 +581,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &153264636
 GameObject:
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 153264640}
   - component: {fileID: 153264639}
   m_Layer: 0
-  m_Name: Wall (102)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 156383626}
   - component: {fileID: 156383625}
   m_Layer: 0
-  m_Name: Wall (88)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 157957167}
   - component: {fileID: 157957166}
   m_Layer: 0
-  m_Name: Wall (54)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 173748378}
   - component: {fileID: 173748377}
   m_Layer: 0
-  m_Name: Wall (56)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 174478725}
   - component: {fileID: 174478724}
   m_Layer: 0
-  m_Name: Wall (36)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 203775572}
   - component: {fileID: 203775571}
   m_Layer: 0
-  m_Name: Wall (43)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1093,7 +1093,7 @@ GameObject:
   - component: {fileID: 246791420}
   - component: {fileID: 246791419}
   m_Layer: 0
-  m_Name: Wall (32)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1176,7 +1176,7 @@ GameObject:
   - component: {fileID: 286154969}
   - component: {fileID: 286154968}
   m_Layer: 0
-  m_Name: Wall (72)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1259,7 +1259,7 @@ GameObject:
   - component: {fileID: 305621938}
   - component: {fileID: 305621937}
   m_Layer: 0
-  m_Name: Wall (79)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 321346681}
   - component: {fileID: 321346680}
   m_Layer: 0
-  m_Name: Wall (8)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1543,7 +1543,7 @@ GameObject:
   - component: {fileID: 334401965}
   - component: {fileID: 334401964}
   m_Layer: 0
-  m_Name: Wall (81)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1657,7 +1657,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340529781
 GameObject:
@@ -1671,7 +1671,7 @@ GameObject:
   - component: {fileID: 340529785}
   - component: {fileID: 340529784}
   m_Layer: 0
-  m_Name: Wall (73)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 374236901}
   - component: {fileID: 374236900}
   m_Layer: 0
-  m_Name: Wall (46)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -1952,7 +1952,7 @@ GameObject:
   - component: {fileID: 410655859}
   - component: {fileID: 410655858}
   m_Layer: 0
-  m_Name: Wall (58)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2035,7 +2035,7 @@ GameObject:
   - component: {fileID: 433280922}
   - component: {fileID: 433280921}
   m_Layer: 0
-  m_Name: Wall (87)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2118,7 +2118,7 @@ GameObject:
   - component: {fileID: 486725976}
   - component: {fileID: 486725975}
   m_Layer: 0
-  m_Name: Wall (23)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2201,7 +2201,7 @@ GameObject:
   - component: {fileID: 515943847}
   - component: {fileID: 515943846}
   m_Layer: 0
-  m_Name: Wall (41)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2272,6 +2272,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515943843}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &516969483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516969484}
+  m_Layer: 0
+  m_Name: BrokenWalls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &516969484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516969483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 945113682}
+  - {fileID: 1445388810}
+  m_Father: {fileID: 624337574}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572321199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2316,7 @@ GameObject:
   - component: {fileID: 572321201}
   - component: {fileID: 572321200}
   m_Layer: 0
-  m_Name: WallCollision_3
+  m_Name: WallCollision
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2315,7 +2348,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583264938
 GameObject:
@@ -2412,7 +2445,7 @@ GameObject:
   - component: {fileID: 585633915}
   - component: {fileID: 585633914}
   m_Layer: 0
-  m_Name: Wall (42)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2495,7 +2528,7 @@ GameObject:
   - component: {fileID: 616204189}
   - component: {fileID: 616204188}
   m_Layer: 0
-  m_Name: Wall (31)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2594,8 +2627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 945113682}
-  - {fileID: 1445388810}
+  - {fileID: 516969484}
   - {fileID: 1011439207}
   - {fileID: 2101833311}
   m_Father: {fileID: 0}
@@ -2613,7 +2645,7 @@ GameObject:
   - component: {fileID: 625649702}
   - component: {fileID: 625649701}
   m_Layer: 0
-  m_Name: Wall (99)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2696,7 +2728,7 @@ GameObject:
   - component: {fileID: 638283988}
   - component: {fileID: 638283987}
   m_Layer: 0
-  m_Name: Wall (57)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2779,7 +2811,7 @@ GameObject:
   - component: {fileID: 642751917}
   - component: {fileID: 642751916}
   m_Layer: 0
-  m_Name: Wall (71)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2862,7 +2894,7 @@ GameObject:
   - component: {fileID: 648120558}
   - component: {fileID: 648120557}
   m_Layer: 0
-  m_Name: Wall (68)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2945,7 +2977,7 @@ GameObject:
   - component: {fileID: 664146343}
   - component: {fileID: 664146342}
   m_Layer: 0
-  m_Name: Wall (52)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3028,7 +3060,7 @@ GameObject:
   - component: {fileID: 693945159}
   - component: {fileID: 693945158}
   m_Layer: 0
-  m_Name: Wall (62)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3111,7 +3143,7 @@ GameObject:
   - component: {fileID: 725502958}
   - component: {fileID: 725502957}
   m_Layer: 0
-  m_Name: Wall (24)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3194,7 +3226,7 @@ GameObject:
   - component: {fileID: 728227205}
   - component: {fileID: 728227204}
   m_Layer: 0
-  m_Name: Wall (39)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3277,7 +3309,7 @@ GameObject:
   - component: {fileID: 730476295}
   - component: {fileID: 730476294}
   m_Layer: 0
-  m_Name: Wall (92)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3360,7 +3392,7 @@ GameObject:
   - component: {fileID: 739728711}
   - component: {fileID: 739728710}
   m_Layer: 0
-  m_Name: Wall (98)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3443,7 +3475,7 @@ GameObject:
   - component: {fileID: 765944786}
   - component: {fileID: 765944785}
   m_Layer: 0
-  m_Name: Wall (74)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3526,7 +3558,7 @@ GameObject:
   - component: {fileID: 811611073}
   - component: {fileID: 811611072}
   m_Layer: 0
-  m_Name: Wall (70)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3609,7 +3641,7 @@ GameObject:
   - component: {fileID: 812451133}
   - component: {fileID: 812451132}
   m_Layer: 0
-  m_Name: Wall (7)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3741,7 +3773,7 @@ GameObject:
   - component: {fileID: 843583830}
   - component: {fileID: 843583829}
   m_Layer: 0
-  m_Name: Wall (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3824,7 +3856,7 @@ GameObject:
   - component: {fileID: 918990378}
   - component: {fileID: 918990377}
   m_Layer: 0
-  m_Name: Wall (22)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3907,7 +3939,7 @@ GameObject:
   - component: {fileID: 929049944}
   - component: {fileID: 929049943}
   m_Layer: 0
-  m_Name: Wall (27)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -3990,7 +4022,7 @@ GameObject:
   - component: {fileID: 934582962}
   - component: {fileID: 934582961}
   m_Layer: 0
-  m_Name: Wall (21)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4066,7 +4098,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 624337574}
+    m_TransformParent: {fileID: 516969484}
     m_Modifications:
     - target: {fileID: 609433614078546954, guid: 7ddf0e03ec066bd418594e7a658b227a,
         type: 3}
@@ -4126,7 +4158,7 @@ PrefabInstance:
     - target: {fileID: 609433614078546955, guid: 7ddf0e03ec066bd418594e7a658b227a,
         type: 3}
       propertyPath: m_Name
-      value: BrokenWall_1
+      value: BrokenWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ddf0e03ec066bd418594e7a658b227a, type: 3}
@@ -4148,7 +4180,7 @@ GameObject:
   - component: {fileID: 947558315}
   - component: {fileID: 947558314}
   m_Layer: 0
-  m_Name: Wall (51)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4347,7 +4379,7 @@ Transform:
   - {fileID: 2016247699}
   - {fileID: 153264637}
   m_Father: {fileID: 624337574}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018279593
 GameObject:
@@ -4361,7 +4393,7 @@ GameObject:
   - component: {fileID: 1018279597}
   - component: {fileID: 1018279596}
   m_Layer: 0
-  m_Name: Wall (5)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4444,7 +4476,7 @@ GameObject:
   - component: {fileID: 1026781435}
   - component: {fileID: 1026781434}
   m_Layer: 0
-  m_Name: Wall (47)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4573,7 +4605,7 @@ GameObject:
   - component: {fileID: 1082247716}
   - component: {fileID: 1082247715}
   m_Layer: 0
-  m_Name: Wall (89)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4656,7 +4688,7 @@ GameObject:
   - component: {fileID: 1094437131}
   - component: {fileID: 1094437130}
   m_Layer: 0
-  m_Name: Wall (55)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4739,7 +4771,7 @@ GameObject:
   - component: {fileID: 1122271397}
   - component: {fileID: 1122271396}
   m_Layer: 0
-  m_Name: Wall (4)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4822,7 +4854,7 @@ GameObject:
   - component: {fileID: 1129066239}
   - component: {fileID: 1129066238}
   m_Layer: 0
-  m_Name: Wall (33)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4905,7 +4937,7 @@ GameObject:
   - component: {fileID: 1145782402}
   - component: {fileID: 1145782401}
   m_Layer: 0
-  m_Name: Wall (69)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -4988,7 +5020,7 @@ GameObject:
   - component: {fileID: 1153731359}
   - component: {fileID: 1153731358}
   m_Layer: 0
-  m_Name: Wall (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5071,7 +5103,7 @@ GameObject:
   - component: {fileID: 1175722152}
   - component: {fileID: 1175722151}
   m_Layer: 0
-  m_Name: Wall (49)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5154,7 +5186,7 @@ GameObject:
   - component: {fileID: 1184035349}
   - component: {fileID: 1184035348}
   m_Layer: 0
-  m_Name: Wall (85)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5237,7 +5269,7 @@ GameObject:
   - component: {fileID: 1207135333}
   - component: {fileID: 1207135332}
   m_Layer: 0
-  m_Name: Wall (93)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5320,7 +5352,7 @@ GameObject:
   - component: {fileID: 1240337206}
   - component: {fileID: 1240337205}
   m_Layer: 0
-  m_Name: Wall (38)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5403,7 +5435,7 @@ GameObject:
   - component: {fileID: 1245704197}
   - component: {fileID: 1245704196}
   m_Layer: 0
-  m_Name: Wall (63)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5486,7 +5518,7 @@ GameObject:
   - component: {fileID: 1256744425}
   - component: {fileID: 1256744424}
   m_Layer: 0
-  m_Name: Wall (82)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5569,7 +5601,7 @@ GameObject:
   - component: {fileID: 1284270013}
   - component: {fileID: 1284270012}
   m_Layer: 0
-  m_Name: Wall (40)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5652,7 +5684,7 @@ GameObject:
   - component: {fileID: 1293275827}
   - component: {fileID: 1293275826}
   m_Layer: 0
-  m_Name: Wall (66)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5735,7 +5767,7 @@ GameObject:
   - component: {fileID: 1364618782}
   - component: {fileID: 1364618781}
   m_Layer: 0
-  m_Name: Wall (34)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5818,7 +5850,7 @@ GameObject:
   - component: {fileID: 1368916688}
   - component: {fileID: 1368916687}
   m_Layer: 0
-  m_Name: Wall (48)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5901,7 +5933,7 @@ GameObject:
   - component: {fileID: 1390923334}
   - component: {fileID: 1390923333}
   m_Layer: 0
-  m_Name: Wall (96)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5984,7 +6016,7 @@ GameObject:
   - component: {fileID: 1396908999}
   - component: {fileID: 1396908998}
   m_Layer: 0
-  m_Name: Wall (65)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6067,7 +6099,7 @@ GameObject:
   - component: {fileID: 1400340712}
   - component: {fileID: 1400340711}
   m_Layer: 0
-  m_Name: Wall (12)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6150,7 +6182,7 @@ GameObject:
   - component: {fileID: 1430610130}
   - component: {fileID: 1430610129}
   m_Layer: 0
-  m_Name: Wall (3)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6226,7 +6258,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 624337574}
+    m_TransformParent: {fileID: 516969484}
     m_Modifications:
     - target: {fileID: 609433614078546954, guid: 7ddf0e03ec066bd418594e7a658b227a,
         type: 3}
@@ -6286,7 +6318,7 @@ PrefabInstance:
     - target: {fileID: 609433614078546955, guid: 7ddf0e03ec066bd418594e7a658b227a,
         type: 3}
       propertyPath: m_Name
-      value: BrokenWall_2
+      value: BrokenWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ddf0e03ec066bd418594e7a658b227a, type: 3}
@@ -6308,7 +6340,7 @@ GameObject:
   - component: {fileID: 1446787400}
   - component: {fileID: 1446787399}
   m_Layer: 0
-  m_Name: Wall (75)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6391,7 +6423,7 @@ GameObject:
   - component: {fileID: 1475582733}
   - component: {fileID: 1475582732}
   m_Layer: 0
-  m_Name: Wall (59)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6474,7 +6506,7 @@ GameObject:
   - component: {fileID: 1500795580}
   - component: {fileID: 1500795579}
   m_Layer: 0
-  m_Name: Wall (83)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6557,7 +6589,7 @@ GameObject:
   - component: {fileID: 1539004677}
   - component: {fileID: 1539004676}
   m_Layer: 0
-  m_Name: Wall (25)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6640,7 +6672,7 @@ GameObject:
   - component: {fileID: 1550646111}
   - component: {fileID: 1550646110}
   m_Layer: 0
-  m_Name: Wall (97)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6723,7 +6755,7 @@ GameObject:
   - component: {fileID: 1577534377}
   - component: {fileID: 1577534376}
   m_Layer: 0
-  m_Name: Wall (14)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6806,7 +6838,7 @@ GameObject:
   - component: {fileID: 1578397008}
   - component: {fileID: 1578397007}
   m_Layer: 0
-  m_Name: Wall (84)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6889,7 +6921,7 @@ GameObject:
   - component: {fileID: 1610638287}
   - component: {fileID: 1610638286}
   m_Layer: 0
-  m_Name: Wall (90)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -6972,7 +7004,7 @@ GameObject:
   - component: {fileID: 1613328363}
   - component: {fileID: 1613328362}
   m_Layer: 0
-  m_Name: Wall (50)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7055,7 +7087,7 @@ GameObject:
   - component: {fileID: 1652146371}
   - component: {fileID: 1652146370}
   m_Layer: 0
-  m_Name: Wall (60)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7138,7 +7170,7 @@ GameObject:
   - component: {fileID: 1664848205}
   - component: {fileID: 1664848204}
   m_Layer: 0
-  m_Name: Wall (15)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7221,7 +7253,7 @@ GameObject:
   - component: {fileID: 1665900692}
   - component: {fileID: 1665900691}
   m_Layer: 0
-  m_Name: Wall (61)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7303,7 +7335,7 @@ GameObject:
   - component: {fileID: 1680699885}
   - component: {fileID: 1680699886}
   m_Layer: 0
-  m_Name: WallCollision_4
+  m_Name: WallCollision
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7322,7 +7354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1680699886
 BoxCollider:
@@ -7349,7 +7381,7 @@ GameObject:
   - component: {fileID: 1685198654}
   - component: {fileID: 1685198653}
   m_Layer: 0
-  m_Name: Wall (13)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7628,7 +7660,7 @@ GameObject:
   - component: {fileID: 1705236609}
   - component: {fileID: 1705236608}
   m_Layer: 0
-  m_Name: Wall (78)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7711,7 +7743,7 @@ GameObject:
   - component: {fileID: 1708087897}
   - component: {fileID: 1708087896}
   m_Layer: 0
-  m_Name: Wall (19)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7794,7 +7826,7 @@ GameObject:
   - component: {fileID: 1727758168}
   - component: {fileID: 1727758167}
   m_Layer: 0
-  m_Name: Wall (18)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7877,7 +7909,7 @@ GameObject:
   - component: {fileID: 1759010732}
   - component: {fileID: 1759010731}
   m_Layer: 0
-  m_Name: Wall (35)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -7960,7 +7992,7 @@ GameObject:
   - component: {fileID: 1779778502}
   - component: {fileID: 1779778501}
   m_Layer: 0
-  m_Name: Wall (95)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8043,7 +8075,7 @@ GameObject:
   - component: {fileID: 1786967299}
   - component: {fileID: 1786967298}
   m_Layer: 0
-  m_Name: Wall (80)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8126,7 +8158,7 @@ GameObject:
   - component: {fileID: 1807835879}
   - component: {fileID: 1807835878}
   m_Layer: 0
-  m_Name: Wall (91)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8209,7 +8241,7 @@ GameObject:
   - component: {fileID: 1813795651}
   - component: {fileID: 1813795650}
   m_Layer: 0
-  m_Name: Wall (37)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8292,7 +8324,7 @@ GameObject:
   - component: {fileID: 1814124478}
   - component: {fileID: 1814124477}
   m_Layer: 0
-  m_Name: Wall (44)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8375,7 +8407,7 @@ GameObject:
   - component: {fileID: 1819927070}
   - component: {fileID: 1819927069}
   m_Layer: 0
-  m_Name: Wall (11)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8458,7 +8490,7 @@ GameObject:
   - component: {fileID: 1854731949}
   - component: {fileID: 1854731948}
   m_Layer: 0
-  m_Name: Wall (20)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8541,7 +8573,7 @@ GameObject:
   - component: {fileID: 1887018424}
   - component: {fileID: 1887018423}
   m_Layer: 0
-  m_Name: Wall (45)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8623,7 +8655,7 @@ GameObject:
   - component: {fileID: 1955109757}
   - component: {fileID: 1955109758}
   m_Layer: 0
-  m_Name: WallCollision_5
+  m_Name: WallCollision
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8642,7 +8674,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1955109758
 BoxCollider:
@@ -8669,7 +8701,7 @@ GameObject:
   - component: {fileID: 1956270122}
   - component: {fileID: 1956270121}
   m_Layer: 0
-  m_Name: Wall (53)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8752,7 +8784,7 @@ GameObject:
   - component: {fileID: 1971972307}
   - component: {fileID: 1971972306}
   m_Layer: 0
-  m_Name: Wall (17)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8835,7 +8867,7 @@ GameObject:
   - component: {fileID: 2016247702}
   - component: {fileID: 2016247701}
   m_Layer: 0
-  m_Name: Wall (101)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -8918,7 +8950,7 @@ GameObject:
   - component: {fileID: 2031032221}
   - component: {fileID: 2031032220}
   m_Layer: 0
-  m_Name: Wall (64)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -9196,7 +9228,7 @@ GameObject:
   - component: {fileID: 2073824850}
   - component: {fileID: 2073824849}
   m_Layer: 0
-  m_Name: WallCollision_1
+  m_Name: WallCollision
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9228,7 +9260,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101833311}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084139369
 GameObject:
@@ -9242,7 +9274,7 @@ GameObject:
   - component: {fileID: 2084139373}
   - component: {fileID: 2084139372}
   m_Layer: 0
-  m_Name: Wall (16)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -9325,7 +9357,7 @@ GameObject:
   - component: {fileID: 2086267718}
   - component: {fileID: 2086267717}
   m_Layer: 0
-  m_Name: Wall (67)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -9408,7 +9440,7 @@ GameObject:
   - component: {fileID: 2092471210}
   - component: {fileID: 2092471209}
   m_Layer: 0
-  m_Name: Wall (9)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -9491,7 +9523,7 @@ GameObject:
   - component: {fileID: 2097079946}
   - component: {fileID: 2097079945}
   m_Layer: 0
-  m_Name: Wall (94)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -9590,14 +9622,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 336454796}
   - {fileID: 2073824850}
   - {fileID: 151639001}
   - {fileID: 572321201}
   - {fileID: 1680699885}
   - {fileID: 1955109757}
+  - {fileID: 336454796}
   m_Father: {fileID: 624337574}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147440398
 GameObject:
@@ -9611,7 +9643,7 @@ GameObject:
   - component: {fileID: 2147440402}
   - component: {fileID: 2147440401}
   m_Layer: 0
-  m_Name: Wall (76)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1

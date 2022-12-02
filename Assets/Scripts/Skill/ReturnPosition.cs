@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 
 /// <summary>
 /// 元の位置に戻るスキルの処理
@@ -16,11 +18,20 @@ namespace nsTankLab
 		bool m_skillFlg = true;
 		bool m_isPressedButton = false;
 
+		int m_playerNum = 0;
+
+		ControllerData m_controllerData = null;
+
 		void Start()
 		{
-			m_playerMovement = GetComponent<PlayerMovement>();
+			//コンポーネント取得まとめ
+			GetComponents();
+
 			m_playerPosition = new Queue<Vector3>();
 			m_returnPosition = m_playerMovement.GetSetPlayerPosition;
+
+
+			m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", ""));
 		}
 
 		void FixedUpdate()
@@ -35,9 +46,9 @@ namespace nsTankLab
 
 		void Update()
 		{
-			if (Gamepad.current is not null)
+			if (m_controllerData.GetGamepad(m_playerNum) is not null)
 			{
-				m_isPressedButton = Gamepad.current.leftShoulder.wasPressedThisFrame;
+				m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
 			}
 			else
 			{
@@ -57,5 +68,11 @@ namespace nsTankLab
 			m_skillFlg = true;
 		}
 
+		//コンポーネント取得
+		void GetComponents()
+        {
+			m_playerMovement = GetComponent<PlayerMovement>();
+			m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+		}
 	}
 }
