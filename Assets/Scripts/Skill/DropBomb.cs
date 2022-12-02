@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Text.RegularExpressions;
 
 namespace nsTankLab
 {
@@ -13,9 +14,16 @@ namespace nsTankLab
 
         bool m_isPressedButton = false;
 
+        int m_playerNum = 0;
+
+        ControllerData m_controllerData = null;
+
         void Start()
         {
-            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+            //コンポーネント取得まとめ
+            GetComponents();
+
+            m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", ""));
         }
 
         void Update()
@@ -25,9 +33,9 @@ namespace nsTankLab
                 m_timer--;
             }
 
-            if (Gamepad.current is not null)
+            if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
-                m_isPressedButton = Gamepad.current.leftShoulder.wasPressedThisFrame;
+                m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
             }
             else
             {
@@ -48,11 +56,18 @@ namespace nsTankLab
         void BombInstantiate()
         {
             GameObject m_bulletObject = Instantiate(
-                        Resources.Load("Bomb") as GameObject,
-                        new Vector3(transform.position.x,-0.4f, transform.position.z),
-                        transform.rotation
-                        );
+                Resources.Load("Bomb") as GameObject,
+                new Vector3(transform.position.x,-0.4f, transform.position.z),
+                transform.rotation
+            );
             m_bulletObject.GetComponent<ExplosionBomb>().SetDropPlayer(gameObject);
+        }
+
+        //コンポーネント取得
+        void GetComponents()
+        {
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
         }
 
     }

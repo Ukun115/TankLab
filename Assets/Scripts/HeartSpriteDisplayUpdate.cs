@@ -8,11 +8,11 @@ namespace nsTankLab
     /// </summary>
     public class HeartSpriteDisplayUpdate : MonoBehaviour
     {
-        SaveData m_saveData = null;
-
         [SerializeField] Image[] m_heartImage = { null };
         [SerializeField] Sprite m_heartAvailableSprite = null;
         [SerializeField] Sprite m_heartNotAvailableSprite = null;
+
+        SaveData m_saveData = null;
 
         void Start()
         {

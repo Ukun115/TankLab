@@ -12,9 +12,10 @@ namespace nsTankLab
         [SerializeField] AudioSource m_seAudioSource = null;
         [SerializeField] List<BGMSoundData> m_bgmSoundDatas = null;
         [SerializeField] List<SESoundData> m_seSoundDatas = null;
-        float m_masterVolume = 1.0f;
-        float m_bgmMasterVolume = 1.0f;
-        float m_seMasterVolume = 1.0f;
+
+        float m_masterVolume = 0.5f;
+        float m_bgmMasterVolume = 0.5f;
+        float m_seMasterVolume = 0.5f;
         BGMSoundData m_bgmSoundData = null;
         SESoundData m_seSoundData = null;
 
@@ -27,13 +28,25 @@ namespace nsTankLab
             {
                 m_masterVolume = PlayerPrefs.GetFloat("MasterVolume");
             }
+            else
+            {
+                PlayerPrefs.SetFloat("MasterVolume", m_masterVolume);
+            }
             if (PlayerPrefs.HasKey("BGMMasterVolume"))
             {
                 m_bgmMasterVolume = PlayerPrefs.GetFloat("BGMMasterVolume");
             }
+            else
+            {
+                PlayerPrefs.SetFloat("BGMMasterVolume", m_bgmMasterVolume);
+            }
             if (PlayerPrefs.HasKey("SEMasterVolume"))
             {
                 m_seMasterVolume = PlayerPrefs.GetFloat("SEMasterVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("SEMasterVolume", m_seMasterVolume);
             }
         }
 
@@ -65,6 +78,7 @@ namespace nsTankLab
             set
             {
                 m_masterVolume = value;
+                m_bgmAudioSource.volume = m_bgmSoundData.GetVolume() * m_bgmMasterVolume * m_masterVolume;
                 PlayerPrefs.SetFloat("MasterVolume", value);
             }
         }
@@ -75,6 +89,7 @@ namespace nsTankLab
             set
             {
                 m_bgmMasterVolume = value;
+                m_bgmAudioSource.volume = m_bgmSoundData.GetVolume() * m_bgmMasterVolume * m_masterVolume;
                 PlayerPrefs.SetFloat("BGMMasterVolume", value);
             }
         }

@@ -6,11 +6,11 @@ using TMPro;
 /// </summary>
 namespace nsTankLab
 {
-public class PasswordTextDisplay : MonoBehaviour
-{
-    void Start()
+    public class PasswordTextDisplay : MonoBehaviour
     {
-        GetComponent<TextMeshProUGUI>().text = $"PassWord:{GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword}";
+        void Start()
+        {
+            GetComponent<TextMeshProUGUI>().text = $"PassWord:{GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword}";
+        }
     }
-}
 }

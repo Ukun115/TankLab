@@ -567,52 +567,58 @@ MonoBehaviour:
   m_bgmSoundDatas:
   - m_bgmName: OutGameSceneBGM
     m_audioClip: {fileID: 8300000, guid: 75b911a88766cc44cb45790e00f4ac25, type: 3}
-    m_volume: 1
+    m_volume: 0.4
   - m_bgmName: GameSceneBGM01
     m_audioClip: {fileID: 8300000, guid: 9e8346636d73a274994420fc36bc15d2, type: 3}
-    m_volume: 1
-  - m_bgmName: GameSceneBGM2
+    m_volume: 0.4
+  - m_bgmName: GameSceneBGM02
     m_audioClip: {fileID: 8300000, guid: b42dcc77285ba684598e415ab191ff8a, type: 3}
-    m_volume: 1
+    m_volume: 0.4
   m_seSoundDatas:
   - m_seName: BulletRefrectionSE
     m_audioClip: {fileID: 8300000, guid: 37471056673dc464f933baec4ca1bbed, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: CountDownSE
     m_audioClip: {fileID: 8300000, guid: 7a43e73ccb73b8b4c97593e8e9bcaadf, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: DeathSE
     m_audioClip: {fileID: 8300000, guid: a0eb69767ddfb4c43afaa972f73e3834, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: FireSE
     m_audioClip: {fileID: 8300000, guid: 2f38ee546741b4f418ec45d8067bcfb3, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: RocketLauncherSE
     m_audioClip: {fileID: 8300000, guid: 67a3e927d10fc8e46a7baec5f611f9a2, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: SelectSE
     m_audioClip: {fileID: 8300000, guid: 22dc8a671094f344e89b54e8e807bdd2, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: StatusUpSE
     m_audioClip: {fileID: 8300000, guid: 8272b29f99f4fda4eb0727c547e47894, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: WinSE
     m_audioClip: {fileID: 8300000, guid: 1512268f3a59230418d44e90daacfd1c, type: 3}
     m_volume: 1
   - m_seName: CursorHitSE
     m_audioClip: {fileID: 8300000, guid: 16b5250938ff6ca4bb4be71c4dd2ee06, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: NoGoodSE
     m_audioClip: {fileID: 8300000, guid: 63f529d1c6580c2418fbe75da40ab7e9, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: BulletDestroySE
     m_audioClip: {fileID: 8300000, guid: e14b27a3cd174b74d8c3eb044157aac7, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: DropBombSE
     m_audioClip: {fileID: 8300000, guid: 7b3379e0bfcbaea4188f0c12d132b603, type: 3}
-    m_volume: 1
+    m_volume: 0.5
   - m_seName: BombExplosionSE
     m_audioClip: {fileID: 8300000, guid: 60f1b8751ec314d458a58bbd5accf54c, type: 3}
+    m_volume: 0.5
+  - m_seName: AccelerationSE
+    m_audioClip: {fileID: 8300000, guid: 4c54d9f3d9cd53c46b6ecc83077e68b8, type: 3}
+    m_volume: 0.5
+  - m_seName: LoseSE
+    m_audioClip: {fileID: 8300000, guid: e9d95ecf0eb69b349aa2b831ce92c282, type: 3}
     m_volume: 1
 --- !u!82 &66569132
 AudioSource:

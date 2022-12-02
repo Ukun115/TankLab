@@ -6,9 +6,9 @@ namespace nsTankLab
 {
     public class DecideVolume : MonoBehaviour
     {
-        SoundManager m_soundManager = null;
-
         [SerializeField]TextMeshProUGUI[] m_text = null;
+
+        SoundManager m_soundManager = null;
 
         void Start()
         {

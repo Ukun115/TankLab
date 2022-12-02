@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 2
-  m_buttonCharacter: LT
+  m_tankOrSkill: Tank
 --- !u!1 &7912822
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 4
-  m_buttonCharacter: LT
+  m_tankOrSkill: Tank
 --- !u!1 &243571313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 3
-  m_buttonCharacter: LT
+  m_tankOrSkill: Tank
 --- !u!1 &258921304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: InfoInfoInfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoifnofinofino
+  m_text: 'Info :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 4
-  m_buttonCharacter: RT
+  m_tankOrSkill: Skill
 --- !u!114 &363079134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 3
-  m_buttonCharacter: RT
+  m_tankOrSkill: Skill
 --- !u!114 &392954617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,8 +2284,6 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 1558687709}
   m_playerNum: 1
   m_cursorObject: {fileID: 1558687708}
-  m_mouseCursorTexture: {fileID: 2800000, guid: 610e9115630aa2841990da507aafb1d1,
-    type: 3}
 --- !u!114 &473405494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2301,8 +2299,6 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 1647175900}
   m_playerNum: 4
   m_cursorObject: {fileID: 1647175899}
-  m_mouseCursorTexture: {fileID: 2800000, guid: 610e9115630aa2841990da507aafb1d1,
-    type: 3}
 --- !u!114 &473405495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,8 +2314,6 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 1158917435}
   m_playerNum: 3
   m_cursorObject: {fileID: 1158917434}
-  m_mouseCursorTexture: {fileID: 2800000, guid: 610e9115630aa2841990da507aafb1d1,
-    type: 3}
 --- !u!114 &473405496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,8 +2329,6 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 2110067503}
   m_playerNum: 2
   m_cursorObject: {fileID: 2110067502}
-  m_mouseCursorTexture: {fileID: 2800000, guid: 610e9115630aa2841990da507aafb1d1,
-    type: 3}
 --- !u!114 &473405497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,7 +2469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 1
-  m_buttonCharacter: LT
+  m_tankOrSkill: Tank
 --- !u!1 &483933653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,7 +2708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tank
+  m_text: Tank or Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2803,6 +2795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 500480926}
   - component: {fileID: 500480925}
+  - component: {fileID: 500480927}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -2873,6 +2866,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500480927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500480924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d7697fa296fbb4eabcf61d839e0125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameObjects:
+  - {fileID: 812429446}
+  - {fileID: 900376238}
+  - {fileID: 2020228937}
+  - {fileID: 2110067502}
+  - {fileID: 1158917434}
+  - {fileID: 1647175899}
+  m_rayCast:
+  - {fileID: 473405496}
+  - {fileID: 473405495}
+  - {fileID: 473405494}
 --- !u!1 &554656593
 GameObject:
   m_ObjectHideFlags: 0
@@ -5158,7 +5174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tank
+  m_text: Tank or Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5255,7 +5271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1158917435
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5273,7 +5289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -225, y: -44.99997}
+  m_AnchoredPosition: {x: -171.7, y: -44.99997}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158917436
@@ -5433,7 +5449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tank
+  m_text: Tank or Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5646,7 +5662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: InfoInfoInfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoifnofinofino
+  m_text: 'Info :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -6198,7 +6214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 1
-  m_buttonCharacter: RT
+  m_tankOrSkill: Skill
 --- !u!114 &1249568051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7092,7 +7108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: InfoInfoInfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoifnofinofino
+  m_text: 'Info :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -7430,7 +7446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tank
+  m_text: Tank or Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -7729,7 +7745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1558687709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7747,7 +7763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -225, y: 139.99998}
+  m_AnchoredPosition: {x: -171.7, y: 139.99998}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558687710
@@ -7947,7 +7963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1647175900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7965,7 +7981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 374.99997, y: -44.99997}
+  m_AnchoredPosition: {x: 174.4, y: -44.99997}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647175901
@@ -8926,7 +8942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: InfoInfoInfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoifnofinofino
+  m_text: 'Info :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -9596,7 +9612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerNum: 2
-  m_buttonCharacter: RT
+  m_tankOrSkill: Skill
 --- !u!114 &2106235629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9655,7 +9671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2110067503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9673,7 +9689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 374.99997, y: 139.99998}
+  m_AnchoredPosition: {x: 174.4, y: 139.99998}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110067504

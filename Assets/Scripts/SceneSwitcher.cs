@@ -7,32 +7,35 @@ using UnityEngine.SceneManagement;
 /// </summary>
 namespace nsTankLab
 {
-public class SceneSwitcher : MonoBehaviour
-{
-	//来たシーンを保存していくスタック(後入れ先出し)
-	static Stack<string> scenes = new Stack<string>();
+	public class SceneSwitcher : MonoBehaviour
+	{
+		//来たシーンを保存していくスタック(後入れ先出し)
+		static Stack<string> scenes = new Stack<string>();
 
-	public static GameObject m_instanceTransition = null;
+		public static GameObject m_instanceTransition = null;
 
 		void Awake()
-	{
+		{
 			CheckInstance();
-	}
+		}
 
-        void Start()
-        {
+	    void Start()
+	    {
 			//始めにスタックにタイトルシーンを入れておく
 			scenes.Push("TitleScene");
 		}
 
-        //呼ばれたらトランジション起動
-        public void StartTransition(string nextSceneName)
-	{
-		//スタックに遷移するシーンを保存する
-		scenes.Push(nextSceneName);
-		//遷移先のシーンをロード
-		SceneManager.LoadScene(nextSceneName);
-	}
+	    //呼ばれたらトランジション起動
+	    public void StartTransition(string nextSceneName,bool isPush)
+		{
+			if (isPush)
+			{
+				//スタックに遷移するシーンを保存する
+				scenes.Push(nextSceneName);
+			}
+			//遷移先のシーンをロード
+			SceneManager.LoadScene(nextSceneName);
+		}
 
 		//1つ前のシーンに戻る処理
 		public void BackScene()
@@ -50,9 +53,9 @@ public class SceneSwitcher : MonoBehaviour
 			m_instanceTransition = null;
 		}
 
-			//シングルトンパターン
-			//インスタンスチェック
-			void CheckInstance()
+		//シングルトンパターン
+		//インスタンスチェック
+		void CheckInstance()
 		{
 			if (m_instanceTransition is null)
 			{

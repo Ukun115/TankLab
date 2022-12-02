@@ -53,6 +53,8 @@ MonoBehaviour:
   - InstantiateDebug
   - PlayerName
   - DisplayPlayerName
+  - ChangePlayerObjectName
+  - SettingNameAndColor
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -6,23 +6,25 @@ using TMPro;
 /// </summary>
 namespace nsTankLab
 {
-public class ResultInit : MonoBehaviour
-{
-    //勝利プレイヤー
-    int m_winPlayer = 0;
-    //勝利テキスト
-    TextMeshProUGUI m_winText = null;
-    //勝利テキストカラー(1:1P赤,2:2P青,3:3P橙,4:4P緑)
-    Color[] m_winTextColor = { new Color(0.0f, 0.5f, 1.0f, 1.0f), new Color(1.0f, 0.0f, 0.5f, 1.0f), new Color(1.0f, 0.5f, 0.15f, 1.0f), new Color(0.0f, 1.0f, 0.0f, 1.0f) };
+    public class ResultInit : MonoBehaviour
+    {
+        //勝利プレイヤー
+        int m_winPlayer = 0;
+        //勝利テキスト
+        TextMeshProUGUI m_winText = null;
+        //勝利テキストカラー(1:1P赤,2:2P青,3:3P橙,4:4P緑)
+        Color[] m_winTextColor = { new Color(0.0f, 0.5f, 1.0f, 1.0f), new Color(1.0f, 0.0f, 0.5f, 1.0f), new Color(1.0f, 0.5f, 0.15f, 1.0f), new Color(0.0f, 1.0f, 0.0f, 1.0f) };
 
         SaveData m_saveData = null;
 
-    void Start()
-    {
-            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        SceneSwitcher m_sceneSwitcher = null;
 
-        //勝利プレイヤー表示
-        m_winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
+        void Start()
+        {
+            //コンポーネント取得まとめ
+            GetComponents();
+
+            //勝利プレイヤー表示
             //チャレンジモードで敵AIが勝利した場合
             if (m_winPlayer == 5)
             {
@@ -41,21 +43,29 @@ public class ResultInit : MonoBehaviour
                 m_winText.color = m_winTextColor[m_winPlayer - 1];
             }
 
-        //３秒後にタイトル画面に戻る
-        Invoke(nameof(BackTitleScene), 3f);
-    }
+            //３秒後にタイトル画面に戻る
+            Invoke(nameof(BackTitleScene), 3f);
+        }
 
-    //勝利プレイヤーを設定するセッター
-    public void SetWinPlayer(int winPlayer)
-    {
-        m_winPlayer = winPlayer;
-    }
+        //勝利プレイヤーを設定するセッター
+        public void SetWinPlayer(int winPlayer)
+        {
+            m_winPlayer = winPlayer;
+        }
 
-    //タイトルシーンに戻る処理
-    void BackTitleScene()
-    {
+        //タイトルシーンに戻る処理
+        void BackTitleScene()
+        {
             m_saveData.SaveDataInit();
-       GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("TitleScene");
+            m_sceneSwitcher.StartTransition("TitleScene",true);
+        }
+
+        //コンポーネント取得
+        void GetComponents()
+        {
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
+            m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
+        }
     }
-}
 }

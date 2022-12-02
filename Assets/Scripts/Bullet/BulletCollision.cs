@@ -7,66 +7,60 @@ using System.Text.RegularExpressions;
 /// </summary>
 namespace nsTankLab
 {
-public class BulletCollision : MonoBehaviour
-{
-    //現在の弾の反射回数
-    int m_refrectionCount = 0;
+    public class BulletCollision : MonoBehaviour
+    {
+        [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
+        [SerializeField, TooltipAttribute("スパークエフェクト")] GameObject m_sparkEffectPrefab = null;
+        [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(タンク)")] GameObject m_explosionTankEffectPrefab = null;
+        [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(弾)")] GameObject m_explosionBulletEffectPrefab = null;
+        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
-    [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
-    [SerializeField, TooltipAttribute("スパークエフェクト")] GameObject m_sparkEffectPrefab = null;
-    [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(タンク)")] GameObject m_explosionTankEffectPrefab = null;
-    [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(弾)")] GameObject m_explosionBulletEffectPrefab = null;
+        //現在の弾の反射回数
+        int m_refrectionCount = 0;
 
-    [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+        //発射したプレイヤー番号
+        int m_playerNum = 0;
 
-    //発射したプレイヤー番号
-    int m_myPlayerNum = 0;
+        SaveData m_saveData = null;
+        SoundManager m_soundManager = null;
 
-    SaveData m_saveData = null;
-    SoundManager m_soundManager = null;
-
-    //自身を発射したタンクのオブジェクトデータ
-    GameObject m_tankObject = null;
+        //自身を発射したタンクのオブジェクトデータ
+        GameObject m_tankObject = null;
 
         //バーチャルカメラ
         Cinemachine.CinemachineImpulseSource m_virtualCamera = null;
 
         ControllerData m_controllerData = null;
 
-    void Start()
-    {
-        m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-        m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
-
-        //敵AIの弾じゃないときは実行
-        if (gameObject.name != "EnemyBullet")
+        void Start()
         {
-            //発射したプレイヤー番号を取得
-            m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+            //コンポ―ネント取得まとめ
+            GetComponens();
+
+            //敵AIの弾じゃないときは実行
+            if (gameObject.name != "EnemyBullet")
+            {
+                //発射したプレイヤー番号を取得
+                m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+            }
         }
 
-        //バーチャルカメラ
-        m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
-
-            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
-    }
-
-    //衝突処理
-    void OnCollisionEnter(Collision collision)
-    {
-        switch (collision.gameObject.tag)
+        //衝突処理
+        void OnCollisionEnter(Collision collision)
         {
-            //壁に衝突したときの処理
-            case "Wall":
-                OnCollisitonWall();
-                break;
-            //プレイヤーor敵AIに衝突したときの処理
-            case "Player":
-            case "Enemy":
-                OnCollisitonPlayerOrEnemyAI(collision);
-                break;
-            //弾に衝突したときの処理
-            case "Bullet":
+            switch (collision.gameObject.tag)
+            {
+                //壁に衝突したときの処理
+                case "Wall":
+                    OnCollisitonWall();
+                    break;
+                //プレイヤーor敵AIに衝突したときの処理
+                case "Player":
+                case "Enemy":
+                    OnCollisitonPlayerOrEnemyAI(collision);
+                    break;
+                //弾に衝突したときの処理
+                case "Bullet":
 
                     //接触した壁にスパークエフェクトを生成する。
                     GameObject explosionBulletEffect = Instantiate(
@@ -78,12 +72,12 @@ public class BulletCollision : MonoBehaviour
 
                     //両方消滅させる
                     Destroy(gameObject);
-                Destroy(collision.gameObject);
+                    Destroy(collision.gameObject);
                     //弾消滅SE再生
                     m_soundManager.PlaySE("BulletDestroySE");
                     break;
+            }
         }
-    }
 
         void OnTriggerEnter(Collider other)
         {
@@ -111,12 +105,12 @@ public class BulletCollision : MonoBehaviour
 
         //壁に衝突したときの処理
         void OnCollisitonWall()
-    {
-        m_refrectionCount++;
-
-        //指定されている反射回数分反射したら、
-        if (m_refrectionCount > m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletRefrectionNum())
         {
+            m_refrectionCount++;
+
+            //指定されている反射回数分反射したら、
+            if (m_refrectionCount > m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum)].GetBulletRefrectionNum())
+            {
                 //弾消滅SE再生
                 m_soundManager.PlaySE("BulletDestroySE");
 
@@ -130,8 +124,8 @@ public class BulletCollision : MonoBehaviour
 
                 //弾を消滅させる
                 Destroy(gameObject);
-        }
-        else
+            }
+            else
             {
                 //接触した壁にスパークエフェクトを生成する。
                 GameObject sparkEffect = Instantiate(
@@ -144,11 +138,11 @@ public class BulletCollision : MonoBehaviour
                 //壁反射音再生
                 m_soundManager.PlaySE("BulletRefrectionSE");
             }
-    }
+        }
 
-    //プレイヤーに衝突したときの処理
-    void OnCollisitonPlayerOrEnemyAI(Collision collision)
-    {
+        //プレイヤーに衝突したときの処理
+        void OnCollisitonPlayerOrEnemyAI(Collision collision)
+        {
             //撃破音再生
             m_soundManager.PlaySE("DeathSE");
 
@@ -162,7 +156,7 @@ public class BulletCollision : MonoBehaviour
                 ),
             Quaternion.identity
             );
-        deathMark.name = "DeathMark";
+            deathMark.name = "DeathMark";
 
             //死んだ場所に爆発エフェクトを生成する。
             GameObject m_explosionEffect = Instantiate(
@@ -178,11 +172,11 @@ public class BulletCollision : MonoBehaviour
                 m_saveData.GetSetHitPoint--;
             }
 
-        //弾を消滅させる
-        Destroy(gameObject);
+            //弾を消滅させる
+            Destroy(gameObject);
 
-        //衝突したプレイヤーを消滅させる
-        Destroy(collision.gameObject);
+            //衝突したプレイヤーを消滅させる
+            Destroy(collision.gameObject);
 
             //カメラを振動させる
             m_virtualCamera.GenerateImpulse();
@@ -192,20 +186,23 @@ public class BulletCollision : MonoBehaviour
                 //ゲームパッドが接続されていたら、
                 if (Gamepad.current is not null)
                 {
-                    //撃破されたゲームパッドを振動させる
-                    Gamepad.current.SetMotorSpeeds(0.0f, 1.0f);
+                    if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(collision.gameObject.name, @"[^1-4]", ""))) is not null)
+                    {
+                        //撃破されたゲームパッドを振動させる
+                        m_controllerData.GetGamepad(int.Parse(Regex.Replace(collision.gameObject.name, @"[^1-4]", ""))).SetMotorSpeeds(0.0f, 1.0f);
+                    }
                 }
             }
         }
 
-    public void SetFireTankObject(GameObject tankObject)
-    {
-        m_tankObject = tankObject;
-    }
+        public void SetFireTankObject(GameObject tankObject)
+        {
+            m_tankObject = tankObject;
+        }
 
-    //弾が削除されたときに呼ばれる
-    void OnDestroy()
-    {
+        //弾が削除されたときに呼ばれる
+        void OnDestroy()
+        {
             //敵AIの弾
             if(gameObject.name.Contains("EnemyBullet"))
             {
@@ -224,6 +221,18 @@ public class BulletCollision : MonoBehaviour
                     m_tankObject.gameObject.GetComponent<PlayerFireBullet>().ReduceBulletNum();
                 }
             }
+        }
+
+        //コンポーネント取得
+        void GetComponens()
+        {
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+
+            //バーチャルカメラ
+            m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
+
+            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+        }
     }
-}
 }

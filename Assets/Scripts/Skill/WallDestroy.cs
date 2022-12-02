@@ -4,10 +4,9 @@ namespace nsTankLab
 {
     public class WallDestroy : MonoBehaviour
     {
-        int m_bulletDestroyCount = 0;
+        [SerializeField, TooltipAttribute("ひび割れマテリアル")] MeshRenderer m_meshRenderer = null;
 
-        //ひび割れマテリアル
-        [SerializeField] MeshRenderer m_meshRenderer = null;
+        int m_bulletDestroyCount = 0;
 
         void Start()
         {

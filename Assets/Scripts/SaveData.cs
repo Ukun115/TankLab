@@ -7,49 +7,48 @@ using System.Text.RegularExpressions;
 /// </summary>
 namespace nsTankLab
 {
-public class SaveData : MonoBehaviour
-{
-    //オンラインモードかどうか
-    bool m_isOnline = false;
+    public class SaveData : MonoBehaviour
+    {
+        [SerializeField] Texture2D m_handCursor = null;
+        [SerializeField] SoundManager m_soundManager = null;
 
-    //選択されたゲームモード
-    string m_selectGameMode = string.Empty;
+        //オンラインモードかどうか
+        bool m_isOnline = false;
 
-    //プレイヤー番号
-    int m_playerNum = 0;
+        //選択されたゲームモード
+        string m_selectGameMode = string.Empty;
+
+        //プレイヤー番号
+        int m_playerNum = 0;
 
         //現在のステージ番号
         int m_nowStageNum = 1;
         //合計ステージ数
-     const int TOTAL_STAGE_NUM = 2;
+        const int TOTAL_STAGE_NUM = 2;
 
         //現在の体力(チャレンジモードのみで使用)
         int m_hitPoint = 3;
 
-    //選択タンク名
-    string[] m_selectTankName = new string[4];
-    //選択タンク番号
-    int[] m_selectTankNum = new int[4];
-    //選択スキル名
-    string[] m_selectSkillName = new string[4];
-    //選択スキル番号
-    int[] m_selectSkillNum = new int[4];
-    //入力されたパスワード
-    string m_inputPassword = "----";
+        //選択タンク名
+        string[] m_selectTankName = new string[4];
+        //選択タンク番号
+        int[] m_selectTankNum = new int[4];
+        //選択スキル名
+        string[] m_selectSkillName = new string[4];
+        //選択スキル番号
+        int[] m_selectSkillNum = new int[4];
+        //入力されたパスワード
+        string m_inputPassword = "----";
 
         //ゲームの進む時間がアクティブかどうか
         bool m_activeGameTime = true;
 
-    [SerializeField] Texture2D m_handCursor = null;
-
-       public static GameObject m_instanceSaveData = null;
-
-        [SerializeField] SoundManager m_soundManager = null;
+        public static GameObject m_instanceSaveData = null;
 
         void Awake()
-    {
+        {
             CheckInstance();
-    }
+        }
 
         void Start()
         {
@@ -71,21 +70,21 @@ public class SaveData : MonoBehaviour
 
         //選択されたゲームモードプロパティ
         public string GetSetSelectGameMode
-    {
-        //ゲッター
-        get { return m_selectGameMode; }
-        //セッター
-        set { m_selectGameMode = value; }
-    }
+        {
+            //ゲッター
+            get { return m_selectGameMode; }
+            //セッター
+            set { m_selectGameMode = value; }
+        }
 
-    //選択されたステージ番号プロパティ
-    public int GetSetSelectStageNum
-    {
-        //ゲッター
-        get { return m_nowStageNum; }
-        //セッター
-        set { m_nowStageNum = value; }
-    }
+        //選択されたステージ番号プロパティ
+        public int GetSetSelectStageNum
+        {
+            //ゲッター
+            get { return m_nowStageNum; }
+            //セッター
+            set { m_nowStageNum = value; }
+        }
 
         //合計ステージ数ゲッター
         public int GetTotalStageNum()
@@ -101,67 +100,73 @@ public class SaveData : MonoBehaviour
 
         //選択されたタンク名ゲッター
         public string GetSelectTankName(int playerNum)
-    {
-        return m_selectTankName[playerNum];
-    }
-    //選択されたタンク名セッター
-    public void SetSelectTankName(int playerNum, string tankNum)
-    {
-        m_selectTankName[playerNum-1] = tankNum;
+        {
+            return m_selectTankName[playerNum];
+        }
+        //選択されたタンク名セッター
+        public void SetSelectTankName(int playerNum, string tankNum)
+        {
+            m_selectTankName[playerNum-1] = $"Tank{(int.Parse(Regex.Replace(tankNum, @"[^0-9]", "")))}";
 
-        //選択されたタンク番号を保存
-        m_selectTankNum[playerNum-1] = int.Parse(Regex.Replace(m_selectTankName[playerNum - 1], @"[^0-9]", ""))-1;
-    }
-    //選択されたスキル名ゲッター
-    public string GetSelectSkillName(int playerNum)
-    {
-        return m_selectSkillName[playerNum];
-    }
-    //選択されたスキル名セッター
-    public void SetSelectSkillName(int playerNum, string skillNum)
-    {
-        m_selectSkillName[playerNum - 1] = skillNum;
+            //選択されたタンク番号を保存
+            if (m_selectTankName[playerNum - 1] is not null)
+            {
+                m_selectTankNum[playerNum - 1] = int.Parse(Regex.Replace(tankNum, @"[^0-9]", ""))-1;
+            }
+        }
+        //選択されたスキル名ゲッター
+        public string GetSelectSkillName(int playerNum)
+        {
+            return m_selectSkillName[playerNum];
+        }
+        //選択されたスキル名セッター
+        public void SetSelectSkillName(int playerNum, string skillNum)
+        {
+            m_selectSkillName[playerNum - 1] = skillNum;
 
-        //選択されたスキル番号を保存
-        m_selectSkillNum[playerNum - 1] = int.Parse(Regex.Replace(m_selectSkillName[playerNum - 1], @"[^0-9]", "")) - 1;
-    }
-    //選択されたタンク番号ゲッター
-    public int GetSelectTankNum(int playerNum)
-    {
-        return m_selectTankNum[playerNum];
-    }
-    //選択されたスキル名ゲッター
-    public int GetSelectSkillNum(int playerNum)
-    {
-        return m_selectSkillNum[playerNum];
-    }
+            //選択されたスキル番号を保存
+            if (m_selectSkillName[playerNum - 1] is not null)
+            {
+                m_selectSkillNum[playerNum - 1] = int.Parse(Regex.Replace(skillNum, @"[^0-9]", ""))-1;
+            }
+        }
+        //選択されたタンク番号ゲッター
+        public int GetSelectTankNum(int playerNum)
+        {
+            return m_selectTankNum[playerNum];
+        }
+        //選択されたスキル番号ゲッター
+        public int GetSelectSkillNum(int playerNum)
+        {
+            return m_selectSkillNum[playerNum];
+        }
 
-    //オンラインモードフラグプロパティ
-    public bool GetSetIsOnline
-    {
-        //ゲッター
-        get { return m_isOnline; }
-        //セッター
-        set { m_isOnline = value; }
-    }
+        //オンラインモードフラグプロパティ
+        public bool GetSetIsOnline
+        {
+            //ゲッター
+            get { return m_isOnline; }
+            //セッター
+            set { m_isOnline = value; }
+        }
 
-    //入力されたパスワードプロパティ
-    public string GetSetInputPassword
-    {
-        //ゲッター
-        get { return m_inputPassword; }
-        //セッター
-        set { m_inputPassword = value; }
-    }
+        //入力されたパスワードプロパティ
+        public string GetSetInputPassword
+        {
+            //ゲッター
+            get { return m_inputPassword; }
+            //セッター
+            set { m_inputPassword = value; }
+        }
 
-    //プレイヤー番号
-    public int GetSetPlayerNum
-    {
-        //ゲッター
-        get { return m_playerNum; }
-        //セッター
-        set { m_playerNum = value; }
-    }
+        //プレイヤー番号
+        public int GetSetPlayerNum
+        {
+            //ゲッター
+            get { return m_playerNum; }
+            //セッター
+            set { m_playerNum = value; }
+        }
 
         //体力プロパティ
         public int GetSetHitPoint
@@ -200,6 +205,18 @@ public class SaveData : MonoBehaviour
 
             //BGMを初期化
             m_soundManager.PlayBGM("OutGameSceneBGM");
+        }
+
+        public void InitSelectTankAndSkill()
+        {
+            //選択タンク名
+            m_selectTankName = new string[4];
+            //選択タンク番号
+            m_selectTankNum = new int[4];
+            //選択スキル名
+            m_selectSkillName = new string[4];
+            //選択スキル番号
+            m_selectSkillNum = new int[4];
         }
 
         //アプリケーションが終了する前に呼び出される関数
