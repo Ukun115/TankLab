@@ -57,7 +57,7 @@ namespace nsTankLab
         void BackTitleScene()
         {
             m_saveData.SaveDataInit();
-            m_sceneSwitcher.StartTransition("TitleScene",true);
+            m_sceneSwitcher.StartTransition(SceneName.TitleScene, true);
         }
 
         //コンポーネント取得

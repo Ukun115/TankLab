@@ -15,11 +15,14 @@ namespace nsTankLab
 
         int m_displayTimer = 0;
 
+        const float FADE_VALUE = 0.05f;
+        const float ALPHA_ZERO = 0.0f;
+
         enum EnState
         {
-            enWait,
-            enDisplay,
-            enFade,
+            enWait,     //待機
+            enDisplay,  //表示
+            enFade,     //フェード
         }
         EnState m_enState = EnState.enWait;
 
@@ -27,11 +30,12 @@ namespace nsTankLab
         {
             switch(m_enState)
             {
+                //待機状態。なにもしない。
                 case EnState.enWait:
-                    //待機状態。なにもしない。
                     break;
+
+                //一定時間表示
                 case EnState.enDisplay:
-                    //一定時間表示する
                     m_displayTimer++;
                     if(m_displayTimer > 180)
                     {
@@ -42,11 +46,12 @@ namespace nsTankLab
                         m_displayTimer = 0;
                     }
                     break;
+
+                //フェード
                 case EnState.enFade:
-                    //フェードしていく
-                    alphaValue -= 0.05f;
+                    alphaValue -= FADE_VALUE;
                     m_warningText.color = new Color(1.0f, 0.0f, 0.0f, alphaValue);
-                    if(alphaValue < 0.0f)
+                    if(alphaValue < ALPHA_ZERO)
                     {
                         //待機状態にする
                         m_enState = EnState.enWait;

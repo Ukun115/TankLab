@@ -17,12 +17,20 @@ namespace nsTankLab
         //点滅するかどうか
         bool m_isFlashing = false;
 
+        bool m_normalColor = true;
+
         Renderer m_renderer = null;
 
         int m_timer = 0;
 
         //バーチャルカメラ
         Cinemachine.CinemachineImpulseSource m_virtualCamera = null;
+
+        enum enColor
+        {
+            enNormalColor,
+            enRed
+        }
 
         void Start()
         {
@@ -40,22 +48,21 @@ namespace nsTankLab
             {
                 m_timer++;
 
-                switch (m_timer)
+                if(m_timer > 5)
                 {
-                    case 1:
+                    m_timer = 0;
+                    m_normalColor = !m_normalColor;
+                }
+
+                if(m_normalColor)
+                {
+                    //通常色にする
+                    m_renderer.material = m_bombMaterial[(int)enColor.enNormalColor];
+                }
+                else
+                {
                     //赤色にする
-                    m_renderer.material = m_bombMaterial[0];
-                        break;
-
-                    case 6:
-                        //通常色にする
-                        m_renderer.material = m_bombMaterial[1];
-                        break;
-
-                    case 11:
-                        //タイマーを初期化する
-                        m_timer = 0;
-                        break;
+                    m_renderer.material = m_bombMaterial[(int)enColor.enRed];
                 }
             }
         }
@@ -89,8 +96,8 @@ namespace nsTankLab
             switch (other.gameObject.tag)
             {
                 //プレイヤーor敵AIに衝突したときの処理
-                case "Player":
-                case "Enemy":
+                case TagName.Player:
+                case TagName.Enemy:
                     if(m_dropPlayer == other.gameObject)
                     {
                         return;

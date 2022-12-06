@@ -10,12 +10,7 @@ namespace nsTankLab
     public class InputKeyBoardNumbers : MonoBehaviour
     {
         //パスワード決定処理スクリプト
-        DecidePassword m_decidePassword = null;
-
-        void Start()
-        {
-            m_decidePassword = GameObject.Find("SceneManager").GetComponent<DecidePassword>();
-        }
+        [SerializeField]DecidePassword m_decidePassword = null;
 
         void Update()
         {

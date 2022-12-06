@@ -11,7 +11,6 @@ namespace nsTankLab
     {
         [SerializeField, TooltipAttribute("リザルト処理が内包されているプレファブオブジェクト")] GameObject m_resultPrefab = null;
 
-        GameObject resultObject = null;
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
 
@@ -42,9 +41,9 @@ namespace nsTankLab
             if (m_saveData.GetSetSelectGameMode == "CHALLENGE")
             {
                 //Enemyタグを持つGameObjectを 全て 取得する。
-                GameObject[] enemyObject = GameObject.FindGameObjectsWithTag("Enemy");
+                GameObject[] enemyObject = GameObject.FindGameObjectsWithTag(TagName.Enemy);
                 //Playerタグを持つGameObjectを取得する。
-                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                GameObject playerObject = GameObject.FindGameObjectWithTag(TagName.Player);
 
                 //敵AIが全機死んでいたら、
                 if (enemyObject.Length <= 0)
@@ -95,13 +94,13 @@ namespace nsTankLab
             else
             {
                 //Playerタグを持つGameObjectを全て取得する。
-                GameObject[] playerObject = GameObject.FindGameObjectsWithTag("Player");
+                GameObject[] playerObject = GameObject.FindGameObjectsWithTag(TagName.Player);
 
                 //プレイヤーがフィールド上に一人だけになったら、
                 if (playerObject.Length == 1)
                 {
                     //リザルト突入
-                    int winPlayerNum = int.Parse(Regex.Replace(playerObject[0].name, @"[^1-4]", ""));
+                    int winPlayerNum = int.Parse(Regex.Replace(playerObject[0].name, @"[^1-4]", string.Empty));
                     InstantiateResultObject(winPlayerNum);
                     Debug.Log("勝敗がつきました。");
                 }
@@ -111,13 +110,13 @@ namespace nsTankLab
         void ChangeChallengeNowNumCountScene()
         {
             //現在のチャレンジ数カウントシーンに遷移
-            m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene",true);
+            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene,true);
         }
 
         void ChangeChallengeNowNumCountSceneAndStageNum()
         {
             //現在のチャレンジ数カウントシーンに遷移
-            m_sceneSwitcher.StartTransition("ChallengeNowNumCountScene",true);
+            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene, true);
             //次のステージ番号に進める
             m_saveData.NextStageNum();
         }
@@ -126,10 +125,9 @@ namespace nsTankLab
         {
             //リザルトに突入
             //リザルト処理は毎シーンごとに１度のみしか実行しない
-            resultObject = GameObject.Find("Result");
             //リザルト処理をまとめているゲームオブジェクトを生成し、
             //リザルト処理を実行していく。
-            resultObject = Instantiate(m_resultPrefab);
+            GameObject resultObject = Instantiate(m_resultPrefab);
             resultObject.name = "Result";
             //勝利表示
             resultObject.GetComponent<ResultInit>().SetWinPlayer(winPlayer);

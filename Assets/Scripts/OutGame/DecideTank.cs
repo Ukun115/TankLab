@@ -62,13 +62,13 @@ namespace nsTankLab
             if (character.Contains("TANK"))
             {
                 //選択しているタンクのステータス
-                TankStatus tankStatus = m_tankDataBase.GetTankLists()[int.Parse(Regex.Replace(character, @"[^1-4]", "")) - 1];
+                TankStatus tankStatus = m_tankDataBase.GetTankLists()[int.Parse(Regex.Replace(character, @"[^1-4]", string.Empty)) - 1];
                 m_tankSkillInfoText[playerNum - 1].text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
             }
             //スキル
             else if (character.Contains("SKILL"))
             {
-                m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^1-4]", "")) - 1].text}";
+                m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^1-9]", string.Empty)) - 1].text}";
             }
         }
 
@@ -120,7 +120,7 @@ namespace nsTankLab
             }
 
             //ステージ選択シーンに遷移
-            GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectStageScene",true);
+            GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.SelectStageScene, true);
         }
 
         //プレイヤーUIの表示非表示処理

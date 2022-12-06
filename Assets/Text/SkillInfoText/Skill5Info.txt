@@ -1,0 +1,1 @@
+Permanently install a back shield. Disappears when hit by a bullet. Revives after a certain amount of time.

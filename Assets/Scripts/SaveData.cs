@@ -41,7 +41,7 @@ namespace nsTankLab
         string m_inputPassword = "----";
 
         //ゲームの進む時間がアクティブかどうか
-        bool m_activeGameTime = true;
+        bool m_activeGameTime = false;
 
         public static GameObject m_instanceSaveData = null;
 
@@ -106,12 +106,12 @@ namespace nsTankLab
         //選択されたタンク名セッター
         public void SetSelectTankName(int playerNum, string tankNum)
         {
-            m_selectTankName[playerNum-1] = $"Tank{(int.Parse(Regex.Replace(tankNum, @"[^0-9]", "")))}";
+            m_selectTankName[playerNum-1] = $"Tank{(int.Parse(Regex.Replace(tankNum, @"[^0-9]", string.Empty)))}";
 
             //選択されたタンク番号を保存
             if (m_selectTankName[playerNum - 1] is not null)
             {
-                m_selectTankNum[playerNum - 1] = int.Parse(Regex.Replace(tankNum, @"[^0-9]", ""))-1;
+                m_selectTankNum[playerNum - 1] = int.Parse(Regex.Replace(tankNum, @"[^0-9]", string.Empty))-1;
             }
         }
         //選択されたスキル名ゲッター
@@ -127,7 +127,7 @@ namespace nsTankLab
             //選択されたスキル番号を保存
             if (m_selectSkillName[playerNum - 1] is not null)
             {
-                m_selectSkillNum[playerNum - 1] = int.Parse(Regex.Replace(skillNum, @"[^0-9]", ""))-1;
+                m_selectSkillNum[playerNum - 1] = int.Parse(Regex.Replace(skillNum, @"[^0-9]", string.Empty))-1;
             }
         }
         //選択されたタンク番号ゲッター
@@ -183,7 +183,7 @@ namespace nsTankLab
             //オンラインモードかどうか
             m_isOnline = false;
             //選択されたゲームモード
-            m_selectGameMode = "";
+            m_selectGameMode = string.Empty;
             //プレイヤー番号
             m_playerNum = 0;
             //現在のステージ番号

@@ -6170,6 +6170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5ac54f140e99e4892eb6f81752cc34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_decidePlayerName: {fileID: 1465950375}
 --- !u!1 &1480572334
 GameObject:
   m_ObjectHideFlags: 0
@@ -8028,6 +8029,7 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 631879649}
   m_playerNum: 1
   m_cursorObject: {fileID: 631879643}
+  m_sceneManager: {fileID: 1465950373}
 --- !u!114 &1888819023
 MonoBehaviour:
   m_ObjectHideFlags: 0

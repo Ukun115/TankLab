@@ -1,0 +1,1 @@
+Place a shield in front. The shield disappears after being hit by a single bullet or over time.

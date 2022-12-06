@@ -14,14 +14,14 @@ namespace nsTankLab
         const float DRAW_INTERVAL = 45.0f;
 
         //足跡ゲームオブジェクトを格納するゲームオブジェクト
-        GameObject m_footPrintsBox = null;
+        Transform m_footPrintsBox = null;
 
         //タイマー
         int m_timer = 0;
 
         void Start()
         {
-            m_footPrintsBox = GameObject.Find("Footprints");
+            m_footPrintsBox = GameObject.Find("Footprints").GetComponent<Transform>();
         }
 
         void Update()
@@ -49,7 +49,7 @@ namespace nsTankLab
 
             //足跡オブジェクトは大量に生成され、
             //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-            footPrintObject.transform.parent = m_footPrintsBox.transform;
+            footPrintObject.transform.parent = m_footPrintsBox;
         }
     }
 }

@@ -4045,11 +4045,11 @@ MonoBehaviour:
   m_backButtonText: {fileID: 188571713}
   m_backButtonObject: {fileID: 1110550790}
   m_goButtonText: {fileID: 698959529}
-  m_goButtonObject: {fileID: 635914571}
+  m_goButtonObjectTransform: {fileID: 635914573}
   m_stageData:
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank2
-    m_skillType: Skill3
+    m_skillType: Skill2
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank2
     m_skillType: Skill1
@@ -4061,6 +4061,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: fb3648c27e8f2184381e4b50f21859e8, type: 3}
   - {fileID: 4900000, guid: 816e1ff90323e1e4ba95208c1ffc5d65, type: 3}
   - {fileID: 4900000, guid: e771a0a9c3565fc439e193e32ee8aeea, type: 3}
+  - {fileID: 4900000, guid: 512185324fb8806418bd8b48a1fb49c2, type: 3}
+  - {fileID: 4900000, guid: 75e102d64b9f4a14c941bb50514d1bf9, type: 3}
+  - {fileID: 4900000, guid: effced835adcc27469e559804ca4344e, type: 3}
 --- !u!1 &1647742933
 GameObject:
   m_ObjectHideFlags: 0
@@ -4694,6 +4697,7 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 939902008}
   m_playerNum: 1
   m_cursorObject: {fileID: 939902007}
+  m_sceneManager: {fileID: 1576493435}
 --- !u!114 &1893921354
 MonoBehaviour:
   m_ObjectHideFlags: 0

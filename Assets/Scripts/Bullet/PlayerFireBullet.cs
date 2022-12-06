@@ -30,7 +30,7 @@ namespace nsTankLab
 
         ControllerData m_controllerData = null;
         //弾オブジェクトを格納するオブジェクト
-        GameObject m_bulletsBox = null;
+        Transform m_bulletsBox = null;
 
         //発射したプレイヤー番号
         int m_playerNum = 0;
@@ -41,7 +41,7 @@ namespace nsTankLab
             GetComponents();
 
             //発射したプレイヤー番号を取得
-            m_playerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", ""));
+            m_playerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", string.Empty));
         }
 
         void Update()
@@ -57,26 +57,24 @@ namespace nsTankLab
                 return;
             }
 
-            // ゲームパッドが接続されていたらゲームパッドでの操作
+            //ゲームパッド操作
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
-                //ゲームパッド操作
                 //RBボタンが押されたとき、
                 if (m_controllerData.GetGamepad(m_playerNum).rightShoulder.wasPressedThisFrame)
                 {
-                    //弾生成処理
-                    BulletInstantiate();
+                    //弾発射
+                    FireBullet();
                 }
             }
-            //それ以外の時、
+            //キーマウ操作
             else
             {
-                //キーマウ操作
                 //左クリックが押されたとき、
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    //弾生成処理
-                    BulletInstantiate();
+                    //弾発射
+                    FireBullet();
                 }
             }
         }
@@ -87,8 +85,8 @@ namespace nsTankLab
             m_bulletNum = Mathf.Clamp(m_bulletNum - 1, 0, m_bulletNum);
         }
 
-        //弾生成処理
-        void BulletInstantiate()
+        //弾発射
+        void FireBullet()
         {
             //連射できる回数以上は発射しないようにする
             if (m_bulletNum >= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetRapidFireNum())
@@ -136,7 +134,7 @@ namespace nsTankLab
                             m_bulletObjectOnline.name = $"PlayerBullet{ PhotonNetwork.LocalPlayer.ActorNumber}";
 
                             //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                            m_bulletObjectOnline.transform.parent = m_bulletsBox.transform;
+                            m_bulletObjectOnline.transform.parent = m_bulletsBox;
 
                             //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
                             m_bulletObjectOnline.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
@@ -155,7 +153,7 @@ namespace nsTankLab
                         m_bulletObject.name = $"PlayerBullet{m_playerNum}";
 
                         //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                        m_bulletObject.transform.parent = m_bulletsBox.transform;
+                        m_bulletObject.transform.parent = m_bulletsBox;
 
                         //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
                         m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
@@ -172,7 +170,7 @@ namespace nsTankLab
         //コンポーネント取得
         void GetComponents()
         {
-            m_bulletsBox = GameObject.Find("Bullets");
+            m_bulletsBox = GameObject.Find("Bullets").GetComponent<Transform>();
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();

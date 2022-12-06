@@ -42,14 +42,14 @@ namespace nsTankLab
                 case "RANDOMMATCH":
                 case "PRIVATEMATCH":
                     //マッチングに遷移
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("MatchingScene",true);
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.MatchingScene, true);
 
                     break;
 
                 //ローカル対戦の際、
                 case "LOCALMATCH":
                     //ローカルゲームに遷移
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("LocalGameScene",true);
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.LocalGameScene, true);
 
                     break;
             }

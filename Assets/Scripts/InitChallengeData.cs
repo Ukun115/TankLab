@@ -17,7 +17,7 @@ namespace nsTankLab
         [SerializeField] GameObject m_backButtonText = null;
         [SerializeField] GameObject m_backButtonObject = null;
         [SerializeField] RectTransform m_goButtonText = null;
-        [SerializeField] GameObject m_goButtonObject = null;
+        [SerializeField] Transform m_goButtonObjectTransform = null;
         [SerializeField] List<StageData> m_stageData = null;
         [SerializeField] TextMeshProUGUI m_playerNameText = null;
         [SerializeField, TooltipAttribute("タンク説明文テキスト")] TextMeshProUGUI m_tankInfoText = null;
@@ -27,6 +27,7 @@ namespace nsTankLab
 
         SaveData m_saveData = null;
 
+        const int PLAYER1_NUM = 1;
 
         void Start()
         {
@@ -44,24 +45,24 @@ namespace nsTankLab
 
                 //GOボタンの位置を画面下中央に修正
                 m_goButtonText.anchoredPosition = new Vector3(0.0f, m_goButtonText.anchoredPosition.y);
-                m_goButtonObject.transform.position = new Vector3(5.6f, m_goButtonObject.transform.position.y, m_goButtonObject.transform.position.z);
+                m_goButtonObjectTransform.position = new Vector3(5.6f, m_goButtonObjectTransform.position.y, m_goButtonObjectTransform.position.z);
             }
 
             //ステージによってタンクとスキルの種類変更
-            m_saveData.SetSelectTankName(1, m_stageData[m_saveData.GetSetSelectStageNum - 1].GetTankType());
-            m_saveData.SetSelectSkillName(1, m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType());
+            m_saveData.SetSelectTankName(PLAYER1_NUM, m_stageData[m_saveData.GetSetSelectStageNum - 1].GetTankType());
+            m_saveData.SetSelectSkillName(PLAYER1_NUM, m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType());
 
             m_challengeNumText.text = $"{m_saveData.GetSetSelectStageNum}";
             m_enemyNumText.text = $"x{m_stageData[m_saveData.GetSetSelectStageNum - 1].GetEnemiesNum()}";
-            m_tankNumText.text = m_saveData.GetSelectTankName(0);
-            m_skillNumText.text = m_saveData.GetSelectSkillName(0);
+            m_tankNumText.text = m_saveData.GetSelectTankName(PLAYER1_NUM-1);
+            m_skillNumText.text = m_saveData.GetSelectSkillName(PLAYER1_NUM-1);
 
             //選択しているタンクのステータス
-            TankStatus tankStatus = m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(0)];
+            TankStatus tankStatus = m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(PLAYER1_NUM-1)];
             //タンク説明文テキスト更新
             m_tankInfoText.text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
             //スキル説明文テキスト更新
-            m_skillInfoText.text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType(), @"[^0-9]", ""))-1].text}";
+            m_skillInfoText.text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(m_stageData[m_saveData.GetSetSelectStageNum - 1].GetSkillType(), @"[^0-9]", string.Empty))-1].text}";
         }
     }
 
@@ -74,9 +75,9 @@ namespace nsTankLab
         //ステージごとの敵AIの数
         [SerializeField] int m_numberOfEnemiesOnStage = 0;
         //ステージごとのタンクの種類
-        [SerializeField] string m_tankType = "";
+        [SerializeField] string m_tankType = string.Empty;
         //ステージごとのスキルの種類
-        [SerializeField] string m_skillType = "";
+        [SerializeField] string m_skillType = string.Empty;
 
         public int GetEnemiesNum()
         {

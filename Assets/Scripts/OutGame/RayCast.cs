@@ -13,6 +13,7 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorImagePosition = null;
         [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 1;
         [SerializeField, TooltipAttribute("カーソル画像オブジェクト")] GameObject m_cursorObject = null;
+        [SerializeField, TooltipAttribute("シーンマネージャー")] GameObject m_sceneManager = null;
 
         //Rayがヒットしたオブジェクト
         GameObject m_rayHitObject = null;
@@ -37,6 +38,30 @@ namespace nsTankLab
 
             m_camera = Camera.main;
 
+            //操作切替
+            SwitchingOperation();
+        }
+
+        void Update()
+        {
+            //操作切替
+            SwitchingOperation();
+
+            //Rayを生成
+            Ray ray = m_camera.ScreenPointToRay(m_rayPoint);
+            RaycastHit hit;
+
+            //Rayを投射
+            if (Physics.Raycast(ray, out hit))
+            {
+                //Rayがコライダーにあたったときの処理
+                RayHit(hit);
+            }
+        }
+
+        //操作切替(ゲームパッドorマウスカーソル)
+        void SwitchingOperation()
+        {
             // ゲームパッドが接続されていたらゲームパッド操作
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
@@ -52,37 +77,6 @@ namespace nsTankLab
 
                 //カーソル画像を非表示
                 m_cursorObject.SetActive(false);
-            }
-        }
-
-        void Update()
-        {
-            // ゲームパッドが接続されていたらゲームパッド操作
-            if(m_controllerData.GetGamepad(m_playerNum) is not null)
-            {
-                m_rayPoint = m_cursorImagePosition.position;
-
-                //カーソル画像を表示
-                m_cursorObject.SetActive(true);
-            }
-            //ゲームパッドが接続されていなかったらマウス操作
-            else
-            {
-                m_rayPoint = Mouse.current.position.ReadValue();
-
-                //カーソル画像を非表示
-                m_cursorObject.SetActive(false);
-            }
-
-            //Rayを生成
-            Ray ray = m_camera.ScreenPointToRay(m_rayPoint);
-            RaycastHit hit;
-
-            //Rayを投射
-            if (Physics.Raycast(ray, out hit))
-            {
-                //Rayがコライダーにあたったときの処理
-                RayHit(hit);
             }
         }
 
@@ -106,14 +100,14 @@ namespace nsTankLab
                         if (hit.collider.name.Contains("TANK") || hit.collider.name.Contains("SKILL"))
                         {
                             //説明文を更新
-                            GameObject.Find("SceneManager").GetComponent<DecideTank>().UpdateTankSkillInfo(m_playerNum, hit.collider.name);
+                            m_sceneManager.GetComponent<DecideTank>().UpdateTankSkillInfo(m_playerNum, hit.collider.name);
                         }
                         break;
 
                     //ステージ選択シーンの場合
                     case SceneName.SelectStageScene:
                         //カーソルポジションを移動させる
-                        GameObject.Find("SceneManager").GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
+                        m_sceneManager.GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
                         break;
                 }
             }
@@ -130,7 +124,7 @@ namespace nsTankLab
                 m_buttonMaterialChange.ReturnChangeMaterial();
             }
             //マウスカーソルがあっているオブジェクトがブロックボタンのとき、
-            if (hit.collider.CompareTag("BlockButton") || hit.collider.CompareTag("BackButton"))
+            if (hit.collider.CompareTag(TagName.BlockButton) || hit.collider.CompareTag(TagName.BackButton))
             {
                 m_buttonMaterialChange.ChangeMaterial(hit);
 
@@ -168,7 +162,7 @@ namespace nsTankLab
         void PassCharacter(RaycastHit hit)
         {
             //BlockButtonタグだったら処理を行う
-            if (hit.collider.CompareTag("BlockButton"))
+            if (hit.collider.CompareTag(TagName.BlockButton))
             {
                 //現在のシーンによって処理を変更
                 switch (SceneManager.GetActiveScene().name)
@@ -176,54 +170,54 @@ namespace nsTankLab
                     //タイトルシーン
                     case SceneName.TitleScene:
                         //押されたボタンの文字を渡す
-                        GameObject.Find("SceneManager").GetComponent<DecideGameMode>().SetCharacter(hit.collider.name);
+                        m_sceneManager.GetComponent<DecideGameMode>().SetCharacter(hit.collider.name);
                         break;
 
                     //名前決めシーン
                     case SceneName.DecideNameScene:
                         //押されたボタンの文字を渡す
-                        GameObject.Find("SceneManager").GetComponent<DecidePlayerName>().SetCharacter(hit.collider.name);
+                        m_sceneManager.GetComponent<DecidePlayerName>().SetCharacter(hit.collider.name);
                         break;
                     //パスワード入力画面
                     case SceneName.DecidePasswordScene:
                         //押されたボタンの文字を渡す
-                        GameObject.Find("SceneManager").GetComponent<DecidePassword>().SetCharacter(hit.collider.name);
+                        m_sceneManager.GetComponent<DecidePassword>().SetCharacter(hit.collider.name);
                         break;
                         //設定シーン
                         case SceneName.ConfigScene:
                         //押されたボタンの文字を渡す
-                        GameObject.Find("SceneManager").GetComponent<DecideVolume>().SetCharacter(hit.collider.name);
+                        m_sceneManager.GetComponent<DecideVolume>().SetCharacter(hit.collider.name);
                             break;
                         //タンク選択シーン
                         case SceneName.SelectTankScene:
                         if (m_saveData.GetSetSelectGameMode == "LOCALMATCH")
                         {
                             //押されたボタンの文字を渡す
-                            GameObject.Find("SceneManager").GetComponent<DecideTank>().SetCharacter(m_playerNum, hit.collider.name);
+                            m_sceneManager.GetComponent<DecideTank>().SetCharacter(m_playerNum, hit.collider.name);
                         }
                         else
                         {
                             //押されたボタンの文字を渡す
-                            GameObject.Find("SceneManager").GetComponent<DecideTank>().SetCharacter(1, hit.collider.name);
+                            m_sceneManager.GetComponent<DecideTank>().SetCharacter(1, hit.collider.name);
                         }
                         break;
 
                     //ステージ選択シーン
                     case SceneName.SelectStageScene:
                         //押されたボタンの文字を渡す
-                        GameObject.Find("SceneManager").GetComponent<DecideStage>().SetStageNum(int.Parse(Regex.Replace(hit.collider.name, @"[^0-9]", "")));
+                        m_sceneManager.GetComponent<DecideStage>().SetStageNum(int.Parse(Regex.Replace(hit.collider.name, @"[^0-9]", string.Empty)));
                         break;
 
                         //現在のチャレンジ数カウントシーン
                         case SceneName.ChallengeNowNumCountScene:
                             //チャレンジゲームシーンに遷移
-                            m_sceneSwitcher.StartTransition("ChallengeGameScene",true);
+                            m_sceneSwitcher.StartTransition(SceneName.ChallengeGameScene, true);
                             break;
                 }
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case SceneName.TitleScene:
-                        if (GameObject.Find("SceneManager").GetComponent<DecideGameMode>().GetNoGood())
+                        if (m_sceneManager.GetComponent<DecideGameMode>().GetNoGood())
                         {
                             //ダメSE再生
                             m_soundManager.PlaySE("NoGoodSE");
@@ -236,7 +230,7 @@ namespace nsTankLab
                         break;
 
                     case SceneName.DecideNameScene:
-                        if (GameObject.Find("SceneManager").GetComponent<DecidePlayerName>().GetNoGood())
+                        if (m_sceneManager.GetComponent<DecidePlayerName>().GetNoGood())
                         {
                             //ダメSE再生
                             m_soundManager.PlaySE("NoGoodSE");
@@ -249,7 +243,7 @@ namespace nsTankLab
                         break;
 
                         case SceneName.DecidePasswordScene:
-                        if (GameObject.Find("SceneManager").GetComponent<DecidePassword>().GetNoGood())
+                        if (m_sceneManager.GetComponent<DecidePassword>().GetNoGood())
                         {
                             //ダメSE再生
                             m_soundManager.PlaySE("NoGoodSE");
@@ -269,7 +263,7 @@ namespace nsTankLab
             }
 
             //BackButtonタグだったら処理を行う
-            if (hit.collider.CompareTag("BackButton"))
+            if (hit.collider.CompareTag(TagName.BackButton))
             {
                 //1つ前のシーンに戻る
                 m_sceneSwitcher.BackScene();

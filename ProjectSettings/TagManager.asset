@@ -9,6 +9,8 @@ TagManager:
   - BackButton
   - Bullet
   - Enemy
+  - RocketBullet
+  - Bomb
   layers:
   - Default
   - TransparentFX

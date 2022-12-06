@@ -17,14 +17,18 @@ namespace nsTankLab
         {
             enAccelerationSkill,    //一定時間加速スキル
             enReturnPositionSkill,  //少し前の位置に戻るスキル
-            enDropBombSkill         //爆弾設置スキル
+            enDropBombSkill,        //爆弾設置スキル
+            enCreateShieldSkill,    //シールド生成スキル
+            enBackShieldSkill,      //バックシールドスキル
+            enRocketBulletSkill,    //ロケット弾スキル
         }
+        EnSelectSkillType m_selectSkillType = EnSelectSkillType.enAccelerationSkill;
 
         void Start()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 
-            m_playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", ""));
+            m_playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", string.Empty));
 
             //プレイヤーに選択されたスキルを追加
             AddSkill();
@@ -33,21 +37,35 @@ namespace nsTankLab
         //プレイヤーに選択されたスキルを追加する処理
         void AddSkill()
         {
-            switch (m_saveData.GetSelectSkillNum(m_playerNum-1))
+            m_selectSkillType = (EnSelectSkillType)m_saveData.GetSelectSkillNum(m_playerNum - 1);
+
+            switch (m_selectSkillType)
             {
                 //一定時間加速スキル
-                case (int)EnSelectSkillType.enAccelerationSkill:
+                case EnSelectSkillType.enAccelerationSkill:
                     gameObject.AddComponent<AccelerationSkill>();
                     break;
 
                 //少し前の位置に戻るスキル
-                case (int)EnSelectSkillType.enReturnPositionSkill:
+                case EnSelectSkillType.enReturnPositionSkill:
                     gameObject.AddComponent<ReturnPosition>();
                     break;
 
                 //爆弾設置スキル
-                case (int)EnSelectSkillType.enDropBombSkill:
+                case EnSelectSkillType.enDropBombSkill:
                     gameObject.AddComponent<DropBomb>();
+                    break;
+                //シールド生成スキル
+                case EnSelectSkillType.enCreateShieldSkill:
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.AddComponent<CreateShield>();
+                    break;
+                //バックシールドスキル
+                case EnSelectSkillType.enBackShieldSkill:
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/BackShieldPosition").gameObject.AddComponent<CreateBackShield>();
+                    break;
+                //ロケット弾
+                case EnSelectSkillType.enRocketBulletSkill:
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.AddComponent<RocketBullet>();
                     break;
             }
         }

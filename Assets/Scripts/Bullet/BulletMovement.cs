@@ -10,7 +10,7 @@ namespace nsTankLab
     {
         [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
         [SerializeField, TooltipAttribute("煙エフェクト")] GameObject m_smokeEffectPrefab = null;
-        [SerializeField, TooltipAttribute("弾メッシュ")] GameObject m_bulletMesh = null;
+        [SerializeField, TooltipAttribute("弾メッシュトランスフォーム")] Transform m_bulletMeshTransform = null;
 
         //剛体
         Rigidbody m_rigidbody = null;
@@ -37,7 +37,7 @@ namespace nsTankLab
             if (gameObject.name != "EnemyBullet")
             {
                 //発射したプレイヤー番号を取得
-                m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", "")) - 1;
+                m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty)) - 1;
             }
 
             AddForce();
@@ -81,7 +81,7 @@ namespace nsTankLab
             //弾の煙の向きを壁反射後の向きに変更
             m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
             //メッシュの向きを壁反射後の向きに変更
-            m_bulletMesh.transform.LookAt(transform.position - m_debugLineDirection);
+            m_bulletMeshTransform.LookAt(transform.position - m_debugLineDirection);
         }
 
         void AddForce()

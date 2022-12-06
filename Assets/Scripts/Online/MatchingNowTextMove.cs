@@ -29,13 +29,20 @@ namespace nsTankLab
 
             if (m_timer > INTERVAL)
             {
-                m_matchingNowText.text += ".";
-                if (m_matchingNowText.text == "Matching Now....")
-                {
-                    m_matchingNowText.text = "Matching Now";
-                }
+                //テキスト更新
+                UpdateText();
 
                 m_timer = 0;
+            }
+        }
+
+        //テキスト更新処理
+        void UpdateText()
+        {
+            m_matchingNowText.text += ".";
+            if (m_matchingNowText.text == "Matching Now....")
+            {
+                m_matchingNowText.text = "Matching Now";
             }
         }
     }
