@@ -32,7 +32,7 @@ namespace nsTankLab
         void Update()
         {
             // ゲームパッドが接続されていたらゲームパッドでの操作
-            if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", ""))) is not null)
+            if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty))) is not null)
             {
                 if (m_cursorPosition is null)
                 {

@@ -25,7 +25,7 @@ namespace nsTankLab
 			}
 
 			//ナビメッシュを生成する。
-			m_navMeshSurface = GameObject.Find("Floor").GetComponent<NavMeshSurface>();
+			m_navMeshSurface = GetComponent<NavMeshSurface>();
 			m_navMeshSurface.BuildNavMesh();
 
 			//敵AIを生成する

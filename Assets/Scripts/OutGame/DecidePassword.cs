@@ -49,7 +49,7 @@ namespace nsTankLab
                     GameObject.Find("SaveData").GetComponent<SaveData>().GetSetInputPassword = m_numberText.text;
 
                     //タンク選択シーンに遷移
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition("SelectTankScene",true);
+                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.SelectTankScene, true);
                     break;
 
                 //上記以外のボタン(0～9)

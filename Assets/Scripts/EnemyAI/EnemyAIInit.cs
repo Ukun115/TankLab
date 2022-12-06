@@ -7,17 +7,22 @@ namespace nsTankLab
 {
     public class EnemyAIInit : MonoBehaviour
     {
-        [SerializeField, TooltipAttribute("敵AIのタンクタイプ")] int m_enemyAIType = 0;
+        enum EnEnemyAIType
+        {
+            enFixing,   //固定されているタイプ
+            enRandomMovement  //ランダム移動するタイプ
+        }
+        [SerializeField, TooltipAttribute("敵AIのタンクタイプ")] EnEnemyAIType m_enemyAIType = EnEnemyAIType.enFixing;
 
         void Start()
         {
             switch (m_enemyAIType)
             {
-                case 0:
+                case EnEnemyAIType.enFixing:
                     //周りをキョロキョロするスクリプトを1つ下の階層の子オブジェクトにアタッチする
                     transform.Find("EnemyCannonPivot").gameObject.AddComponent<EnemyAILookDirection>();
                     break;
-                case 1:
+                case EnEnemyAIType.enRandomMovement:
                     //ランダム移動するスクリプトをアタッチする
                     gameObject.AddComponent<EnemyAIRandomMovement>();
                     break;

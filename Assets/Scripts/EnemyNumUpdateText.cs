@@ -18,7 +18,7 @@ namespace nsTankLab
 
         void CountEnemyNum()
         {
-            GameObject[] m_enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] m_enemies = GameObject.FindGameObjectsWithTag(TagName.Enemy);
             m_enemyNumText.text = $"x{m_enemies.Length}";
         }
     }

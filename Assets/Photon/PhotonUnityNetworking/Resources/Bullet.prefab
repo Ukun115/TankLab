@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_smokeEffectPrefab: {fileID: 4399369225244073951}
-  m_bulletMesh: {fileID: 6952937537944731019}
+  m_bulletMeshTransform: {fileID: 9068080181358752737}
 --- !u!54 &7233262682372555531
 Rigidbody:
   m_ObjectHideFlags: 0

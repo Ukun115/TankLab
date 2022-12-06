@@ -12,7 +12,7 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("発射位置Transformコンポーネント")] Transform m_firePositionTransform = null;
 
         //弾オブジェクトを格納するオブジェクト
-        GameObject m_bulletsBox = null;
+        Transform m_bulletsBox = null;
 
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
@@ -46,10 +46,12 @@ namespace nsTankLab
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == "Player")
+                switch(hit.collider.tag)
                 {
+                    case TagName.Player:
                     //弾発射
-                    BulletInstantiate();
+                    FireBullet();
+                        break;
                 }
             }
 
@@ -61,8 +63,8 @@ namespace nsTankLab
             }
         }
 
-        //弾生成処理
-        void BulletInstantiate()
+        //弾発射処理
+        void FireBullet()
         {
             if(!m_saveData.GetSetmActiveGameTime)
             {
@@ -87,18 +89,21 @@ namespace nsTankLab
             m_soundManager.PlaySE("FireSE");
 
             //弾を生成
+            BulletInstantiate();
+        }
+
+        void BulletInstantiate()
+        {
+            //弾を生成
             GameObject m_bulletObject = Instantiate(
             m_bulletPrefab,
             m_firePositionTransform.position,
             new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
             );
-
             //生成される弾の名前変更
             m_bulletObject.name = "EnemyBullet";
-
             //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-            m_bulletObject.transform.parent = m_bulletsBox.transform;
-
+            m_bulletObject.transform.parent = m_bulletsBox;
             //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
             m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
         }
@@ -112,7 +117,7 @@ namespace nsTankLab
         //コンポーネント取得
         void GetComponents()
         {
-            m_bulletsBox = GameObject.Find("Bullets");
+            m_bulletsBox = GameObject.Find("Bullets").GetComponent<Transform>();
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         }

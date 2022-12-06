@@ -32,7 +32,7 @@ namespace nsTankLab
             m_camera = Camera.main;
 
 
-            m_playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", ""));
+            m_playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", string.Empty));
         }
 
         void Update()

@@ -10,12 +10,7 @@ namespace nsTankLab
     public class InputKeyBoardAlphabet : MonoBehaviour
     {
         //プレイヤー名決定スクリプト
-        DecidePlayerName m_decidePlayerName = null;
-
-        void Start()
-        {
-            m_decidePlayerName = GameObject.Find("SceneManager").GetComponent<DecidePlayerName>();
-        }
+        [SerializeField]DecidePlayerName m_decidePlayerName = null;
 
         void Update()
         {

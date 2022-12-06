@@ -43,7 +43,7 @@ namespace nsTankLab
                 //チャレンジモードの場合、
                 case "CHALLENGE":
                     //現在のチャレンジ数カウントシーンに遷移
-                    ChangeScene("ChallengeNowNumCountScene");
+                    ChangeScene(SceneName.ChallengeNowNumCountScene);
                     break;
 
                 //ローカルマッチモードの場合、
@@ -52,7 +52,7 @@ namespace nsTankLab
                     if (m_controllerData.GetConnectGamepad() >= NEED_CONTROLLER_NUM)
                     {
                         //タンクシーンに遷移
-                        m_sceneSwitcher.StartTransition("SelectTankScene",true);
+                        m_sceneSwitcher.StartTransition(SceneName.SelectTankScene, true);
                     }
                     //繋がれているコントローラーの数が足りなかったら、
                     else
@@ -82,7 +82,7 @@ namespace nsTankLab
                     else
                     {
                         //タンク選択シーンに遷移
-                        ChangeScene("SelectTankScene");
+                        ChangeScene(SceneName.SelectTankScene);
                     }
 
                     break;
@@ -102,7 +102,7 @@ namespace nsTankLab
                     else
                     {
                         //パスワード決定シーンに遷移
-                        ChangeScene("DecidePasswordScene");
+                        ChangeScene(SceneName.DecidePasswordScene);
                     }
 
                     break;
@@ -110,13 +110,12 @@ namespace nsTankLab
                 //設定の場合、
                 case "CONFIG":
                     //設定シーンに遷移
-                    ChangeScene("ConfigScene");
+                    ChangeScene(SceneName.ConfigScene);
 
                     break;
 
                 //終了の場合、
                 case "EXIT":
-
                     //ゲーム終了
                     Invoke(nameof(GameEnd), 0.5f);
 
@@ -125,7 +124,7 @@ namespace nsTankLab
                 //プレイヤー名前の場合、
                 case "PLAYERNAME":
                     //ユーザー名登録シーンに遷移
-                    ChangeScene("DecideNameScene");
+                    ChangeScene(SceneName.DecideNameScene);
                     break;
             }
         }
@@ -149,7 +148,7 @@ namespace nsTankLab
             if (!PlayerPrefs.HasKey("PlayerName"))
             {
                 //プレイヤー名登録シーンを挟む
-                m_sceneSwitcher.StartTransition("DecideNameScene",false);
+                m_sceneSwitcher.StartTransition(SceneName.DecideNameScene, false);
             }
             //通常遷移
             else

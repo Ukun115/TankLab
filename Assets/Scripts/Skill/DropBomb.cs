@@ -18,29 +18,31 @@ namespace nsTankLab
 
         ControllerData m_controllerData = null;
 
+        SaveData m_saveData = null;
+
         void Start()
         {
             //コンポーネント取得まとめ
             GetComponents();
 
-            m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", ""));
+            m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty));
         }
 
         void Update()
         {
+            //ゲーム進行が止まっているとき
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             if (m_timer > 0)
             {
                 m_timer--;
             }
 
-            if (m_controllerData.GetGamepad(m_playerNum) is not null)
-            {
-                m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
-            }
-            else
-            {
-                m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
-            }
+            //操作切替
+            SwitchingOperation();
 
             if (m_isPressedButton && m_timer == 0)
             {
@@ -53,14 +55,27 @@ namespace nsTankLab
             }
         }
 
+        //操作切替
+        void SwitchingOperation()
+        {
+            if (m_controllerData.GetGamepad(m_playerNum) is not null)
+            {
+                m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
+            }
+            else
+            {
+                m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+            }
+        }
+
         void BombInstantiate()
         {
-            GameObject m_bulletObject = Instantiate(
+            GameObject bombObject = Instantiate(
                 Resources.Load("Bomb") as GameObject,
                 new Vector3(transform.position.x,-0.4f, transform.position.z),
                 transform.rotation
             );
-            m_bulletObject.GetComponent<ExplosionBomb>().SetDropPlayer(gameObject);
+            bombObject.GetComponent<ExplosionBomb>().SetDropPlayer(gameObject);
         }
 
         //コンポーネント取得
@@ -68,6 +83,7 @@ namespace nsTankLab
         {
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
 
     }

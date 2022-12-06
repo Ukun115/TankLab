@@ -8653,6 +8653,7 @@ MonoBehaviour:
   m_cursorImagePosition: {fileID: 233751939}
   m_playerNum: 1
   m_cursorObject: {fileID: 233751933}
+  m_sceneManager: {fileID: 524896542}
 --- !u!114 &1577384715
 MonoBehaviour:
   m_ObjectHideFlags: 0

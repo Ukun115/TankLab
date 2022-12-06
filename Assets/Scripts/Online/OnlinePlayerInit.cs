@@ -14,17 +14,6 @@ namespace nsTankLab
 
         void Awake()
         {
-            //ビット演算(排他的論理和)を利用して、
-            //int型のプレイヤー番号0or1を0なら1に、
-            //1なら0にするようにしている。
-            //排他的論理和・・・２つのオペランドのビットを比較して、同じだったら 0 に、異なっていたら 1 になるビット演算
-            //
-            //絶対値を利用して、
-            //プレヤー番号が0なら0-2=-2で2に、
-            //プレイヤー番号が1なら1-2=-1で1になるようにしている。
-            //Mathf.Abs・・・絶対値を算出する。
-
-            //&・・・文字列補間
             photonView.RPC(nameof(SettingNameAndColor), RpcTarget.All, $"{PhotonNetwork.LocalPlayer.ActorNumber}P", m_saveData.GetSetPlayerNum ^= 1);
         }
 

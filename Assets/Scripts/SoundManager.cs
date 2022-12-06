@@ -111,7 +111,7 @@ namespace nsTankLab
     [System.Serializable]
     public class BGMSoundData
     {
-        [SerializeField] string m_bgmName = "";
+        [SerializeField] string m_bgmName = string.Empty;
         [SerializeField] AudioClip m_audioClip = null;
         [SerializeField, Range(0, 1)] float m_volume = 1.0f;
 
@@ -137,7 +137,7 @@ namespace nsTankLab
     [System.Serializable]
     public class SESoundData
     {
-        [SerializeField] string m_seName = "";
+        [SerializeField] string m_seName = string.Empty;
         [SerializeField] AudioClip m_audioClip;
         [SerializeField, Range(0, 1)] float m_volume = 1.0f;
 

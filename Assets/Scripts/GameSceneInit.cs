@@ -47,9 +47,6 @@ namespace nsTankLab
             //デバック
             Debug.Log($"<color=yellow>生成ステージ：Stage{m_saveData.GetSetSelectStageNum}</color>");
 
-            //タンクや弾が動けるようにする
-            m_saveData.GetSetmActiveGameTime = true;
-
             switch (m_saveData.GetSetSelectGameMode)
             {
                 //チャレンジモード
@@ -63,7 +60,7 @@ namespace nsTankLab
                 //ローカルプレイ
                 case "LOCALMATCH":
                     //プレイヤーに初期位置を設定する。
-                    for (int playerNum = 0; playerNum < 4; playerNum++)
+                    for (int playerNum = 0; playerNum < m_localPlayerPosition.Length; playerNum++)
                     {
                         m_localPlayerPosition[playerNum].position = m_stageLocalPlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][playerNum];
                     }

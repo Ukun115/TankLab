@@ -36,13 +36,15 @@ namespace nsTankLab
 
         Vector2 m_stickValue = Vector2.zero;
 
+        bool m_isTeleportStopping = false;
+
         void Start()
         {
             //コンポーネント取得まとめ
             GetComponents();
 
             //自身のプレイヤー番号を取得
-            m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", ""));
+            m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty));
 
             //選択されたタンク番号デバック
             Debug.Log($"<color=yellow>{name}のタンク : {m_saveData.GetSelectTankName(m_playerNum-1)}</color>");
@@ -68,7 +70,48 @@ namespace nsTankLab
             //キーボード操作
             else
             {
+                //Dキーが押された
+                if (Keyboard.current.dKey.wasPressedThisFrame)
+                {
+                    m_horizontal = 1.0f;
+                }
+                //Aキーが押された
+                if (Keyboard.current.aKey.wasPressedThisFrame)
+                {
+                    m_horizontal = -1.0f;
+                }
+                //Wキーが押された
+                if (Keyboard.current.wKey.wasPressedThisFrame)
+                {
+                    m_vertical = 1.0f;
+                }
+                //Sキーが押された
+                if (Keyboard.current.sKey.wasPressedThisFrame)
+                {
+                    m_vertical = -1.0f;
+                }
 
+                //Dキーが離された
+                if(Keyboard.current.dKey.wasReleasedThisFrame)
+                {
+                    m_horizontal = 0.0f;
+                }
+                //Aキーが離された
+                if (Keyboard.current.aKey.wasReleasedThisFrame)
+                {
+                    m_horizontal = 0.0f;
+                }
+
+                //Wキーが離された
+                if (Keyboard.current.wKey.wasReleasedThisFrame)
+                {
+                    m_vertical = 0.0f;
+                }
+                //Sキーが離された
+                if (Keyboard.current.sKey.wasReleasedThisFrame)
+                {
+                    m_vertical = 0.0f;
+                }
             }
 
             //入力されたキーの値を保存
@@ -84,7 +127,7 @@ namespace nsTankLab
         void FixedUpdate()
         {
             //ゲーム進行が止まっているときは移動速度を0にする。
-            if (!m_saveData.GetSetmActiveGameTime)
+            if (!m_saveData.GetSetmActiveGameTime || m_isTeleportStopping)
             {
                 m_moveDirection = Vector3.zero;
             }
@@ -110,6 +153,11 @@ namespace nsTankLab
         {
             get { return m_playerTransform.position; }
             set { m_playerTransform.position = value; }
+        }
+
+        public void SetTeleportStopping(bool isStop)
+        {
+            m_isTeleportStopping = isStop;
         }
 
         //コンポーネント取得
