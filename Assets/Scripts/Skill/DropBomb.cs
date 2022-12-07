@@ -8,9 +8,7 @@ namespace nsTankLab
     {
         SoundManager m_soundManager = null;
 
-        int m_timer = 0;
-
-        int m_dropCoolTime = 300;
+        bool m_skillFlg = true;
 
         bool m_isPressedButton = false;
 
@@ -19,6 +17,9 @@ namespace nsTankLab
         ControllerData m_controllerData = null;
 
         SaveData m_saveData = null;
+
+        SkillCool m_skillCoolScript = null;
+        int m_coolTime = 5;
 
         void Start()
         {
@@ -36,22 +37,20 @@ namespace nsTankLab
                 return;
             }
 
-            if (m_timer > 0)
-            {
-                m_timer--;
-            }
-
             //ëÄçÏêÿë÷
             SwitchingOperation();
 
-            if (m_isPressedButton && m_timer == 0)
+            if (m_isPressedButton && m_skillFlg)
             {
+                m_skillFlg = false;
+
                 BombInstantiate();
 
                 //ê›íuâπçƒê∂
                 m_soundManager.PlaySE("DropBombSE");
 
-                m_timer = m_dropCoolTime;
+                Invoke(nameof(Ct), m_coolTime);
+                m_skillCoolScript.CoolStart(m_coolTime);
             }
         }
 
@@ -86,5 +85,14 @@ namespace nsTankLab
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
 
+        void Ct()
+        {
+            m_skillFlg = true;
+        }
+
+        public void SetSkillCoolScript(SkillCool skillCool)
+        {
+            m_skillCoolScript = skillCool;
+        }
     }
 }

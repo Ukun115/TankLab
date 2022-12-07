@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 /// <summary>
 /// リザルト画面の初期化処理
@@ -19,6 +21,11 @@ namespace nsTankLab
 
         SceneSwitcher m_sceneSwitcher = null;
 
+        //星画像
+        [SerializeField] Sprite[] m_starSprite = null;
+
+        [SerializeField] List<StarList> m_starList = new List<StarList>();
+
         void Start()
         {
             //コンポーネント取得まとめ
@@ -29,11 +36,17 @@ namespace nsTankLab
             if (m_winPlayer == 5)
             {
                 m_winText.text = "Game Over!!";
+
+                //３秒後にタイトル画面に戻る
+                Invoke(nameof(BackTitleScene), 3.0f);
             }
             //チャレンジモードでチャレンジをすべてクリアした場合
             else if (m_winPlayer == 6)
             {
                 m_winText.text = "Challenge Clear!!";
+
+                //３秒後にタイトル画面に戻る
+                Invoke(nameof(BackTitleScene), 3.0f);
             }
             //いずれかのプレイヤーが勝利した場合
             else
@@ -41,10 +54,40 @@ namespace nsTankLab
                 m_winText.text = $"{m_winPlayer}P Win!!";
                 //勝利プレイヤーによってカラーチェンジ
                 m_winText.color = m_winTextColor[m_winPlayer - 1];
-            }
 
-            //３秒後にタイトル画面に戻る
-            Invoke(nameof(BackTitleScene), 3f);
+                //スター画像を更新
+                UpdateStarImage();
+
+                //スターを２つ取ったら、
+                if (m_saveData.GetStar(m_winPlayer - 1, 1))
+                {
+                    //３秒後にタイトル画面に戻る
+                    Invoke(nameof(BackTitleScene), 3.0f);
+                }
+                else
+                {
+                    //3秒後に再度ローカルゲームシーンに遷移する。
+                    Invoke(nameof(BackLocalGameScene), 3.0f);
+                }
+            }
+        }
+
+        //スター画像を更新する処理
+        void UpdateStarImage()
+        {
+            for (int starNum = 0; starNum < 2; starNum++)
+            {
+                //スターを取得していなかったら、
+                if (!m_saveData.GetStar(m_winPlayer - 1, starNum))
+                {
+                    //スター取得済みにする
+                    m_saveData.ActiveStar(m_winPlayer - 1, starNum);
+                    //スター画像をつける
+                    m_starList[m_winPlayer - 1].GetStarUiList(starNum).sprite = m_starSprite[m_winPlayer-1];
+
+                    return;
+                }
+            }
         }
 
         //勝利プレイヤーを設定するセッター
@@ -57,7 +100,13 @@ namespace nsTankLab
         void BackTitleScene()
         {
             m_saveData.SaveDataInit();
-            m_sceneSwitcher.StartTransition(SceneName.TitleScene, true);
+            m_sceneSwitcher.StartTransition(SceneName.TitleScene);
+        }
+
+        //再度ローカルゲームシーンに戻る処理
+        void BackLocalGameScene()
+        {
+            m_sceneSwitcher.StartTransition(SceneName.LocalGameScene);
         }
 
         //コンポーネント取得
@@ -66,6 +115,17 @@ namespace nsTankLab
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
             m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
+        }
+    }
+
+    [System.Serializable]
+    public class StarList
+    {
+        [SerializeField] List<Image> m_starUI = new List<Image>();
+
+        public Image GetStarUiList(int starNum)
+        {
+            return m_starUI[starNum];
         }
     }
 }

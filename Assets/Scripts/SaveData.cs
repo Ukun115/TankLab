@@ -29,6 +29,9 @@ namespace nsTankLab
         //現在の体力(チャレンジモードのみで使用)
         int m_hitPoint = 3;
 
+        //スター
+        bool[,] m_star = new bool[4,2];
+
         //選択タンク名
         string[] m_selectTankName = new string[4];
         //選択タンク番号
@@ -57,6 +60,15 @@ namespace nsTankLab
 
             //カーソル画像をデフォルトから変更
             Cursor.SetCursor(m_handCursor, new Vector2(m_handCursor.width / 2, m_handCursor.height / 2), CursorMode.Auto);
+
+            //スターbool変数の初期化
+            for(int playerNum = 0;playerNum < 4;playerNum++)
+            {
+                for (int starNum = 0; starNum < 2; starNum++)
+                {
+                    m_star[playerNum,starNum] = false;
+                }
+            }
         }
 
         //ゲームの進む時間がアクティブかどうかプロパティ
@@ -177,6 +189,17 @@ namespace nsTankLab
             set { m_hitPoint = value; }
         }
 
+        //スターセッター
+        public void ActiveStar(int playerNum,int starNum)
+        {
+            m_star[playerNum,starNum] = true;
+        }
+        //スターゲッター
+        public bool GetStar(int playerNum, int starNum)
+        {
+            return m_star[playerNum,starNum];
+        }
+
         //セーブデータを初期状態に戻す処理
         public void SaveDataInit()
         {
@@ -202,6 +225,14 @@ namespace nsTankLab
             m_activeGameTime = true;
             //体力を戻す
             m_hitPoint = 3;
+            //スターbool変数の初期化
+            for (int playerNum = 0; playerNum < 4; playerNum++)
+            {
+                for (int starNum = 0; starNum < 2; starNum++)
+                {
+                    m_star[playerNum,starNum] = false;
+                }
+            }
 
             //BGMを初期化
             m_soundManager.PlayBGM("OutGameSceneBGM");

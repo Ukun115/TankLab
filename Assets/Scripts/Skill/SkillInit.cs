@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// スキルの初期化処理
@@ -24,6 +25,8 @@ namespace nsTankLab
         }
         EnSelectSkillType m_selectSkillType = EnSelectSkillType.enAccelerationSkill;
 
+        [SerializeField]SkillCool m_skillCoolScript = null;
+
         void Start()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
@@ -44,30 +47,41 @@ namespace nsTankLab
                 //一定時間加速スキル
                 case EnSelectSkillType.enAccelerationSkill:
                     gameObject.AddComponent<AccelerationSkill>();
+                    gameObject.GetComponent<AccelerationSkill>().SetSkillCoolScript(m_skillCoolScript);
                     break;
 
                 //少し前の位置に戻るスキル
                 case EnSelectSkillType.enReturnPositionSkill:
                     gameObject.AddComponent<ReturnPosition>();
+                    gameObject.GetComponent<ReturnPosition>().SetSkillCoolScript(m_skillCoolScript);
                     break;
 
                 //爆弾設置スキル
                 case EnSelectSkillType.enDropBombSkill:
                     gameObject.AddComponent<DropBomb>();
+                    gameObject.GetComponent<DropBomb>().SetSkillCoolScript(m_skillCoolScript);
                     break;
                 //シールド生成スキル
                 case EnSelectSkillType.enCreateShieldSkill:
                     gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.AddComponent<CreateShield>();
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.GetComponent<CreateShield>().SetSkillCoolScript(m_skillCoolScript);
                     break;
                 //バックシールドスキル
                 case EnSelectSkillType.enBackShieldSkill:
                     gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/BackShieldPosition").gameObject.AddComponent<CreateBackShield>();
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/BackShieldPosition").gameObject.GetComponent<CreateBackShield>().SetSkillCoolScript(m_skillCoolScript);
                     break;
                 //ロケット弾
                 case EnSelectSkillType.enRocketBulletSkill:
                     gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.AddComponent<RocketBullet>();
+                    gameObject.transform.Find("PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition").gameObject.GetComponent<RocketBullet>().SetSkillCoolScript(m_skillCoolScript);
                     break;
             }
+        }
+
+        public void SetSkillCoolScript(SkillCool skillCoolScript)
+        {
+            m_skillCoolScript = skillCoolScript;
         }
     }
 }

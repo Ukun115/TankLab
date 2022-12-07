@@ -27,6 +27,9 @@ namespace nsTankLab
 		GameObject m_teleportEffectPrefab = null;
 		GameObject m_teleportEffectObject = null;
 
+		SkillCool m_skillCoolScript = null;
+		int m_coolTime = 6;
+
 		void Start()
 		{
 			//コンポーネント取得まとめ
@@ -64,7 +67,6 @@ namespace nsTankLab
 			{
 				m_skillFlg = false;
 				Invoke(nameof(Teleport),2.0f);
-				Invoke(nameof(Ct), 5.0f);
 
 				m_returnPosition = m_updateReturnPosition;
 
@@ -102,6 +104,9 @@ namespace nsTankLab
 			//テレポートエフェクトを削除
 			Destroy(m_teleportEffectObject);
 			m_teleportEffectObject = null;
+
+			Invoke(nameof(Ct), m_coolTime);
+			m_skillCoolScript.CoolStart(m_coolTime);
 		}
 
 		void StoppingOff()
@@ -128,6 +133,11 @@ namespace nsTankLab
 			m_teleportEffectObject.name = $"TeleportEffect";
 
 			m_teleportEffectObject.transform.Rotate(90, 0, 0);
+		}
+
+		public void SetSkillCoolScript(SkillCool skillCool)
+		{
+			m_skillCoolScript = skillCool;
 		}
 	}
 }

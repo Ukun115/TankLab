@@ -26,7 +26,7 @@ namespace nsTankLab
 		}
 
 	    //呼ばれたらトランジション起動
-	    public void StartTransition(string nextSceneName,bool isPush)
+	    public void StartTransition(string nextSceneName,bool isPush = true)
 		{
 			if (isPush)
 			{

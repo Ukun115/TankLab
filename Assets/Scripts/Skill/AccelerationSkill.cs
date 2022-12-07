@@ -27,6 +27,10 @@ namespace nsTankLab
 
 		SaveData m_saveData = null;
 
+		SkillCool m_skillCoolScript = null;
+
+		int m_coolTime = 6;
+
 		void Start()
 		{
 			//コンポーネント取得まとめ
@@ -56,7 +60,6 @@ namespace nsTankLab
 				m_skillFlg = false;
 				m_playerMovement.SetSkillSpeed(m_acceleTankSpeed);
 				Invoke(nameof(RevertSpeed),0.7f);
-				Invoke(nameof(Ct), 6.0f);
 
 				//加速エフェクトを生成する。
 				InstatiateAccelerationEffect("L");
@@ -83,6 +86,9 @@ namespace nsTankLab
 			//エフェクト削除
 			DestroyEffect("L");
 			DestroyEffect("R");
+
+			Invoke(nameof(Ct), m_coolTime);
+			m_skillCoolScript.CoolStart(m_coolTime);
 		}
 
 		void Ct()
@@ -123,5 +129,10 @@ namespace nsTankLab
 			m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 			m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
 		}
+
+		public void SetSkillCoolScript(SkillCool skillCool)
+        {
+			m_skillCoolScript = skillCool;
+        }
 	}
 }

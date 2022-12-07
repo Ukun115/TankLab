@@ -9,7 +9,7 @@ namespace nsTankLab
 {
     public class GoResult : MonoBehaviour
     {
-        [SerializeField, TooltipAttribute("リザルト処理が内包されているプレファブオブジェクト")] GameObject m_resultPrefab = null;
+        [SerializeField]ResultInit m_resultInitScript = null;
 
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
@@ -110,27 +110,22 @@ namespace nsTankLab
         void ChangeChallengeNowNumCountScene()
         {
             //現在のチャレンジ数カウントシーンに遷移
-            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene,true);
+            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene);
         }
 
         void ChangeChallengeNowNumCountSceneAndStageNum()
         {
             //現在のチャレンジ数カウントシーンに遷移
-            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene, true);
+            m_sceneSwitcher.StartTransition(SceneName.ChallengeNowNumCountScene);
             //次のステージ番号に進める
             m_saveData.NextStageNum();
         }
 
         void InstantiateResultObject(int winPlayer)
         {
-            //リザルトに突入
-            //リザルト処理は毎シーンごとに１度のみしか実行しない
-            //リザルト処理をまとめているゲームオブジェクトを生成し、
-            //リザルト処理を実行していく。
-            GameObject resultObject = Instantiate(m_resultPrefab);
-            resultObject.name = "Result";
-            //勝利表示
-            resultObject.GetComponent<ResultInit>().SetWinPlayer(winPlayer);
+            //リザルト初期化処理開始
+            m_resultInitScript.enabled = true;
+            m_resultInitScript.SetWinPlayer(winPlayer);
 
             StopGame();
 

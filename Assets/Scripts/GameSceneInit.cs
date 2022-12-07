@@ -13,10 +13,13 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("ローカル時の各プレイヤーの位置")] Transform[] m_localPlayerPosition = null;
         [SerializeField, TooltipAttribute("オンライン時のプレイヤーオブジェクト")] GameObject m_onlinePlayerPrefab = null;
         [SerializeField, TooltipAttribute("各プレイヤーの名前")] TextMeshProUGUI[] m_playerNameText = null;
+        [SerializeField, TooltipAttribute("クールタイムテキスト(オンライン用変数)")] TextMeshProUGUI[] m_coolTimeText = {null};
 
         //セーブデータ
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
+
+        [SerializeField]SkillCool[] m_skillCoolScript = { null };
 
         //ステージごとのプレイヤーの初期位置(ローカルの初期位置)
         Vector3[][] m_stageLocalPlayerInitPosition =
@@ -24,7 +27,9 @@ namespace nsTankLab
             //ステージ1
             new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
             //ステージ2
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)}
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            //ステージ3
+
         };
 
         //ステージごとのプレイヤーの初期位置(オンラインの初期位置)
@@ -34,6 +39,8 @@ namespace nsTankLab
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ2
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            //ステージ3
+
         };
 
         void Start()
@@ -117,6 +124,8 @@ namespace nsTankLab
             m_saveData.GetSetPlayerNum = PhotonNetwork.LocalPlayer.ActorNumber-1;
             //プレイヤー名表示
             photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
+
+            gameObjectOnline.GetComponent<SkillInit>().SetSkillCoolScript(m_skillCoolScript[PhotonNetwork.LocalPlayer.ActorNumber - 1]);
         }
 
         //コンポーネント取得
