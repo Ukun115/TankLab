@@ -52,7 +52,7 @@ namespace nsTankLab
                     if (m_controllerData.GetConnectGamepad() >= NEED_CONTROLLER_NUM)
                     {
                         //タンクシーンに遷移
-                        m_sceneSwitcher.StartTransition(SceneName.SelectTankScene, true);
+                        m_sceneSwitcher.StartTransition(SceneName.SelectTankScene);
                     }
                     //繋がれているコントローラーの数が足りなかったら、
                     else
@@ -154,7 +154,7 @@ namespace nsTankLab
             else
             {
                 //次のシーンに遷移
-                m_sceneSwitcher.StartTransition(nextSceneName,true);
+                m_sceneSwitcher.StartTransition(nextSceneName);
             }
         }
 

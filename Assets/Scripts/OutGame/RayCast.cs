@@ -211,7 +211,7 @@ namespace nsTankLab
                         //現在のチャレンジ数カウントシーン
                         case SceneName.ChallengeNowNumCountScene:
                             //チャレンジゲームシーンに遷移
-                            m_sceneSwitcher.StartTransition(SceneName.ChallengeGameScene, true);
+                            m_sceneSwitcher.StartTransition(SceneName.ChallengeGameScene);
                             break;
                 }
                 switch (SceneManager.GetActiveScene().name)

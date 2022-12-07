@@ -13,6 +13,9 @@ namespace nsTankLab
 
         ControllerData m_controllerData = null;
 
+        SkillCool m_skillCoolScript = null;
+        int m_coolTime = 5;
+
         void Start()
         {
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
@@ -34,7 +37,9 @@ namespace nsTankLab
             {
                 m_skillFlg = false;
                 RocketBulletInstantiate();
-                Invoke(nameof(Ct), 5.0f);
+
+                Invoke(nameof(Ct), m_coolTime);
+                m_skillCoolScript.CoolStart(m_coolTime);
             }
         }
 
@@ -50,6 +55,11 @@ namespace nsTankLab
         void Ct()
         {
             m_skillFlg = true;
+        }
+
+        public void SetSkillCoolScript(SkillCool skillCool)
+        {
+            m_skillCoolScript = skillCool;
         }
     }
 }

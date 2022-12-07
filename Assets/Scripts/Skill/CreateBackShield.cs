@@ -11,6 +11,9 @@ namespace nsTankLab
 
         bool m_isInstantiate = false;
 
+        SkillCool m_skillCoolScript = null;
+        int m_coolTime = 5;
+
         void Start()
         {
             BackShieldInstantiate();
@@ -22,7 +25,8 @@ namespace nsTankLab
             if(m_isInstantiate)
             {
                 //5秒後にバックシールドを自動生成
-                Invoke(nameof(BackShieldInstantiate), 5.0f);
+                Invoke(nameof(BackShieldInstantiate), m_coolTime);
+                m_skillCoolScript.CoolStart(m_coolTime);
 
                 m_isInstantiate = false;
             }
@@ -43,6 +47,11 @@ namespace nsTankLab
         {
             m_backShieldObject = null;
             m_isInstantiate = true;
+        }
+
+        public void SetSkillCoolScript(SkillCool skillCool)
+        {
+            m_skillCoolScript = skillCool;
         }
     }
 }
