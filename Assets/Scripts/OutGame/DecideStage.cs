@@ -24,6 +24,10 @@ namespace nsTankLab
             {
                 "STAGE1" => m_cursorPosition[0].position,
                 "STAGE2" => m_cursorPosition[1].position,
+                "STAGE3" => m_cursorPosition[2].position,
+                "STAGE4" => m_cursorPosition[3].position,
+                "STAGE5" => m_cursorPosition[4].position,
+                "STAGE6" => m_cursorPosition[5].position,
                 _ => m_cursorObject.position
             };
         }
