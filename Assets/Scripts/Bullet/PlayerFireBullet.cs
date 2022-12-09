@@ -47,7 +47,7 @@ namespace nsTankLab
         void Update()
         {
             //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
-            if (m_saveData.GetSetIsOnline && !photonView.IsMine && SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            if (m_saveData.GetSetIsOnline && SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
             {
                 return;
             }

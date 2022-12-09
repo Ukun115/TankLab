@@ -24,7 +24,7 @@ namespace nsTankLab
         //現在のステージ番号
         int m_nowStageNum = 1;
         //合計ステージ数
-        const int TOTAL_STAGE_NUM = 2;
+        const int TOTAL_STAGE_NUM = 6;
 
         //現在の体力(チャレンジモードのみで使用)
         int m_hitPoint = 3;
@@ -222,7 +222,7 @@ namespace nsTankLab
             //入力されたパスワード
             m_inputPassword = "----";
             //ゲームの進む時間がアクティブかどうか
-            m_activeGameTime = true;
+            m_activeGameTime = false;
             //体力を戻す
             m_hitPoint = 3;
             //スターbool変数の初期化

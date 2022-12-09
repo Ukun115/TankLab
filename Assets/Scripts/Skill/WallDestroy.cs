@@ -5,9 +5,9 @@ namespace nsTankLab
     public class WallDestroy : MonoBehaviour
     {
         [SerializeField, TooltipAttribute("ひび割れマテリアル")] MeshRenderer m_meshRenderer = null;
-        [SerializeField, TooltipAttribute("耐久値")] int m_durableValue = 5;
+        [SerializeField, TooltipAttribute("耐久値")] float m_durableValue = 5.0f;
 
-        int m_bulletDestroyCount = 0;
+        float m_bulletDestroyCount = 0.0f;
 
         void Start()
         {
@@ -21,8 +21,10 @@ namespace nsTankLab
 			{
 				//弾(通常弾&ロケット弾)に衝突したときの処理
 				case TagName.Bullet:
+					OnCollisitonBullet(1.0f);
+                    break;
                 case TagName.RocketBullet:
-					OnCollisitonBullet();
+					OnCollisitonBullet(m_durableValue);
 					break;
             }
 		}
@@ -32,14 +34,16 @@ namespace nsTankLab
             switch (other.gameObject.tag)
             {
                 case TagName.Bomb:
-                    Destroy(gameObject);
+                    OnCollisitonBullet(m_durableValue);
                     break;
             }
         }
 
-        void OnCollisitonBullet()
+        void OnCollisitonBullet(float addDestroyCountNum)
         {
-            m_bulletDestroyCount++;
+            m_bulletDestroyCount += addDestroyCountNum;
+
+            Debug.Log(m_bulletDestroyCount / m_durableValue);
 
             //ひび割れを入れていく
             m_meshRenderer.material.SetFloat("_CrackProgress", m_bulletDestroyCount/ m_durableValue);

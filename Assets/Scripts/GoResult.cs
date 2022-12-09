@@ -37,6 +37,12 @@ namespace nsTankLab
                 return;
             }
 
+           //タンクや弾の動きが止まっているとき
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             //チャレンジモードの時
             if (m_saveData.GetSetSelectGameMode == "CHALLENGE")
             {
