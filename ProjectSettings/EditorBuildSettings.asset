@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectStageScene.unity
     guid: 74a5ece7581728a42b403ebf2322cdad
   - enabled: 1
+    path: Assets/Scenes/TrainingScene.unity
+    guid: 1a3ff422ccd857e4f9d3d21f065a74c4
+  - enabled: 1
     path: Assets/Scenes/MatchingScene.unity
     guid: e78eba4274462554eb4e1c76b111f047
   - enabled: 1
@@ -47,6 +50,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage/Stage2.unity
     guid: a9e16f6fa71086045b67bfd83f474309
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage3.unity
+    guid: 9452f94053b32ac468b3d73f5c8e2c11
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage4.unity
+    guid: 85c4918a33b6ef74bad28573f9fbe0a3
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage5.unity
+    guid: 8de9b4af8cc737344b9ca0616ce6cb7b
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage6.unity
+    guid: 80df46e12cb3e2040a98aa94e986ff7d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 363d7b21881f60e49bd2d1d2f114f2d5,
       type: 2}

@@ -126,6 +126,12 @@ namespace nsTankLab
                     //ユーザー名登録シーンに遷移
                     ChangeScene(SceneName.DecideNameScene);
                     break;
+
+                //練習シーンの場合、
+                case "TRAINING":
+                    //練習シーンに遷移
+                    ChangeScene(SceneName.TrainingScene);
+                    break;
             }
         }
 

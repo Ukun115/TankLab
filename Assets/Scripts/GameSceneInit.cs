@@ -13,8 +13,6 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("ローカル時の各プレイヤーの位置")] Transform[] m_localPlayerPosition = null;
         [SerializeField, TooltipAttribute("オンライン時のプレイヤーオブジェクト")] GameObject m_onlinePlayerPrefab = null;
         [SerializeField, TooltipAttribute("各プレイヤーの名前")] TextMeshProUGUI[] m_playerNameText = null;
-        [SerializeField, TooltipAttribute("クールタイムテキスト(オンライン用変数)")] TextMeshProUGUI[] m_coolTimeText = {null};
-
         //セーブデータ
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
@@ -29,7 +27,15 @@ namespace nsTankLab
             //ステージ2
             new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
             //ステージ3
-
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            //ステージ4
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            //ステージ5
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            //ステージ6
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            //ステージ7
+            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)}
         };
 
         //ステージごとのプレイヤーの初期位置(オンラインの初期位置)
@@ -40,6 +46,15 @@ namespace nsTankLab
             //ステージ2
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ3
+            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            //ステージ4
+            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            //ステージ5
+            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            //ステージ6
+            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            //ステージ7
+            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) }
 
         };
 

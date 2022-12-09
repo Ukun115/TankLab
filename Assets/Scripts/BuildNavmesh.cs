@@ -18,20 +18,18 @@ namespace nsTankLab
 
 		void Awake()
 		{
-			//チャレンジモードのときのみナビメッシュとプレイヤーと敵AIを生成を実行する
-			if (SceneManager.GetActiveScene().name != SceneName.ChallengeGameScene)
+			//チャレンジモードとマッチングシーンのときのみナビメッシュとプレイヤーと敵AIを生成を実行する
+			if (SceneManager.GetActiveScene().name == SceneName.ChallengeGameScene || SceneManager.GetActiveScene().name == SceneName.MatchingScene)
 			{
-				return;
-			}
+				//ナビメッシュを生成する。
+				m_navMeshSurface = GetComponent<NavMeshSurface>();
+				m_navMeshSurface.BuildNavMesh();
 
-			//ナビメッシュを生成する。
-			m_navMeshSurface = GetComponent<NavMeshSurface>();
-			m_navMeshSurface.BuildNavMesh();
-
-			//敵AIを生成する
-			for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
-			{
-				m_enemyObject[enemyNum].SetActive(true);
+				//敵AIを生成する
+				for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
+				{
+					m_enemyObject[enemyNum].SetActive(true);
+				}
 			}
 		}
 	}

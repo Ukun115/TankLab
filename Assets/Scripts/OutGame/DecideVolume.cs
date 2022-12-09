@@ -33,6 +33,31 @@ namespace nsTankLab
                 //カーソルの初期化
                 ChangeCursorPosition(volumeType, NowVolumeValue(volumeType));
             }
+
+            if (PlayerPrefs.HasKey("MasterVolume"))
+            {
+                m_soundManager.GetSetMasterVolume = PlayerPrefs.GetFloat("MasterVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("MasterVolume", 0.5f);
+            }
+            if (PlayerPrefs.HasKey("BGMMasterVolume"))
+            {
+                m_soundManager.GetSetBGMMasterVolume = PlayerPrefs.GetFloat("BGMMasterVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("BGMMasterVolume", 0.5f);
+            }
+            if (PlayerPrefs.HasKey("SEMasterVolume"))
+            {
+                m_soundManager.GetSetSEMasterVolume = PlayerPrefs.GetFloat("SEMasterVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("SEMasterVolume", 0.5f);
+            }
         }
 
         //押されたボタンの種類によって処理を分岐
@@ -91,9 +116,9 @@ namespace nsTankLab
             {
                 case EnVolumeType.enMasterVolume:
                 return m_soundManager.GetSetMasterVolume;
-                case EnVolumeType.enSEVolume:
-                return m_soundManager.GetSetBGMMasterVolume;
                 case EnVolumeType.enBGMVolume:
+                return m_soundManager.GetSetBGMMasterVolume;
+                case EnVolumeType.enSEVolume:
                 return m_soundManager.GetSetSEMasterVolume;
                 default:
                     return 0.0f;

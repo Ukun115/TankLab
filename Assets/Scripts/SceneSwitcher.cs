@@ -14,6 +14,9 @@ namespace nsTankLab
 
 		public static GameObject m_instanceTransition = null;
 
+		bool m_isPush = true;
+		string m_nextSceneName = string.Empty;
+
 		void Awake()
 		{
 			CheckInstance();
@@ -26,20 +29,33 @@ namespace nsTankLab
 		}
 
 	    //呼ばれたらトランジション起動
-	    public void StartTransition(string nextSceneName,bool isPush = true)
+	    public void StartTransition(string nextSceneName,bool isPush = true,float delay = 0.0f)
 		{
-			if (isPush)
-			{
-				//スタックに遷移するシーンを保存する
-				scenes.Push(nextSceneName);
-			}
-			//遷移先のシーンをロード
-			SceneManager.LoadScene(nextSceneName);
+			m_isPush = isPush;
+			m_nextSceneName = nextSceneName;
+
+			Invoke(nameof(Next),delay);
 		}
 
 		//1つ前のシーンに戻る処理
-		public void BackScene()
+		public void BackScene(float delay = 0.0f)
 		{
+			Invoke(nameof(Back),delay);
+		}
+
+		void Next()
+        {
+			if (m_isPush)
+			{
+				//スタックに遷移するシーンを保存する
+				scenes.Push(m_nextSceneName);
+			}
+			//遷移先のシーンをロード
+			SceneManager.LoadScene(m_nextSceneName);
+		}
+
+		void Back()
+        {
 			//スタックに保存されているシーンを１つ減らす
 			scenes.Pop();
 			//１つ前のシーンをロード

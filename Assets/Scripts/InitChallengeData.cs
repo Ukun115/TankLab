@@ -28,6 +28,7 @@ namespace nsTankLab
         SaveData m_saveData = null;
 
         const int PLAYER1_NUM = 1;
+        const int MAX_PLAYER_HITPOINT = 3;
 
         void Start()
         {
@@ -37,7 +38,7 @@ namespace nsTankLab
             m_playerNameText.text = PlayerPrefs.GetString("PlayerName");
 
             //チャレンジモードを進めている最中はBackボタンでタイトルに戻れないようにしておく
-            if (m_saveData.GetSetSelectStageNum != 1 || m_saveData.GetSetHitPoint != 3)
+            if (m_saveData.GetSetSelectStageNum != 1 || m_saveData.GetSetHitPoint != MAX_PLAYER_HITPOINT)
             {
                 //Backボタン削除
                 m_backButtonText.SetActive(false);

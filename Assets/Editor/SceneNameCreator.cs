@@ -23,7 +23,7 @@ public static class SceneNameCreator
     };
 
     const string ITEM_NAME = "Tools/Create/Scene Name";    // コマンド名
-    const string PATH = "Assets/SceneName.cs";        // ファイルパス
+    const string PATH = "Assets/Scripts/SceneName.cs";        // ファイルパス
 
     static readonly string FILENAME = Path.GetFileName(PATH);                   // ファイル名(拡張子あり)
     static readonly string FILENAME_WITHOUT_EXTENSION = Path.GetFileNameWithoutExtension(PATH);   // ファイル名(拡張子なし)
