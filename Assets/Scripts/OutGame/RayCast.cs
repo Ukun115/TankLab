@@ -51,6 +51,7 @@ namespace nsTankLab
             Ray ray = m_camera.ScreenPointToRay(m_rayPoint);
             RaycastHit hit;
 
+
             //Rayを投射
             if (Physics.Raycast(ray, out hit))
             {
@@ -108,6 +109,11 @@ namespace nsTankLab
                     case SceneName.SelectStageScene:
                         //カーソルポジションを移動させる
                         m_sceneManager.GetComponent<DecideStage>().SetCursorPosition(hit.collider.name);
+                        break;
+
+                    //トレーニングシーンの場合、
+                    case SceneName.TrainingScene:
+                        m_sceneManager.GetComponent<DisplayTankAndSkillWindow>().UpdateTankSkillInfo(hit.collider.name);
                         break;
                 }
             }
@@ -208,11 +214,49 @@ namespace nsTankLab
                         m_sceneManager.GetComponent<DecideStage>().SetStageNum(int.Parse(Regex.Replace(hit.collider.name, @"[^0-9]", string.Empty)));
                         break;
 
-                        //現在のチャレンジ数カウントシーン
-                        case SceneName.ChallengeNowNumCountScene:
-                            //チャレンジゲームシーンに遷移
-                            m_sceneSwitcher.StartTransition(SceneName.ChallengeGameScene);
-                            break;
+                    //現在のチャレンジ数カウントシーン
+                    case SceneName.ChallengeNowNumCountScene:
+                        //チャレンジゲームシーンに遷移
+                        m_sceneSwitcher.StartTransition(SceneName.ChallengeGameScene);
+                        break;
+
+
+                    //トレーニングシーン
+                    case SceneName.TrainingScene:
+                        //タンクボタンが押されたとき、
+                        if (hit.collider.name.Contains("TANK"))
+                        {
+                            //選択音再生
+                            m_soundManager.PlaySE("SelectSE");
+
+                            //選択されているタンクを変更
+                            m_saveData.SetSelectTankName(1,hit.collider.name);
+
+                            //トレーニングシーンをリロードする
+                            m_sceneSwitcher.StartTransition(SceneName.TrainingScene, false);
+
+                            Debug.Log($"{hit.collider.name}に変更");
+                        }
+                        //スキルボタンが押されたとき、
+                        else if (hit.collider.name.Contains("SKILL"))
+                        {
+                            //選択音再生
+                            m_soundManager.PlaySE("SelectSE");
+
+                            //選択されているスキルを変更
+                            m_saveData.SetSelectSkillName(1, hit.collider.name);
+
+                            //トレーニングシーンをリロードする
+                            m_sceneSwitcher.StartTransition(SceneName.TrainingScene, false);
+
+                            Debug.Log($"{hit.collider.name}に変更");
+                        }
+                        else
+                        {
+                            //押されたボタンの文字を渡す
+                            m_sceneManager.GetComponent<DisplayTankAndSkillWindow>().DisplayWindow(hit.collider.name);
+                        }
+                        break;
                 }
                 switch (SceneManager.GetActiveScene().name)
                 {

@@ -16,16 +16,26 @@ namespace nsTankLab
         //足跡ゲームオブジェクトを格納するゲームオブジェクト
         Transform m_footPrintsBox = null;
 
+        SaveData m_saveData = null;
+
         //タイマー
         int m_timer = 0;
 
         void Start()
         {
             m_footPrintsBox = GameObject.Find("Footprints").GetComponent<Transform>();
+
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
 
         void Update()
         {
+            //ゲーム進行が止まっているときは実行しない
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             m_timer++;
 
             if(m_timer > DRAW_INTERVAL)

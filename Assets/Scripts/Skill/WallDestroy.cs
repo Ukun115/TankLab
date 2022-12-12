@@ -43,8 +43,6 @@ namespace nsTankLab
         {
             m_bulletDestroyCount += addDestroyCountNum;
 
-            Debug.Log(m_bulletDestroyCount / m_durableValue);
-
             //‚Ð‚ÑŠ„‚ê‚ð“ü‚ê‚Ä‚¢‚­
             m_meshRenderer.material.SetFloat("_CrackProgress", m_bulletDestroyCount/ m_durableValue);
 

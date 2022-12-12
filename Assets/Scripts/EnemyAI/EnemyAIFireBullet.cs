@@ -37,6 +37,12 @@ namespace nsTankLab
 
         void Update()
         {
+            //ゲーム進行が止まっているときは実行しない
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             //Rayを作成
             Ray ray = new Ray(m_firePositionTransform.root.position, m_firePositionTransform.forward);
             //Rayのデバック表示

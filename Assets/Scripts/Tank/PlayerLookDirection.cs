@@ -43,6 +43,12 @@ namespace nsTankLab
                 return;
             }
 
+            //ゲーム進行が止まっているときは実行しない
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             var ray = m_camera.ScreenPointToRay(DecideRayTarget());
             plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
             if (plane.Raycast(ray, out distance))

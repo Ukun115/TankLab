@@ -15,5 +15,5 @@ MonoBehaviour:
   m_tankSpeed: 2
   m_bulletSpeed: 3
   m_bulletRefrectionNum: 2
-  m_rapidFireNum: 2
+  m_rapidFireNum: 4
   m_sameTimeBulletNum: 1

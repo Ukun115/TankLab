@@ -60,6 +60,12 @@ namespace nsTankLab
                 return;
             }
 
+            //ゲーム進行が止まっているときは実行しない
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             // ゲームパッドが接続されていたらゲームパッド操作
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {

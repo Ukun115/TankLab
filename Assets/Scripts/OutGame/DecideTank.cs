@@ -68,7 +68,7 @@ namespace nsTankLab
             //ÉXÉLÉã
             else if (character.Contains("SKILL"))
             {
-                m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^1-9]", string.Empty)) - 1].text}";
+                m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^0-9]", string.Empty)) - 1].text}";
             }
         }
 

@@ -10,8 +10,21 @@ namespace nsTankLab
         //‰ñ“]‘¬“x
         float m_rotationSpeed = 0.5f;
 
+        SaveData m_saveData = null;
+
+        void Start()
+        {
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+        }
+
         void Update()
         {
+            //ƒQ[ƒ€is‚ª~‚Ü‚Á‚Ä‚¢‚é‚Æ‚«‚ÍÀs‚µ‚È‚¢
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             //‚½‚Ü‚É‰ñ“]‚·‚é•ûŒü‚ğ‹t‚É‚·‚é
             if (Random.Range(1, 250) == 1)
             {
