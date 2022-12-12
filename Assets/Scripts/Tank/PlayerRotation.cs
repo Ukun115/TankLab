@@ -21,6 +21,8 @@ namespace nsTankLab
         //剛体
         Rigidbody m_rigidbody = null;
 
+        SaveData m_saveData = null;
+
         void Start()
         {
             //コンポーネント取得まとめ
@@ -29,6 +31,12 @@ namespace nsTankLab
 
         void FixedUpdate()
         {
+            //ゲーム進行が止まっているときは実行しない
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
             //プレイヤーの回転処理
             UpdateRotation();
         }
@@ -65,6 +73,7 @@ namespace nsTankLab
         {
             m_rigidbody = GetComponent<Rigidbody>();
             m_playerMovement = GetComponent<PlayerMovement>();
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
     }
 }
