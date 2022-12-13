@@ -24,7 +24,7 @@ namespace nsTankLab
         //現在のステージ番号
         int m_nowStageNum = 1;
         //合計ステージ数
-        const int TOTAL_STAGE_NUM = 6;
+        const int TOTAL_STAGE_NUM = 10;
 
         //現在の体力(チャレンジモードのみで使用)
         int m_hitPoint = 3;
