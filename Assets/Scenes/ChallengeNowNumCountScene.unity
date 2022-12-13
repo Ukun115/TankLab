@@ -4065,6 +4065,18 @@ MonoBehaviour:
   - m_numberOfEnemiesOnStage: 4
     m_tankType: Tank2
     m_skillType: Skill6
+  - m_numberOfEnemiesOnStage: 6
+    m_tankType: Tank2
+    m_skillType: Skill6
+  - m_numberOfEnemiesOnStage: 5
+    m_tankType: Tank2
+    m_skillType: Skill3
+  - m_numberOfEnemiesOnStage: 4
+    m_tankType: Tank2
+    m_skillType: Skill3
+  - m_numberOfEnemiesOnStage: 6
+    m_tankType: Tank2
+    m_skillType: Skill3
   m_playerNameText: {fileID: 34956169}
   m_tankInfoText: {fileID: 184574695}
   m_skillInfoText: {fileID: 718635591}
