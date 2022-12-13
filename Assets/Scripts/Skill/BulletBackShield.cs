@@ -4,6 +4,8 @@ namespace nsTankLab
 {
     public class BulletBackShield : MonoBehaviour
     {
+        bool m_isParentEnemy = false;
+
         void OnTriggerEnter(Collider other)
         {
             switch (other.gameObject.tag)
@@ -20,7 +22,21 @@ namespace nsTankLab
 
         void OnDestroy()
         {
-            transform.parent.gameObject.transform.parent.GetComponent<CreateBackShield>().GoInstantiate();
+            //親が敵AIのとき、
+            if (m_isParentEnemy)
+            {
+                transform.parent.gameObject.transform.parent.GetComponent<EnemyAICreateBackShield>().GoInstantiate();
+            }
+            //親がプレイヤーのとき、
+            else
+            {
+                transform.parent.gameObject.transform.parent.GetComponent<CreateBackShield>().GoInstantiate();
+            }
+        }
+
+        public void SetIsEnemy()
+        {
+            m_isParentEnemy = true;
         }
     }
 }

@@ -808,7 +808,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1038939751}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560258180168785, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -848,7 +848,7 @@ PrefabInstance:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -979,7 +979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e977bacbe40f374d91c7ef5ea5d66b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
+  m_normalBulletPrefab: {fileID: 7365256630221750918, guid: dd542b1402abb1042a5af4a5f079dabc,
+    type: 3}
+  m_rocketBulletPrefab: {fileID: 7365256630221750918, guid: dd890183ca554a441b4879b1484f2ed0,
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_firePositionTransform: {fileID: 786930104}
@@ -1188,38 +1190,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 949847621}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1038939750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1038939751}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1038939751
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038939750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2110761248}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1065356632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2614,12 +2584,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
     type: 3}
   m_PrefabInstance: {fileID: 2098346429}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2110761248 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 786930099}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5875072176744100055
 PrefabInstance:

@@ -39,6 +39,8 @@ namespace nsTankLab
 			m_accelerationEffectPrefab = (GameObject)Resources.Load("Ef_SmokeRocketBigParticle");
 
 			m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty));
+
+			m_playerMovement.SetSkillSpeed(m_nomalTankSpeed);
 		}
 
 		void Update()
