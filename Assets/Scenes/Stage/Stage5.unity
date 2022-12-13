@@ -128,12 +128,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1837676823}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -230,12 +230,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &19394445 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 19394442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &54147184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,12 +310,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1837676823}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -418,12 +412,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &81065840 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 81065837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &90407595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -504,12 +492,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1837676823}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -606,12 +594,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &192039282 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 192039279}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &212299713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2360,12 +2342,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1837676823}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -2462,12 +2444,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &1311307143 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 1311307140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1423500048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2797,41 +2773,6 @@ PrefabInstance:
       objectReference: {fileID: 192039280}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7526a898bfcc9ce46817395e86e8ce07, type: 3}
---- !u!1 &1837676822
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1837676823}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1837676823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837676822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 81065840}
-  - {fileID: 1311307143}
-  - {fileID: 19394445}
-  - {fileID: 192039282}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1870826945
 PrefabInstance:
   m_ObjectHideFlags: 0

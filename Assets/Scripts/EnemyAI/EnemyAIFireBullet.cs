@@ -7,9 +7,13 @@ namespace nsTankLab
 {
     public class EnemyAIFireBullet : MonoBehaviour
     {
-        [SerializeField, TooltipAttribute("弾プレファブオブジェクト")] GameObject m_bulletPrefab = null;
+        [SerializeField, TooltipAttribute("通常弾プレファブオブジェクト")] GameObject m_normalBulletPrefab = null;
+        [SerializeField, TooltipAttribute("ロケット弾プレファブオブジェクト")]GameObject m_rocketBulletPrefab = null;
         [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
         [SerializeField, TooltipAttribute("発射位置Transformコンポーネント")] Transform m_firePositionTransform = null;
+
+        //ロケット弾を撃つときはインスペクターでfalseに設定する
+        [SerializeField]bool m_addFireRocketBulletSkill = false;
 
         //弾オブジェクトを格納するオブジェクト
         Transform m_bulletsBox = null;
@@ -24,7 +28,7 @@ namespace nsTankLab
         int m_bulletNum = 0;
 
         int m_timer = 0;
-        const int BULLET_FIRE_DELAY = 120;
+        [SerializeField]int m_bulletFireDelay = 100;
 
         void Start()
         {
@@ -32,7 +36,7 @@ namespace nsTankLab
             GetComponents();
 
             //初手ゲーム開始と同時に撃ってしまわないように初めにディレイをかけてからスタートさせる
-            m_timer = BULLET_FIRE_DELAY;
+            m_timer = m_bulletFireDelay;
         }
 
         void Update()
@@ -89,7 +93,7 @@ namespace nsTankLab
                 return;
             }
             //タイマー作動
-            m_timer = BULLET_FIRE_DELAY;
+            m_timer = m_bulletFireDelay;
 
             //弾発射SE再生
             m_soundManager.PlaySE("FireSE");
@@ -100,18 +104,36 @@ namespace nsTankLab
 
         void BulletInstantiate()
         {
-            //弾を生成
-            GameObject m_bulletObject = Instantiate(
-            m_bulletPrefab,
-            m_firePositionTransform.position,
-            new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
-            );
-            //生成される弾の名前変更
-            m_bulletObject.name = "EnemyBullet";
-            //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-            m_bulletObject.transform.parent = m_bulletsBox;
-            //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
-            m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
+            //通常弾
+            if (!m_addFireRocketBulletSkill)
+            {
+                //弾を生成
+                GameObject m_bulletObject = Instantiate(
+                m_normalBulletPrefab,
+                m_firePositionTransform.position,
+                new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
+                );
+                //生成される弾の名前変更
+                m_bulletObject.name = "EnemyBullet";
+                //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+                m_bulletObject.transform.parent = m_bulletsBox;
+                //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
+                m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
+            }
+            //ロケット弾
+            else
+            {
+                //弾を生成
+                GameObject m_bulletObject = Instantiate(
+                m_rocketBulletPrefab,
+                m_firePositionTransform.position,
+                new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
+                );
+                //生成される弾の名前変更
+                m_bulletObject.name = "EnemyBullet";
+                //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+                m_bulletObject.transform.parent = m_bulletsBox;
+            }
         }
 
         //フィールド上に生成されている弾の数を減らす処理

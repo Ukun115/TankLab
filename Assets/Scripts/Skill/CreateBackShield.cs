@@ -40,7 +40,7 @@ namespace nsTankLab
                 transform.rotation,
                 transform
             );
-            m_backShieldObject.name = $"{name}Shield";
+            m_backShieldObject.name = "Shield";
         }
 
         public void GoInstantiate()

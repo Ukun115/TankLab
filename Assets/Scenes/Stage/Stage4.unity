@@ -1534,12 +1534,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1951693156}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -1636,12 +1636,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &654626863 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 654626860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661015950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,12 +2174,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1951693156}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -2210,7 +2204,7 @@ PrefabInstance:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -2277,12 +2271,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &842433189 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 842433186}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846159421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3853,12 +3841,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1951693156}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -3883,7 +3871,7 @@ PrefabInstance:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -3950,12 +3938,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &1917611659 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 1917611656}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1935521367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4031,41 +4013,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1935521367}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1951693155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1951693156}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1951693156
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951693155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2135821397}
-  - {fileID: 654626863}
-  - {fileID: 842433189}
-  - {fileID: 1917611659}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1973955596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4501,12 +4448,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1951693156}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -4603,12 +4550,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &2135821397 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: d6344559e100c664e86deb2d35216c14,
-    type: 3}
-  m_PrefabInstance: {fileID: 2135821394}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6162142590949602929
 PrefabInstance:
   m_ObjectHideFlags: 0
