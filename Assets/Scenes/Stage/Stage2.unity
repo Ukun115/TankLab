@@ -930,6 +930,16 @@ PrefabInstance:
       propertyPath: m_enemyAIType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBombSkill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBackShieldSkill
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6344559e100c664e86deb2d35216c14, type: 3}
@@ -985,6 +995,8 @@ MonoBehaviour:
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_firePositionTransform: {fileID: 786930104}
+  m_addFireRocketBulletSkill: 0
+  m_bulletFireDelay: 100
 --- !u!4 &786930104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 430560258180168786, guid: d6344559e100c664e86deb2d35216c14,

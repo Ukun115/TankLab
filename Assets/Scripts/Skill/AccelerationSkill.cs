@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 /// <summary>
 /// 一定時間加速するスキルの処理
 /// </summary>
 namespace nsTankLab
 {
-	public class AccelerationSkill : MonoBehaviour
+	public class AccelerationSkill : MonoBehaviourPun
 	{
 		PlayerMovement m_playerMovement = null;
 
@@ -47,6 +49,12 @@ namespace nsTankLab
 		{
 			//ゲーム進行が止まっているとき
 			if (!m_saveData.GetSetmActiveGameTime)
+			{
+				return;
+			}
+
+			//このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+			if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
 			{
 				return;
 			}

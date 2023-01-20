@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addFireRocketBulletSkill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_enemyAIType
@@ -377,6 +382,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addFireRocketBulletSkill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_enemyAIType
@@ -558,6 +568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addFireRocketBulletSkill
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
@@ -2408,6 +2423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addFireRocketBulletSkill
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}

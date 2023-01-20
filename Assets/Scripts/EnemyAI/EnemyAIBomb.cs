@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Text.RegularExpressions;
 
 namespace nsTankLab
 {
@@ -8,13 +6,7 @@ namespace nsTankLab
     {
         SoundManager m_soundManager = null;
 
-        bool m_skillFlg = true;
-
-        bool m_isPressedButton = false;
-
-        int m_playerNum = 0;
-
-        ControllerData m_controllerData = null;
+        bool m_skillFlg = false;
 
         SaveData m_saveData = null;
 
@@ -26,7 +18,7 @@ namespace nsTankLab
             //コンポーネント取得まとめ
             GetComponents();
 
-            m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty));
+            Invoke(nameof(Ct), m_coolTime);
         }
 
         void Update()
@@ -37,10 +29,7 @@ namespace nsTankLab
                 return;
             }
 
-            //操作切替
-            SwitchingOperation();
-
-            if (m_isPressedButton && m_skillFlg)
+            if (m_skillFlg)
             {
                 m_skillFlg = false;
 
@@ -50,20 +39,6 @@ namespace nsTankLab
                 m_soundManager.PlaySE("DropBombSE");
 
                 Invoke(nameof(Ct), m_coolTime);
-                m_skillCoolScript.CoolStart(m_coolTime);
-            }
-        }
-
-        //操作切替
-        void SwitchingOperation()
-        {
-            if (m_controllerData.GetGamepad(m_playerNum) is not null)
-            {
-                m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
-            }
-            else
-            {
-                m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
             }
         }
 
@@ -81,18 +56,12 @@ namespace nsTankLab
         void GetComponents()
         {
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
-            m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
 
         void Ct()
         {
             m_skillFlg = true;
-        }
-
-        public void SetSkillCoolScript(SkillCool skillCool)
-        {
-            m_skillCoolScript = skillCool;
         }
     }
 }

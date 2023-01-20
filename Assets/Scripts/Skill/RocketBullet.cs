@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 namespace nsTankLab
 {
-    public class RocketBullet : MonoBehaviour
+    public class RocketBullet : MonoBehaviourPun
     {
         bool m_isPressedButton = false;
         bool m_skillFlg = true;
@@ -16,14 +18,29 @@ namespace nsTankLab
         SkillCool m_skillCoolScript = null;
         int m_coolTime = 5;
 
+        SaveData m_saveData = null;
+
         void Start()
         {
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty));
         }
 
         void Update()
         {
+            //ゲーム進行が止まっているとき
+            if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
+            //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
+            {
+                return;
+            }
+
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
                 m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// リザルト画面の初期化処理
@@ -45,11 +46,15 @@ namespace nsTankLab
             {
                 m_winText.text = "Challenge Clear!!";
 
+                //チャレンジクリアしたことを保存する
+                PlayerPrefs.SetInt("ChallengeClear",1);
+                PlayerPrefs.Save();
+
                 //３秒後にタイトル画面に戻る
                 Invoke(nameof(BackTitleScene), 3.0f);
             }
-            //いずれかのプレイヤーが勝利した場合
-            else
+            //いずれかのプレイヤーが勝利した場合(ローカル)
+            else if(SceneManager.GetActiveScene().name == SceneName.LocalGameScene || SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
             {
                 m_winText.text = $"{m_winPlayer}P Win!!";
                 //勝利プレイヤーによってカラーチェンジ
@@ -66,8 +71,17 @@ namespace nsTankLab
                 }
                 else
                 {
-                    //3秒後に再度ローカルゲームシーンに遷移する。
-                    Invoke(nameof(BackLocalGameScene), 3.0f);
+                    switch (SceneManager.GetActiveScene().name)
+                    {
+                        case SceneName.LocalGameScene:
+                            //3秒後に再度ローカルゲームシーンに遷移する。
+                            Invoke(nameof(BackLocalGameScene), 3.0f);
+                            break;
+                        case SceneName.OnlineGameScene:
+                            //3秒後に再度オンラインゲームシーンに遷移する。
+                            Invoke(nameof(BackOnlineGameScene), 3.0f);
+                            break;
+                    }
                 }
             }
         }
@@ -107,6 +121,12 @@ namespace nsTankLab
         void BackLocalGameScene()
         {
             m_sceneSwitcher.StartTransition(SceneName.LocalGameScene);
+        }
+
+        //再度オンラインゲームシーンに戻る処理
+        void BackOnlineGameScene()
+        {
+            m_sceneSwitcher.StartTransition(SceneName.OnlineGameScene);
         }
 
         //コンポーネント取得

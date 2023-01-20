@@ -9,9 +9,12 @@ namespace nsTankLab
 {
     public class ControllerData : MonoBehaviour
     {
-        [SerializeField, TooltipAttribute("マウスカーソル画像オブジェクト")] Texture2D m_mouseCursorTexture = null;
+        [SerializeField, TooltipAttribute("マウスカーソル画像オブジェクト")] Texture2D[] m_mouseCursorTexture = null;
 
         int m_controllerNum = 0;
+
+        //1=1P,2=2P
+        int m_cursorColorNum = 1;
 
         void Start()
         {
@@ -32,7 +35,7 @@ namespace nsTankLab
             else
             {
                 //マウスカーソルの画像をレティクルにする
-                Cursor.SetCursor(m_mouseCursorTexture, new Vector2(64,64), CursorMode.Auto);
+                Cursor.SetCursor(m_mouseCursorTexture[m_cursorColorNum-1], new Vector2(m_mouseCursorTexture[m_cursorColorNum - 1].width/2, m_mouseCursorTexture[m_cursorColorNum - 1].height/2), CursorMode.Auto);
             }
         }
 
@@ -45,6 +48,11 @@ namespace nsTankLab
 
                 // 接続されているコントローラー数を調べる
                 m_controllerNum = Gamepad.all.Count;
+        }
+
+        public void SetCursorColor(int playerNum)
+        {
+            m_cursorColorNum = playerNum;
         }
 
         public Gamepad GetGamepad(int playerNum)

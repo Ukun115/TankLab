@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 /// <summary>
 /// ユーザーのセーブデータを管理するスクリプト
@@ -9,7 +10,6 @@ namespace nsTankLab
 {
     public class SaveData : MonoBehaviour
     {
-        [SerializeField] Texture2D m_handCursor = null;
         [SerializeField] SoundManager m_soundManager = null;
 
         //オンラインモードかどうか
@@ -44,7 +44,7 @@ namespace nsTankLab
         string m_inputPassword = "----";
 
         //ゲームの進む時間がアクティブかどうか
-        bool m_activeGameTime = false;
+        bool m_activeGameTime = true;
 
         public static GameObject m_instanceSaveData = null;
 
@@ -57,9 +57,6 @@ namespace nsTankLab
         {
             //60fpsで固定する。
             Application.targetFrameRate = 60;
-
-            //カーソル画像をデフォルトから変更
-            Cursor.SetCursor(m_handCursor, new Vector2(m_handCursor.width / 2, m_handCursor.height / 2), CursorMode.Auto);
 
             //スターbool変数の初期化
             for(int playerNum = 0;playerNum < 4;playerNum++)

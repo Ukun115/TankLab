@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
+using Photon.Pun;
 
 /// <summary>
 /// 条件を満たすとリザルト画面に行く処理
 /// </summary>
 namespace nsTankLab
 {
-    public class GoResult : MonoBehaviour
+    public class GoResult : MonoBehaviourPun
     {
         [SerializeField]ResultInit m_resultInitScript = null;
 
@@ -17,6 +18,8 @@ namespace nsTankLab
         SceneSwitcher m_sceneSwitcher = null;
 
         bool m_canGoResult = true;
+
+        string m_winPlayerName = string.Empty;
 
         void Start()
         {
@@ -105,12 +108,28 @@ namespace nsTankLab
                 //プレイヤーがフィールド上に一人だけになったら、
                 if (playerObject.Length == 1)
                 {
-                    //リザルト突入
-                    int winPlayerNum = int.Parse(Regex.Replace(playerObject[0].name, @"[^1-4]", string.Empty));
-                    InstantiateResultObject(winPlayerNum);
-                    Debug.Log("勝敗がつきました。");
+                    m_winPlayerName = playerObject[0].name;
+
+                    switch (SceneManager.GetActiveScene().name)
+                    {
+                        case SceneName.LocalGameScene:
+                            GoResultScene(m_winPlayerName);
+                            break;
+                        case SceneName.OnlineGameScene:
+                            photonView.RPC(nameof(GoResultScene), RpcTarget.All, m_winPlayerName);
+                            break;
+                    }
                 }
             }
+        }
+
+        [PunRPC]
+        void GoResultScene(string winPlayerName)
+        {
+            //リザルト突入
+            int winPlayerNum = int.Parse(Regex.Replace(winPlayerName, @"[^1-4]", string.Empty));
+            InstantiateResultObject(winPlayerNum);
+            Debug.Log("勝敗がつきました。");
         }
 
         void ChangeChallengeNowNumCountScene()

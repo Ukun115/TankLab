@@ -1646,6 +1646,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1P
       objectReference: {fileID: 0}
+    - target: {fileID: 663369409029408942, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 792016158246026436, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1195395832115180577, guid: aacf3de45f44b234d8972bc448442b9b,
         type: 3}
       propertyPath: sceneViewId
@@ -1661,16 +1671,70 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3603896647482088112, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977467679949021185, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127486939705990651, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888228659816587445, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530929559599957132, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8073325307116374229, guid: aacf3de45f44b234d8972bc448442b9b,
         type: 3}
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8514577307965965473, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975289182811474748, guid: aacf3de45f44b234d8972bc448442b9b,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8073325307116374229, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
     - {fileID: 2308386662267416784, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
     - {fileID: 5277521171461869013, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 3064898681875292921, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 8382594434556777056, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 663369409029408942, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 8514577307965965473, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 5127486939705990651, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 8975289182811474748, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 3603896647482088112, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 792016158246026436, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 4977467679949021185, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 7530929559599957132, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 1195395832115180577, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 2034827773558130342, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+    - {fileID: 6888228659816587445, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aacf3de45f44b234d8972bc448442b9b, type: 3}
+--- !u!4 &884445175 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 430560259859113095, guid: aacf3de45f44b234d8972bc448442b9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 884445174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1030720979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_localPlayerPosition:
-  - {fileID: 0}
+  - {fileID: 884445175}
   m_onlinePlayerPrefab: {fileID: 0}
   m_playerNameText:
   - {fileID: 1929646617}

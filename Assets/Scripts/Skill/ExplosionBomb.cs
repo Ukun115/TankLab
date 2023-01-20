@@ -23,6 +23,8 @@ namespace nsTankLab
 
         int m_timer = 0;
 
+        SaveData m_saveData = null;
+
         //バーチャルカメラ
         Cinemachine.CinemachineImpulseSource m_virtualCamera = null;
 
@@ -97,6 +99,22 @@ namespace nsTankLab
             {
                 //プレイヤーor敵AIに衝突したときの処理
                 case TagName.Player:
+                    if (m_dropPlayer == other.gameObject)
+                    {
+                        return;
+                    }
+                    //タンクを撃破する
+                    OnCollisitonPlayerOrEnemyAI(other);
+                    //爆発コリジョンをオンにする
+                    ActiveCollision();
+
+                    //カメラを振動させる
+                    m_virtualCamera.GenerateImpulse();
+
+                    //プレイヤーの体力を減少させる
+                    m_saveData.GetSetHitPoint--;
+
+                    break;
                 case TagName.Enemy:
                     if(m_dropPlayer == other.gameObject)
                     {
@@ -142,6 +160,7 @@ namespace nsTankLab
         void GetComponents()
         {
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_renderer = GetComponent<Renderer>();
             //バーチャルカメラ
             m_virtualCamera = GameObject.Find("VirtualCamera").GetComponent<Cinemachine.CinemachineImpulseSource>();
