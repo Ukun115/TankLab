@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 namespace nsTankLab
 {
     /// <summary>
     /// 前方にシールドを生成するスキル
     /// </summary>
-    public class CreateShield : MonoBehaviour
+    public class CreateShield : MonoBehaviourPun
     {
         bool m_isPressedButton = false;
 
@@ -36,6 +38,12 @@ namespace nsTankLab
         {
             //ゲーム進行が止まっているとき
             if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
+            //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
             {
                 return;
             }

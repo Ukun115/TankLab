@@ -26,6 +26,9 @@ namespace nsTankLab
         {
             //コンポーネント取得まとめ
             GetComponents();
+
+            //レティクルの色を青に初期化。
+            m_controllerData.SetCursorColor(1);
         }
 
         //押されたボタンの種類によって処理を分岐
@@ -110,7 +113,7 @@ namespace nsTankLab
                 //設定の場合、
                 case "CONFIG":
                     //設定シーンに遷移
-                    ChangeScene(SceneName.ConfigScene);
+                    ChangeScene(SceneName.ConfigScene,true);
 
                     break;
 
@@ -130,7 +133,7 @@ namespace nsTankLab
                 //練習シーンの場合、
                 case "TRAINING":
                     //練習シーンに遷移
-                    ChangeScene(SceneName.TrainingScene);
+                    ChangeScene(SceneName.TrainingScene,true);
                     break;
             }
         }
@@ -148,10 +151,10 @@ namespace nsTankLab
         }
 
         //シーン遷移処理
-        void ChangeScene(string nextSceneName)
+        void ChangeScene(string nextSceneName,bool through = false)
         {
             //プレイヤー名を登録していなかった場合、
-            if (!PlayerPrefs.HasKey("PlayerName"))
+            if (!PlayerPrefs.HasKey("PlayerName")&& !through)
             {
                 //プレイヤー名登録シーンを挟む
                 m_sceneSwitcher.StartTransition(SceneName.DecideNameScene, false);

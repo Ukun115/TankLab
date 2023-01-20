@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 using System.Text.RegularExpressions;
 
 namespace nsTankLab
 {
-    public class DropBomb : MonoBehaviour
+    public class DropBomb : MonoBehaviourPun
     {
         SoundManager m_soundManager = null;
 
@@ -33,6 +35,12 @@ namespace nsTankLab
         {
             //ゲーム進行が止まっているとき
             if (!m_saveData.GetSetmActiveGameTime)
+            {
+                return;
+            }
+
+            //このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
             {
                 return;
             }

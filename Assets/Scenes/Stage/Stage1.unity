@@ -1406,7 +1406,7 @@ PrefabInstance:
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_addBackShieldSkill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14, type: 3}
@@ -1714,6 +1714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyAIType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBombSkill
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4253899537444538427, guid: d6344559e100c664e86deb2d35216c14, type: 3}

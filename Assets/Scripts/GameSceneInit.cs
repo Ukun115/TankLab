@@ -25,23 +25,23 @@ namespace nsTankLab
             //ステージ1
             new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
             //ステージ2
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -3.0f, 0.0f, 3.0f ),new Vector3(3.0f,0.0f,3.0f),new Vector3(-3.0f, 0.0f, -3.0f), new Vector3(3.0f, 0.0f, -3.0f)},
             //ステージ3
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -4.0f, 0.0f, 6.5f ),new Vector3(7.0f,0.0f,2.0f),new Vector3(-7.0f, 0.0f, -2.0f), new Vector3(4.0f, 0.0f, -6.5f)},
             //ステージ4
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -11.0f, 0.0f, 6.0f ),new Vector3(11.0f,0.0f,6.0f),new Vector3(-11.0f, 0.0f, -6.0f), new Vector3(11.0f, 0.0f, -6.0f)},
             //ステージ5
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -2.0f, 0.0f, 4.0f ),new Vector3(9.0f,0.0f,1.5f),new Vector3(-9.0f, 0.0f, -1.5f), new Vector3(2.0f, 0.0f, -4.0f)},
             //ステージ6
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -5.0f, 0.0f, 6.0f ),new Vector3(5.0f,0.0f,6.0f),new Vector3(-5.0f, 0.0f, -6.0f), new Vector3(5.0f, 0.0f, -6.0f)},
             //ステージ7
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -9.5f, 0.0f, 4.0f ),new Vector3(9.5f,0.0f,4.0f),new Vector3(-9.5f, 0.0f, -4.0f), new Vector3(9.5f, 0.0f, -4.0f)},
             //ステージ8
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
+            new[] { new Vector3( -9.5f, 0.0f, 4.0f ),new Vector3(9.5f,0.0f,4.0f),new Vector3(-9.5f, 0.0f, -4.0f), new Vector3(9.5f, 0.0f, -4.0f)},
             //ステージ9
             new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
             //ステージ10
-            new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)}
+            new[] { new Vector3( -8.0f, 0.0f, 4.0f ),new Vector3(8.0f,0.0f,4.0f),new Vector3(-8.0f, 0.0f, -4.0f), new Vector3(8.0f, 0.0f, -4.0f)}
         };
 
         //ステージごとのプレイヤーの初期位置(オンラインの初期位置)
@@ -52,33 +52,27 @@ namespace nsTankLab
             //ステージ2
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ3
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            new[] {new Vector3(-7.0f,0.0f,-2.0f ),new Vector3(7.0f,0.0f,2.0f) },
             //ステージ4
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ5
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            new[] {new Vector3(-10.0f,0.0f,5.0f ),new Vector3(10.0f,0.0f,-5.0f) },
             //ステージ6
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ7
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            new[] {new Vector3(-3.5f,0.0f,0.0f ),new Vector3(3.5f,0.0f,0.0f) },
             //ステージ8
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            new[] {new Vector3(-9.5f,0.0f,4.0f ),new Vector3(9.5f,0.0f,-4.0f) },
             //ステージ9
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
+            new[] {new Vector3(-10.0f,0.0f,5.0f ),new Vector3(10.0f,0.0f,5.0f) },
             //ステージ10
-            new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) }
+            new[] {new Vector3(-8.0f,0.0f,4.0f ),new Vector3(8.0f,0.0f,-4.0f) }
         };
 
         void Start()
         {
             //コンポーネント取得まとめ
             GetComponents();
-
-            //選択されたステージによってステージをシーンに合成
-            SceneManager.LoadScene($"Stage{ m_saveData.GetSetSelectStageNum}", LoadSceneMode.Additive);
-
-            //デバック
-            Debug.Log($"<color=yellow>生成ステージ：Stage{m_saveData.GetSetSelectStageNum}</color>");
 
             switch (m_saveData.GetSetSelectGameMode)
             {
@@ -88,6 +82,9 @@ namespace nsTankLab
                     m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
                     //チャレンジモードのBGMを再生する
                     m_soundManager.PlayBGM("GameSceneBGM01");
+
+                    m_localPlayerPosition[0].position = m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][0];
+
                     break;
 
                 //ローカルプレイ
@@ -108,6 +105,8 @@ namespace nsTankLab
                     //マッチングシーンはオンライン対応のプレイヤーモデルは生成しない。
                     if(SceneManager.GetActiveScene().name == SceneName.MatchingScene)
                     {
+                        m_localPlayerPosition[0].position = m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][0];
+
                         break;
                     }
 
@@ -121,6 +120,11 @@ namespace nsTankLab
 
                     break;
             }
+
+            //選択されたステージによってステージをシーンに合成
+            SceneManager.LoadScene($"Stage{ m_saveData.GetSetSelectStageNum}", LoadSceneMode.Additive);
+            //デバック
+            Debug.Log($"<color=yellow>生成ステージ：Stage{m_saveData.GetSetSelectStageNum}</color>");
         }
 
         //プレイヤー名を表示させる関数
@@ -131,7 +135,7 @@ namespace nsTankLab
             m_playerNameText[num].text = playerName;
 
             //デバック
-            Debug.Log($"<color=blue>参加プレイヤー:{m_saveData.GetSetPlayerNum}P</color>");
+            Debug.Log($"<color=blue>参加プレイヤー:{num+1}P</color>");
         }
 
         //プレイヤー生成処理
@@ -149,9 +153,9 @@ namespace nsTankLab
             //プレイヤー番号を保存
             m_saveData.GetSetPlayerNum = PhotonNetwork.LocalPlayer.ActorNumber-1;
             //プレイヤー名表示
-            photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, PlayerPrefs.GetString("PlayerName"));
+            photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, m_saveData.GetSetPlayerNum, PlayerPrefs.GetString("PlayerName"));
 
-            gameObjectOnline.GetComponent<SkillInit>().SetSkillCoolScript(m_skillCoolScript[PhotonNetwork.LocalPlayer.ActorNumber - 1]);
+            gameObjectOnline.GetComponent<SkillInit>().SetSkillCoolScript(m_skillCoolScript[m_saveData.GetSetPlayerNum]);
         }
 
         //コンポーネント取得

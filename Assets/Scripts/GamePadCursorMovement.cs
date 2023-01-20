@@ -30,7 +30,7 @@ namespace nsTankLab
 
         void Update()
         {
-            if(m_isInGame)
+            if (m_isInGame)
             {
                 m_stickValue = m_controllerData.GetGamepad(m_playerNum).rightStick.ReadValue();
             }

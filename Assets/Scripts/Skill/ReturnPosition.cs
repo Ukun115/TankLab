@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 
 /// <summary>
@@ -9,7 +11,7 @@ using System.Text.RegularExpressions;
 /// </summary>
 namespace nsTankLab
 {
-	public class ReturnPosition : MonoBehaviour
+	public class ReturnPosition : MonoBehaviourPun
 	{
 		PlayerMovement m_playerMovement = null;
 		Vector3 m_updateReturnPosition = Vector3.zero;
@@ -56,6 +58,12 @@ namespace nsTankLab
 		{
 			//ゲーム進行が止まっているとき
 			if (!m_saveData.GetSetmActiveGameTime)
+			{
+				return;
+			}
+
+			//このサバイバーオブジェクトが自分の所で PhotonNetwork.Instantiate していなかったら、
+			if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene && !photonView.IsMine)
 			{
 				return;
 			}

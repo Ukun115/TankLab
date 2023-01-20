@@ -1074,6 +1074,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBackShieldSkill
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6344559e100c664e86deb2d35216c14, type: 3}
 --- !u!1 &834558833 stripped
@@ -1153,6 +1158,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBackShieldSkill
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6344559e100c664e86deb2d35216c14, type: 3}
@@ -1507,6 +1517,11 @@ PrefabInstance:
       propertyPath: m_enemyAIType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBackShieldSkill
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6344559e100c664e86deb2d35216c14, type: 3}
 --- !u!1 &1237728371 stripped
@@ -1740,6 +1755,11 @@ PrefabInstance:
     - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
         type: 3}
       propertyPath: m_enemyAIType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769926014230088407, guid: d6344559e100c664e86deb2d35216c14,
+        type: 3}
+      propertyPath: m_addBackShieldSkill
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
