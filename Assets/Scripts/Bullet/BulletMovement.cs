@@ -27,6 +27,10 @@ namespace nsTankLab
 
         Vector3 m_debugLineDirection = Vector3.zero;
 
+        //前フレームの弾の位置
+        Vector3 m_previousFlamePosition = Vector3.zero;
+        //移動距離
+        float m_movingDistance = 0.0f;
 
         void Start()
         {
@@ -58,6 +62,17 @@ namespace nsTankLab
             else
             {
                 m_rigidbody.velocity = m_debugLineDirection * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed();
+
+                //移動距離を求める
+                m_movingDistance = ((transform.position - m_previousFlamePosition) / Time.deltaTime).magnitude;
+                //ゲーム時間進行中に移動していなかったらおかしい。
+                //その場合は弾を削除する。
+                if(m_movingDistance<0.01f)
+                {
+                    Destroy(this.gameObject);
+                }
+                //前フレームの位置を取得
+                m_previousFlamePosition = transform.position;
             }
         }
 

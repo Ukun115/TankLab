@@ -62,11 +62,11 @@ namespace nsTankLab
             //ステージ7
             new[] {new Vector3(-3.5f,0.0f,0.0f ),new Vector3(3.5f,0.0f,0.0f) },
             //ステージ8
-            new[] {new Vector3(-9.5f,0.0f,4.0f ),new Vector3(9.5f,0.0f,-4.0f) },
+            new[] {new Vector3(-9.5f,0.0f,-4.0f ),new Vector3(9.5f,0.0f,4.0f) },
             //ステージ9
-            new[] {new Vector3(-10.0f,0.0f,5.0f ),new Vector3(10.0f,0.0f,5.0f) },
+            new[] {new Vector3(-10.0f,0.0f,-5.0f ),new Vector3(10.0f,0.0f,5.0f) },
             //ステージ10
-            new[] {new Vector3(-8.0f,0.0f,4.0f ),new Vector3(8.0f,0.0f,-4.0f) }
+            new[] {new Vector3(-8.0f,0.0f,-4.0f ),new Vector3(8.0f,0.0f,4.0f) }
         };
 
         void Start()

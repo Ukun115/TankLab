@@ -13,6 +13,8 @@ namespace nsTankLab
 	{
 		[SerializeField, TooltipAttribute("敵AIオブジェクト")] GameObject[] m_enemyObject = null;
 
+		[SerializeField, TooltipAttribute("敵AIの数表示テキストオブジェクト")] GameObject m_enemiesNumText = null;
+
 		//ナビメッシュサーフェース
 		NavMeshSurface m_navMeshSurface = null;
 
@@ -24,12 +26,16 @@ namespace nsTankLab
 				//ナビメッシュを生成する。
 				m_navMeshSurface = GetComponent<NavMeshSurface>();
 				m_navMeshSurface.BuildNavMesh();
-
-				//敵AIを生成する
+			}
+			else
+            {
+				//敵AIを非アクティブする
 				for (int enemyNum = 0; enemyNum < m_enemyObject.Length; enemyNum++)
 				{
-					m_enemyObject[enemyNum].SetActive(true);
+					m_enemyObject[enemyNum].SetActive(false);
 				}
+				//敵AIの数表示テキストも非アクティブにする
+				m_enemiesNumText.SetActive(false);
 			}
 		}
 	}

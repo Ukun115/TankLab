@@ -12,12 +12,6 @@ namespace nsTankLab
 
         void Start()
         {
-            //敵が生成されてからゲームオブジェクトを探したいのでStart関数の呼ばれるほんの少しあとに処理を行う。
-            Invoke(nameof(CountEnemyNum),0.1f);
-        }
-
-        void CountEnemyNum()
-        {
             GameObject[] m_enemies = GameObject.FindGameObjectsWithTag(TagName.Enemy);
             m_enemyNumText.text = $"x{m_enemies.Length}";
         }

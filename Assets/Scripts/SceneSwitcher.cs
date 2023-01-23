@@ -22,10 +22,12 @@ namespace nsTankLab
 			CheckInstance();
 		}
 
-	    void Start()
-	    {
-			//始めにスタックにタイトルシーンを入れておく
-			scenes.Push("TitleScene");
+		//スタックを初期化してタイトルシーンをプッシュする処理
+		public void PushTitleScene()
+        {
+			scenes = new Stack<string>();
+			scenes.Push(SceneName.TitleScene);
+			scenes.Push(SceneName.TitleScene);
 		}
 
 	    //呼ばれたらトランジション起動

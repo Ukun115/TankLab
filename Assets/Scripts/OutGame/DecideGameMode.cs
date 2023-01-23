@@ -29,6 +29,9 @@ namespace nsTankLab
 
             //レティクルの色を青に初期化。
             m_controllerData.SetCursorColor(1);
+
+            //タイトルに入るたびにスタックを初期化してタイトルシーンをプッシュする
+            m_sceneSwitcher.PushTitleScene();
         }
 
         //押されたボタンの種類によって処理を分岐
