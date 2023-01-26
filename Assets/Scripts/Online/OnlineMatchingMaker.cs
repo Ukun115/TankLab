@@ -108,12 +108,20 @@ namespace nsTankLab
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             Debug.Log("<color=blue>他プレイヤーがルームに参加しました。</color>");
+
+            int randomNum = Random.Range(1, 10);
+            photonView.RPC(nameof(Matched), RpcTarget.All,randomNum);
+
             //ゲームシーンに遷移
             //選択されているステージを抽選
-            int randomNum = Random.Range(1, 10);
-            photonView.RPC(nameof(GoGameScene), RpcTarget.All, randomNum);
+            Invoke(nameof(DelayGoGameScene),2.0f);
             //ゲーム中に他プレイヤーがルームに参加してこないようにしておく
             PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
+
+        void DelayGoGameScene()
+        {
+            photonView.RPC(nameof(GoGameScene), RpcTarget.All);
         }
 
         //このスクリプトをアタッチしているオブジェクトが破棄されたときに呼ばれる
@@ -146,19 +154,23 @@ namespace nsTankLab
             Debug.Log("他プレイヤーがルームから退出しました</color>");
         }
 
-        //ゲームシーンに移行する関数
         [PunRPC]
-        void GoGameScene(int stageNum)
+        void Matched(int stageNum)
         {
             //マッチング完了テキストを表示
             m_matchedText.text = "Matched!!";
 
-            PhotonNetwork.IsMessageQueueRunning = false;
+            m_saveData.GetSetSelectStageNum = stageNum;
+        }
 
+        //ゲームシーンに移行する関数
+        [PunRPC]
+        void GoGameScene()
+        {
             //ゲームシーンに移行
             PhotonNetwork.LoadLevel("OnlineGameScene");
 
-            m_saveData.GetSetSelectStageNum = stageNum;
+            PhotonNetwork.IsMessageQueueRunning = false;
         }
     }
 }
