@@ -1613,7 +1613,7 @@ MonoBehaviour:
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_firePositionTransform: {fileID: 1695968619}
-  m_addFireRocketBulletSkill: 0
+  m_addFireRocketBulletSkill: 1
   m_bulletFireDelay: 100
 --- !u!4 &1695968619 stripped
 Transform:

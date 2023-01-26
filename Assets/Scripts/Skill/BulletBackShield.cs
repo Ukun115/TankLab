@@ -12,6 +12,7 @@ namespace nsTankLab
             {
                 //シールドにあたったオブジェクトが弾の場合のみ実行
                 case TagName.Bullet:
+                case TagName.RocketBullet:
                     //弾を削除
                     Destroy(other.gameObject);
                     //シールドを削除
