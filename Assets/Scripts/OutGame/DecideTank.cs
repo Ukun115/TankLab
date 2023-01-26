@@ -121,6 +121,13 @@ namespace nsTankLab
 
             if (m_saveData.GetSetSelectGameMode == "RANDOMMATCH" || m_saveData.GetSetSelectGameMode == "PRIVATEMATCH")
             {
+                //2Pの方にも登録して置く
+                //(マッチング完了したときにプレイヤー番号が２Pになる恐れがあるため。)
+                //選択したタンクを保存しておく
+                m_saveData.SetSelectTankName(2, m_saveData.GetSelectTankName(0));
+                //選択したスキルを保存しておく
+                m_saveData.SetSelectSkillName(2, m_saveData.GetSelectSkillName(0));
+
                 //マッチングシーンに遷移
                 GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.MatchingScene, true);
             }

@@ -99,6 +99,8 @@ GameObject:
   - component: {fileID: 7327106591745445129}
   - component: {fileID: -2029251773311973796}
   - component: {fileID: -5232686756210684502}
+  - component: {fileID: 4055712869873669503}
+  - component: {fileID: -7964736382025026786}
   m_Layer: 3
   m_Name: RocketBullet
   m_TagString: RocketBullet
@@ -201,6 +203,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5622701508853210035}
+  - {fileID: -7964736382025026786}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -266,6 +269,46 @@ MonoBehaviour:
   m_explosionBulletEffectPrefab: {fileID: 9183560827037770417, guid: b1ab33f1d14eae4488e3f0b015d36605,
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
+--- !u!114 &4055712869873669503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365256630221750918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 2
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 5622701508853210035}
+  - {fileID: -7964736382025026786}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-7964736382025026786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365256630221750918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1001 &933485575026878475
 PrefabInstance:
   m_ObjectHideFlags: 0
