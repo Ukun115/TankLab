@@ -119,8 +119,16 @@ namespace nsTankLab
                 }
             }
 
-            //ステージ選択シーンに遷移
-            GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.SelectStageScene, true);
+            if (m_saveData.GetSetSelectGameMode == "RANDOMMATCH" || m_saveData.GetSetSelectGameMode == "PRIVATEMATCH")
+            {
+                //マッチングシーンに遷移
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.MatchingScene, true);
+            }
+            else
+            {
+                //ステージ選択シーンに遷移
+                GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.SelectStageScene, true);
+            }
         }
 
         //プレイヤーUIの表示非表示処理

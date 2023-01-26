@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 namespace nsTankLab
@@ -14,6 +15,16 @@ namespace nsTankLab
         {
             GameObject[] m_enemies = GameObject.FindGameObjectsWithTag(TagName.Enemy);
             m_enemyNumText.text = $"x{m_enemies.Length}";
+        }
+
+        void Update()
+        {
+            //マッチングシーン、オンラインシーンのとき、
+            if(SceneManager.GetActiveScene().name == SceneName.MatchingScene|| SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                //テキスト削除
+                Destroy(this.gameObject);
+            }
         }
     }
 }
