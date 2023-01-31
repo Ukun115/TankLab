@@ -98,18 +98,18 @@ namespace nsTankLab
                 return;
             }
 
-            switch (m_saveData.GetSetSelectGameMode)
+            switch (SceneManager.GetActiveScene().name)
             {
-                //チャレンジモード,ローカルプレイ,トレーニング
-                case "CHALLENGE":
-                case "LOCALMATCH":
-                case "TRAINING":
-                    PlayFireEffect();
+                //現在のシーンがオンラインゲームシーンの時、
+                case SceneName.OnlineGameScene:
+                    if (m_saveData.GetSetIsOnline)
+                    {
+                        photonView.RPC(nameof(PlayFireEffect), RpcTarget.All);
+                    }
                     break;
-                //オンラインプレイ
-                case "RANDOMMATCH":
-                case "PRIVATEMATCH":
-                    photonView.RPC(nameof(PlayFireEffect), RpcTarget.All);
+
+                default:
+                    PlayFireEffect();
                     break;
             }
 

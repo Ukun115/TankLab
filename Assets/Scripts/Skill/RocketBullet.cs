@@ -59,11 +59,13 @@ namespace nsTankLab
                     case "LOCALMATCH":
                     case "TRAINING":
                         Create();
+                        m_skillCoolScript.CoolStart(m_coolTime);
                         break;
                     //オンラインプレイ
                     case "RANDOMMATCH":
                     case "PRIVATEMATCH":
                         photonView.RPC(nameof(Create), RpcTarget.All);
+                        m_skillCoolScript.CoolStart(m_coolTime);
                         break;
                 }
             }
@@ -76,7 +78,6 @@ namespace nsTankLab
             RocketBulletInstantiate();
 
             Invoke(nameof(Ct), m_coolTime);
-            m_skillCoolScript.CoolStart(m_coolTime);
         }
 
         void RocketBulletInstantiate()
