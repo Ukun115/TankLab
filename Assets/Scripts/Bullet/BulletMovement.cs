@@ -93,10 +93,10 @@ namespace nsTankLab
 
             m_debugLineDirection = m_afterReflectVector;
 
-            //弾の煙の向きを壁反射後の向きに変更
-            m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
             //メッシュの向きを壁反射後の向きに変更
             m_bulletMeshTransform.LookAt(transform.position - m_debugLineDirection);
+            //弾の煙の向きを壁反射後の向きに変更
+            m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
         }
 
         void AddForce()

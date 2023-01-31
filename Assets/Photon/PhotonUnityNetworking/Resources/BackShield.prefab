@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 5490642379754125580}
   - component: {fileID: -8603248415063728882}
   - component: {fileID: -1198807016006826236}
+  - component: {fileID: -2831287129249163199}
   m_Layer: 0
   m_Name: BackShield
   m_TagString: Untagged
@@ -180,6 +181,23 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -8603248415063728882}
+  - {fileID: -2831287129249163199}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-2831287129249163199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490642379754125581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1

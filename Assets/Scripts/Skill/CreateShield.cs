@@ -53,16 +53,35 @@ namespace nsTankLab
 
             if (m_isPressedButton && m_skillFlg)
             {
-                m_skillFlg = false;
-
-                ShieldInstantiate();
-
-                //生成音再生
-                m_soundManager.PlaySE("DropBombSE");
-
-                Invoke(nameof(Ct), m_coolTime);
-                m_skillCoolScript.CoolStart(m_coolTime);
+                switch (m_saveData.GetSetSelectGameMode)
+                {
+                    //チャレンジモード,ローカルプレイ,トレーニング
+                    case "CHALLENGE":
+                    case "LOCALMATCH":
+                    case "TRAINING":
+                        Create();
+                        break;
+                    //オンラインプレイ
+                    case "RANDOMMATCH":
+                    case "PRIVATEMATCH":
+                        photonView.RPC(nameof(Create), RpcTarget.All);
+                        break;
+                }
             }
+        }
+
+        [PunRPC]
+        void Create()
+        {
+            m_skillFlg = false;
+
+            ShieldInstantiate();
+
+            //生成音再生
+            m_soundManager.PlaySE("DropBombSE");
+
+            Invoke(nameof(Ct), m_coolTime);
+            m_skillCoolScript.CoolStart(m_coolTime);
         }
 
         //操作切替

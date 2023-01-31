@@ -1,11 +1,12 @@
 using UnityEngine;
+using Photon.Pun;
 
 namespace nsTankLab
 {
     /// <summary>
     /// バックシールドスキル
     /// </summary>
-    public class CreateBackShield : MonoBehaviour
+    public class CreateBackShield : MonoBehaviourPun
     {
         GameObject m_backShieldObject = null;
 
@@ -14,8 +15,12 @@ namespace nsTankLab
         SkillCool m_skillCoolScript = null;
         int m_coolTime = 5;
 
+        SaveData m_saveData = null;
+
         void Start()
         {
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+
             BackShieldInstantiate();
         }
 
@@ -24,12 +29,31 @@ namespace nsTankLab
             //バックシールドが消えたら、
             if(m_isInstantiate)
             {
-                //5秒後にバックシールドを自動生成
-                Invoke(nameof(BackShieldInstantiate), m_coolTime);
-                m_skillCoolScript.CoolStart(m_coolTime);
-
-                m_isInstantiate = false;
+                switch (m_saveData.GetSetSelectGameMode)
+                {
+                    //チャレンジモード,ローカルプレイ,トレーニング
+                    case "CHALLENGE":
+                    case "LOCALMATCH":
+                    case "TRAINING":
+                        Create();
+                        break;
+                    //オンラインプレイ
+                    case "RANDOMMATCH":
+                    case "PRIVATEMATCH":
+                        photonView.RPC(nameof(Create), RpcTarget.All);
+                        break;
+                }
             }
+        }
+
+        [PunRPC]
+        void Create()
+        {
+            //5秒後にバックシールドを自動生成
+            Invoke(nameof(BackShieldInstantiate), m_coolTime);
+            m_skillCoolScript.CoolStart(m_coolTime);
+
+            m_isInstantiate = false;
         }
 
         void BackShieldInstantiate()

@@ -64,17 +64,37 @@ namespace nsTankLab
 
 			if (m_isPressedButton && m_skillFlg == true)
 			{
-				//加速音再生
-				m_soundManager.PlaySE("AccelerationSE");
+				switch (m_saveData.GetSetSelectGameMode)
+				{
+					//チャレンジモード,ローカルプレイ,トレーニング
+					case "CHALLENGE":
+					case "LOCALMATCH":
+					case "TRAINING":
+						PlayEffect();
+						break;
+					//オンラインプレイ
+					case "RANDOMMATCH":
+					case "PRIVATEMATCH":
+						photonView.RPC(nameof(PlayEffect), RpcTarget.All);
+						break;
+				}
 
-				m_skillFlg = false;
-				m_playerMovement.SetSkillSpeed(m_acceleTankSpeed);
-				Invoke(nameof(RevertSpeed),0.7f);
-
-				//加速エフェクトを生成する。
-				InstatiateAccelerationEffect("L");
-				InstatiateAccelerationEffect("R");
 			}
+		}
+
+		[PunRPC]
+		void PlayEffect()
+        {
+			//加速音再生
+			m_soundManager.PlaySE("AccelerationSE");
+
+			m_skillFlg = false;
+			m_playerMovement.SetSkillSpeed(m_acceleTankSpeed);
+			Invoke(nameof(RevertSpeed), 0.7f);
+
+			//加速エフェクトを生成する。
+			InstatiateAccelerationEffect("L");
+			InstatiateAccelerationEffect("R");
 		}
 
 		//操作切替処理

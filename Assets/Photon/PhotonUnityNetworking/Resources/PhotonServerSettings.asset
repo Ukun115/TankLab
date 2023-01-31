@@ -59,6 +59,12 @@ MonoBehaviour:
   - DecideStage
   - RandomStageSelect
   - Matched
+  - JetpackActive
+  - PlayEffect
+  - Drop
+  - Create
+  - BulletInit
+  - PlayFireEffect
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
