@@ -16,4 +16,4 @@ MonoBehaviour:
   m_bulletSpeed: 3
   m_bulletRefrectionNum: 1
   m_rapidFireNum: 3
-  m_sameTimeBulletNum: 1
+  m_sameTimeBulletNum: 3
