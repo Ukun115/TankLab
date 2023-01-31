@@ -21,8 +21,12 @@ namespace nsTankLab
         int m_bulletNum = 0;
         //弾の発射角度
         float m_yRot = 0.0f;
+        //弾の位置
+        float m_xPos = 0.0f;
         //元の回転
         Quaternion m_originalQuaternion = Quaternion.identity;
+        //元の位置
+        Vector3 m_originalPosition = Vector3.zero;
 
         //セーブデータ
         SaveData m_saveData = null;
@@ -110,12 +114,20 @@ namespace nsTankLab
             //元の回転を取得
             m_originalQuaternion = m_firePositionTransform.rotation;
 
+            m_xPos = 0.0f;
+            //元の位置を取得
+            m_originalPosition = transform.position;
+
             //同時に撃つ弾の数によって回す
             for (int i = 0; i < m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetSameTimeBulletNum(); i++)
             {
                 //弾の発射角度
                 m_yRot += 20.0f * Mathf.Pow(-1, i) * i;
                 m_firePositionTransform.Rotate(0.0f, m_yRot, 0.0f);
+
+                //弾の位置調整
+                m_xPos += 0.5f* Mathf.Pow(-1, i) * i;
+                m_firePositionTransform.Translate(m_xPos, 0.0f, 0.0f);
 
                 switch (SceneManager.GetActiveScene().name)
                 {
@@ -162,6 +174,9 @@ namespace nsTankLab
 
                 //元の回転に戻す
                 m_firePositionTransform.rotation = m_originalQuaternion;
+
+                //元の位置に戻す
+                m_firePositionTransform.position = m_originalPosition;
 
                 m_bulletNum++;
             }
