@@ -152,10 +152,31 @@ namespace nsTankLab
 
             //プレイヤー番号を保存
             m_saveData.GetSetPlayerNum = PhotonNetwork.LocalPlayer.ActorNumber-1;
+
+            //1Pになった場合
+            if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            {
+                //選択されているスキルを相手に渡す
+                photonView.RPC(nameof(SkillInit), RpcTarget.All, 1, m_saveData.GetSelectSkillName(0));
+            }
+            //2P になった場合
+            else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+            {
+                //選択されているスキルを相手に渡す
+                photonView.RPC(nameof(SkillInit), RpcTarget.All, 2, m_saveData.GetSelectSkillName(1));
+            }
+
             //プレイヤー名表示
             photonView.RPC(nameof(DisplayPlayerName), RpcTarget.All, m_saveData.GetSetPlayerNum, PlayerPrefs.GetString("PlayerName"));
 
             gameObjectOnline.GetComponent<SkillInit>().SetSkillCoolScript(m_skillCoolScript[m_saveData.GetSetPlayerNum]);
+        }
+
+        [PunRPC]
+        void SkillInit(int playerNum,string skillName)
+        {
+            //選択されているスキルを相手に渡す
+            m_saveData.SetSelectSkillName(playerNum, skillName);
         }
 
         //コンポーネント取得

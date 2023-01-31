@@ -70,8 +70,32 @@ namespace nsTankLab
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
                 m_stickValue = m_controllerData.GetGamepad(m_playerNum).leftStick.ReadValue();
-                m_horizontal = m_stickValue.x;
-                m_vertical = m_stickValue.y;
+
+                if(m_stickValue.x > 0.3f)
+                {
+                    m_horizontal = 1.0f;
+                }
+                else if(m_stickValue.x < -0.3f)
+                {
+                    m_horizontal = -1.0f;
+                }
+                else
+                {
+                    m_horizontal = 0.0f;
+                }
+
+                if (m_stickValue.y > 0.3f)
+                {
+                    m_vertical = 1.0f;
+                }
+                else if (m_stickValue.y < -0.3f)
+                {
+                    m_vertical = -1.0f;
+                }
+                else
+                {
+                    m_vertical = 0.0f;
+                }
             }
             //キーボード操作
             else
