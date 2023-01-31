@@ -4049,7 +4049,7 @@ MonoBehaviour:
   m_stageData:
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank1
-    m_skillType: Skill1
+    m_skillType: Skill5
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank2
     m_skillType: Skill2

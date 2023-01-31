@@ -1613,7 +1613,7 @@ MonoBehaviour:
     type: 3}
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_firePositionTransform: {fileID: 1695968619}
-  m_addFireRocketBulletSkill: 0
+  m_addFireRocketBulletSkill: 1
   m_bulletFireDelay: 100
 --- !u!4 &1695968619 stripped
 Transform:
@@ -1891,6 +1891,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4021983772039751832, guid: 7526a898bfcc9ce46817395e86e8ce07,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: f5948158184037240b7388454fd34654,
+        type: 2}
     - target: {fileID: 4021983772039751838, guid: 7526a898bfcc9ce46817395e86e8ce07,
         type: 3}
       propertyPath: m_Name
@@ -1901,6 +1907,11 @@ PrefabInstance:
       propertyPath: m_enemiesNumText
       value: 
       objectReference: {fileID: 1594876741}
+    - target: {fileID: 4021983772039751839, guid: 7526a898bfcc9ce46817395e86e8ce07,
+        type: 3}
+      propertyPath: m_enemyObject.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4021983772039751839, guid: 7526a898bfcc9ce46817395e86e8ce07,
         type: 3}
       propertyPath: m_enemyObject.Array.data[0]

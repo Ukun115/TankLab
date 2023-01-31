@@ -73,14 +73,33 @@ namespace nsTankLab
 
 			if (m_isPressedButton && m_skillFlg)
 			{
-				m_skillFlg = false;
-				Invoke(nameof(Teleport),2.0f);
-
-				m_returnPosition = m_updateReturnPosition;
-
-				//テレポートエフェクト再生
-				InstatiateTeleportEffect();
+				switch (m_saveData.GetSetSelectGameMode)
+				{
+					//チャレンジモード,ローカルプレイ,トレーニング
+					case "CHALLENGE":
+					case "LOCALMATCH":
+					case "TRAINING":
+						PlayEffect();
+						break;
+					//オンラインプレイ
+					case "RANDOMMATCH":
+					case "PRIVATEMATCH":
+						photonView.RPC(nameof(PlayEffect), RpcTarget.All);
+						break;
+				}
 			}
+		}
+
+		[PunRPC]
+		void PlayEffect()
+        {
+			m_skillFlg = false;
+			Invoke(nameof(Teleport), 2.0f);
+
+			m_returnPosition = m_updateReturnPosition;
+
+			//テレポートエフェクト再生
+			InstatiateTeleportEffect();
 		}
 
 		//操作切替

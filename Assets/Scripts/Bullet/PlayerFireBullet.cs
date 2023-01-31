@@ -94,17 +94,20 @@ namespace nsTankLab
                 return;
             }
 
-            //発射エフェクトを生成する。
-            GameObject fireEffect = Instantiate(
-            m_fireEffectPrefab,
-            m_fireEffectInstantiatePosition.position,
-            transform.rotation,
-            m_fireEffectInstantiatePosition
-            );
-            fireEffect.name = "FireBulletEffect";
-
-            //発射音再生
-            m_soundManager.PlaySE("FireSE");
+            switch (m_saveData.GetSetSelectGameMode)
+            {
+                //チャレンジモード,ローカルプレイ,トレーニング
+                case "CHALLENGE":
+                case "LOCALMATCH":
+                case "TRAINING":
+                    PlayFireEffect();
+                    break;
+                //オンラインプレイ
+                case "RANDOMMATCH":
+                case "PRIVATEMATCH":
+                    photonView.RPC(nameof(PlayFireEffect), RpcTarget.All);
+                    break;
+            }
 
             m_yRot = 0.0f;
             //元の回転を取得
@@ -165,6 +168,21 @@ namespace nsTankLab
 
                 m_bulletNum++;
             }
+        }
+
+        [PunRPC]
+        void PlayFireEffect()
+        {
+            //発射エフェクトを生成する。
+            GameObject fireEffect = Instantiate(
+            m_fireEffectPrefab,
+            m_fireEffectInstantiatePosition.position,
+            transform.rotation,
+            m_fireEffectInstantiatePosition
+            );
+            fireEffect.name = "FireBulletEffect";
+            //発射音再生
+            m_soundManager.PlaySE("FireSE");
         }
 
         //コンポーネント取得

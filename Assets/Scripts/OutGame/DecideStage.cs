@@ -46,14 +46,6 @@ namespace nsTankLab
 
             switch (m_saveData.GetSetSelectGameMode)
             {
-                //オンライン対戦の際、
-                case "RANDOMMATCH":
-                case "PRIVATEMATCH":
-                    //マッチングに遷移
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.MatchingScene, true);
-
-                    break;
-
                 //ローカル対戦の際、
                 case "LOCALMATCH":
                     //ローカルゲームに遷移
