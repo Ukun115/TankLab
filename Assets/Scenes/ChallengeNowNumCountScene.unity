@@ -4049,7 +4049,7 @@ MonoBehaviour:
   m_stageData:
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank1
-    m_skillType: Skill5
+    m_skillType: Skill1
   - m_numberOfEnemiesOnStage: 1
     m_tankType: Tank2
     m_skillType: Skill2
@@ -4061,18 +4061,18 @@ MonoBehaviour:
     m_skillType: Skill4
   - m_numberOfEnemiesOnStage: 4
     m_tankType: Tank1
-    m_skillType: Skill5
+    m_skillType: Skill3
   - m_numberOfEnemiesOnStage: 4
-    m_tankType: Tank2
-    m_skillType: Skill6
+    m_tankType: Tank3
+    m_skillType: Skill2
   - m_numberOfEnemiesOnStage: 6
     m_tankType: Tank2
     m_skillType: Skill6
   - m_numberOfEnemiesOnStage: 5
-    m_tankType: Tank2
-    m_skillType: Skill3
+    m_tankType: Tank1
+    m_skillType: Skill5
   - m_numberOfEnemiesOnStage: 4
-    m_tankType: Tank2
+    m_tankType: Tank1
     m_skillType: Skill3
   - m_numberOfEnemiesOnStage: 6
     m_tankType: Tank2
