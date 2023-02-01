@@ -86,15 +86,17 @@ namespace nsTankLab
                     {
                         StopGame();
                         Invoke(nameof(ChangeChallengeNowNumCountScene),3.0f);
+                        //”s–kSEÄ¶
+                        m_soundManager.PlaySE("LoseSE");
                     }
                     else
                     {
+                        //”s–kSEÄ¶
+                        m_soundManager.PlaySE("Lose2SE");
                         //ƒŠƒUƒ‹ƒg“Ë“ü
                         InstantiateResultObject(5);
                     }
 
-                    //Ÿ—˜SEÄ¶
-                    m_soundManager.PlaySE("LoseSE");
                     //BGM~‚ß‚é
                     m_soundManager.StopBGM();
                 }

@@ -15,7 +15,6 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("各プレイヤーの名前")] TextMeshProUGUI[] m_playerNameText = null;
         //セーブデータ
         SaveData m_saveData = null;
-        SoundManager m_soundManager = null;
 
         [SerializeField]SkillCool[] m_skillCoolScript = { null };
 
@@ -60,7 +59,7 @@ namespace nsTankLab
             //ステージ6
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
             //ステージ7
-            new[] {new Vector3(-3.5f,0.0f,0.0f ),new Vector3(3.5f,0.0f,0.0f) },
+            new[] {new Vector3(-9.5f,0.0f,-4.0f ),new Vector3(9.5f,0.0f,4.0f) },
             //ステージ8
             new[] {new Vector3(-9.5f,0.0f,-4.0f ),new Vector3(9.5f,0.0f,4.0f) },
             //ステージ9
@@ -80,8 +79,6 @@ namespace nsTankLab
                 case "CHALLENGE":
                     //名前をユーザー名にする
                     m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
-                    //チャレンジモードのBGMを再生する
-                    m_soundManager.PlayBGM("GameSceneBGM01");
 
                     m_localPlayerPosition[0].position = m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][0];
 
@@ -94,8 +91,6 @@ namespace nsTankLab
                     {
                         m_localPlayerPosition[playerNum].position = m_stageLocalPlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][playerNum];
                     }
-                    //ローカルプレイモードのBGMを再生する
-                    m_soundManager.PlayBGM("GameSceneBGM02");
 
                     break;
 
@@ -109,9 +104,6 @@ namespace nsTankLab
 
                         break;
                     }
-
-                    //オンラインプレイモードのBGMを再生する
-                    m_soundManager.PlayBGM("GameSceneBGM02");
 
                     PhotonNetwork.IsMessageQueueRunning = true;
 
@@ -183,7 +175,6 @@ namespace nsTankLab
         void GetComponents()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         }
     }
 }

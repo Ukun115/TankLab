@@ -20,11 +20,15 @@ namespace nsTankLab
 
         SaveData m_saveData = null;
 
+        SoundManager m_soundManager = null;
+
         void Start()
         {
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_playerNum = int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty));
+
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         }
 
         void Update()
@@ -76,6 +80,9 @@ namespace nsTankLab
         {
             m_skillFlg = false;
             RocketBulletInstantiate();
+
+            //î≠éÀâπÇçƒê∂Ç∑ÇÈ
+            m_soundManager.PlaySE("RocketBulletFireSE");
 
             Invoke(nameof(Ct), m_coolTime);
         }
