@@ -7,12 +7,17 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("‚Ğ‚ÑŠ„‚êƒ}ƒeƒŠƒAƒ‹")] MeshRenderer m_meshRenderer = null;
         [SerializeField, TooltipAttribute("‘Ï‹v’l")] float m_durableValue = 5.0f;
 
+
+        SoundManager m_soundManager = null;
+
         float m_bulletDestroyCount = 0.0f;
 
         void Start()
         {
             //‚Ğ‚ÑŠ„‚ê‰Šú‰»
             m_meshRenderer.material.SetFloat("_CrackProgress", 0.0f);
+
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
         }
 
         void OnCollisionEnter(Collision collision)
@@ -51,6 +56,9 @@ namespace nsTankLab
             {
                 //•Ç”j‰ó
                 Destroy(gameObject);
+
+                //”j‰ó‰¹‚ğÄ¶‚·‚é
+                m_soundManager.PlaySE("BrokenWallDestroySE");
             }
         }
     }

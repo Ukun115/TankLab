@@ -32,6 +32,8 @@ namespace nsTankLab
 		SkillCool m_skillCoolScript = null;
 		int m_coolTime = 6;
 
+		SoundManager m_soundManager = null;
+
 		void Start()
 		{
 			//コンポーネント取得まとめ
@@ -40,6 +42,8 @@ namespace nsTankLab
 			m_teleportEffectPrefab = (GameObject)Resources.Load("TeleportEffect");
 
 			m_updateReturnPosition = m_playerMovement.GetSetPlayerPosition;
+
+			m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 
 			m_playerNum = int.Parse(Regex.Replace(transform.root.name, @"[^1-4]", string.Empty));
 		}
@@ -97,6 +101,9 @@ namespace nsTankLab
 			Invoke(nameof(Teleport), 2.0f);
 
 			m_returnPosition = m_updateReturnPosition;
+
+			//ワープ音を再生する
+			m_soundManager.PlaySE("WarpSE");
 
 			//テレポートエフェクト再生
 			InstatiateTeleportEffect();

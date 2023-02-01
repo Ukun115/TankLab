@@ -17,9 +17,12 @@ namespace nsTankLab
         //オンラインルームのオプション
         RoomOptions m_roomOptions = new RoomOptions();
 
+        SoundManager m_soundManager = null;
+
         void Start()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
 
             // シーンの自動同期: 有効
             PhotonNetwork.AutomaticallySyncScene = true;
@@ -159,6 +162,9 @@ namespace nsTankLab
         {
             //マッチング完了テキストを表示
             m_matchedText.text = "Matched!!";
+
+            //マッチング完了音を再生する
+            m_soundManager.PlaySE("MatchingSE");
 
             m_saveData.GetSetSelectStageNum = stageNum;
         }

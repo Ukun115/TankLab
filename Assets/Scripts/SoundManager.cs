@@ -24,25 +24,31 @@ namespace nsTankLab
             //ゲーム起動時BGMを再生する
             PlayBGM("OutGameSceneBGM");
 
+            //マスターボリューム
             if(PlayerPrefs.HasKey("MasterVolume"))
             {
                 m_masterVolume = PlayerPrefs.GetFloat("MasterVolume");
+                GetSetMasterVolume = m_masterVolume;
             }
             else
             {
                 PlayerPrefs.SetFloat("MasterVolume", m_masterVolume);
             }
+            //BGMボリューム
             if (PlayerPrefs.HasKey("BGMMasterVolume"))
             {
                 m_bgmMasterVolume = PlayerPrefs.GetFloat("BGMMasterVolume");
+                GetSetBGMMasterVolume = m_bgmMasterVolume;
             }
             else
             {
                 PlayerPrefs.SetFloat("BGMMasterVolume", m_bgmMasterVolume);
             }
+            //SEボリューム
             if (PlayerPrefs.HasKey("SEMasterVolume"))
             {
                 m_seMasterVolume = PlayerPrefs.GetFloat("SEMasterVolume");
+                GetSetSEMasterVolume = m_seMasterVolume;
             }
             else
             {
@@ -67,6 +73,7 @@ namespace nsTankLab
             m_seAudioSource.PlayOneShot(m_seSoundData.GetAudioClip());
         }
 
+        //BGMサウンド停止
         public void StopBGM()
         {
             m_bgmAudioSource.Stop();

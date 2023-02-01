@@ -14,7 +14,7 @@ namespace nsTankLab
         //勝利プレイヤー
         int m_winPlayer = 0;
         //勝利テキスト
-        TextMeshProUGUI m_winText = null;
+        [SerializeField]TextMeshProUGUI m_winText = null;
         //勝利テキストカラー(1:1P赤,2:2P青,3:3P橙,4:4P緑)
         Color[] m_winTextColor = { new Color(0.0f, 0.5f, 1.0f, 1.0f), new Color(1.0f, 0.0f, 0.5f, 1.0f), new Color(1.0f, 0.5f, 0.15f, 1.0f), new Color(0.0f, 1.0f, 0.0f, 1.0f) };
 
@@ -38,20 +38,20 @@ namespace nsTankLab
             {
                 m_winText.text = "Game Over!!";
 
-                //３秒後にタイトル画面に戻る
-                Invoke(nameof(BackTitleScene), 3.0f);
+                //6秒後にタイトル画面に戻る
+                Invoke(nameof(BackTitleScene), 6.0f);
             }
             //チャレンジモードでチャレンジをすべてクリアした場合
             else if (m_winPlayer == 6)
             {
-                m_winText.text = "Challenge Clear!!";
+                m_winText.text = "Clear All Challenge!!";
 
                 //チャレンジクリアしたことを保存する
                 PlayerPrefs.SetInt("ChallengeClear",1);
                 PlayerPrefs.Save();
 
-                //３秒後にタイトル画面に戻る
-                Invoke(nameof(BackTitleScene), 3.0f);
+                //5秒後にタイトル画面に戻る
+                Invoke(nameof(BackTitleScene), 5.0f);
             }
             //いずれかのプレイヤーが勝利した場合(ローカル)
             else if(SceneManager.GetActiveScene().name == SceneName.LocalGameScene || SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
@@ -133,7 +133,6 @@ namespace nsTankLab
         void GetComponents()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-            m_winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
             m_sceneSwitcher = GameObject.Find("Transition").GetComponent<SceneSwitcher>();
         }
     }

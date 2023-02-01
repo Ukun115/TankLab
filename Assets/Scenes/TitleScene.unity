@@ -620,6 +620,24 @@ MonoBehaviour:
   - m_seName: LoseSE
     m_audioClip: {fileID: 8300000, guid: e9d95ecf0eb69b349aa2b831ce92c282, type: 3}
     m_volume: 1
+  - m_seName: BrokenWallDestroySE
+    m_audioClip: {fileID: 8300000, guid: fca701367fbfa7047851fb5b2ebc4310, type: 3}
+    m_volume: 0.8
+  - m_seName: GameStartGingleSE
+    m_audioClip: {fileID: 8300000, guid: 675f24d81894cc64990ddae34790cbe3, type: 3}
+    m_volume: 1
+  - m_seName: WarpSE
+    m_audioClip: {fileID: 8300000, guid: ba94035ef400ec04cba0d1d2d736d743, type: 3}
+    m_volume: 1
+  - m_seName: RocketBulletFireSE
+    m_audioClip: {fileID: 8300000, guid: 3cf862e209815fa459ee9c4b615bb751, type: 3}
+    m_volume: 0.7
+  - m_seName: MatchingSE
+    m_audioClip: {fileID: 8300000, guid: 9cd43721ae51a0d489ff65c89965248e, type: 3}
+    m_volume: 0.9
+  - m_seName: Lose2SE
+    m_audioClip: {fileID: 8300000, guid: 720587d6c7b77ba4b8ff99bc264d0163, type: 3}
+    m_volume: 1
 --- !u!82 &66569132
 AudioSource:
   m_ObjectHideFlags: 0
