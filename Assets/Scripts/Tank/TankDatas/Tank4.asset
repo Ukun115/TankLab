@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tank4
   m_EditorClassIdentifier: 
   m_tankSpeed: 2
-  m_bulletSpeed: 3
-  m_bulletRefrectionNum: 2
-  m_rapidFireNum: 3
+  m_bulletSpeed: 2
+  m_bulletRefrectionNum: 1
+  m_rapidFireNum: 6
   m_sameTimeBulletNum: 3

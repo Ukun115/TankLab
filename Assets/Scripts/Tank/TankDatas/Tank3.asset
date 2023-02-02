@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad62a1053d4b9a14db7702ad0d3bdabd, type: 3}
   m_Name: Tank3
   m_EditorClassIdentifier: 
-  m_tankSpeed: 2
+  m_tankSpeed: 3
   m_bulletSpeed: 3
   m_bulletRefrectionNum: 2
-  m_rapidFireNum: 4
-  m_sameTimeBulletNum: 1
+  m_rapidFireNum: 3
+  m_sameTimeBulletNum: 3
