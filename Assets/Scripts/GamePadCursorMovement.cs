@@ -14,7 +14,7 @@ namespace nsTankLab
         Vector2 m_moveDirection = Vector2.zero;
 
         //カーソルの移動速度
-        const float CURSOR_SPEED = 800.0f;
+        const float CURSOR_SPEED = 650.0f;
 
         Rigidbody2D m_rigidbody2d = null;
 
