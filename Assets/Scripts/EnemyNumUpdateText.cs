@@ -19,8 +19,8 @@ namespace nsTankLab
 
         void Update()
         {
-            //マッチングシーン、オンラインシーンのとき、
-            if(SceneManager.GetActiveScene().name == SceneName.MatchingScene|| SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            //マッチングシーン、オンラインシーン、ローカルゲームシーンのとき、
+            if(SceneManager.GetActiveScene().name == SceneName.MatchingScene|| SceneManager.GetActiveScene().name == SceneName.OnlineGameScene|| SceneManager.GetActiveScene().name == SceneName.LocalGameScene)
             {
                 //テキスト削除
                 Destroy(this.gameObject);

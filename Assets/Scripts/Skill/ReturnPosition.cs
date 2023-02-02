@@ -27,7 +27,6 @@ namespace nsTankLab
 		SaveData m_saveData = null;
 
 		GameObject m_teleportEffectPrefab = null;
-		GameObject m_teleportEffectObject = null;
 
 		SkillCool m_skillCoolScript = null;
 		int m_coolTime = 6;
@@ -52,7 +51,7 @@ namespace nsTankLab
 		{
 			m_playerPosition.Enqueue(m_playerMovement.GetSetPlayerPosition);
 
-			if (m_playerPosition.Count == 120)
+			if (m_playerPosition.Count == 240)
 			{
 				m_updateReturnPosition = m_playerPosition.Dequeue();
 			}
@@ -98,7 +97,7 @@ namespace nsTankLab
 		void PlayEffect()
         {
 			m_skillFlg = false;
-			Invoke(nameof(Teleport), 2.0f);
+			Invoke(nameof(Teleport), 0.5f);
 
 			m_returnPosition = m_updateReturnPosition;
 
@@ -133,11 +132,7 @@ namespace nsTankLab
 
 			m_playerMovement.SetTeleportStopping(true);
 
-			Invoke(nameof(StoppingOff),1.0f);
-
-			//テレポートエフェクトを削除
-			Destroy(m_teleportEffectObject);
-			m_teleportEffectObject = null;
+			Invoke(nameof(StoppingOff),0.5f);
 
 			Invoke(nameof(Ct), m_coolTime);
 			m_skillCoolScript.CoolStart(m_coolTime);
@@ -159,7 +154,7 @@ namespace nsTankLab
 		//テレポートエフェクトを生成処理
 		void InstatiateTeleportEffect()
 		{
-			m_teleportEffectObject = Instantiate(
+			GameObject m_teleportEffectObject = Instantiate(
 			m_teleportEffectPrefab,
 			new Vector3(m_returnPosition.x,-0.4f, m_returnPosition.z),
 			Quaternion.identity

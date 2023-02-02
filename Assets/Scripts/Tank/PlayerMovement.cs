@@ -13,6 +13,7 @@ namespace nsTankLab
     {
         [SerializeField, TooltipAttribute("プレイヤーのトランスフォーム")] Transform m_playerTransform = null;
         [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
+        [SerializeField, TooltipAttribute("フィジクスマテリアル")] PhysicMaterial m_physicMaterial = null;
 
         //剛体
         Rigidbody m_rigidbody = null;
@@ -45,6 +46,9 @@ namespace nsTankLab
 
             //自身のプレイヤー番号を取得
             m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty));
+
+            //フィジクスマテリアルを初期化しないとなぜか摩擦が強くなったり、壁に当たるとタンクがつっかえてしまうため、わざわざ初期化する。
+            m_physicMaterial.dynamicFriction = 0.0f;
 
             //選択されたタンク番号デバック
             Debug.Log($"<color=yellow>{name}のタンク : {m_saveData.GetSelectTankName(m_playerNum-1)}</color>");
@@ -151,7 +155,7 @@ namespace nsTankLab
             m_moveDirection.Normalize();
 
             //移動方向に速度を掛ける(通常移動)
-            m_moveDirection *= m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetTankSpeed() * m_skillSpeed;
+            m_moveDirection *= 1.2f * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetTankSpeed() * m_skillSpeed;
         }
 
         void FixedUpdate()
