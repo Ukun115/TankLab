@@ -125,7 +125,10 @@ namespace nsTankLab
 			DestroyEffect("R");
 
 			Invoke(nameof(Ct), m_coolTime);
-			m_skillCoolScript.CoolStart(m_coolTime);
+			if (m_skillCoolScript != null)
+			{
+				m_skillCoolScript.CoolStart(m_coolTime);
+			}
 		}
 
 		void Ct()
