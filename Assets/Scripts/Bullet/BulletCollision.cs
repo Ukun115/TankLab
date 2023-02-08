@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 /// <summary>
@@ -8,7 +9,7 @@ using Photon.Pun;
 /// </summary>
 namespace nsTankLab
 {
-    public class BulletCollision : MonoBehaviour
+    public class BulletCollision : MonoBehaviourPun
     {
         [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
         [SerializeField, TooltipAttribute("スパークエフェクト")] GameObject m_sparkEffectPrefab = null;
@@ -176,8 +177,16 @@ namespace nsTankLab
 
             //弾を消滅させる
             Destroy(gameObject);
-            //衝突したプレイヤーを消滅させる
-            Destroy(collision.gameObject);
+
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                PhotonNetwork.Destroy(collision.gameObject);
+            }
+            else
+            {
+                //衝突したプレイヤーを消滅させる
+                Destroy(collision.gameObject);
+            }
 
             //カメラ&ゲームパッド振動処理
             Vibration(collision);
