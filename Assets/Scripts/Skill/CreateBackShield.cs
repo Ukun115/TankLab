@@ -44,10 +44,12 @@ namespace nsTankLab
                         if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
                         {
                             photonView.RPC(nameof(Create), RpcTarget.All);
+                            m_skillCoolScript.CoolStart(COOL_TIME);
                         }
                         else if (SceneManager.GetActiveScene().name == SceneName.MatchingScene)
                         {
                             Create();
+                            m_skillCoolScript.CoolStart(COOL_TIME);
                         }
                         break;
                 }
@@ -59,7 +61,6 @@ namespace nsTankLab
         {
             //数秒後にバックシールドを自動生成
             Invoke(nameof(BackShieldInstantiate), COOL_TIME);
-            m_skillCoolScript.CoolStart(COOL_TIME);
 
             m_isInstantiate = false;
         }
