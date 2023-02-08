@@ -36,7 +36,14 @@ namespace nsTankLab
 
         void Start()
         {
-            Invoke(nameof(ActiveFlashing), 20.0f);
+            if (m_dropPlayer.tag == TagName.Enemy)
+            {
+                Invoke(nameof(ActiveFlashing), 10.0f);
+            }
+            else
+            {
+                Invoke(nameof(ActiveFlashing), 20.0f);
+            }
 
             //コンポーネント取得まとめ
             GetComponents();
