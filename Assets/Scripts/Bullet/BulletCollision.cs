@@ -122,6 +122,10 @@ namespace nsTankLab
             Destroy(gameObject);
 
             //íeè¡ñ≈SEçƒê∂
+            if (m_soundManager is null)
+            {
+                m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+            }
             m_soundManager.PlaySE("BulletDestroySE");
         }
 
