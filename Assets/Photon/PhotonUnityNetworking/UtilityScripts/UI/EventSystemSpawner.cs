@@ -28,7 +28,7 @@ namespace Photon.Pun.UtilityScripts
             #endif
 
             EventSystem sceneEventSystem = FindObjectOfType<EventSystem>();
-            if (sceneEventSystem == null)
+            if (FindObjectOfType<EventSystem>() == null)
             {
                 GameObject eventSystem = new GameObject("EventSystem");
 

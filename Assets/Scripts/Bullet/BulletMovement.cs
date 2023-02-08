@@ -103,6 +103,12 @@ namespace nsTankLab
 
             //計算した反射ベクトルを保存
             m_afterReflectVector = reflectVector;
+
+            if (m_rigidbody is null)
+            {
+                m_rigidbody = GetComponent<Rigidbody>();
+            }
+
             m_rigidbody.AddForce(
                 m_afterReflectVector.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed() * 1.5f,
                 0.0f,
