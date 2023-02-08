@@ -138,12 +138,12 @@ namespace nsTankLab
                     case SceneName.OnlineGameScene:
                         if (m_saveData.GetSetIsOnline)
                         {
-                            photonView.RPC(nameof(CreateBullet), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, m_firePositionTransform);
+                            photonView.RPC(nameof(CreateBullet), RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, m_firePositionTransform.position, m_firePositionTransform.rotation);
                         }
                         break;
 
                     default:
-                        CreateBullet(m_playerNum, m_firePositionTransform);
+                        CreateBullet(m_playerNum, m_firePositionTransform.position,m_firePositionTransform.rotation);
                         break;
                 }
 
@@ -158,13 +158,13 @@ namespace nsTankLab
         }
 
         [PunRPC]
-        void CreateBullet(int playerNum,Transform firePositionTransform)
+        void CreateBullet(int playerNum,Vector3 firePositionTransformPosition,Quaternion firePositionTransformRotation)
         {
             //弾を生成
             GameObject m_bulletObject = Instantiate(
             m_bulletPrefab,
-            firePositionTransform.position,
-            new Quaternion(0.0f, firePositionTransform.rotation.y, 0.0f, firePositionTransform.rotation.w)
+            firePositionTransformPosition,
+            new Quaternion(0.0f, firePositionTransformRotation.y, 0.0f, firePositionTransformRotation.w)
             );
 
             //生成される弾の名前変更
