@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 namespace nsTankLab
 {
-    public class ExplosionBomb : MonoBehaviour
+    public class ExplosionBomb : MonoBehaviourPun
     {
         [SerializeField, TooltipAttribute("Rigidbody")] Rigidbody m_rigidbody = null;
         [SerializeField, TooltipAttribute("爆発の当たり判定")] SphereCollider m_sphereCollider = null;
@@ -167,8 +169,15 @@ namespace nsTankLab
             );
             deathMark.name = "DeathMark";
 
-            //爆発に巻き込まれたプレイヤーを消滅させる
-            Destroy(other.gameObject);
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                PhotonNetwork.Destroy(other.gameObject);
+            }
+            else
+            {
+                //爆発に巻き込まれたプレイヤーを消滅させる
+                Destroy(other.gameObject);
+            }
         }
 
         //コンポーネント取得

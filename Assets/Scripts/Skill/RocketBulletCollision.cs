@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 /// <summary>
 /// 弾が何かにぶつかったときに起こる処理
 /// </summary>
 namespace nsTankLab
 {
-    public class RocketBulletCollision : MonoBehaviour
+    public class RocketBulletCollision : MonoBehaviourPun
     {
         [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
         [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(タンク)")] GameObject m_explosionTankEffectPrefab = null;
@@ -154,7 +156,14 @@ namespace nsTankLab
             Destroy(gameObject);
 
             //衝突したプレイヤーを消滅させる
-            Destroy(collision.gameObject);
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                PhotonNetwork.Destroy(collision.gameObject);
+            }
+            else
+            {
+                Destroy(collision.gameObject);
+            }
 
             //カメラを振動させる
             m_virtualCamera.GenerateImpulse();
