@@ -49,7 +49,7 @@ namespace nsTankLab
                     if (m_saveData.GetSetPlayerNum == 1)
                     {
                         gameObject.name = $"PlayerBullet{2}";
-                        m_playerNum = 2;
+                        m_playerNum = 1;
 
                         m_tankObject = GameObject.Find("2P/PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition");
                     }
@@ -57,7 +57,7 @@ namespace nsTankLab
                     else if (m_saveData.GetSetPlayerNum == 2)
                     {
                         gameObject.name = $"PlayerBullet{1}";
-                        m_playerNum = 1;
+                        m_playerNum = 0;
 
                         m_tankObject = GameObject.Find("1P/PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition");
                     }
