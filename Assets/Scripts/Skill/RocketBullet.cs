@@ -68,7 +68,14 @@ namespace nsTankLab
                     //オンラインプレイ
                     case "RANDOMMATCH":
                     case "PRIVATEMATCH":
-                        photonView.RPC(nameof(Create), RpcTarget.All);
+                        if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+                        {
+                            photonView.RPC(nameof(Create), RpcTarget.All);
+                        }
+                        else if (SceneManager.GetActiveScene().name == SceneName.MatchingScene)
+                        {
+                            Create();
+                        }
                         m_skillCoolScript.CoolStart(m_coolTime);
                         break;
                 }

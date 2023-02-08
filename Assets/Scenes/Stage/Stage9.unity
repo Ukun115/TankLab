@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall
+      value: NomalWall_1
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
@@ -2297,7 +2297,7 @@ PrefabInstance:
     - target: {fileID: 5875072175788092932, guid: 45d31354bab0a5c4a8ff27bf0ed0efc8,
         type: 3}
       propertyPath: m_Name
-      value: HalfWall_1
+      value: HalfWall_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d31354bab0a5c4a8ff27bf0ed0efc8, type: 3}
@@ -2317,7 +2317,7 @@ PrefabInstance:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall_1
+      value: NomalWall_2
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
@@ -2457,7 +2457,7 @@ PrefabInstance:
     - target: {fileID: 5875072175788092932, guid: 45d31354bab0a5c4a8ff27bf0ed0efc8,
         type: 3}
       propertyPath: m_Name
-      value: HalfWall
+      value: HalfWall_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d31354bab0a5c4a8ff27bf0ed0efc8, type: 3}

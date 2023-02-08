@@ -33,7 +33,7 @@ namespace nsTankLab
             //ƒQ[ƒ€ŠJn‰¹‚ğÄ¶‚·‚é
             m_soundManager.PlaySE("GameStartGingleSE");
 
-            m_countDownText.text = "LEADY...";
+            m_countDownText.text = "READY...";
         }
 
         void Update()

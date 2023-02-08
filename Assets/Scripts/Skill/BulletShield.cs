@@ -6,7 +6,7 @@ namespace nsTankLab
     {
         void Start()
         {
-            Invoke(nameof(DestroyWall), 5.0f);
+            Invoke(nameof(DestroyWall), 30.0f);
         }
 
         void DestroyWall()
@@ -22,18 +22,23 @@ namespace nsTankLab
                 //シールドにあたったオブジェクトが弾の場合のみ実行
                 case TagName.Bullet:
                 case TagName.RocketBullet:
-                    //弾を削除
-                    Destroy(other.gameObject);
-                    //シールドを削除
-                    Destroy(gameObject);
-
-                    //シールド3つすべてなくなったら、
-                    if(transform.root.childCount == 1)
-                    {
-                        DestroyWall();
-                    }
-
+                    Damage(other);
                     break;
+            }
+        }
+
+        void Damage(Collider other)
+        {
+            //弾を削除
+            Destroy(other.gameObject);
+
+            //シールドを削除
+            Destroy(gameObject);
+
+            //シールド3つすべてなくなったら、
+            if (transform.root.childCount == 1)
+            {
+                DestroyWall();
             }
         }
     }

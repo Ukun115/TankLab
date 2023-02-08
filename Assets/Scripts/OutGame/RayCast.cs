@@ -314,6 +314,13 @@ namespace nsTankLab
 
                 //選択SE再生
                 m_soundManager.PlaySE("SelectSE");
+
+                //マッチング画面のとき、
+                if(SceneManager.GetActiveScene().name == SceneName.MatchingScene)
+                {
+                    //オンラインマッチングメーカーを動的に削除
+                    GameObject.Find("PhotonController").GetComponent<OnlineMatchingMaker>().DestroyGameObject();
+                }
             }
         }
 

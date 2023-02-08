@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
+using Photon.Pun;
 
 /// <summary>
 /// 弾が何かにぶつかったときに起こる処理
@@ -40,8 +41,31 @@ namespace nsTankLab
             //敵AIの弾じゃないときは実行
             if (gameObject.name != "EnemyBullet")
             {
-                //発射したプレイヤー番号を取得
-                m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty)) - 1;
+                //オンラインで相手が生成した弾
+                if (gameObject.name == "Bullet(Clone)")
+                {
+                    //自身がプレイヤー1
+                    if (m_saveData.GetSetPlayerNum == 1)
+                    {
+                        gameObject.name = $"PlayerBullet{2}";
+                        m_playerNum = 2;
+
+                        m_tankObject = GameObject.Find("2P/PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition");
+                    }
+                    //自身がプレイヤー2
+                    else if (m_saveData.GetSetPlayerNum == 2)
+                    {
+                        gameObject.name = $"PlayerBullet{1}";
+                        m_playerNum = 1;
+
+                        m_tankObject = GameObject.Find("1P/PlayerCannonPivot/PlayerCannon/PlayerFireBulletPosition");
+                    }
+                }
+                else
+                {
+                    //発射したプレイヤー番号を取得
+                    m_playerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty)) - 1;
+                }
             }
         }
 
@@ -96,6 +120,7 @@ namespace nsTankLab
             explosionBulletEffect.name = "ExplosionBulletEffect";
 
             Destroy(gameObject);
+
             //弾消滅SE再生
             m_soundManager.PlaySE("BulletDestroySE");
         }
@@ -147,7 +172,6 @@ namespace nsTankLab
 
             //弾を消滅させる
             Destroy(gameObject);
-
             //衝突したプレイヤーを消滅させる
             Destroy(collision.gameObject);
 
@@ -213,7 +237,7 @@ namespace nsTankLab
             //敵AIの弾
             if(gameObject.name.Contains("EnemyBullet"))
             {
-                if (m_tankObject.ToString() != "null")
+                if (m_tankObject != null)
                 {
                     //フィールド上に生成されている弾の数データを減らす
                     m_tankObject.GetComponent<EnemyAIFireBullet>().ReduceBulletNum();
@@ -222,10 +246,10 @@ namespace nsTankLab
             //プレイヤーの弾
             if (gameObject.name.Contains("PlayerBullet"))
             {
-                if (m_tankObject.ToString() != "null")
+                if (m_tankObject != null)
                 {
                     //フィールド上に生成されている弾の数データを減らす
-                    m_tankObject.gameObject.GetComponent<PlayerFireBullet>().ReduceBulletNum();
+                    m_tankObject.GetComponent<PlayerFireBullet>().ReduceBulletNum();
                 }
             }
         }

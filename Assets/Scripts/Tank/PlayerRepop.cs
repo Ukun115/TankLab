@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 /// <summary>
 /// プレイヤーリポップ処理
@@ -12,6 +13,8 @@ namespace nsTankLab
         SceneSwitcher m_sceneSwitcher = null;
 
         bool m_isRepop = false;
+
+        [SerializeField] OnlineMatchingMaker m_onlineMatchingMaker = null;
 
         void Start()
         {
@@ -40,11 +43,17 @@ namespace nsTankLab
                 {
                     //トレーニングシーン
                     case SceneName.TrainingScene:
+                        //リポップ
                         m_sceneSwitcher.StartTransition(SceneName.TrainingScene, false);
                         break;
                     //マッチングシーン
                     case SceneName.MatchingScene:
-                        m_sceneSwitcher.StartTransition(SceneName.MatchingScene, false);
+                        //マッチング完了していたら、リポップ処理は行わない。
+                        if (!m_onlineMatchingMaker.IsMatched())
+                        {
+                            m_onlineMatchingMaker.DestroyGameObject();
+                            m_sceneSwitcher.StartTransition(SceneName.MatchingScene, false);
+                        }
                         break;
                 }
             }

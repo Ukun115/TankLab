@@ -8,10 +8,8 @@ namespace nsTankLab
     public class RocketBulletCollision : MonoBehaviour
     {
         [SerializeField, TooltipAttribute("死亡マーカープレファブオブジェクト")] GameObject m_deathMarkPrefab = null;
-        [SerializeField, TooltipAttribute("スパークエフェクト")] GameObject m_sparkEffectPrefab = null;
         [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(タンク)")] GameObject m_explosionTankEffectPrefab = null;
         [SerializeField, TooltipAttribute("爆発エフェクトプレファブ(弾)")] GameObject m_explosionBulletEffectPrefab = null;
-        [SerializeField, TooltipAttribute("タンクデータベース")] TankDataBase m_tankDataBase = null;
 
         SaveData m_saveData = null;
         SoundManager m_soundManager = null;
@@ -44,15 +42,30 @@ namespace nsTankLab
                     break;
                 //弾に衝突したときの処理
                 case TagName.Bullet:
-                case TagName.RocketBullet:
-
                     //接触した壁にスパークエフェクトを生成する。
-                    GameObject explosionBulletEffect = Instantiate(
+                    GameObject explosionBulletEffect1 = Instantiate(
                     m_explosionBulletEffectPrefab,
                     transform.position,
                     Quaternion.identity
                     );
-                    explosionBulletEffect.name = "ExplosionBulletEffect";
+                    explosionBulletEffect1.name = "ExplosionBulletEffect";
+
+                    //両方消滅させる
+                    Destroy(gameObject);
+                    Destroy(collision.gameObject);
+
+                    //弾消滅SE再生
+                    m_soundManager.PlaySE("BulletDestroySE");
+                    break;
+                case TagName.RocketBullet:
+
+                    //接触した壁にスパークエフェクトを生成する。
+                    GameObject explosionBulletEffect2 = Instantiate(
+                    m_explosionBulletEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                    );
+                    explosionBulletEffect2.name = "ExplosionBulletEffect";
 
                     //両方消滅させる
                     Destroy(gameObject);

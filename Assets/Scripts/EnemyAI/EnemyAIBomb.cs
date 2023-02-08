@@ -10,8 +10,7 @@ namespace nsTankLab
 
         SaveData m_saveData = null;
 
-        SkillCool m_skillCoolScript = null;
-        int m_coolTime = 5;
+        int m_coolTime = 8;
 
         void Start()
         {

@@ -36,8 +36,7 @@ namespace nsTankLab
 
         void Start()
         {
-            Invoke(nameof(ActiveFlashing), 3.5f);
-            Invoke(nameof(ActiveCollision), 5.0f);
+            Invoke(nameof(ActiveFlashing), 20.0f);
 
             //コンポーネント取得まとめ
             GetComponents();
@@ -73,10 +72,18 @@ namespace nsTankLab
         public void ActiveFlashing()
         {
             m_isFlashing = true;
+
+            Invoke(nameof(ActiveCollision), 1.5f);
         }
 
         public void ActiveCollision()
         {
+            //クールタイム開始
+            if (m_dropPlayer != null && m_dropPlayer.tag != TagName.Enemy)
+            {
+                m_dropPlayer.GetComponent<DropBomb>().CoolStart();
+            }
+
             //爆発音再生
             m_soundManager.PlaySE("BombExplosionSE");
 
@@ -90,7 +97,8 @@ namespace nsTankLab
 
             m_sphereCollider.enabled = true;
             m_rigidbody.useGravity = true;
-            Destroy(gameObject,0.05f);
+
+            Destroy(gameObject, 0.05f);
         }
 
         void OnTriggerEnter(Collider other)
@@ -116,7 +124,7 @@ namespace nsTankLab
 
                     break;
                 case TagName.Enemy:
-                    if(m_dropPlayer == other.gameObject)
+                    if(m_dropPlayer == other.gameObject || m_dropPlayer.tag == TagName.Enemy)
                     {
                         return;
                     }

@@ -115,7 +115,7 @@ namespace nsTankLab
         //選択されたタンク名セッター
         public void SetSelectTankName(int playerNum, string tankNum)
         {
-            m_selectTankName[playerNum-1] = $"Tank{(int.Parse(Regex.Replace(tankNum, @"[^0-9]", string.Empty)))}";
+            m_selectTankName[playerNum-1] = tankNum;
 
             //選択されたタンク番号を保存
             if (m_selectTankName[playerNum - 1] is not null)

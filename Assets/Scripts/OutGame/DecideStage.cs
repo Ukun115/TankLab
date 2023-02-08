@@ -38,21 +38,23 @@ namespace nsTankLab
 
         public void SetStageNum(int stageNum)
         {
-            //選択したステージを保存しておく
-            m_saveData.GetSetSelectStageNum = stageNum;
+            //「０」はランダムステージ
+            if(stageNum == 0)
+            {
+                //今あるステージの中からランダムで選出
+                m_saveData.GetSetSelectStageNum = Random.Range(1, 10);
+            }
+            else
+            {
+                //選択したステージを保存しておく
+                m_saveData.GetSetSelectStageNum = stageNum;
+            }
 
             //デバック
             Debug.Log($"<color=yellow>ステージ:Stage{m_saveData.GetSetSelectStageNum}</color>");
 
-            switch (m_saveData.GetSetSelectGameMode)
-            {
-                //ローカル対戦の際、
-                case "LOCALMATCH":
-                    //ローカルゲームに遷移
-                    GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.LocalGameScene, true);
-
-                    break;
-            }
+            //ローカルマッチに移行
+            GameObject.Find("Transition").GetComponent<SceneSwitcher>().StartTransition(SceneName.LocalGameScene, true);
         }
     }
 }
