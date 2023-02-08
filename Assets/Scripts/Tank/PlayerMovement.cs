@@ -155,7 +155,7 @@ namespace nsTankLab
             m_moveDirection.Normalize();
 
             //ˆÚ“®•ûŒü‚É‘¬“x‚ğŠ|‚¯‚é(’ÊíˆÚ“®)
-            m_moveDirection *= 1.2f * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetTankSpeed() * m_skillSpeed;
+            m_moveDirection *=0.6f * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_playerNum-1)].GetTankSpeed() * m_skillSpeed;
         }
 
         void FixedUpdate()

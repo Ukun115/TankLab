@@ -40,8 +40,27 @@ namespace nsTankLab
             //敵AIの弾じゃないときは実行
             if (gameObject.name != "EnemyBullet")
             {
-                //発射したプレイヤー番号を取得
-                m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty)) - 1;
+                //オンラインで相手が生成した弾
+                if (gameObject.name.Contains("Clone"))
+                {
+                    //自身がプレイヤー1
+                    if (m_saveData.GetSetPlayerNum == 0)
+                    {
+                        gameObject.name = $"PlayerBullet{2}";
+                        m_myPlayerNum = 2;
+                    }
+                    //自身がプレイヤー2
+                    else if (m_saveData.GetSetPlayerNum == 1)
+                    {
+                        gameObject.name = $"PlayerBullet{1}";
+                        m_myPlayerNum = 1;
+                    }
+                }
+                else
+                {
+                    //発射したプレイヤー番号を取得
+                    m_myPlayerNum = int.Parse(Regex.Replace(transform.name, @"[^1-4]", string.Empty)) - 1;
+                }
             }
 
             AddForce();
@@ -69,7 +88,7 @@ namespace nsTankLab
                 //その場合は弾を削除する。
                 if(m_movingDistance<0.01f)
                 {
-                    Destroy(this.gameObject);
+                   Destroy(gameObject);
                 }
                 //前フレームの位置を取得
                 m_previousFlamePosition = transform.position;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 namespace nsTankLab
 {
@@ -13,7 +14,7 @@ namespace nsTankLab
         bool m_isInstantiate = false;
 
         SkillCool m_skillCoolScript = null;
-        int m_coolTime = 5;
+        const int COOL_TIME = 9;
 
         SaveData m_saveData = null;
 
@@ -40,7 +41,14 @@ namespace nsTankLab
                     //オンラインプレイ
                     case "RANDOMMATCH":
                     case "PRIVATEMATCH":
-                        photonView.RPC(nameof(Create), RpcTarget.All);
+                        if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+                        {
+                            photonView.RPC(nameof(Create), RpcTarget.All);
+                        }
+                        else if (SceneManager.GetActiveScene().name == SceneName.MatchingScene)
+                        {
+                            Create();
+                        }
                         break;
                 }
             }
@@ -49,9 +57,9 @@ namespace nsTankLab
         [PunRPC]
         void Create()
         {
-            //5秒後にバックシールドを自動生成
-            Invoke(nameof(BackShieldInstantiate), m_coolTime);
-            m_skillCoolScript.CoolStart(m_coolTime);
+            //数秒後にバックシールドを自動生成
+            Invoke(nameof(BackShieldInstantiate), COOL_TIME);
+            m_skillCoolScript.CoolStart(COOL_TIME);
 
             m_isInstantiate = false;
         }

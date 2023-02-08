@@ -37,6 +37,25 @@ namespace nsTankLab
                 //マウスカーソルの画像をレティクルにする
                 Cursor.SetCursor(m_mouseCursorTexture[m_cursorColorNum-1], new Vector2(m_mouseCursorTexture[m_cursorColorNum - 1].width/2, m_mouseCursorTexture[m_cursorColorNum - 1].height/2), CursorMode.Auto);
             }
+
+            //エスケープキーが押されたら、
+            if(Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                //ゲーム強制終了
+                Invoke(nameof(GameEnd), 0.5f);
+            }
+        }
+
+        void GameEnd()
+        {
+            Debug.Log("ゲーム終了");
+
+            //ゲーム終了
+            #if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                            Application.Quit();
+            #endif
         }
 
         void SearchConnectedController()

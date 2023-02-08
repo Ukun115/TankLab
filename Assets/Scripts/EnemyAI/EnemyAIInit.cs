@@ -17,8 +17,6 @@ namespace nsTankLab
         [SerializeField] bool m_addBombSkill = false;
         [SerializeField] bool m_addBackShieldSkill = false;
 
-        [SerializeField] EnemyAIFireBullet m_enemyAIFireBullet = null;
-
         void Start()
         {
             switch (m_enemyAIType)

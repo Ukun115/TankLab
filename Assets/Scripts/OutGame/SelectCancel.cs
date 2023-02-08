@@ -34,12 +34,12 @@ namespace nsTankLab
                 switch (m_tankOrSkill)
                 {
                     case "Tank":
-                        //RBボタン
-                         m_isPressed = m_controllerData.GetGamepad(m_playerNum).rightTrigger.wasPressedThisFrame;
+                        //LBボタン
+                         m_isPressed = m_controllerData.GetGamepad(m_playerNum).leftTrigger.wasPressedThisFrame;
                         break;
                     case "Skill":
-                        //LBボタン
-                        m_isPressed = m_controllerData.GetGamepad(m_playerNum).leftTrigger.wasPressedThisFrame;
+                        //RBボタン
+                        m_isPressed = m_controllerData.GetGamepad(m_playerNum).rightTrigger.wasPressedThisFrame;
                         break;
                 }
             }

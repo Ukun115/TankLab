@@ -6,17 +6,20 @@ namespace nsTankLab
     {
         bool m_isParentEnemy = false;
 
+        const int DEFENCE_VALUE = 2;
+
+        int m_nowDamage = 0;
+
         void OnTriggerEnter(Collider other)
         {
             switch (other.gameObject.tag)
             {
-                //シールドにあたったオブジェクトが弾の場合のみ実行
+                //シールドにあたったオブジェクトが弾の場合
                 case TagName.Bullet:
+                    Damage(other,1);
+                    break;
                 case TagName.RocketBullet:
-                    //弾を削除
-                    Destroy(other.gameObject);
-                    //シールドを削除
-                    Destroy(gameObject);
+                    Damage(other,2);
                     break;
             }
         }
@@ -32,6 +35,21 @@ namespace nsTankLab
             else
             {
                 transform.parent.gameObject.transform.parent.GetComponent<CreateBackShield>().GoInstantiate();
+            }
+        }
+
+        void Damage(Collider other,int damageValue)
+        {
+            //弾を削除
+            Destroy(other.gameObject);
+
+            m_nowDamage += damageValue;
+
+            //耐久値までダメージが入ったら、
+            if (m_nowDamage >= DEFENCE_VALUE)
+            {
+                //シールドを削除
+                Destroy(gameObject);
             }
         }
 

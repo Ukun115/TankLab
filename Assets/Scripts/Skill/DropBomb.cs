@@ -10,8 +10,6 @@ namespace nsTankLab
     {
         SoundManager m_soundManager = null;
 
-        bool m_skillFlg = true;
-
         bool m_isPressedButton = false;
 
         int m_playerNum = 0;
@@ -22,6 +20,19 @@ namespace nsTankLab
 
         SkillCool m_skillCoolScript = null;
         int m_coolTime = 5;
+
+        ExplosionBomb m_nowDroppingBomb = null;
+
+        enum EnState
+        {
+            //設置可能状態
+            enDroppableState,
+            //設置している状態
+            enDroppingState,
+            //起爆してクールタイムが発生している状態
+            enCoolState
+        }
+        EnState m_state = EnState.enDroppableState;
 
         void Start()
         {
@@ -48,21 +59,39 @@ namespace nsTankLab
             //操作切替
             SwitchingOperation();
 
-            if (m_isPressedButton && m_skillFlg)
+            //スキルボタンが押されたとき、
+            if (m_isPressedButton)
             {
-                switch (m_saveData.GetSetSelectGameMode)
+                //設置可能状態のとき、
+                if (m_state == EnState.enDroppableState)
                 {
-                    //チャレンジモード,ローカルプレイ,トレーニング
-                    case "CHALLENGE":
-                    case "LOCALMATCH":
-                    case "TRAINING":
-                        Drop();
-                        break;
-                    //オンラインプレイ
-                    case "RANDOMMATCH":
-                    case "PRIVATEMATCH":
-                        photonView.RPC(nameof(Drop), RpcTarget.All);
-                        break;
+                    switch (m_saveData.GetSetSelectGameMode)
+                    {
+                        //チャレンジモード,ローカルプレイ,トレーニング
+                        case "CHALLENGE":
+                        case "LOCALMATCH":
+                        case "TRAINING":
+                            Drop();
+                            break;
+                        //オンラインプレイ
+                        case "RANDOMMATCH":
+                        case "PRIVATEMATCH":
+                            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+                            {
+                                photonView.RPC(nameof(Drop), RpcTarget.All);
+                            }
+                            else if (SceneManager.GetActiveScene().name == SceneName.MatchingScene)
+                            {
+                                Drop();
+                            }
+                            break;
+                    }
+                }
+                //設置している状態の時、
+                else if(m_state == EnState.enDroppingState)
+                {
+                    //ボム起爆開始
+                    m_nowDroppingBomb.ActiveFlashing();
                 }
             }
         }
@@ -70,13 +99,19 @@ namespace nsTankLab
         [PunRPC]
         void Drop()
         {
-            m_skillFlg = false;
+           //設置した状態にする
+            m_state = EnState.enDroppingState;
 
             BombInstantiate();
 
             //設置音再生
             m_soundManager.PlaySE("DropBombSE");
+        }
 
+        //クール開始処理
+        public void CoolStart()
+        {
+            m_state = EnState.enCoolState;
             Invoke(nameof(Ct), m_coolTime);
             m_skillCoolScript.CoolStart(m_coolTime);
         }
@@ -102,6 +137,9 @@ namespace nsTankLab
                 transform.rotation
             );
             bombObject.GetComponent<ExplosionBomb>().SetDropPlayer(gameObject);
+
+            m_nowDroppingBomb = null;
+            m_nowDroppingBomb = bombObject.GetComponent<ExplosionBomb>();
         }
 
         //コンポーネント取得
@@ -114,7 +152,8 @@ namespace nsTankLab
 
         void Ct()
         {
-            m_skillFlg = true;
+            //設置可能状態に戻す
+            m_state = EnState.enDroppableState;
         }
 
         public void SetSkillCoolScript(SkillCool skillCool)

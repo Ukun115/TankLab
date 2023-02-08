@@ -138,40 +138,12 @@ namespace nsTankLab
                     case SceneName.OnlineGameScene:
                         if (m_saveData.GetSetIsOnline)
                         {
-                            //弾を生成
-                            GameObject m_bulletObjectOnline = PhotonNetwork.Instantiate(
-                            m_bulletPrefab.name,
-                            m_firePositionTransform.position,
-                            new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
-                            );
-
-                            //生成される弾の名前変更
-                            m_bulletObjectOnline.name = $"PlayerBullet{ PhotonNetwork.LocalPlayer.ActorNumber}";
-
-                            //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                            m_bulletObjectOnline.transform.parent = m_bulletsBox;
-
-                            //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
-                            m_bulletObjectOnline.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
+                            photonView.RPC(nameof(CreateBullet), RpcTarget.All);
                         }
                         break;
 
                     default:
-                        //弾を生成
-                        GameObject m_bulletObject = Instantiate(
-                        m_bulletPrefab,
-                        m_firePositionTransform.position,
-                        new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
-                        );
-
-                        //生成される弾の名前変更
-                        m_bulletObject.name = $"PlayerBullet{m_playerNum}";
-
-                        //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
-                        m_bulletObject.transform.parent = m_bulletsBox;
-
-                        //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
-                        m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
+                        CreateBullet();
                         break;
                 }
 
@@ -183,6 +155,27 @@ namespace nsTankLab
 
                 m_bulletNum++;
             }
+        }
+
+        [PunRPC]
+        void CreateBullet()
+        {
+            //弾を生成
+            GameObject m_bulletObject = Instantiate(
+            m_bulletPrefab,
+            m_firePositionTransform.position,
+            new Quaternion(0.0f, m_firePositionTransform.rotation.y, 0.0f, m_firePositionTransform.rotation.w)
+            );
+
+            //生成される弾の名前変更
+            //オンラインの場合はPhotonNetwork.LocalPlayer.ActorNumberを渡すかも...？
+            m_bulletObject.name = $"PlayerBullet{m_playerNum}";
+
+            //ヒエラルキー上がごちゃごちゃになってしまうのを防ぐため、親を用意してまとめておく。
+            m_bulletObject.transform.parent = m_bulletsBox;
+
+            //生成される弾はタンクと切り離すため、発射したタンクオブジェクトデータを弾スクリプトに渡しておく。
+            m_bulletObject.GetComponent<BulletCollision>().SetFireTankObject(gameObject);
         }
 
         [PunRPC]

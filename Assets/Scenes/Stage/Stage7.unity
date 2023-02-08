@@ -440,17 +440,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 897296663}
+    m_TransformParent: {fileID: 747161598}
     m_Modifications:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall_3
+      value: NomalWall_4
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
@@ -1020,17 +1020,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 897296663}
+    m_TransformParent: {fileID: 747161598}
     m_Modifications:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall_1
+      value: NomalWall_2
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
@@ -1185,17 +1185,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 897296663}
+    m_TransformParent: {fileID: 747161598}
     m_Modifications:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall
+      value: NomalWall_3
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
@@ -1287,7 +1287,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2015190738}
+  - {fileID: 575587487}
+  - {fileID: 695983116}
+  - {fileID: 359293789}
   m_Father: {fileID: 253285691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1468,10 +1472,6 @@ Transform:
   - {fileID: 502918614}
   - {fileID: 1229433432}
   - {fileID: 1051435534}
-  - {fileID: 2015190738}
-  - {fileID: 575587487}
-  - {fileID: 695983116}
-  - {fileID: 359293789}
   m_Father: {fileID: 253285691}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2495,17 +2495,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 897296663}
+    m_TransformParent: {fileID: 747161598}
     m_Modifications:
     - target: {fileID: 2073859716772807981, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_Name
-      value: NomalWall_2
+      value: NomalWall_1
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3544275035825990840, guid: 31e824f408ca95342ad1311ee8045866,
         type: 3}

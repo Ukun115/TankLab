@@ -19,10 +19,23 @@ namespace nsTankLab
 
         SoundManager m_soundManager = null;
 
+        int m_roomSearchAgainTimer = 0;
+
+        //マッチング完了したかどうか(ルームを再検索できるかどうか)
+        bool m_isMatched = false;
+
         void Start()
         {
             m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+
+            if (PhotonNetwork.IsConnected)
+            {
+                //フォトンサーバーから切断する
+                PhotonNetwork.Disconnect();
+
+                Debug.Log("<color=blue>Photonサーバーから切断しました</color>");
+            }
 
             // シーンの自動同期: 有効
             PhotonNetwork.AutomaticallySyncScene = true;
@@ -32,10 +45,31 @@ namespace nsTankLab
             //オンラインモードフラグを立てる
             m_saveData.GetSetIsOnline = true;
 
-            //Photonサーバーに接続
-            if (!PhotonNetwork.IsConnected)
+            //Photonサーバー(マスターサーバー)に接続
+            PhotonNetwork.ConnectUsingSettings();
+        }
+
+        void Update()
+        {
+            //マッチング完了していなかったら実行できる
+            if (!m_isMatched)
             {
-                PhotonNetwork.ConnectUsingSettings();
+                m_roomSearchAgainTimer++;
+                if (m_roomSearchAgainTimer > Random.Range(300,1200))
+                {
+                    if (PhotonNetwork.InRoom)
+                    {
+                        Debug.Log("<color=blue>ルーム再検索</color>");
+
+                        //ルームから一旦退出
+                        PhotonNetwork.LeaveRoom();
+                        //再検索。ルームを探す。なかったらルーム作成。
+                        //ロビーに参加する
+                        PhotonNetwork.JoinLobby();
+
+                        m_roomSearchAgainTimer = 0;
+                    }
+                }
             }
         }
 
@@ -68,7 +102,7 @@ namespace nsTankLab
             }
 
             //シーン遷移しても破壊されないようにする
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
 
             //デバック
             Debug.Log("<color=blue>ロビーへの参加が完了</color>");
@@ -137,24 +171,29 @@ namespace nsTankLab
                 PhotonNetwork.Disconnect();
 
                 Debug.Log("<color=blue>Photonサーバーから切断しました</color>");
-
-                Destroy(this);
             }
+            // シーンの自動同期: 無効
+            PhotonNetwork.AutomaticallySyncScene = false;
 
-           //オンラインモードフラグをおる
-           m_saveData.GetSetIsOnline = false;
+            //オンラインモードフラグをおる
+            m_saveData.GetSetIsOnline = false;
         }
 
         // ルームから退出した時に呼ばれるコールバック
         public override void OnLeftRoom()
         {
-            Debug.Log("ルームから退出しました</color>");
+            Debug.Log("<color=blue>ルームから退出しました</color>");
         }
 
         //同じルームにいたほかプレイヤーが退出したときに呼ばれるコールバック
         public override void OnPlayerLeftRoom(Player player)
         {
-            Debug.Log("他プレイヤーがルームから退出しました</color>");
+            Debug.Log("<color=blue>他プレイヤーがルームから退出しました</color>");
+        }
+
+        public void DestroyGameObject()
+        {
+            Destroy(gameObject);
         }
 
         [PunRPC]
@@ -167,6 +206,14 @@ namespace nsTankLab
             m_soundManager.PlaySE("MatchingSE");
 
             m_saveData.GetSetSelectStageNum = stageNum;
+
+            //ルーム再検索できないようにする
+            m_isMatched = true;
+        }
+
+        public bool IsMatched()
+        {
+            return m_isMatched;
         }
 
         //ゲームシーンに移行する関数
