@@ -47,13 +47,13 @@ namespace nsTankLab
                     if (m_saveData.GetSetPlayerNum == 0)
                     {
                         gameObject.name = $"PlayerBullet{2}";
-                        m_myPlayerNum = 2;
+                        m_myPlayerNum = 1;
                     }
                     //自身がプレイヤー2
                     else if (m_saveData.GetSetPlayerNum == 1)
                     {
                         gameObject.name = $"PlayerBullet{1}";
-                        m_myPlayerNum = 1;
+                        m_myPlayerNum = 0;
                     }
                 }
                 else
@@ -63,7 +63,7 @@ namespace nsTankLab
                 }
             }
 
-            AddForce();
+            AddForceRigidbody();
         }
 
         void Update()
@@ -119,7 +119,7 @@ namespace nsTankLab
             m_smokeEffectPrefab.transform.LookAt(transform.position - m_debugLineDirection);
         }
 
-        void AddForce()
+        void AddForceRigidbody()
         {
             m_rigidbody.AddForce(
             transform.forward.x * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed(),
