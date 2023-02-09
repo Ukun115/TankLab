@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cursorImagePosition: {fileID: 464494065}
+  m_cursorImagePosition2P: {fileID: 1779921217}
   m_playerNum: 1
   m_cursorObject: {fileID: 464494059}
   m_cursorObject2P: {fileID: 1779921216}
