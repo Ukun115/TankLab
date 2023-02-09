@@ -39,7 +39,7 @@ namespace nsTankLab
                 {
                     if (m_cursorPosition is null)
                     {
-                        m_cursorPosition = GameObject.Find("1PCursor").GetComponent<Transform>();
+                        m_cursorPosition = GameObject.Find("Cursor").GetComponent<Transform>();
                     }
                     rayTarget = m_cursorPosition.position;
                 }
