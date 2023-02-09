@@ -66,20 +66,46 @@ namespace nsTankLab
 
         Vector3 DecideRayTarget()
         {
-           // ゲームパッドが接続されていたらゲームパッドでの操作
-           if (m_controllerData.GetGamepad(m_playerNum) is not null)
-           {
-                if(m_cursorPosition is null)
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                // ゲームパッドが接続されていたらゲームパッドでの操作
+                if (m_controllerData.GetGamepad(m_playerNum) is not null)
                 {
-                    m_cursorPosition = GameObject.Find($"{m_playerNum}PCursor").GetComponent<RectTransform>();
-                }
+                    if (m_cursorPosition is null)
+                    {
+                        m_cursorPosition = GameObject.Find($"1PCursor").GetComponent<RectTransform>();
 
-               return m_cursorPosition.position;
-           }
-           else
-           {
-               return Mouse.current.position.ReadValue();
-           }
+                        return m_cursorPosition.position;
+                    }
+                    else
+                    {
+                        return m_cursorPosition.position;
+                    }
+                }
+                //マウス操作
+                else
+                {
+                    return Mouse.current.position.ReadValue();
+                }
+            }
+            else
+            {
+                // ゲームパッドが接続されていたらゲームパッドでの操作
+                if (m_controllerData.GetGamepad(m_playerNum) is not null)
+                {
+                    if (m_cursorPosition is null)
+                    {
+                        m_cursorPosition = GameObject.Find($"{m_playerNum}PCursor").GetComponent<RectTransform>();
+                    }
+
+                    return m_cursorPosition.position;
+                }
+                //マウス操作
+                else
+                {
+                    return Mouse.current.position.ReadValue();
+                }
+            }
         }
 
         //コンポーネント取得
