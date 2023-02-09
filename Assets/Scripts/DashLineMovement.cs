@@ -68,7 +68,7 @@ namespace nsTankLab
             var ray = m_mainCamera.ScreenPointToRay(rayTarget);
             if (plane.Raycast(ray, out distance))
             {
-                var lookPoint = ray.GetPoint(distance);
+                Vector3 lookPoint = ray.GetPoint(distance);
                 line.SetPosition(0, lookPoint);
                 line.SetPosition(1, new Vector3(transform.position.x, 4.0f, transform.position.z - 4.0f));
             }
