@@ -13,7 +13,7 @@ namespace nsTankLab
         //α値
         float alphaValue = 0.0f;
 
-        int m_displayTimer = 0;
+        float m_displayTimer = 0.0f;
 
         const float FADE_VALUE = 0.05f;
         const float ALPHA_ZERO = 0.0f;
@@ -36,14 +36,14 @@ namespace nsTankLab
 
                 //一定時間表示
                 case EnState.enDisplay:
-                    m_displayTimer++;
-                    if(m_displayTimer > 180)
+                    m_displayTimer+=Time.deltaTime;
+                    if(m_displayTimer > 3)
                     {
                         //フェード状態にする
                         m_enState = EnState.enFade;
 
                         //タイマーをリセット
-                        m_displayTimer = 0;
+                        m_displayTimer = 0.0f;
                     }
                     break;
 

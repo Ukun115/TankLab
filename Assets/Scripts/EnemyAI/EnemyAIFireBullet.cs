@@ -27,8 +27,8 @@ namespace nsTankLab
         //フィールド上に生成されている弾の数
         int m_bulletNum = 0;
 
-        int m_timer = 0;
-        [SerializeField]int m_bulletFireDelay = 100;
+        float m_timer = 0.0f;
+        [SerializeField]float m_bulletFireDelay = 1.5f;
 
         void Start()
         {
@@ -66,10 +66,10 @@ namespace nsTankLab
             }
 
             //弾を発射した後のディレイをかける
-            //タイマーが作動し0になったら自動でタイマー作動終了
-            if (m_timer != 0)
+            //タイマーが作動し0以下になったら自動でタイマー作動終了
+            if (m_timer <= 0)
             {
-                m_timer--;
+                m_timer-=Time.deltaTime;
             }
         }
 

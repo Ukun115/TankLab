@@ -5,7 +5,7 @@ namespace nsTankLab
 {
     public class SkillCool : MonoBehaviour
     {
-        int m_coolTime = 0;
+        float m_coolTime = 0.0f;
         bool m_isCooling = false;
         bool m_wait = false;
         [SerializeField]TextMeshProUGUI m_coolText = null;
@@ -30,17 +30,17 @@ namespace nsTankLab
         {
             m_wait = false;
 
-            m_coolText.text = $"{m_coolTime}";
+            m_coolText.text = $"{(int)m_coolTime}";
 
             //クールタイムが終わったら、
-            if (m_coolTime == 0)
+            if (m_coolTime <= 0)
             {
                 //テキスト非表示
                 m_coolText.text = "";
                 //クールタイム中から抜ける
                 m_isCooling = false;
             }
-            m_coolTime--;
+            m_coolTime -= Time.deltaTime;
         }
 
         //クールを開始させる処理
@@ -49,8 +49,8 @@ namespace nsTankLab
             m_isCooling = true;
             m_coolTime = coolTime;
 
-            m_coolText.text = $"{m_coolTime}";
-            m_coolTime--;
+            m_coolText.text = $"{(int)m_coolTime}";
+            m_coolTime-=Time.deltaTime;
         }
     }
 }

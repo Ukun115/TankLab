@@ -23,7 +23,7 @@ namespace nsTankLab
 
         Renderer m_renderer = null;
 
-        int m_timer = 0;
+        float m_timer = 0.0f;
 
         SaveData m_saveData = null;
 
@@ -56,9 +56,9 @@ namespace nsTankLab
             //“_–Å‚·‚é‚©‚Ç‚¤‚©
             if(m_isFlashing)
             {
-                m_timer++;
+                m_timer+= Time.deltaTime;
 
-                if(m_timer > 5)
+                if(m_timer > 0.1f)
                 {
                     m_timer = 0;
                     m_normalColor = !m_normalColor;

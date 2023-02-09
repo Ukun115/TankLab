@@ -11,7 +11,7 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("足跡を生成するタンクのトランスフォーム")] Transform m_tankTransform = null;
 
         //足跡表示間隔
-        const float DRAW_INTERVAL = 45.0f;
+        const float DRAW_INTERVAL = 0.5f;
 
         //足跡ゲームオブジェクトを格納するゲームオブジェクト
         Transform m_footPrintsBox = null;
@@ -19,7 +19,7 @@ namespace nsTankLab
         SaveData m_saveData = null;
 
         //タイマー
-        int m_timer = 0;
+        float m_timer = 0.0f;
 
         void Start()
         {
@@ -36,7 +36,7 @@ namespace nsTankLab
                 return;
             }
 
-            m_timer++;
+            m_timer+=Time.deltaTime;
 
             if(m_timer > DRAW_INTERVAL)
             {

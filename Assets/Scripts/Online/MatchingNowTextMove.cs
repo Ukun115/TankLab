@@ -12,9 +12,9 @@ namespace nsTankLab
         TextMeshProUGUI m_matchingNowText = null;
 
         //“_•\Ž¦ŠÔŠu
-        const int INTERVAL = 60;
+        const int INTERVAL = 1;
 
-        int m_timer = 0;
+        float m_timer = 0.0f;
 
         void Start()
         {
@@ -25,7 +25,7 @@ namespace nsTankLab
 
         void Update()
         {
-            m_timer++;
+            m_timer+=Time.deltaTime;
 
             if (m_timer > INTERVAL)
             {
