@@ -19,7 +19,7 @@ namespace nsTankLab
 
         SoundManager m_soundManager = null;
 
-        int m_roomSearchAgainTimer = 0;
+        float m_roomSearchAgainTimer = 0.0f;
 
         //マッチング完了したかどうか(ルームを再検索できるかどうか)
         bool m_isMatched = false;
@@ -54,8 +54,8 @@ namespace nsTankLab
             //マッチング完了していなかったら実行できる
             if (!m_isMatched)
             {
-                m_roomSearchAgainTimer++;
-                if (m_roomSearchAgainTimer > Random.Range(300,1200))
+                m_roomSearchAgainTimer+=Time.deltaTime;
+                if (m_roomSearchAgainTimer > Random.Range(5,10))
                 {
                     if (PhotonNetwork.InRoom)
                     {

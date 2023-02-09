@@ -10,7 +10,7 @@ namespace nsTankLab
     {
         TextMeshProUGUI m_countDownText = null;
 
-        int m_timer = 0;
+        float m_timer = 0;
 
         SaveData m_saveData = null;
 
@@ -38,12 +38,12 @@ namespace nsTankLab
 
         void Update()
         {
-            switch(m_timer)
+            switch((int)m_timer)
             {
-                case 240:
+                case 4:
                     m_countDownText.text = "GO!!";
                     break;
-                case 300:
+                case 5:
                     //タンクや弾が動けるようにする
                     m_saveData.GetSetmActiveGameTime = true;
                     //カウントダウンスクリプトを削除
@@ -68,7 +68,7 @@ namespace nsTankLab
                     break;
             }
 
-            m_timer++;
+            m_timer+=Time.deltaTime;
         }
     }
 }
