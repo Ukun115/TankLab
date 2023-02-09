@@ -20,9 +20,9 @@ namespace nsTankLab
 		void AddForce()
         {
             m_rigidbody.AddForce(
-            transform.forward.x * 6.0f,
+            transform.forward.x * 400.0f*Time.deltaTime,
             0.0f,
-            transform.forward.z * 6.0f,
+            transform.forward.z * 400.0f*Time.deltaTime,
             ForceMode.VelocityChange
             );
 
