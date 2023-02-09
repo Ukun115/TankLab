@@ -11,10 +11,8 @@ namespace nsTankLab
     public class RayCast : MonoBehaviour
     {
         [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorImagePosition = null;
-        [SerializeField, TooltipAttribute("カーソル画像の位置(オンラインでのみ使用)")] Transform m_cursorImagePosition2P = null;
         [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 1;
         [SerializeField, TooltipAttribute("カーソル画像オブジェクト")] GameObject m_cursorObject = null;
-        [SerializeField, TooltipAttribute("カーソル画像オブジェクト(オンラインでのみ使用)")] GameObject m_cursorObject2P = null;
         [SerializeField, TooltipAttribute("シーンマネージャー")] GameObject m_sceneManager = null;
 
         //Rayがヒットしたオブジェクト
@@ -68,60 +66,18 @@ namespace nsTankLab
             // ゲームパッドが接続されていたらゲームパッド操作
             if (m_controllerData.GetGamepad(m_playerNum) is not null)
             {
-                //オンライン時のみ１Pカーソルか２Pカーソルかを判定
-                if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
-                {
-                    //自身が1P
-                    if (m_saveData.GetSetPlayerNum == 0)
-                    {
-                        //1Pカーソル画像を表示
-                        m_cursorObject.SetActive(true);
+                m_rayPoint = m_cursorImagePosition.position;
 
-                        m_rayPoint = m_cursorImagePosition.position;
-                    }
-                    //自身が2P
-                    else if(m_saveData.GetSetPlayerNum == 1)
-                    {
-                        //2Pカーソル画像を表示
-                        m_cursorObject2P.SetActive(true);
-
-                        m_rayPoint = m_cursorImagePosition2P.position;
-                    }
-                }
-                else
-                {
-                    //カーソル画像を表示
-                    m_cursorObject.SetActive(true);
-
-                    m_rayPoint = m_cursorImagePosition.position;
-                }
+                //カーソル画像を表示
+                m_cursorObject.SetActive(true);
             }
             //ゲームパッドが接続されていなかったらマウス操作
             else
             {
                 m_rayPoint = Mouse.current.position.ReadValue();
 
-                //オンライン時のみ１Pカーソルか２Pカーソルかを判定
-                if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
-                {
-                    //自身が1P
-                    if (m_saveData.GetSetPlayerNum == 0)
-                    {
-                        //1Pカーソル画像を非表示
-                        m_cursorObject.SetActive(false);
-                    }
-                    //自身が2P
-                    else if (m_saveData.GetSetPlayerNum == 1)
-                    {
-                        //2Pカーソル画像を非表示
-                        m_cursorObject2P.SetActive(false);
-                    }
-                }
-                else
-                {
-                    //カーソル画像を非表示
-                    m_cursorObject.SetActive(false);
-                }
+                //カーソル画像を非表示
+                m_cursorObject.SetActive(false);
             }
         }
 
