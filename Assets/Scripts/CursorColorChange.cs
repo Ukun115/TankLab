@@ -12,6 +12,7 @@ namespace nsTankLab
 
         [SerializeField]Image m_cursorImage = null;
         [SerializeField] Sprite m_player2CursorSprite = null;
+        Color m_player2Color = new Color( 255,0,125,255 );
 
         void Start()
         {
@@ -21,6 +22,7 @@ namespace nsTankLab
             if(m_saveData.GetSetPlayerNum == 1)
             {
                 m_cursorImage.sprite = m_player2CursorSprite;
+                m_cursorImage.color = m_player2Color;
             }
 
             Destroy(this);
