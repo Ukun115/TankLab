@@ -61,24 +61,50 @@ namespace nsTankLab
                 return;
             }
 
-            //ゲームパッド操作
-            if (m_controllerData.GetGamepad(m_playerNum) is not null)
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
             {
-                //RBボタンが押されたとき、
-                if (m_controllerData.GetGamepad(m_playerNum).rightShoulder.wasPressedThisFrame)
+                //ゲームパッド操作
+                if (m_controllerData.GetGamepad(1) is not null)
                 {
-                    //弾発射
-                    FireBullet();
+                    //RBボタンが押されたとき、
+                    if (m_controllerData.GetGamepad(1).rightShoulder.wasPressedThisFrame)
+                    {
+                        //弾発射
+                        FireBullet();
+                    }
+                }
+                //キーマウ操作
+                else
+                {
+                    //左クリックが押されたとき、
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        //弾発射
+                        FireBullet();
+                    }
                 }
             }
-            //キーマウ操作
             else
             {
-                //左クリックが押されたとき、
-                if (Mouse.current.leftButton.wasPressedThisFrame)
+                //ゲームパッド操作
+                if (m_controllerData.GetGamepad(m_playerNum) is not null)
                 {
-                    //弾発射
-                    FireBullet();
+                    //RBボタンが押されたとき、
+                    if (m_controllerData.GetGamepad(m_playerNum).rightShoulder.wasPressedThisFrame)
+                    {
+                        //弾発射
+                        FireBullet();
+                    }
+                }
+                //キーマウ操作
+                else
+                {
+                    //左クリックが押されたとき、
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        //弾発射
+                        FireBullet();
+                    }
                 }
             }
         }
