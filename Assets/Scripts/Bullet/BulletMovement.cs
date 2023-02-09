@@ -80,7 +80,7 @@ namespace nsTankLab
             }
             else
             {
-                m_rigidbody.velocity = m_debugLineDirection * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed();
+                m_rigidbody.velocity = 50.0f * m_debugLineDirection * m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(m_myPlayerNum)].GetBulletSpeed()*Time.deltaTime;
 
                 //ˆÚ“®‹——£‚ğ‹‚ß‚é
                 m_movingDistance = ((transform.position - m_previousFlamePosition) / Time.deltaTime).magnitude;
