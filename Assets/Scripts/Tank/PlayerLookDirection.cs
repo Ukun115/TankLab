@@ -69,7 +69,7 @@ namespace nsTankLab
             if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
             {
                 // ゲームパッドが接続されていたらゲームパッドでの操作
-                if (m_controllerData.GetGamepad(m_playerNum) is not null)
+                if (m_controllerData.GetGamepad(1) is not null)
                 {
                     if (m_cursorPosition is null)
                     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Text.RegularExpressions;
 
@@ -31,18 +32,37 @@ namespace nsTankLab
 
         void Update()
         {
-            // ゲームパッドが接続されていたらゲームパッドでの操作
-            if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty))) is not null)
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
             {
-                if (m_cursorPosition is null)
+                // ゲームパッドが接続されていたらゲームパッドでの操作
+                if (m_controllerData.GetGamepad(1) is not null)
                 {
-                    m_cursorPosition = GameObject.Find(transform.root.name + "Cursor").GetComponent<Transform>();
+                    if (m_cursorPosition is null)
+                    {
+                        m_cursorPosition = GameObject.Find("1PCursor").GetComponent<Transform>();
+                    }
+                    rayTarget = m_cursorPosition.position;
                 }
-                rayTarget = m_cursorPosition.position;
+                else
+                {
+                    rayTarget = Mouse.current.position.ReadValue();
+                }
             }
             else
             {
-                rayTarget = Mouse.current.position.ReadValue();
+                // ゲームパッドが接続されていたらゲームパッドでの操作
+                if (m_controllerData.GetGamepad(int.Parse(Regex.Replace(gameObject.transform.root.name, @"[^1-4]", string.Empty))) is not null)
+                {
+                    if (m_cursorPosition is null)
+                    {
+                        m_cursorPosition = GameObject.Find(transform.root.name + "Cursor").GetComponent<Transform>();
+                    }
+                    rayTarget = m_cursorPosition.position;
+                }
+                else
+                {
+                    rayTarget = Mouse.current.position.ReadValue();
+                }
             }
 
             var ray = m_mainCamera.ScreenPointToRay(rayTarget);
