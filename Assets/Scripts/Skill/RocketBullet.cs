@@ -45,14 +45,8 @@ namespace nsTankLab
                 return;
             }
 
-            if (m_controllerData.GetGamepad(m_playerNum) is not null)
-            {
-                m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
-            }
-            else
-            {
-                m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
-            }
+            //ëÄçÏêÿë÷
+            SwitchingOperation();
 
             if (m_isPressedButton && m_skillFlg)
             {
@@ -78,6 +72,33 @@ namespace nsTankLab
                         }
                         m_skillCoolScript.CoolStart(m_coolTime);
                         break;
+                }
+            }
+        }
+
+        //ëÄçÏêÿë÷
+        void SwitchingOperation()
+        {
+            if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+            {
+                if (m_controllerData.GetGamepad(1) is not null)
+                {
+                    m_isPressedButton = m_controllerData.GetGamepad(1).leftShoulder.wasPressedThisFrame;
+                }
+                else
+                {
+                    m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+                }
+            }
+            else
+            {
+                if (m_controllerData.GetGamepad(m_playerNum) is not null)
+                {
+                    m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
+                }
+                else
+                {
+                    m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
                 }
             }
         }

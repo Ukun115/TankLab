@@ -118,13 +118,27 @@ namespace nsTankLab
 		//ëÄçÏêÿë÷
 		void SwitchingOperation()
         {
-			if (m_controllerData.GetGamepad(m_playerNum) is not null)
+			if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
 			{
-				m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
+				if (m_controllerData.GetGamepad(1) is not null)
+				{
+					m_isPressedButton = m_controllerData.GetGamepad(1).leftShoulder.wasPressedThisFrame;
+				}
+				else
+				{
+					m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+				}
 			}
 			else
 			{
-				m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+				if (m_controllerData.GetGamepad(m_playerNum) is not null)
+				{
+					m_isPressedButton = m_controllerData.GetGamepad(m_playerNum).leftShoulder.wasPressedThisFrame;
+				}
+				else
+				{
+					m_isPressedButton = Mouse.current.rightButton.wasPressedThisFrame;
+				}
 			}
 		}
 
