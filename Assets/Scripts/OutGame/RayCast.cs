@@ -13,6 +13,7 @@ namespace nsTankLab
         [SerializeField, TooltipAttribute("カーソル画像の位置")] Transform m_cursorImagePosition = null;
         [SerializeField, TooltipAttribute("プレイヤー番号"), Range(1,4)]int m_playerNum = 1;
         [SerializeField, TooltipAttribute("カーソル画像オブジェクト")] GameObject m_cursorObject = null;
+        [SerializeField, TooltipAttribute("カーソル画像オブジェクト(オンラインでのみ使用)")] GameObject m_cursorObject2P = null;
         [SerializeField, TooltipAttribute("シーンマネージャー")] GameObject m_sceneManager = null;
 
         //Rayがヒットしたオブジェクト
@@ -68,16 +69,54 @@ namespace nsTankLab
             {
                 m_rayPoint = m_cursorImagePosition.position;
 
-                //カーソル画像を表示
-                m_cursorObject.SetActive(true);
+                //オンライン時のみ１Pカーソルか２Pカーソルかを判定
+                if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+                {
+                    //自身が1P
+                    if (m_saveData.GetSetPlayerNum == 0)
+                    {
+                        //1Pカーソル画像を表示
+                        m_cursorObject.SetActive(true);
+                    }
+                    //自身が2P
+                    else if(m_saveData.GetSetPlayerNum == 1)
+                    {
+                        //2Pカーソル画像を表示
+                        m_cursorObject2P.SetActive(true);
+                    }
+                }
+                else
+                {
+                    //カーソル画像を表示
+                    m_cursorObject.SetActive(true);
+                }
             }
             //ゲームパッドが接続されていなかったらマウス操作
             else
             {
                 m_rayPoint = Mouse.current.position.ReadValue();
 
-                //カーソル画像を非表示
-                m_cursorObject.SetActive(false);
+                //オンライン時のみ１Pカーソルか２Pカーソルかを判定
+                if (SceneManager.GetActiveScene().name == SceneName.OnlineGameScene)
+                {
+                    //自身が1P
+                    if (m_saveData.GetSetPlayerNum == 0)
+                    {
+                        //1Pカーソル画像を非表示
+                        m_cursorObject.SetActive(false);
+                    }
+                    //自身が2P
+                    else if (m_saveData.GetSetPlayerNum == 1)
+                    {
+                        //2Pカーソル画像を非表示
+                        m_cursorObject2P.SetActive(false);
+                    }
+                }
+                else
+                {
+                    //カーソル画像を非表示
+                    m_cursorObject.SetActive(false);
+                }
             }
         }
 
