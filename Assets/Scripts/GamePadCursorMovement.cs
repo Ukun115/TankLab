@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ゲームパッド用のカーソル移動処理
@@ -22,10 +23,18 @@ namespace nsTankLab
 
         ControllerData m_controllerData = null;
 
+        SaveData m_saveData = null;
+
         void Start()
         {
             //コンポーネント取得まとめ
             GetComponents();
+
+            //ローカルマッチのプレイ人数に含まれないプレイヤーのプレイヤーカーソルの場合削除する
+            if(m_saveData.GetSetLocalMatchPlayNum < m_playerNum)
+            {
+                Destroy(gameObject);
+            }
         }
 
         void Update()
@@ -52,6 +61,7 @@ namespace nsTankLab
         void GetComponents()
         {
             m_rigidbody2d = GetComponent<Rigidbody2D>();
+            m_saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
             m_controllerData = GameObject.Find("SaveData").GetComponent<ControllerData>();
         }
     }

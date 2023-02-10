@@ -40,6 +40,14 @@ namespace nsTankLab
 
             //‘€ìØ‘Ö
             SwitchingOperation();
+
+            if(SceneManager.GetActiveScene().name == SceneName.SelectTankScene&&m_saveData.GetSetSelectGameMode == "LOCALMATCH")
+            {
+                if(m_saveData.GetSetLocalMatchPlayNum < m_playerNum)
+                {
+                    Destroy(this);
+                }
+            }
         }
 
         void Update()
