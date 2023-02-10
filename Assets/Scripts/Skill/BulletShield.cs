@@ -4,8 +4,12 @@ namespace nsTankLab
 {
     public class BulletShield : MonoBehaviour
     {
+        SoundManager m_soundManager = null;
+
         void Start()
         {
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+
             Invoke(nameof(DestroyWall), 30.0f);
         }
 
@@ -29,6 +33,9 @@ namespace nsTankLab
 
         void Damage(Collider other)
         {
+            //Œ‚”j‰¹Ä¶
+            m_soundManager.PlaySE("BrokenWallDestroySE");
+
             //’e‚ğíœ
             Destroy(other.gameObject);
 
