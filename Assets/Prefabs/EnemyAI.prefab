@@ -148,7 +148,7 @@ MonoBehaviour:
   m_tankDataBase: {fileID: 11400000, guid: f99f8bf9f5b3d394d9332ca43e6bd152, type: 2}
   m_firePositionTransform: {fileID: 430560258180168786}
   m_addFireRocketBulletSkill: 0
-  m_bulletFireDelay: 100
+  m_bulletFireDelay: 1.5
 --- !u!1 &430560259370082294
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +434,6 @@ MonoBehaviour:
   m_enemyAIType: 0
   m_addBombSkill: 0
   m_addBackShieldSkill: 0
-  m_enemyAIFireBullet: {fileID: 4253899537444538427}
 --- !u!195 &2049950378459742541
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ namespace nsTankLab
 
             //弾を発射した後のディレイをかける
             //タイマーが作動し0以下になったら自動でタイマー作動終了
-            if (m_timer <= 0)
+            if (m_timer >= 0)
             {
                 m_timer-=Time.deltaTime;
             }
@@ -88,7 +88,7 @@ namespace nsTankLab
             }
 
             //発射準備ができていないと発射しないようにする
-            if (m_timer != 0)
+            if (m_timer > 0)
             {
                 return;
             }
