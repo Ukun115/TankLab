@@ -57,12 +57,13 @@ namespace nsTankLab
         }
 
         //BGMÄ¶ˆ—
-        public void PlayBGM(string bgmName)
+        public void PlayBGM(string bgmName,bool isLoop = true)
         {
             m_bgmSoundData = m_bgmSoundDatas.Find(m_bgmSoundData => m_bgmSoundData.GetBGMName() == bgmName);
             m_bgmAudioSource.clip = m_bgmSoundData.GetAudioClip();
             m_bgmAudioSource.volume = m_bgmSoundData.GetVolume() * m_bgmMasterVolume * m_masterVolume;
             m_bgmAudioSource.Play();
+            m_bgmAudioSource.loop = isLoop;
         }
 
         //Œø‰Ê‰¹Ä¶ˆ—

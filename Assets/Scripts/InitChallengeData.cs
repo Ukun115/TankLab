@@ -61,16 +61,16 @@ namespace nsTankLab
             switch (m_saveData.GetSelectTankName(PLAYER1_NUM - 1))
             {
                 case "Tank1":
-                    m_tankNumText.text = "Tank1";
+                    m_tankNumText.text = "AR";
                     break;
                 case "Tank2":
-                    m_tankNumText.text = "Tank2";
+                    m_tankNumText.text = "SMG";
                     break;
                 case "Tank3":
-                    m_tankNumText.text = "Tank3";
+                    m_tankNumText.text = "SG";
                     break;
                 case "Tank4":
-                    m_tankNumText.text = "Tank4";
+                    m_tankNumText.text = "LMG";
                     break;
             }
             //スキル名更新

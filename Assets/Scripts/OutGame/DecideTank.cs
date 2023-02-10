@@ -61,17 +61,17 @@ namespace nsTankLab
                 //タイトル更新
                 switch (character)
                 {
-                    case "Tank1":
-                    m_tankSkillNameText[playerNum - 1].text = "Tank1";
+                    case "TANK1":
+                    m_tankSkillNameText[playerNum - 1].text = "AR";
                         break;
-                    case "Tank2":
-                        m_tankSkillNameText[playerNum - 1].text = "Tank2";
+                    case "TANK2":
+                        m_tankSkillNameText[playerNum - 1].text = "SMG";
                         break;
-                    case "Tank3":
-                        m_tankSkillNameText[playerNum - 1].text = "Tank3";
+                    case "TANK3":
+                        m_tankSkillNameText[playerNum - 1].text = "SG";
                         break;
-                    case "Tank4":
-                        m_tankSkillNameText[playerNum - 1].text = "Tank4";
+                    case "TANK4":
+                        m_tankSkillNameText[playerNum - 1].text = "LMG";
                         break;
                 }
 
