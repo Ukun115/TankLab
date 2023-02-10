@@ -234,9 +234,6 @@ namespace nsTankLab
                         //タンクボタンが押されたとき、
                         if (hit.collider.name.Contains("TANK"))
                         {
-                            //選択音再生
-                            m_soundManager.PlaySE("SelectSE");
-
                             //選択されているタンクを変更
                             m_saveData.SetSelectTankName(1,hit.collider.name);
 
@@ -248,9 +245,6 @@ namespace nsTankLab
                         //スキルボタンが押されたとき、
                         else if (hit.collider.name.Contains("SKILL"))
                         {
-                            //選択音再生
-                            m_soundManager.PlaySE("SelectSE");
-
                             //選択されているスキルを変更
                             m_saveData.SetSelectSkillName(1, hit.collider.name);
 
