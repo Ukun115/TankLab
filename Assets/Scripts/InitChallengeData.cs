@@ -55,8 +55,47 @@ namespace nsTankLab
 
             m_challengeNumText.text = $"{m_saveData.GetSetSelectStageNum}";
             m_enemyNumText.text = $"x{m_stageData[m_saveData.GetSetSelectStageNum - 1].GetEnemiesNum()}";
-            m_tankNumText.text = m_saveData.GetSelectTankName(PLAYER1_NUM-1);
-            m_skillNumText.text = m_saveData.GetSelectSkillName(PLAYER1_NUM-1);
+
+            //タンク名更新
+            Debug.Log(m_saveData.GetSelectTankName(PLAYER1_NUM - 1));
+            switch (m_saveData.GetSelectTankName(PLAYER1_NUM - 1))
+            {
+                case "Tank1":
+                    m_tankNumText.text = "Tank1";
+                    break;
+                case "Tank2":
+                    m_tankNumText.text = "Tank2";
+                    break;
+                case "Tank3":
+                    m_tankNumText.text = "Tank3";
+                    break;
+                case "Tank4":
+                    m_tankNumText.text = "Tank4";
+                    break;
+            }
+            //スキル名更新
+            Debug.Log(m_saveData.GetSelectSkillName(PLAYER1_NUM - 1));
+            switch (m_saveData.GetSelectSkillName(PLAYER1_NUM - 1))
+            {
+                case "Skill1":
+                    m_skillNumText.text = "JET";
+                    break;
+                case "Skill2":
+                    m_skillNumText.text = "WARP";
+                    break;
+                case "Skill3":
+                    m_skillNumText.text = "BOMB";
+                    break;
+                case "Skill4":
+                    m_skillNumText.text = "F-SHIELD";
+                    break;
+                case "Skill5":
+                    m_skillNumText.text = "B-SHIELD";
+                    break;
+                case "Skill6":
+                    m_skillNumText.text = "ROCKET";
+                    break;
+            }
 
             //選択しているタンクのステータス
             TankStatus tankStatus = m_tankDataBase.GetTankLists()[m_saveData.GetSelectTankNum(PLAYER1_NUM-1)];
