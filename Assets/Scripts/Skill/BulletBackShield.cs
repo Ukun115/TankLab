@@ -10,6 +10,13 @@ namespace nsTankLab
 
         int m_nowDamage = 0;
 
+        SoundManager m_soundManager = null;
+
+        void Start()
+        {
+            m_soundManager = GameObject.Find("SaveData").GetComponent<SoundManager>();
+        }
+
         void OnTriggerEnter(Collider other)
         {
             switch (other.gameObject.tag)
@@ -48,6 +55,9 @@ namespace nsTankLab
             //耐久値までダメージが入ったら、
             if (m_nowDamage >= DEFENCE_VALUE)
             {
+                //撃破音再生
+                m_soundManager.PlaySE("BrokenWallDestroySE");
+
                 //シールドを削除
                 Destroy(gameObject);
             }
