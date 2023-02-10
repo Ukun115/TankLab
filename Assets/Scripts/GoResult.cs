@@ -71,9 +71,7 @@ namespace nsTankLab
                     }
 
                     //勝利SE再生
-                    m_soundManager.PlaySE("WinSE");
-                    //BGM止める
-                    m_soundManager.StopBGM();
+                    m_soundManager.PlayBGM("WinBGM",false);
                 }
                 //全機死んでいないとき、
                 //(つまりプレイヤーが死んでいるとき、)
@@ -87,18 +85,15 @@ namespace nsTankLab
                         StopGame();
                         Invoke(nameof(ChangeChallengeNowNumCountScene),3.0f);
                         //敗北SE再生
-                        m_soundManager.PlaySE("LoseSE");
+                        m_soundManager.PlayBGM("LoseBGM",false);
                     }
                     else
                     {
                         //敗北SE再生
-                        m_soundManager.PlaySE("Lose2SE");
+                        m_soundManager.PlayBGM("Lose2BGM",false);
                         //リザルト突入
                         InstantiateResultObject(5);
                     }
-
-                    //BGM止める
-                    m_soundManager.StopBGM();
                 }
             }
             //チャレンジモード以外のモードの時

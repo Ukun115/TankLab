@@ -53,14 +53,28 @@ namespace nsTankLab
 
         public void UpdateTankSkillInfo(int playerNum, string character)
         {
-            //タイトル更新
-            m_tankSkillNameText[playerNum - 1].text = character;
-
             //説明文更新
 
             //タンク
             if (character.Contains("TANK"))
             {
+                //タイトル更新
+                switch (character)
+                {
+                    case "TANK1":
+                    m_tankSkillNameText[playerNum - 1].text = "AR";
+                        break;
+                    case "TANK2":
+                        m_tankSkillNameText[playerNum - 1].text = "SMG";
+                        break;
+                    case "TANK3":
+                        m_tankSkillNameText[playerNum - 1].text = "SG";
+                        break;
+                    case "TANK4":
+                        m_tankSkillNameText[playerNum - 1].text = "LMG";
+                        break;
+                }
+
                 //選択しているタンクのステータス
                 TankStatus tankStatus = m_tankDataBase.GetTankLists()[int.Parse(Regex.Replace(character, @"[^1-4]", string.Empty)) - 1];
                 m_tankSkillInfoText[playerNum - 1].text = $"Tank Speed : {tankStatus.GetTankSpeed()}\nFire Speed : {tankStatus.GetBulletSpeed()}\nRapid Fire : {tankStatus.GetRapidFireNum()}\nSame Time Fire : {tankStatus.GetSameTimeBulletNum()}\nBullet Refrection:{tankStatus.GetBulletRefrectionNum()}";
@@ -68,6 +82,29 @@ namespace nsTankLab
             //スキル
             else if (character.Contains("SKILL"))
             {
+                //タイトル更新
+                switch (character)
+                {
+                    case "SKILL1":
+                        m_tankSkillNameText[playerNum - 1].text = "JET";
+                        break;
+                    case "SKILL2":
+                        m_tankSkillNameText[playerNum - 1].text = "WARP";
+                        break;
+                    case "SKILL3":
+                        m_tankSkillNameText[playerNum - 1].text = "BOMB";
+                        break;
+                    case "SKILL4":
+                        m_tankSkillNameText[playerNum - 1].text = "F-SHIELD";
+                        break;
+                    case "SKILL5":
+                        m_tankSkillNameText[playerNum - 1].text = "B-SHIELD";
+                        break;
+                    case "SKILL6":
+                        m_tankSkillNameText[playerNum - 1].text = "ROCKET";
+                        break;
+                }
+
                 m_tankSkillInfoText[playerNum - 1].text = $"Info :\n{ m_skillTextAsset[int.Parse(Regex.Replace(character, @"[^0-9]", string.Empty)) - 1].text}";
             }
         }

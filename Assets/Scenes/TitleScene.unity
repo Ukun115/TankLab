@@ -574,6 +574,15 @@ MonoBehaviour:
   - m_bgmName: GameSceneBGM02
     m_audioClip: {fileID: 8300000, guid: b42dcc77285ba684598e415ab191ff8a, type: 3}
     m_volume: 0.4
+  - m_bgmName: WinBGM
+    m_audioClip: {fileID: 8300000, guid: 1512268f3a59230418d44e90daacfd1c, type: 3}
+    m_volume: 0.4
+  - m_bgmName: LoseBGM
+    m_audioClip: {fileID: 8300000, guid: e9d95ecf0eb69b349aa2b831ce92c282, type: 3}
+    m_volume: 0.4
+  - m_bgmName: LoseBGM2
+    m_audioClip: {fileID: 8300000, guid: 720587d6c7b77ba4b8ff99bc264d0163, type: 3}
+    m_volume: 0.4
   m_seSoundDatas:
   - m_seName: BulletRefrectionSE
     m_audioClip: {fileID: 8300000, guid: 37471056673dc464f933baec4ca1bbed, type: 3}
@@ -596,9 +605,6 @@ MonoBehaviour:
   - m_seName: StatusUpSE
     m_audioClip: {fileID: 8300000, guid: 8272b29f99f4fda4eb0727c547e47894, type: 3}
     m_volume: 0.5
-  - m_seName: WinSE
-    m_audioClip: {fileID: 8300000, guid: 1512268f3a59230418d44e90daacfd1c, type: 3}
-    m_volume: 0.7
   - m_seName: CursorHitSE
     m_audioClip: {fileID: 8300000, guid: 16b5250938ff6ca4bb4be71c4dd2ee06, type: 3}
     m_volume: 0.4
@@ -617,9 +623,6 @@ MonoBehaviour:
   - m_seName: AccelerationSE
     m_audioClip: {fileID: 8300000, guid: 4c54d9f3d9cd53c46b6ecc83077e68b8, type: 3}
     m_volume: 0.5
-  - m_seName: LoseSE
-    m_audioClip: {fileID: 8300000, guid: e9d95ecf0eb69b349aa2b831ce92c282, type: 3}
-    m_volume: 1
   - m_seName: BrokenWallDestroySE
     m_audioClip: {fileID: 8300000, guid: fca701367fbfa7047851fb5b2ebc4310, type: 3}
     m_volume: 0.4
@@ -635,9 +638,6 @@ MonoBehaviour:
   - m_seName: MatchingSE
     m_audioClip: {fileID: 8300000, guid: 9cd43721ae51a0d489ff65c89965248e, type: 3}
     m_volume: 0.8
-  - m_seName: Lose2SE
-    m_audioClip: {fileID: 8300000, guid: 720587d6c7b77ba4b8ff99bc264d0163, type: 3}
-    m_volume: 1
 --- !u!82 &66569132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17360,7 +17360,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1479232495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59737b4406fda5a45aa8228891b58265, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0b41991e096184d92012c71a04290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_saveData: {fileID: 66569126}
