@@ -12,14 +12,17 @@ namespace nsTankLab
     {
         [SerializeField, TooltipAttribute("ローカル時の各プレイヤーの位置")] Transform[] m_localPlayerPosition = null;
         [SerializeField, TooltipAttribute("オンライン時のプレイヤーオブジェクト")] GameObject m_onlinePlayerPrefab = null;
+        [SerializeField, TooltipAttribute("ローカルマッチ時のプレイヤーオブジェクト")] GameObject[] m_localPlayPlayerObject = null;
+        [SerializeField, TooltipAttribute("ローカルマッチ時のプレイヤーボードオブジェクト")] GameObject[] m_localPlayPlayerBoardObject = null;
+        [SerializeField, TooltipAttribute("ローカルマッチ時のプレイヤーカーソルオブジェクト")] GameObject[] m_localPlayPlayerCursorObject = null;
         [SerializeField, TooltipAttribute("各プレイヤーの名前")] TextMeshProUGUI[] m_playerNameText = null;
         //セーブデータ
         SaveData m_saveData = null;
 
         [SerializeField]SkillCool[] m_skillCoolScript = { null };
 
-        //ステージごとのプレイヤーの初期位置(ローカルの初期位置)
-        Vector3[][] m_stageLocalPlayerInitPosition =
+        //ステージごとのプレイヤーの初期位置(3,4人用の初期位置)
+        Vector3[][] m_playerInitPosition3and4Play =
         {
             //ステージ1
             new[] { new Vector3( -10.0f, 0.0f, 5.0f ),new Vector3(10.0f,0.0f,5.0f),new Vector3(-10.0f, 0.0f, -5.0f), new Vector3(10.0f, 0.0f, -5.0f)},
@@ -43,8 +46,8 @@ namespace nsTankLab
             new[] { new Vector3( -8.0f, 0.0f, 4.0f ),new Vector3(8.0f,0.0f,4.0f),new Vector3(-8.0f, 0.0f, -4.0f), new Vector3(8.0f, 0.0f, -4.0f)}
         };
 
-        //ステージごとのプレイヤーの初期位置(オンラインの初期位置)
-        Vector3[][] m_stageOnlinePlayerInitPosition =
+        //ステージごとのプレイヤーの初期位置(２人用の初期位置)
+        Vector3[][] m_playerInitPosition2Play =
         {
             //ステージ1
             new[] {new Vector3(-10.0f,0.0f,0.0f ),new Vector3(10.0f,0.0f,0.0f) },
@@ -80,16 +83,41 @@ namespace nsTankLab
                     //名前をユーザー名にする
                     m_playerNameText[0].text = PlayerPrefs.GetString("PlayerName");
 
-                    m_localPlayerPosition[0].position = m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][0];
+                    m_localPlayerPosition[0].position = m_playerInitPosition2Play[m_saveData.GetSetSelectStageNum - 1][0];
 
                     break;
 
                 //ローカルプレイ
                 case "LOCALMATCH":
+
                     //プレイヤーに初期位置を設定する。
-                    for (int playerNum = 0; playerNum < m_localPlayerPosition.Length; playerNum++)
+                    for (int playerNum = 0; playerNum < m_saveData.GetSetLocalMatchPlayNum; playerNum++)
                     {
-                        m_localPlayerPosition[playerNum].position = m_stageLocalPlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][playerNum];
+                        //プレイヤーオブジェクトをオン
+                        m_localPlayPlayerObject[playerNum].SetActive(true);
+                        m_localPlayPlayerBoardObject[playerNum].SetActive(true);
+                        m_localPlayPlayerCursorObject[playerNum].SetActive(true);
+                    }
+
+                    switch (m_saveData.GetSetLocalMatchPlayNum)
+                    {
+                        //2人
+                        case 2:
+                            //プレイヤーに初期位置を設定する。
+                            for (int playerNum = 0; playerNum < m_saveData.GetSetLocalMatchPlayNum; playerNum++)
+                            {
+                                m_localPlayerPosition[playerNum].position = m_playerInitPosition2Play[m_saveData.GetSetSelectStageNum - 1][playerNum];
+                            }
+                            break;
+                        //3人
+                        case 3:
+                        case 4:
+                            //プレイヤーに初期位置を設定する。
+                            for (int playerNum = 0; playerNum < m_saveData.GetSetLocalMatchPlayNum; playerNum++)
+                            {
+                                m_localPlayerPosition[playerNum].position = m_playerInitPosition3and4Play[m_saveData.GetSetSelectStageNum - 1][playerNum];
+                            }
+                            break;
                     }
 
                     break;
@@ -100,7 +128,7 @@ namespace nsTankLab
                     //マッチングシーンはオンライン対応のプレイヤーモデルは生成しない。
                     if(SceneManager.GetActiveScene().name == SceneName.MatchingScene)
                     {
-                        m_localPlayerPosition[0].position = m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum - 1][0];
+                        m_localPlayerPosition[0].position = m_playerInitPosition2Play[m_saveData.GetSetSelectStageNum - 1][0];
 
                         break;
                     }
@@ -137,7 +165,7 @@ namespace nsTankLab
 
             GameObject gameObjectOnline = PhotonNetwork.Instantiate(
                 m_onlinePlayerPrefab.name,
-                m_stageOnlinePlayerInitPosition[m_saveData.GetSetSelectStageNum-1][PhotonNetwork.LocalPlayer.ActorNumber-1],    //ポジション
+                m_playerInitPosition2Play[m_saveData.GetSetSelectStageNum-1][PhotonNetwork.LocalPlayer.ActorNumber-1],    //ポジション
                 Quaternion.identity,        //回転
                 0
              );

@@ -94,7 +94,7 @@ namespace nsTankLab
             if (m_saveData.GetSetSelectGameMode == "LOCALMATCH")
             {
                 //全員がタンクもスキルも選択していたら、
-                for (int player = 0; player < 4; player++)
+                for (int player = 0; player < m_saveData.GetSetLocalMatchPlayNum; player++)
                 {
                     //誰か一人でも選択していなかった場合はシーン遷移しない。
                     if (m_saveData.GetSelectTankName(player) is null)
@@ -141,7 +141,7 @@ namespace nsTankLab
         //プレイヤーUIの表示非表示処理
         void DisplayPlayerUi(bool doDisplay)
         {
-            for (int playerNum = 1; playerNum < 4; playerNum++)
+            for (int playerNum = 1; playerNum < m_saveData.GetSetLocalMatchPlayNum; playerNum++)
             {
                 m_playerBoard[playerNum].SetActive(doDisplay);
                 m_playerCursor[playerNum].SetActive(doDisplay);

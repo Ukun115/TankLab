@@ -19,9 +19,6 @@ namespace nsTankLab
 
         bool m_notGood = false;
 
-        //ローカルマッチの必要プレイ人数
-        int NEED_CONTROLLER_NUM = 4;
-
         void Start()
         {
             //コンポーネント取得まとめ
@@ -32,6 +29,10 @@ namespace nsTankLab
 
             //タイトルに入るたびにスタックを初期化してタイトルシーンをプッシュする
             m_sceneSwitcher.PushTitleScene();
+
+            //ヒットポイントを初期化しておく。
+            //(トレーニングモードで死んだときに内部的にヒットポイントが減っているため。)
+            m_saveData.GetSetHitPoint = 3;
         }
 
         //押されたボタンの種類によって処理を分岐
@@ -55,7 +56,7 @@ namespace nsTankLab
                 //ローカルマッチモードの場合、
                 case "LOCALMATCH":
                     //繋がれているコントローラーの数が足りたら、
-                    if (m_controllerData.GetConnectGamepad() >= NEED_CONTROLLER_NUM)
+                    if (m_controllerData.GetConnectGamepad() >= m_saveData.GetSetLocalMatchPlayNum)
                     {
                         //タンクシーンに遷移
                         m_sceneSwitcher.StartTransition(SceneName.SelectTankScene);
@@ -63,14 +64,27 @@ namespace nsTankLab
                     //繋がれているコントローラーの数が足りなかったら、
                     else
                     {
-                        Debug.Log($"<color=yellow>不足コントローラー数:{NEED_CONTROLLER_NUM  - m_controllerData.GetConnectGamepad()}</color>");
+                        Debug.Log($"<color=yellow>不足コントローラー数:{m_saveData.GetSetLocalMatchPlayNum - m_controllerData.GetConnectGamepad()}</color>");
 
                         //警告メッセージを画面表示
-                        m_warningTextDisplay.Display($"Not enough \ncontrollers connected.\nRequired number: {NEED_CONTROLLER_NUM - m_controllerData.GetConnectGamepad()}");
+                        m_warningTextDisplay.Display($"Not enough \ncontrollers connected.\nRequired number: {m_saveData.GetSetLocalMatchPlayNum - m_controllerData.GetConnectGamepad()}");
 
                         m_notGood = true;
                     }
 
+                    break;
+
+                //ローカルマッチモードの人数決定の場合、
+                case "LOCALMATCH_2":
+                    m_saveData.GetSetLocalMatchPlayNum = 2;
+                    break;
+                //ローカルマッチモードの人数決定の場合、
+                case "LOCALMATCH_3":
+                    m_saveData.GetSetLocalMatchPlayNum = 3;
+                    break;
+                //ローカルマッチモードの人数決定の場合、
+                case "LOCALMATCH_4":
+                    m_saveData.GetSetLocalMatchPlayNum = 4;
                     break;
 
                 //ランダムマッチの場合、

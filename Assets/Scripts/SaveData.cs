@@ -29,6 +29,9 @@ namespace nsTankLab
         //現在の体力(チャレンジモードのみで使用)
         int m_hitPoint = 3;
 
+        //ローカルマッチのプレイ人数
+        int m_localMatchPlayNum = 4;
+
         //スター
         bool[,] m_star = new bool[4,2];
 
@@ -93,6 +96,15 @@ namespace nsTankLab
             get { return m_nowStageNum; }
             //セッター
             set { m_nowStageNum = value; }
+        }
+
+        //ローカルマッチのプレイ人数プロパティ
+        public int GetSetLocalMatchPlayNum
+        {
+            //ゲッター
+            get { return m_localMatchPlayNum; }
+            //セッター
+            set { m_localMatchPlayNum = value; }
         }
 
         //合計ステージ数ゲッター
