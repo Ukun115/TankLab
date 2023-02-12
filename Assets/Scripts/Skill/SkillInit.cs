@@ -1,7 +1,5 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
-using TMPro;
-
 /// <summary>
 /// ƒXƒLƒ‹‚Ì‰Šú‰»ˆ—
 /// </summary>
