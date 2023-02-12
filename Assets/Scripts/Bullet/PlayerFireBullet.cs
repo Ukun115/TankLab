@@ -46,6 +46,13 @@ namespace nsTankLab
 
             //発射したプレイヤー番号を取得
             m_playerNum = int.Parse(Regex.Replace(m_firePositionTransform.root.name, @"[^1-4]", string.Empty));
+
+            //タンクの種類によって同時発射１発か３発かを選択する。
+            //同時発射が３発の時、
+            if (m_saveData.GetSelectTankNum(m_playerNum - 1) == 2 || m_saveData.GetSelectTankNum(m_playerNum - 1) == 3)
+            {
+                ActiveCannon();
+            }
         }
 
         void Update()
@@ -107,6 +114,13 @@ namespace nsTankLab
                     }
                 }
             }
+        }
+
+        void ActiveCannon()
+        {
+            //キャノンを追加
+            GameObject.Find($"{m_playerNum}P/PlayerCannonPivot/PlayerCannon/PlayerCannon_Left").SetActive(true);
+            GameObject.Find($"{m_playerNum}P/PlayerCannonPivot/PlayerCannon/PlayerCannon_Right").SetActive(true);
         }
 
         //フィールド上に生成されている弾の数を減らす処理

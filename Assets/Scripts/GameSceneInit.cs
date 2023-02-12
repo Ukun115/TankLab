@@ -177,13 +177,13 @@ namespace nsTankLab
             if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
             {
                 //選択されているスキルを相手に渡す
-                photonView.RPC(nameof(SkillInit), RpcTarget.All, 1, m_saveData.GetSelectSkillName(0));
+                photonView.RPC(nameof(SkillTankInit), RpcTarget.All, 1, m_saveData.GetSelectSkillName(0), m_saveData.GetSelectTankName(0));
             }
             //2P になった場合
             else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
             {
                 //選択されているスキルを相手に渡す
-                photonView.RPC(nameof(SkillInit), RpcTarget.All, 2, m_saveData.GetSelectSkillName(1));
+                photonView.RPC(nameof(SkillTankInit), RpcTarget.All, 2, m_saveData.GetSelectSkillName(1), m_saveData.GetSelectTankName(1));
             }
 
             //プレイヤー名表示
@@ -193,10 +193,12 @@ namespace nsTankLab
         }
 
         [PunRPC]
-        void SkillInit(int playerNum,string skillName)
+        void SkillTankInit(int playerNum,string skillName,string tankName)
         {
             //選択されているスキルを相手に渡す
             m_saveData.SetSelectSkillName(playerNum, skillName);
+            //選択されているタンクを相手に渡す
+            m_saveData.SetSelectTankName(playerNum, tankName);
         }
 
         //コンポーネント取得
